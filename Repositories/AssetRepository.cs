@@ -1,0 +1,170 @@
+using System.Data;
+using AssetManagement.Api.Models;
+using Dapper;
+
+namespace AssetManagement.Api.Repositories;
+
+public interface IAssetRepository
+{
+    Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync();
+    Task<AssetDto?> GetAssetAsync(int assetId);
+    Task<IEnumerable<AssetReportItemDto>> GetAssetsReportAsync(AssetReportFilterRequest filter);
+    Task<IEnumerable<AssetNotDepreciatedDto>> GetAssetsNotDepreciatedAsync();
+    Task<int> CreateAssetAsync(AssetCreateRequest request, string? imageBase64);
+    Task UpdateAssetAsync(AssetUpdateRequest request, string? imageBase64);
+    Task DeleteAssetAsync(int assetId);
+    Task UpdateAssetStatusAsync(int assetId, AssetStatusUpdateRequest request, short userId, string fullName);
+    Task RemoveAssetStatusAsync(int assetId, AssetStatusRemoveRequest request, short userId, string fullName);
+    Task<IEnumerable<AssetDepreciationHistoryDto>> GetDepreciationHistoryAsync(int assetId);
+    Task<IEnumerable<AssetInventoryHistoryDto>> GetInventoryHistoryAsync(int assetId);
+    Task<IEnumerable<StatusHistoryDto>> GetStatusHistoryAsync(int assetId);
+    Task<IEnumerable<string>> GetAssetCodeListAsync();
+}
+
+public class AssetRepository(IDbConnection db) : IAssetRepository
+{
+    public async Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync()
+    {
+        return await db.QueryAsync<AssetListItemDto>(
+            "AT.stpAssetsList",
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<AssetDto?> GetAssetAsync(int assetId)
+    {
+        return await db.QueryFirstOrDefaultAsync<AssetDto>(
+            "AT.stpAssetsS",
+            new { AssetID = assetId },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IEnumerable<AssetReportItemDto>> GetAssetsReportAsync(AssetReportFilterRequest filter)
+    {
+        return await db.QueryAsync<AssetReportItemDto>(
+            "AT.rstpAssetsList",
+            new
+            {
+                filter.LocationID,
+                filter.CompanyID,
+                filter.CategoryID,
+                filter.GroupID,
+                LocationDetailID = filter.LocationDetailID,
+                filter.AccountingExclusion
+            },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IEnumerable<AssetNotDepreciatedDto>> GetAssetsNotDepreciatedAsync()
+    {
+        return await db.QueryAsync<AssetNotDepreciatedDto>(
+            "AT.rstpAssetsNotDepreciated",
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<int> CreateAssetAsync(AssetCreateRequest request, string? imageBase64)
+    {
+        byte[]? imageBytes = imageBase64 is null ? null : Convert.FromBase64String(imageBase64);
+        var result = await db.ExecuteScalarAsync<int>(
+            "AT.stpAssetsI",
+            new
+            {
+                request.CompanyID, request.AssetCode, AssetImage = imageBytes,
+                request.AssetDesc, request.LocationID, request.LocDetailID,
+                request.GroupID, request.CategoryID, request.Donation, request.ContactID,
+                request.PurchaseOrderNo, request.PurchaseDate, request.PurchasePrice,
+                request.PurchaseCurCode, request.InServiceDate, request.InvoiceNo,
+                request.InvoiceDate, request.AccountingEntryDate, request.AccountingEntryJVNo,
+                request.BarcodeNumber, request.SerialNumber, request.Remark, request.InstalledAt
+            },
+            commandType: CommandType.StoredProcedure);
+        return result;
+    }
+
+    public async Task UpdateAssetAsync(AssetUpdateRequest request, string? imageBase64)
+    {
+        byte[]? imageBytes = imageBase64 is null ? null : Convert.FromBase64String(imageBase64);
+        await db.ExecuteAsync(
+            "AT.stpAssetsU",
+            new
+            {
+                request.CompanyID, request.AssetCode, AssetImage = imageBytes,
+                request.AssetDesc, request.LocationID, request.LocDetailID,
+                request.GroupID, request.CategoryID, request.Donation, request.ContactID,
+                request.PurchaseOrderNo, request.PurchaseDate, request.PurchasePrice,
+                request.PurchaseCurCode, request.InServiceDate, request.InvoiceNo,
+                request.InvoiceDate, request.AccountingEntryDate, request.AccountingEntryJVNo,
+                request.BarcodeNumber, request.SerialNumber, request.Remark, request.InstalledAt,
+                request.AssetID
+            },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task DeleteAssetAsync(int assetId)
+    {
+        await db.ExecuteAsync(
+            "AT.stpAssetsD",
+            new { AssetID = assetId },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task UpdateAssetStatusAsync(int assetId, AssetStatusUpdateRequest request, short userId, string fullName)
+    {
+        await db.ExecuteAsync(
+            "AT.stpAssetsStatusU",
+            new
+            {
+                request.AssetStatusID, request.AssetStatusDate,
+                request.StatusID, request.StatusDate, request.StatusContactID,
+                request.StatusSalePrice, request.StatusSaleCurCode, request.StatusDesc,
+                CreatedByUserID = userId, CreatedByFullName = fullName,
+                CreatedByDateTime = DateTime.Now, AssetID = assetId
+            },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task RemoveAssetStatusAsync(int assetId, AssetStatusRemoveRequest request, short userId, string fullName)
+    {
+        await db.ExecuteAsync(
+            "AT.stpAssetsStatusRemove",
+            new
+            {
+                request.StatusID, request.StatusDate, request.StatusContactID,
+                request.StatusSalePrice, request.StatusSaleCurCode, request.StatusDesc,
+                CreatedByUserID = userId, CreatedByFullName = fullName,
+                CreatedByDateTime = DateTime.Now, AssetID = assetId
+            },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IEnumerable<AssetDepreciationHistoryDto>> GetDepreciationHistoryAsync(int assetId)
+    {
+        return await db.QueryAsync<AssetDepreciationHistoryDto>(
+            "AT.stpAssetsDepreciationHistory",
+            new { AssetID = assetId },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IEnumerable<AssetInventoryHistoryDto>> GetInventoryHistoryAsync(int assetId)
+    {
+        return await db.QueryAsync<AssetInventoryHistoryDto>(
+            "AT.stpAssetsInventoryHistory",
+            new { AssetID = assetId },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IEnumerable<StatusHistoryDto>> GetStatusHistoryAsync(int assetId)
+    {
+        return await db.QueryAsync<StatusHistoryDto>(
+            "AT.stpStatusHistoryS",
+            new { AssetID = assetId },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IEnumerable<string>> GetAssetCodeListAsync()
+    {
+        var result = await db.QueryAsync<AssetCodeDto>(
+            "AT.stpGetAssetCodeList",
+            commandType: CommandType.StoredProcedure);
+        return result.Select(r => r.AssetCode);
+    }
+}
