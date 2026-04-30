@@ -71,3 +71,4 @@ C:\Users\M-UM760-14\Desktop\New folder\New folder\backend\AssetManagement.Api\ob
 C:\Users\M-UM760-14\Desktop\New folder\New folder\backend\AssetManagement.Api\obj\Debug\net10.0\AssetManagement.Api.pdb
 C:\Users\M-UM760-14\Desktop\New folder\New folder\backend\AssetManagement.Api\obj\Debug\net10.0\AssetManagement.Api.genruntimeconfig.cache
 C:\Users\M-UM760-14\Desktop\New folder\New folder\backend\AssetManagement.Api\obj\Debug\net10.0\ref\AssetManagement.Api.dll
+C:\Users\M-UM760-14\Desktop\New folder\New folder\backend\AssetManagement.Api\obj\Debug\net10.0\AssetManagement.Api.sourcelink.json

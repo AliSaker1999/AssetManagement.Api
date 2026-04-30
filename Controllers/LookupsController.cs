@@ -19,6 +19,9 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpGet("groups")]
     public async Task<IActionResult> GetGroups() => Ok(await repo.GetGroupTypesAsync());
 
+    [HttpGet("groups/full")]
+    public async Task<IActionResult> GetGroupsFull() => Ok(await repo.GetGroupTypesFullAsync());
+
     [HttpGet("locations")]
     public async Task<IActionResult> GetLocations() => Ok(await repo.GetLocationTypesAsync());
 
@@ -48,15 +51,15 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     public async Task<IActionResult> GetGSetSettings() => Ok(await repo.GetGSetSettingsAsync());
 
     [HttpGet("asset-code")]
-    public async Task<IActionResult> GetAssetCode([FromQuery] short companyId, [FromQuery] short groupId) =>
-        Ok(await repo.GetAssetCodeAsync(companyId, groupId));
+    public async Task<IActionResult> GetAssetCode([FromQuery] bool generate = false) =>
+        Ok(new { assetCode = await repo.GetAssetCodeAsync(generate) });
 
     // Group Types CRUD
     [HttpPost("groups")]
     public async Task<IActionResult> CreateGroup([FromBody] GroupTypeCreateRequest request)
     {
-        await repo.CreateGroupTypeAsync(request);
-        return Ok();
+        var created = await repo.CreateGroupTypeAsync(request);
+        return Ok(created);
     }
 
     [HttpPut("groups/{id:int}")]
@@ -78,8 +81,8 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpPost("categories")]
     public async Task<IActionResult> CreateCategory([FromBody] CategoryTypeCreateRequest request)
     {
-        await repo.CreateCategoryTypeAsync(request);
-        return Ok();
+        var created = await repo.CreateCategoryTypeAsync(request);
+        return Ok(created);
     }
 
     [HttpPut("categories/{id:int}")]
@@ -106,9 +109,9 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     }
 
     [HttpPut("locations/{id:int}")]
-    public async Task<IActionResult> UpdateLocation(short id, [FromBody] string location)
+    public async Task<IActionResult> UpdateLocation(short id, [FromBody] LocationTypeCreateRequest request)
     {
-        await repo.UpdateLocationTypeAsync(id, location);
+        await repo.UpdateLocationTypeAsync(id, request.Location);
         return NoContent();
     }
 
