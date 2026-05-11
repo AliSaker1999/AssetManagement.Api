@@ -7,6 +7,7 @@ namespace AssetManagement.Api.Repositories;
 public interface IAssetRepository
 {
     Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync();
+    Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25);
     Task<AssetDto?> GetAssetAsync(int assetId);
     Task<IEnumerable<AssetReportItemDto>> GetAssetsReportAsync(AssetReportFilterRequest filter);
     Task<IEnumerable<AssetNotDepreciatedDto>> GetAssetsNotDepreciatedAsync();
@@ -28,6 +29,31 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
         return await db.QueryAsync<AssetListItemDto>(
             "AT.stpAssetsList",
             commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25)
+    {
+        // Ensure valid page parameters
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = Math.Max(1, Math.Min(100, pageSize)); // Cap at 100 for performance
+
+        // Get all assets
+        var allAssets = (await db.QueryAsync<AssetListItemDto>(
+            "AT.stpAssetsList",
+            commandType: CommandType.StoredProcedure)).ToList();
+
+        // Apply pagination
+        var totalCount = allAssets.Count;
+        var skip = (pageNumber - 1) * pageSize;
+        var paginatedItems = allAssets.Skip(skip).Take(pageSize).ToList();
+
+        return new PaginatedResponse<AssetListItemDto>
+        {
+            Data = paginatedItems,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = totalCount
+        };
     }
 
     public async Task<AssetDto?> GetAssetAsync(int assetId)

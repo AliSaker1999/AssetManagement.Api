@@ -18,6 +18,10 @@ public class AssetsController(IAssetRepository repo) : ControllerBase
     public async Task<IActionResult> GetList() =>
         Ok(await repo.GetAssetsListAsync());
 
+    [HttpGet("paginated")]
+    public async Task<IActionResult> GetListPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25) =>
+        Ok(await repo.GetAssetsListPaginatedAsync(pageNumber, pageSize));
+
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id)
     {

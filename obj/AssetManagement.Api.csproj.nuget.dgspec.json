@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\M-UM760-14\\Desktop\\New folder\\New folder\\backend\\AssetManagement.Api\\AssetManagement.Api.csproj": {}
+    "C:\\Users\\asaker\\OneDrive - GEZAIRI GROUP\\Desktop\\New folder\\Asset\\AssetManagement.Api\\AssetManagement.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\M-UM760-14\\Desktop\\New folder\\New folder\\backend\\AssetManagement.Api\\AssetManagement.Api.csproj": {
+    "C:\\Users\\asaker\\OneDrive - GEZAIRI GROUP\\Desktop\\New folder\\Asset\\AssetManagement.Api\\AssetManagement.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\M-UM760-14\\Desktop\\New folder\\New folder\\backend\\AssetManagement.Api\\AssetManagement.Api.csproj",
+        "projectUniqueName": "C:\\Users\\asaker\\OneDrive - GEZAIRI GROUP\\Desktop\\New folder\\Asset\\AssetManagement.Api\\AssetManagement.Api.csproj",
         "projectName": "AssetManagement.Api",
-        "projectPath": "C:\\Users\\M-UM760-14\\Desktop\\New folder\\New folder\\backend\\AssetManagement.Api\\AssetManagement.Api.csproj",
-        "packagesPath": "C:\\Users\\M-UM760-14\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\M-UM760-14\\Desktop\\New folder\\New folder\\backend\\AssetManagement.Api\\obj\\",
+        "projectPath": "C:\\Users\\asaker\\OneDrive - GEZAIRI GROUP\\Desktop\\New folder\\Asset\\AssetManagement.Api\\AssetManagement.Api.csproj",
+        "packagesPath": "C:\\Users\\asaker\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asaker\\OneDrive - GEZAIRI GROUP\\Desktop\\New folder\\Asset\\AssetManagement.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\M-UM760-14\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\asaker\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"

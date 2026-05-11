@@ -1,4 +1,5 @@
 using System.Text;
+using AssetManagement.Api.Infrastructure;
 using AssetManagement.Api.Repositories;
 using AssetManagement.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -6,8 +7,12 @@ using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using System.Data;
+using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
+
+SqlMapper.AddTypeHandler(new DateOnlyHandler());
+SqlMapper.AddTypeHandler(new NullableDateOnlyHandler());
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
