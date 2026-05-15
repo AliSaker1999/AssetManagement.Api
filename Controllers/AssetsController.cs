@@ -3,6 +3,7 @@ using AssetManagement.Api.Models;
 using AssetManagement.Api.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
 namespace AssetManagement.Api.Controllers;
 
@@ -15,12 +16,12 @@ public class AssetsController(IAssetRepository repo) : ControllerBase
     private string FullName => User.FindFirstValue("fullName")!;
 
     [HttpGet]
-    public async Task<IActionResult> GetList() =>
-        Ok(await repo.GetAssetsListAsync());
+    public async Task<IActionResult> GetList([FromQuery] int? companyId = null) =>
+        Ok(await repo.GetAssetsListAsync(companyId));
 
     [HttpGet("paginated")]
-    public async Task<IActionResult> GetListPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25) =>
-        Ok(await repo.GetAssetsListPaginatedAsync(pageNumber, pageSize));
+    public async Task<IActionResult> GetListPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25, [FromQuery] int? companyId = null) =>
+        Ok(await repo.GetAssetsListPaginatedAsync(pageNumber, pageSize, companyId));
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id)
@@ -55,8 +56,15 @@ public class AssetsController(IAssetRepository repo) : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        await repo.DeleteAssetAsync(id);
-        return NoContent();
+        try
+        {
+            await repo.DeleteAssetAsync(id);
+            return NoContent();
+        }
+        catch (SqlException ex) when (ex.Number == 547)
+        {
+            return Conflict(new { message = "This asset cannot be deleted because it has related records (depreciation history, maintenance, etc.). Remove those records first or contact your administrator." });
+        }
     }
 
     [HttpPut("{id:int}/status")]

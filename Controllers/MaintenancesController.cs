@@ -15,24 +15,21 @@ public class MaintenancesController(IMaintenanceRepository repo) : ControllerBas
         Ok(await repo.GetMaintenancesAsync(assetId));
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] MaintenanceCreateRequest request)
-    {
-        await repo.CreateMaintenanceAsync(request);
-        return Ok();
-    }
+    public async Task<IActionResult> Create([FromBody] MaintenanceCreateRequest request) =>
+        Ok(await repo.CreateMaintenanceAsync(request));
 
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] MaintenanceUpdateRequest request)
     {
         request.MaintID = id;
-        await repo.UpdateMaintenanceAsync(request);
-        return NoContent();
+        return Ok(await repo.UpdateMaintenanceAsync(request));
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int id, [FromBody] MaintenanceDeleteRequest request)
     {
-        await repo.DeleteMaintenanceAsync(id);
+        request.MaintID = id;
+        await repo.DeleteMaintenanceAsync(request);
         return NoContent();
     }
 }

@@ -6,8 +6,8 @@ namespace AssetManagement.Api.Repositories;
 
 public interface IAssetRepository
 {
-    Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync();
-    Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25);
+    Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync(int? companyId = null);
+    Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25, int? companyId = null);
     Task<AssetDto?> GetAssetAsync(int assetId);
     Task<IEnumerable<AssetReportItemDto>> GetAssetsReportAsync(AssetReportFilterRequest filter);
     Task<IEnumerable<AssetNotDepreciatedDto>> GetAssetsNotDepreciatedAsync();
@@ -24,28 +24,28 @@ public interface IAssetRepository
 
 public class AssetRepository(IDbConnection db) : IAssetRepository
 {
-    public async Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync()
+    public async Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync(int? companyId = null)
     {
-        return await db.QueryAsync<AssetListItemDto>(
+        var all = await db.QueryAsync<AssetListItemDto>(
             "AT.stpAssetsList",
             commandType: CommandType.StoredProcedure);
+        return companyId.HasValue ? all.Where(a => a.CompanyID == companyId.Value) : all;
     }
 
-    public async Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25)
+    public async Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25, int? companyId = null)
     {
-        // Ensure valid page parameters
         pageNumber = Math.Max(1, pageNumber);
-        pageSize = Math.Max(1, Math.Min(100, pageSize)); // Cap at 100 for performance
+        pageSize = Math.Max(1, Math.Min(100, pageSize));
 
-        // Get all assets
-        var allAssets = (await db.QueryAsync<AssetListItemDto>(
+        var all = (await db.QueryAsync<AssetListItemDto>(
             "AT.stpAssetsList",
             commandType: CommandType.StoredProcedure)).ToList();
 
-        // Apply pagination
-        var totalCount = allAssets.Count;
+        var filtered = companyId.HasValue ? all.Where(a => a.CompanyID == companyId.Value).ToList() : all;
+
+        var totalCount = filtered.Count;
         var skip = (pageNumber - 1) * pageSize;
-        var paginatedItems = allAssets.Skip(skip).Take(pageSize).ToList();
+        var paginatedItems = filtered.Skip(skip).Take(pageSize).ToList();
 
         return new PaginatedResponse<AssetListItemDto>
         {

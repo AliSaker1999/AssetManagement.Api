@@ -7,9 +7,9 @@ namespace AssetManagement.Api.Repositories;
 public interface IWarrantyRepository
 {
     Task<IEnumerable<WarrantyDto>> GetWarrantiesAsync(int assetId);
-    Task CreateWarrantyAsync(WarrantyCreateRequest request);
-    Task UpdateWarrantyAsync(WarrantyUpdateRequest request);
-    Task DeleteWarrantyAsync(int warntId);
+    Task<WarrantyDto?> CreateWarrantyAsync(WarrantyCreateRequest request);
+    Task<WarrantyDto?> UpdateWarrantyAsync(WarrantyUpdateRequest request);
+    Task DeleteWarrantyAsync(WarrantyDeleteRequest request);
 }
 
 public class WarrantyRepository(IDbConnection db) : IWarrantyRepository
@@ -22,9 +22,9 @@ public class WarrantyRepository(IDbConnection db) : IWarrantyRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task CreateWarrantyAsync(WarrantyCreateRequest request)
+    public async Task<WarrantyDto?> CreateWarrantyAsync(WarrantyCreateRequest request)
     {
-        await db.ExecuteAsync(
+        return await db.QueryFirstOrDefaultAsync<WarrantyDto>(
             "AT.stpWarrantiesI",
             new
             {
@@ -34,23 +34,36 @@ public class WarrantyRepository(IDbConnection db) : IWarrantyRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task UpdateWarrantyAsync(WarrantyUpdateRequest request)
+    public async Task<WarrantyDto?> UpdateWarrantyAsync(WarrantyUpdateRequest request)
     {
-        await db.ExecuteAsync(
+        return await db.QueryFirstOrDefaultAsync<WarrantyDto>(
             "AT.stpWarrantiesU",
             new
             {
                 request.AssetID, request.WarrantyDesc,
-                request.FromDate, request.ToDate, request.Remark, request.WarntID
+                request.FromDate, request.ToDate, request.Remark, request.WarntID,
+                request.Original_WarntID, request.Original_AssetID,
+                request.Original_WarrantyDesc, request.Original_FromDate,
+                request.Original_ToDate, request.IsNull_Remark,
+                request.Original_Remark
             },
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task DeleteWarrantyAsync(int warntId)
+    public async Task DeleteWarrantyAsync(WarrantyDeleteRequest request)
     {
         await db.ExecuteAsync(
             "AT.stpWarrantiesD",
-            new { WarntID = warntId },
+            new
+            {
+                Original_WarntID = request.WarntID,
+                Original_AssetID = request.AssetID,
+                Original_WarrantyDesc = request.WarrantyDesc,
+                Original_FromDate = request.FromDate,
+                Original_ToDate = request.ToDate,
+                IsNull_Remark = request.Remark is null ? 1 : 0,
+                Original_Remark = request.Remark
+            },
             commandType: CommandType.StoredProcedure);
     }
 }

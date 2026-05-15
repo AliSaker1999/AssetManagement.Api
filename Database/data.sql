@@ -1,6 +1,6 @@
-USE [master]
+﻿USE [master]
 GO
-/****** Object:  Database [Assets]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Database [Assets]    Script Date: 15/05/2026 3:57:51 PM ******/
 CREATE DATABASE [Assets]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -87,27 +87,27 @@ ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
 GO
 USE [Assets]
 GO
-/****** Object:  User [saAsset]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  User [saAsset]    Script Date: 15/05/2026 3:57:51 PM ******/
 CREATE USER [saAsset] FOR LOGIN [saAsset] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [saAsset]
 GO
-/****** Object:  Schema [AT]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Schema [AT]    Script Date: 15/05/2026 3:57:51 PM ******/
 CREATE SCHEMA [AT]
 GO
-/****** Object:  Schema [ATSET]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Schema [ATSET]    Script Date: 15/05/2026 3:57:51 PM ******/
 CREATE SCHEMA [ATSET]
 GO
-/****** Object:  Schema [GSET]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Schema [GSET]    Script Date: 15/05/2026 3:57:51 PM ******/
 CREATE SCHEMA [GSET]
 GO
-/****** Object:  Schema [GTBL]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Schema [GTBL]    Script Date: 15/05/2026 3:57:51 PM ******/
 CREATE SCHEMA [GTBL]
 GO
-/****** Object:  Schema [SEC]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Schema [SEC]    Script Date: 15/05/2026 3:57:51 PM ******/
 CREATE SCHEMA [SEC]
 GO
-/****** Object:  UserDefinedFunction [AT].[fnLastInventoryDateByItem]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  UserDefinedFunction [AT].[fnLastInventoryDateByItem]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -137,7 +137,7 @@ END
 
 
 GO
-/****** Object:  Table [AT].[Assets]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[Assets]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -175,7 +175,7 @@ CREATE TABLE [AT].[Assets](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Attachments]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[Attachments]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +194,7 @@ CREATE TABLE [AT].[Attachments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Depreciations]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[Depreciations]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -206,13 +206,14 @@ CREATE TABLE [AT].[Depreciations](
 	[CreatedByUserID] [smallint] NOT NULL,
 	[CreatedByFullName] [nvarchar](100) NOT NULL,
 	[CreatedByDateTime] [datetime] NOT NULL,
+	[CompanyID] [smallint] NULL,
  CONSTRAINT [PK_Depreciations] PRIMARY KEY CLUSTERED 
 (
 	[DepID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[DepreciationsDetails]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[DepreciationsDetails]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -236,7 +237,7 @@ CREATE TABLE [AT].[DepreciationsDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Inventories]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[Inventories]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -258,7 +259,7 @@ CREATE TABLE [AT].[Inventories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[InventoriesDetails]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[InventoriesDetails]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -288,7 +289,7 @@ CREATE TABLE [AT].[InventoriesDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Maintenances]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[Maintenances]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -308,7 +309,7 @@ CREATE TABLE [AT].[Maintenances](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[StatusHistory]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[StatusHistory]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -331,7 +332,7 @@ CREATE TABLE [AT].[StatusHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Warranties]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [AT].[Warranties]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -349,7 +350,7 @@ CREATE TABLE [AT].[Warranties](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[CategoryTypes]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [ATSET].[CategoryTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -364,7 +365,7 @@ CREATE TABLE [ATSET].[CategoryTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[GroupTypes]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [ATSET].[GroupTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -376,14 +377,14 @@ CREATE TABLE [ATSET].[GroupTypes](
 	[DepreciationRate] [tinyint] NOT NULL,
 	[AccountNo] [nvarchar](20) NULL,
 	[AccountingExclusion] [bit] NOT NULL,
-	[CountryID] [smallint] NULL,
+	[CountryID] [char](10) NOT NULL,
  CONSTRAINT [PK_GroupTypes] PRIMARY KEY CLUSTERED 
 (
 	[GroupID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[LocationDetails]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [ATSET].[LocationDetails]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -400,7 +401,7 @@ CREATE TABLE [ATSET].[LocationDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[LocationTypes]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [ATSET].[LocationTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -415,7 +416,7 @@ CREATE TABLE [ATSET].[LocationTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[Settings]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [ATSET].[Settings]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -431,7 +432,7 @@ CREATE TABLE [ATSET].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[StatusTypes]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [ATSET].[StatusTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -445,7 +446,7 @@ CREATE TABLE [ATSET].[StatusTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail1]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[AddressDetail1]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -460,7 +461,7 @@ CREATE TABLE [GSET].[AddressDetail1](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail2]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[AddressDetail2]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -475,7 +476,7 @@ CREATE TABLE [GSET].[AddressDetail2](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail3]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[AddressDetail3]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -490,7 +491,7 @@ CREATE TABLE [GSET].[AddressDetail3](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressTypes]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[AddressTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -504,7 +505,7 @@ CREATE TABLE [GSET].[AddressTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Companies]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[Companies]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -522,7 +523,7 @@ CREATE TABLE [GSET].[Companies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[ContactTypes]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[ContactTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -536,7 +537,7 @@ CREATE TABLE [GSET].[ContactTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Countries]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[Countries]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -555,7 +556,7 @@ CREATE TABLE [GSET].[Countries](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Currencies]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[Currencies]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -569,7 +570,7 @@ CREATE TABLE [GSET].[Currencies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[CurrenciesRates]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[CurrenciesRates]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -585,7 +586,7 @@ CREATE TABLE [GSET].[CurrenciesRates](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogSeverity]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[LogSeverity]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -599,7 +600,7 @@ CREATE TABLE [GSET].[LogSeverity](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogSystem]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[LogSystem]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -613,7 +614,7 @@ CREATE TABLE [GSET].[LogSystem](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogTypes]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[LogTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -627,7 +628,7 @@ CREATE TABLE [GSET].[LogTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Settings]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GSET].[Settings]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -643,7 +644,7 @@ CREATE TABLE [GSET].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GTBL].[Contacts]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GTBL].[Contacts]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -671,7 +672,7 @@ CREATE TABLE [GTBL].[Contacts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GTBL].[Logs]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [GTBL].[Logs]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -699,7 +700,7 @@ CREATE TABLE [GTBL].[Logs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[Roles]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [SEC].[Roles]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -713,7 +714,7 @@ CREATE TABLE [SEC].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[Users]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [SEC].[Users]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -730,7 +731,7 @@ CREATE TABLE [SEC].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[UsersPermissions]    Script Date: 11/05/2026 1:38:03 PM ******/
+/****** Object:  Table [SEC].[UsersPermissions]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -749,1845 +750,27 @@ CREATE TABLE [SEC].[UsersPermissions](
 GO
 SET IDENTITY_INSERT [AT].[Assets] ON 
 GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (1, 1, N'GEZ000009', NULL, N'BOX KLINEX', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1742', NULL, NULL, NULL, NULL, N'MME ABEER')
+INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (459, 1, N'GZG000001', NULL, N'rghe', 101, 101, 101, 7, 0, 4, N'5654', CAST(N'2026-04-30' AS Date), 0, N'USD', CAST(N'2026-05-15' AS Date), N'467456356', CAST(N'2026-05-09' AS Date), NULL, N'45654', N'2454654', N'456246', NULL, NULL, N'gxngnzfgn', N'fsgrfgh')
 GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (2, 1, N'GEZ0000010', NULL, N'BOX BIN', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1741', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (3, 1, N'GEZ000011', NULL, N'شخص للصمد', 101, 101, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1740', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (4, 1, N'GEZ000012', NULL, N'CHAIR MEETING', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1723', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (5, 1, N'GEZ000013', NULL, N'CHAIR MEETING', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1724', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (6, 1, N'GEZ000014', NULL, N'CHAIR MEETING', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1725', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (7, 1, N'GEZ000015', NULL, N'CHAIR MEETING', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1726', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (8, 1, N'GEZ000016', NULL, N'TABLE MEETING', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1727', NULL, NULL, NULL, NULL, N'MEM ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (9, 1, N'GEZ000017', NULL, N'PHOTO BIG', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1728', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (10, 1, N'GEZ000018', NULL, N'PHOTO SMALL', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1729', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (11, 1, N'GEZ000019', NULL, N'PHOTO MEDIUM', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1730', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (12, 1, N'GEZ000020', NULL, N'PHOTO MEDIUM', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1731', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (13, 1, N'GEZ000021', NULL, N'PHOTO MEDIUM', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1732', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (14, 1, N'GEZ000022', NULL, N'PHOTO MEDIUM', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1734', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (15, 1, N'GEZ000023', NULL, N'PHOTO MEDIUM', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1736', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (16, 1, N'GEZ000024', NULL, N'PLANT', 101, 101, 102, 10, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1735', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (17, 1, N'GEZ000025', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'3636', NULL, NULL, N'10/07/2013', N'695', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (18, 1, N'GEZ000026', NULL, N'TABLE OFFICE WITH DRAWERS', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'3636', NULL, NULL, N'10/07/2013', N'699', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (19, 1, N'GEZ000027', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'701', N'11WZ182501PH', NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (20, 1, N'GEZ000028', NULL, N'LAP TOP', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'3199', NULL, NULL, N'21/07/2016', N'1590', N'r90kg84q', NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (21, 1, N'GEZ000029', NULL, N'SOFA', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'696', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (22, 1, N'GEZ000030', NULL, N'CHAIR VISIT', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'3636', NULL, NULL, N'10/07/2013', N'693', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (23, 1, N'GEZ000031', NULL, N'CHAIR VISIT', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'3636', NULL, NULL, N'10/07/2013', N'694', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (24, 1, N'GEZ000032', NULL, N'TABLE SMALL GLASS VISIT', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'3636', NULL, NULL, N'10/07/2013', N'697', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (25, 1, N'GEZ000033', NULL, N'SMALL SILK PLASTER', 101, 101, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1739', NULL, NULL, NULL, NULL, N'MME ABEER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (26, 1, N'GEZ000034', NULL, N'BOX KLINEX', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1743', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (27, 1, N'GEZ000035', NULL, N'AC IN WALL', 101, 101, 102, 13, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1693', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (28, 1, N'GEZ000036', NULL, N'CHAIR VISIT', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1694', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (29, 1, N'GEZ000037', NULL, N'CHAIR VISIT', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1695', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (30, 1, N'GEZ000038', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'780', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (31, 1, N'GEZ000039', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1696', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (32, 1, N'GEZ000040', NULL, N'SOFA SMALL', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1697', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (33, 1, N'GEZ000041', NULL, N'SOFA SMALL', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), NULL, NULL, NULL, NULL, N'1698', NULL, NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (34, 1, N'GEZ000042', NULL, N'LAP TOP', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-01-31' AS Date), N'170549', NULL, NULL, N'18/11/2014', N'801', N'5CD4223DMX', NULL, NULL, NULL, N'MR RAMZI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (35, 1, N'GEZ000043', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'786', N'11WZ182501PX', NULL, NULL, NULL, N'MR OWEINI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (36, 1, N'GEZ000044', NULL, N'MIDIUM PLANT', 101, 101, 102, 10, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1699', NULL, NULL, NULL, NULL, N'MR OWEINI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (37, 1, N'GEZ000045', NULL, N'WASTE PAIL', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1738', NULL, NULL, NULL, NULL, N'MR OWEINI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (38, 1, N'GEZ000046', NULL, N'CABINETE FILES', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'561', NULL, NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (39, 1, N'GEZ000047', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'538', NULL, NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (40, 1, N'GEZ000048', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'718', NULL, NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (41, 1, N'GEZ000049', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'680', NULL, NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (42, 1, N'GEZ000050', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1700', NULL, NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (43, 1, N'GEZ000051', NULL, N'AC FLOOR', 101, 101, 102, 13, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1701', NULL, NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (44, 1, N'GEZ000052', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'592', NULL, NULL, N'08/04/2019', N'1687', N'w-42c', NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (45, 1, N'GEZ000053', NULL, N'WASTE PAIL', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1744', NULL, NULL, NULL, NULL, N'MR OSMAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (46, 1, N'GEZ000054', NULL, N'WATCH', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'963', N'2062582500004', NULL, NULL, NULL, N'WAEL FOR FIX')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (47, 1, N'GEZ000055', NULL, N'CLOTHES HANGERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'902', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (48, 1, N'GEZ000056', NULL, N'BOX RECYCLING', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1720', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (49, 1, N'GEZ000057', NULL, N'BOX RECYCLING', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1721', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (50, 1, N'GEZ000058', NULL, N'PLEXI SMALL', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1717', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (51, 1, N'GEZ000059', NULL, N'PLEXI SMALL', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1718', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (52, 1, N'GEZ000060', NULL, N'WASTE PAIL', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1745', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (53, 1, N'GEZ000061', NULL, N'WASTE PAIL', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1746', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (54, 1, N'GEZ000062', NULL, N'MONEY SAFE SMALL', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1711', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (55, 1, N'GEZ000063', NULL, N'SOFA 2 PEOPLES', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1722', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (56, 1, N'GEZ000064', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'289', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (57, 1, N'GEZ000065', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1702', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (58, 1, N'GEZ000066', NULL, N'COMPTOIR', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1703', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (59, 1, N'GEZ000067', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'265', N'12WZ13560ANK', NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (60, 1, N'GEZ000068', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'266', N'12WZ135600X6', NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (61, 1, N'GEZ000069', NULL, N'PHONE CENTRAL', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'272', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (62, 1, N'GEZ000070', NULL, N'LAP TOP', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1481', N'PF07UKSZ', NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (63, 1, N'GEZ000071', NULL, N'PRINTER CHECKS', 101, 101, 101, 6, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'468', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (64, 1, N'GEZ000072', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1706', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (65, 1, N'GEZ000073', NULL, N'BIG PLANT', 101, 101, 102, 10, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1707', NULL, NULL, NULL, NULL, N'1 FLR CORODOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (66, 1, N'GEZ000074', NULL, N'PLANT SMALL', 101, 101, 102, 10, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1712', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (67, 1, N'GEZ000075', NULL, N'BIG PLANT', 101, 101, 102, 10, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1719', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (68, 1, N'GEZ000076', NULL, N'CABINETE 2 SHUTERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1709', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (69, 1, N'GEZ000077', NULL, N'CABINETE 2 SHUTERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1710', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (70, 1, N'GEZ000078', NULL, N'COMPTOIR WITH DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1704', NULL, NULL, NULL, NULL, N'MOHAMAD ZARIF')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (71, 1, N'GEZ000079', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'231', NULL, NULL, NULL, NULL, N'MOHAMAD ZARIF')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (72, 1, N'GEZ000080', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'172289', NULL, NULL, N'13/01/2015', N'622', N'3CQ42203SF', NULL, NULL, NULL, N'MOHAMAD ZARIF')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (73, 1, N'GEZ000081', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'980', N'13WZ105701FJ', NULL, NULL, NULL, N'MOHAMAD ZARIF')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (74, 1, N'GEZ000082', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1705', NULL, NULL, NULL, NULL, N'MOHAMAD ZARIF')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (75, 1, N'GEZ000083', NULL, N'CABINETE 2 SHUTERS+EMPTY', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1708', NULL, NULL, NULL, NULL, N'MOHAMAD ZARIF')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (76, 1, N'GEZ000084', NULL, N'WASTE PAIL', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1747', NULL, NULL, NULL, NULL, N'MOHAMAD ZARIF')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (77, 1, N'GEZ000085', NULL, N'WASTE PAIL', 101, 101, 102, 12, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1748', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (78, 1, N'GEZ000086', NULL, N'PLEXI BIG', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'296', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (79, 1, N'GEZ000087', NULL, N'CABINETE 2 SHUTERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1713', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (80, 1, N'GEZ000088', NULL, N'CABINETE 2 SHUTERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1714', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (81, 1, N'GEZ000089', NULL, N'CABINETE 2 SHUTERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1715', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (82, 1, N'GEZ000090', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201300103', NULL, NULL, N'21/05/2013', N'597', N'13WZ056701TN', NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (83, 1, N'GEZ000091', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'314', NULL, NULL, NULL, NULL, NULL)
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (84, 1, N'GEZ000092', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'34931', NULL, NULL, N'04/09/2013', N'599', N'TRF3280D2V', NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (85, 1, N'GEZ000093', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'598', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (86, 1, N'GEZ000094', NULL, N'CHAIR VISIT', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'887', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (87, 1, N'GEZ000095', NULL, N'CHAIR VISIT', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'943', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (88, 1, N'GEZ000096', NULL, N'AC FLOOR', 101, 101, 102, 13, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1716', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (89, 1, N'GEZ000097', NULL, N'TABLE OFFICE WITH DRAWERS AND SUITE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'569', NULL, NULL, NULL, NULL, N'NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (90, 1, N'GEZ000098', NULL, N'PHOTO COPY BIG', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'637', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (91, 1, N'GEZ000099', NULL, N'SAFE DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1749', NULL, NULL, NULL, NULL, N'1 FLR CORODOR/NOUR KANAWATI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (92, 1, N'GEZ0000100', NULL, N'MONEY SAFE SMALL', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'806', NULL, NULL, NULL, NULL, N'RANIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (93, 1, N'GEZ000101', NULL, N'PLEXI SMALL', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1751', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (94, 1, N'GEZ000102', NULL, N'CERTIFICATE PHOTO SMALL', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1752', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (95, 1, N'GEZ000103', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1162', NULL, NULL, NULL, NULL, N'SAAD RIHAN/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (96, 1, N'GEZ000104', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1026', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (97, 1, N'GEZ000105', NULL, N'CABINETE EMPTY', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1037', NULL, NULL, NULL, NULL, N'ISMAEL FARHAT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (98, 1, N'GEZ000106', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1034', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (99, 1, N'GEZ000107', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1750', NULL, NULL, NULL, NULL, N'HANA AYYAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (100, 1, N'GEZ000108', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'1054', N'12WZ2446026V', NULL, NULL, NULL, N'SAAD RIHAN/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (101, 1, N'GEZ000109', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'35015', NULL, NULL, N'02/09/2013', N'1055', N'TRF3381C7X', NULL, NULL, NULL, N'SAAD RIHAN/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (102, 1, N'GEZ000110', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1040', N'CNC230PVVY', NULL, NULL, NULL, N'SAAD RIHAN/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (103, 1, N'GEZ000111', NULL, N'TABLE OFFICE EMPTY', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'833', NULL, NULL, NULL, NULL, N'MALAK ASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (104, 1, N'GEZ000112', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1468', N'TRF5270MK3', NULL, NULL, NULL, N'WISSAM IBRICK/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (105, 1, N'GEZ000113', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1753', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (106, 1, N'GEZ000114', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'589', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (107, 1, N'GEZ000115', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'31959', NULL, NULL, N'20/11/2013', N'817', N'13WZ105701BM', NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (108, 1, N'GEZ000116', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'21380', NULL, NULL, N'21/05/2015', N'92', N'12WZ24460275', NULL, NULL, NULL, N'WISSAM IBRICK/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (109, 1, N'GEZ000117', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1453', N'3cq50452z6', NULL, NULL, NULL, N'WISSAM IBRICK/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (110, 1, N'GEZ000118', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1754', NULL, NULL, NULL, NULL, N'CHADIA HADDAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (111, 1, N'GEZ000119', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'574', NULL, NULL, NULL, NULL, N'HANA AYYAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (112, 1, N'GEZ000120', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1053', N'TRF81C6L', NULL, NULL, NULL, N'FATEN MANSOUR/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (113, 1, N'GEZ000121', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1755', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (114, 1, N'GEZ000122', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'34931', NULL, NULL, N'04/09/13', N'896', N'CNC230PVVW', NULL, NULL, NULL, N'FATEN MANSOUR/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (115, 1, N'GEZ000123', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'1052', N'14wz4567020e', NULL, NULL, NULL, N'FATEN MANSOUR/FREE ZONE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (116, 1, N'GEZ000124', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1757', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (117, 1, N'GEZ000125', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'837', NULL, NULL, NULL, NULL, N'AAMANDA EPHREM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (118, 1, N'GEZ000126', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1566', NULL, NULL, NULL, NULL, N'AMANDA EPHREM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (119, 1, N'GEZ000127', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1110', NULL, NULL, NULL, NULL, N'AMANDA EPHREM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (120, 1, N'GEZ000128', NULL, N'SCREEN', 101, 101, 101, 8, 0, 1, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'187948', NULL, NULL, N'27/05/2016', N'1585', N'CNC544015R', NULL, NULL, NULL, N'AMANDA EPHREM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (121, 1, N'GEZ000129', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'22389', NULL, NULL, N'01/03/2016', N'1537', N'14wz456701zd', NULL, NULL, NULL, N'AMANDA EPHREM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (122, 1, N'GEZ000130', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'150', NULL, NULL, NULL, NULL, N'AMANDA EPHREM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (123, 1, N'GEZ000131', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'847', NULL, NULL, NULL, NULL, N'MALAK ASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (124, 1, N'GEZ000132', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'174927', NULL, NULL, N'18/03/2015', N'161', N'CZC45143HZ', NULL, NULL, NULL, N'MALAK ASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (125, 1, N'GEZ000133', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1756', NULL, NULL, NULL, NULL, N'MALAK ASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (126, 1, N'GEZ000134', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'35015', NULL, NULL, N'25/09/2013', N'68', N'CNC203PVR9', NULL, NULL, NULL, N'MALAK ASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (127, 1, N'GEZ000135', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'31959', NULL, NULL, N'20/11/2013', N'585', N'13WZ105701EQ', NULL, NULL, NULL, N'MALAK ASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (128, 1, N'GEZ000136', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1759', NULL, NULL, NULL, NULL, N'NORHAN KARAALY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (129, 1, N'GEZ000137', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'891', NULL, NULL, NULL, NULL, N'NORHAN KARAALY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (130, 1, N'GEZ000138', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), NULL, NULL, NULL, NULL, N'1556', N'TRF6090S2Z', NULL, NULL, NULL, N'NORHAN KARAALY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (131, 1, N'GEZ000139', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'3490', NULL, NULL, N'29/11/2013', N'154', NULL, NULL, NULL, NULL, N'NORHAN KARAALY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (132, 1, N'GEZ000140', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-03' AS Date), N'201300063', NULL, NULL, N'30/3/2013', N'1013', N'12WZ4417009J', NULL, NULL, NULL, N'NORHAN KARAALY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (133, 1, N'GEZ000141', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-07' AS Date), NULL, NULL, NULL, NULL, N'1769', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (134, 1, N'GEZ000142', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-07' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'573', NULL, NULL, NULL, NULL, N'CHADIA HADDAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (135, 1, N'GEZ000143', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-07' AS Date), NULL, NULL, NULL, NULL, N'1230', N'TRF32507RF', NULL, NULL, NULL, N'CHADIA HADDAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (136, 1, N'GEZ000144', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-07' AS Date), NULL, NULL, NULL, NULL, N'1762', NULL, NULL, NULL, NULL, N'CHADIA HADDAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (137, 1, N'GEZ000145', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-07' AS Date), NULL, NULL, NULL, NULL, N'1229', N'CNC305P706', NULL, NULL, NULL, N'CHADIA HADDAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (138, 1, N'GEZ000146', NULL, N'PHONE', 101, 101, 101, 4, 0, 3, NULL, NULL, 0, N'LBP', CAST(N'2020-02-07' AS Date), N'20977-4', NULL, NULL, N'05/02/2015', N'160', N'14WZ146701PY', NULL, NULL, NULL, N'CHADIA HADDAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (139, 1, N'GEZ000147', NULL, N'CABINETE SMALL', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-07' AS Date), NULL, NULL, NULL, NULL, N'1763', NULL, NULL, NULL, NULL, N'CHADIA HADDAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (140, 1, N'GEZ000148', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-11' AS Date), NULL, NULL, NULL, NULL, N'1761', NULL, NULL, NULL, NULL, N'NABIH MAASRI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (141, 1, N'GEZ000149', NULL, N'DRAWERS', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-11' AS Date), N'349', NULL, NULL, N'09/01/2013', N'534', NULL, NULL, NULL, NULL, N'NABIH MAASRI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (142, 1, N'GEZ000150', NULL, N'COMPUTER', 101, 104, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-11' AS Date), N'176138', NULL, NULL, N'27/04/2015', N'818', N'TRF51405N0', NULL, NULL, NULL, N'HISHAM KATERJI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (143, 1, N'GEZ000151', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-11' AS Date), NULL, NULL, NULL, NULL, N'1760', NULL, NULL, NULL, NULL, N'NABIH MAASRI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (144, 1, N'GEZ000152', NULL, N'SREEN', 101, 104, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-11' AS Date), NULL, NULL, NULL, NULL, N'811', N'3CQ50453PH', NULL, NULL, NULL, N'HISHAM KATERJI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (145, 1, N'GEZ000153', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-11' AS Date), N'21380', NULL, NULL, N'25/05/2015', N'189', N'12WZ24460274', NULL, NULL, NULL, N'NABIH MAASRI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (146, 1, N'GEZ000154', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-12' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'564', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (147, 1, N'GEZ000155', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-12' AS Date), N'36746', NULL, NULL, N'22/12/2014', N'821', N'TRF4331607', NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (148, 1, N'GEZ000156', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-12' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'154', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (149, 1, N'GEZ000157', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-12' AS Date), NULL, NULL, NULL, NULL, N'1069', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (150, 1, N'GEZ000158', NULL, N'PLEXI SMALL', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1763', NULL, NULL, NULL, NULL, N'CORIDOR 1 FLR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (151, 1, N'GEZ000159', NULL, N'FIRE EXTINGUISHER', 101, 101, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'791', NULL, NULL, NULL, NULL, N'CORIDOR 1 FLR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (152, 1, N'GEZ000160', NULL, N'FIRE EXTINGUISHER', 101, 101, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1181', NULL, NULL, NULL, NULL, N'CORIDOR 1 FLR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (153, 1, N'GEZ000161', NULL, N'FRIGIDAIRE SANNINE', 101, 101, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'638', NULL, NULL, NULL, NULL, N'1 FLR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (154, 1, N'GEZ000162', NULL, N'FRIGIDAIRE', 101, 101, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'639', NULL, NULL, NULL, NULL, N'1 FLR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (155, 1, N'GEZ000163', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'944', NULL, NULL, NULL, NULL, N'KITCHEN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (156, 1, N'GEZ000164', NULL, N'SERVER BOX', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'650', NULL, NULL, NULL, NULL, N'1 FLR/KITCHEN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (157, 1, N'GEZ000165', NULL, N'ELECTRIC BOX', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1764', NULL, NULL, NULL, NULL, N'1 FLR/KITCHEN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (158, 1, N'GEZ000166', NULL, N'PLEXI BIG', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1775', NULL, NULL, NULL, NULL, N'CORODOR/1 FLR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (159, 1, N'GEZ000167', NULL, N'CABINET 7 BIG SHUTERS&7SMALL', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1176', NULL, NULL, NULL, NULL, N'CORIDOR/1 FLR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (160, 1, N'GEZ000168', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1767', NULL, NULL, NULL, NULL, N'NABIH MAASRI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (161, 1, N'GEZ000169', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1891', NULL, NULL, NULL, NULL, N'HANA AYYAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (162, 1, N'GEZ000170', NULL, N'SCREEN', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1478', N'TRF53203WJ', NULL, NULL, NULL, N'HANA AYYAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (163, 1, N'GEZ000171', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1445', N'14wz463701qb', NULL, NULL, NULL, N'HANA AYYAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (164, 1, N'GEZ000172', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1147', N'14wz463701mh', NULL, NULL, NULL, N'HANA AYYAD')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (165, 1, N'GEZ000173', NULL, N'CHAIR CISIT', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), NULL, NULL, NULL, NULL, N'1183', NULL, NULL, NULL, NULL, N'1 FLR/KITCHEN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (166, 1, N'GEZ000174', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-18' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'741', N'12WZ24170079', NULL, NULL, NULL, N'1 FLR/KITCHEN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (167, 1, N'GEZ000175', NULL, N'TABLE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), NULL, NULL, NULL, NULL, N'1766', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (168, 1, N'GEZ000176', NULL, N'COMPUTER', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'37', NULL, NULL, N'07/01/2014', N'632', N'TRF3450ZRH', NULL, NULL, NULL, N'TAREK CHATILA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (169, 1, N'GEZ000177', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'587', NULL, NULL, NULL, NULL, N'TAREK CHATILA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (170, 1, N'GEZ000178', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'36746', NULL, NULL, N'22/12/2014', N'810', N'CNC424NTKG', NULL, NULL, NULL, N'TAREK CHATILA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (171, 1, N'GEZ000179', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'604', N'12WZ4417001R', NULL, NULL, NULL, N'TAREK CHATILA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (172, 1, N'GEZ000180', NULL, N'DRAWER', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'734', NULL, NULL, NULL, NULL, N'TAREK CHATILA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (173, 1, N'GEZ000181', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'740', NULL, NULL, NULL, NULL, N'MOHAMAD MAYASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (174, 1, N'GEZ000182', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), NULL, NULL, NULL, NULL, N'1765', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (175, 1, N'GEZ000183', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'31957', NULL, NULL, N'19/11/2013', N'1146', N'13WZ105701DD', NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (176, 1, N'GEZ000184', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'738', NULL, NULL, NULL, NULL, N'TAREK CHATILA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (177, 1, N'GEZ000185', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), NULL, NULL, NULL, NULL, N'1532', NULL, NULL, NULL, NULL, N'IT/WAEL ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (178, 1, N'GEZ000186', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), NULL, NULL, NULL, NULL, N'906', NULL, NULL, NULL, NULL, N'BISIDE MARIA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (179, 1, N'GEZ000187', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), NULL, NULL, NULL, NULL, N'625', N'CNC308NT2X', NULL, NULL, NULL, N'IT/ROOM WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (180, 1, N'GEZ000188', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'31957', NULL, NULL, N'19/11/2013', N'1146', N'13WZ105701DD', NULL, NULL, NULL, N'IT/ROOM WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (181, 1, N'GEZ000189', NULL, N'DRAWER', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'575', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (182, 1, N'GEZ000190', NULL, N'DRAWER', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'577', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (183, 1, N'GEZ000191', NULL, N'DRAWER', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), NULL, NULL, NULL, NULL, N'1171', NULL, NULL, NULL, NULL, N'EMPTY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (184, 1, N'GEZ000192', NULL, N'DRAWER', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-19' AS Date), NULL, NULL, NULL, NULL, N'1170', NULL, NULL, NULL, NULL, N'MALAK ASSI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (185, 1, N'GEZ000193', NULL, N'WATCH', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'284', N'2062582500021', NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (186, 1, N'GEZ000194', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'832', NULL, NULL, NULL, NULL, N'YOUSSEF RAMMAL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (187, 1, N'GEZ000195', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'305015', NULL, NULL, N'25/09/2013', N'629', N'TRF3381C6J', NULL, NULL, NULL, N'YOUSSEF RAMMAL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (188, 1, N'GEZ000196', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'584', NULL, NULL, NULL, NULL, N'YOUSSEF RAMMAL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (189, 1, N'GEZ000197', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'628', N'CNC230PVJJ', NULL, NULL, NULL, N'YOUSSEF RAMMAL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (190, 1, N'GEZ000198', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'630', N'12WZ4417008U', NULL, NULL, NULL, N'YOUSSEF RAMMAL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (191, 1, N'GEZ000199', NULL, N'DRAWERS', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'575', NULL, NULL, NULL, NULL, N'YOUSSEF RAMMAL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (192, 1, N'GEZ000200', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1773', NULL, NULL, NULL, NULL, N'MARIA KALDOYIAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (193, 1, N'GEZ000201', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'523', NULL, NULL, NULL, NULL, N'MARIA KALDOYIAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (194, 1, N'GEZ000202', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'683', NULL, NULL, NULL, NULL, N'MARIA KALDOYIAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (195, 1, N'GEZ000203', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'34458', NULL, NULL, N'05/07/2013', N'157', N'CNC438P2B3', NULL, NULL, NULL, N'MARIA KALDOYIAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (196, 1, N'GEZ000204', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'624', N'12WZ2446027C', NULL, NULL, NULL, N'MARIA KALDOYIAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (197, 1, N'GEZ000205', NULL, N'MONEY MACHINE', 101, 101, 101, 6, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1772', NULL, NULL, NULL, NULL, N'MARIA KALDOYIAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (198, 1, N'GEZ000206', NULL, N'CLOTHES HANGERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'731', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (199, 1, N'GEZ000207', NULL, N'PLEXI SMALL', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1774', NULL, NULL, NULL, NULL, N'1 FLR CORODOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (200, 1, N'GEZ000208', NULL, N'CABINETE BIG SHUTERS&SMALL', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1777', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (201, 1, N'GEZ000209', NULL, N'CABINETE 2 BIG SHUTERS', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1778', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (202, 1, N'GEZ000210', NULL, N'LADDER', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'881', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (203, 1, N'GEZ000211', NULL, N'PHOTO COPY', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1779', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (204, 1, N'GEZ000212', NULL, N'RECYCLING BOX', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1495', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (205, 1, N'GEZ000213', NULL, N'RECYCLING BOX', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1496', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (206, 1, N'GEZ000214', NULL, N'CABINETE TWO SHUTTERS', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'948', NULL, NULL, NULL, NULL, N'1 FLR CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (207, 1, N'GEZ000215', NULL, N'TABLE OFFICE+DRAWWERS', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1782', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (208, 1, N'GEZ000216', NULL, N'CABINETE 4 SHUTERS', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1780', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (209, 1, N'GEZ000217', NULL, N'CABINETE 4 SHUTERS+EMPTY', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1784', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (210, 1, N'GEZ000218', NULL, N'CABINETE 4 SHUTERS+EMPTY', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1785', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (211, 1, N'GEZ000219', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'35015', NULL, NULL, N'25/09/2013', N'690', N'TRF3381C7N', NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (212, 1, N'GEZ000220', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1783', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (213, 1, N'GEZ000221', NULL, N'DRAWERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'39224', NULL, NULL, N'10/06/2017', N'1634', N'6cm63619z1', NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (214, 1, N'GEZ000222', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'688', N'12WZ292606WW', NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (215, 1, N'GEZ000223', NULL, N'SAFE SMALL', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'472', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (216, 1, N'GEZ000224', NULL, N'PAPER MILLING MACHINE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'692', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (217, 1, N'GEZ000225', NULL, N'AC WALL', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1781', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (218, 1, N'GEZ000226', NULL, N'CLOTHES HANGERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'558', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (219, 1, N'GEZ000227', NULL, N'CHAIR VICITE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'656', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (220, 1, N'GEZ000228', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'537', NULL, NULL, NULL, NULL, N'RIAD HASSAN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (221, 1, N'GEZ000229', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'36727', NULL, NULL, N'18/12/2014', N'617', N'TRF4320FPK', NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (222, 1, N'GEZ000230', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'257', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (223, 1, N'GEZ000231', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'36727', NULL, NULL, N'18/12/2014', N'616', N'6M3312THM', NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (224, 1, N'GEZ000232', NULL, N'TABLE OFFICE+DRAWERS', 101, 101, 102, 11, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3488', NULL, NULL, N'29/01/2013', N'184', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (225, 1, N'GEZ000233', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'528', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (226, 1, N'GEZ000234', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'682', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (227, 1, N'GEZ000235', NULL, N'CABINETE 4 SHUTERS', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'462', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (228, 1, N'GEZ000236', NULL, N'PHONE', 101, 101, 101, 4, 0, 3, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'21508', NULL, NULL, N'25/06/2015', N'618', N'13WZ1727070T', NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (229, 1, N'GEZ000237', NULL, N'PLEXI BIG', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1786', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (230, 1, N'GEZ000238', NULL, N'AC WALL', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), NULL, NULL, NULL, NULL, N'1787', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (231, 1, N'GEZ000239', NULL, N'DRAWERS', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-25' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'572', NULL, NULL, NULL, NULL, N'JOELLE MERHEB')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (232, 1, N'GEZ000240', NULL, N'TABLE OFFICE WITH DRAWERS', 101, 101, 102, 11, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'707', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (233, 1, N'GEZ000241', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'705', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (234, 1, N'GEZ000242', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'428', N'CZC3154H1C', NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (235, 1, N'GEZ000243', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'253', N'4104A-AR5B225', NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (236, 1, N'GEZ000244', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'378', N'''12WZ292606XN', NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (237, 1, N'GEZ000245', NULL, N'CABINETE 4 SHUTERS', 101, 101, 102, 18, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'560', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (238, 1, N'GEZ000246', NULL, N'AC WALL', 101, 101, 102, 13, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1789', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (239, 1, N'GEZ000247', NULL, N'CLOTHES HANGERS', 101, 101, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1788', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (240, 1, N'GEZ000248', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'796', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (241, 1, N'GEZ000249', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'795', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (242, 1, N'GEZ000250', NULL, N'PLEXI BIG', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1791', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (243, 1, N'GEZ000251', NULL, N'PLANT SMALL', 101, 101, 102, 10, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1790', NULL, NULL, NULL, NULL, N'ALI ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (244, 1, N'GEZ000252', NULL, N'LAPTOP', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'178', N'CND4453F955', NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (245, 1, N'GEZ000253', NULL, N'TABLE OFFICE WITH DRAWERS', 101, 101, 102, 11, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'717', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (246, 1, N'GEZ000254', NULL, N'CABINETE 2 SHUTERS', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1797', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (247, 1, N'GEZ000255', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'719', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (248, 1, N'GEZ000256', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'1017', NULL, NULL, N'07/03/2014', N'317', N'3CM352036S', NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (249, 1, N'GEZ000257', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'146', N'12WZ292606GL', NULL, NULL, NULL, N'WAELCHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (250, 1, N'GEZ000258', NULL, N'DUCK STATION LENOVO DISPLAY', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1793', NULL, NULL, NULL, NULL, N'WAEL CHAMY ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (251, 1, N'GEZ000259', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3490', NULL, NULL, N'29/01/2013', N'325', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (252, 1, N'GEZ000260', NULL, N'CHAIR VISITE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'657', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (253, 1, N'GEZ000261', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'720', NULL, NULL, NULL, NULL, N'BISIDE WAEL ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (254, 1, N'GEZ000262', NULL, N'CHAIR OFFICE', 101, 101, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'590', NULL, NULL, NULL, NULL, N'BISIDE WAEL ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (255, 1, N'GEZ000263', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1792', NULL, NULL, NULL, NULL, N'BISIDE WAEL ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (256, 1, N'GEZ000264', NULL, N'TABLE OFFICE', 101, 101, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1794', NULL, NULL, NULL, NULL, N'BISIDE WAEL ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (257, 1, N'GEZ000265', NULL, N'PLEXI SMALL', 101, 101, 102, 15, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1795', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (258, 1, N'GEZ000266', NULL, N'DRAWERS', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'737', NULL, NULL, NULL, NULL, N'BISIDE WAEL ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (259, 1, N'GEZ000267', NULL, N'DRAWERS', 101, 101, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'735', NULL, NULL, NULL, NULL, N'BISIDE WAEL ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (260, 1, N'GEZ000268', NULL, N'CABINETE SMALL 2 SHUTERS', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1796', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (261, 1, N'GEZ000269', NULL, N'CABINETE SMALL 2 SHUTERS', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'193', NULL, NULL, NULL, NULL, N'WAEL CHAMY')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (262, 1, N'GEZ000270', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'627', N'12WZ4417008L', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (263, 1, N'GEZ000271', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'633', N'12WZ44170062', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (264, 1, N'GEZ000272', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300087', NULL, NULL, N'07/05/2013', N'956', N'13WZ056701P0', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (265, 1, N'GEZ000273', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'31957', NULL, NULL, N'19/11/2013', N'1179', N'13WZ17270704', NULL, NULL, NULL, N'SENDING TO LIMASSOL OFFICE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (266, 1, N'GEZ000274', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'31959', NULL, NULL, N'20/11/2013', N'934', N'13WZ105701D5', NULL, NULL, NULL, N'SENDING TO LIMASSOL OFFICE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (267, 1, N'GEZ000275', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'31957', NULL, NULL, N'19/11/2013', N'1014', N'13WZ172706XX', NULL, NULL, NULL, N'SENDING TO LIMASSOL OFFICE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (268, 1, N'GEZ000276', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'742', N'12WZ24460277', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (269, 1, N'GEZ000277', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'465', N'12WZ44170096', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (270, 1, N'GEZ000278', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'31959', NULL, NULL, N'20/11/2013', N'898', N'13WZ1057010C', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (271, 1, N'GEZ000279', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'477', N'12WZ44170084', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (272, 1, N'GEZ000280', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'772', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (273, 1, N'GEZ000281', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'773', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (274, 1, N'GEZ000282', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'270', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (275, 1, N'GEZ000283', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'271', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (276, 1, N'GEZ000284', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1805', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (277, 1, N'GEZ000285', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300042', NULL, NULL, N'28/02/2013', N'478', N'12WZ11060CMD', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (278, 1, N'GEZ000286', NULL, N'PHONE', 101, 101, 101, 4, 0, 3, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, N'11/01/2016', N'1524', N'14WZ456701ZW', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (279, 1, N'GEZ000287', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'800', N'12WZ292606P2', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (280, 1, N'GEZ000288', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201200335', NULL, NULL, N'31/11/2013', N'293', N'12WZ135600ZC', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (281, 1, N'GEZ000289', NULL, N'PHONE', 101, 101, 101, 4, 0, 3, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'22389', NULL, NULL, N'01/03/2016', N'1538', N'14wz456701vr', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (282, 1, N'GEZ000290', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1804', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (283, 1, N'GEZ000291', NULL, N'PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'859', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (284, 1, N'GEZ000292', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'4080', NULL, NULL, N'16/09/2016', N'1603', N'15C12200575', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (285, 1, N'GEZ000293', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3689', NULL, NULL, N'23/08/2016', N'1594', N'E1406047777', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (286, 1, N'GEZ000294', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'518', N'13WZ04430006', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (287, 1, N'GEZ000295', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'2562', NULL, NULL, N'07/06/2016', N'1588', N'E1406047824', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (288, 1, N'GEZ000296', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'164', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (289, 1, N'GEZ000297', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'4080', NULL, NULL, N'16/09/2016', N'1601', N'15C12200574', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (290, 1, N'GEZ000298', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'210', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (291, 1, N'GEZ000299', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'3689', NULL, NULL, N'23/08/2016', N'1595', N'E1406047776', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (292, 1, N'GEZ000300', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), N'39648', NULL, NULL, N'11/12/2017', N'1652', N'e1701043958', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (293, 1, N'GEZ000301', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'163', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (294, 1, N'GEZ000302', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'144', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (295, 1, N'GEZ000303', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'1807', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (296, 1, N'GEZ000304', NULL, N'UPS', 101, 101, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-26' AS Date), NULL, NULL, NULL, NULL, N'474', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (297, 1, N'GEZ000305', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'1341', N'QAF074762155', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (298, 1, N'GEZ000306', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), N'191106', NULL, NULL, N'27/09/2016', N'1608', N'CNC625038N', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (299, 1, N'GEZ000307', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'1010', N'S10101903979', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (300, 1, N'GEZ000308', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'1335', N'R18094662437', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (301, 1, N'GEZ000309', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'607', N'CNC328PRMD', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (302, 1, N'GEZ000310', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'1466', N'3cq50454rn', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (303, 1, N'GEZ000311', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'1041', N'CNC314QZ00', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (304, 1, N'GEZ000312', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'897', N'CNC314QZJ5', NULL, NULL, NULL, N'ROMM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (305, 1, N'GEZ000313', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), N'191106', NULL, NULL, N'27/09/2016', N'1609', N'CNC625039D', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (306, 1, N'GEZ000314', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), N'34458', NULL, NULL, N'05/07/2013', N'66', N'CNC308NQT9', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (307, 1, N'GEZ000315', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'1530', N'3ck5281bnq', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (308, 1, N'GEZ000316', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'863', N'R1809466103', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (309, 1, N'GEZ000317', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'951', N'W1943SS-PF', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (310, 1, N'GEZ000318', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), N'35183', NULL, NULL, N'30/10/2013', N'224', N'CNC230PVRS', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (311, 1, N'GEZ000319', NULL, N'SCREEN', 101, 101, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-02-27' AS Date), NULL, NULL, NULL, NULL, N'466', N'R180930E1334', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (312, 1, N'GEZ000320', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-12' AS Date), N'191106', NULL, NULL, N'24/09/2016', N'1605', N'CZC63173DX', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (313, 1, N'GEZ000321', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-12' AS Date), N'1113', NULL, NULL, N'13/03/2014', N'1227', N'TRF407003S', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (314, 1, N'GEZ000322', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-12' AS Date), N'36500', NULL, NULL, N'14/08/2014', N'473', N'TRF4310230', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (315, 1, N'GEZ000323', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-12' AS Date), NULL, NULL, NULL, NULL, N'1555', N'TRF6090S0R', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (316, 1, N'GEZ000324', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-12' AS Date), NULL, NULL, NULL, NULL, N'1474', N'TRF53203W0', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (317, 1, N'GEZ000325', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-12' AS Date), N'34512', NULL, NULL, N'18/07/2013', N'244', N'TRF32507TR', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (318, 1, N'GEZ000326', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-12' AS Date), N'190217', NULL, NULL, N'25/08/2016', N'1596', N'czc6288h19', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (319, 1, N'GEZ000327', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), NULL, NULL, NULL, NULL, N'63', N'07051725930001', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (320, 1, N'GEZ000328', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), NULL, NULL, NULL, NULL, N'1103', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (321, 1, N'GEZ000329', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), NULL, NULL, NULL, NULL, N'114', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (322, 1, N'GEZ000330', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), N'34931', NULL, NULL, N'04/09/2013', N'900', N'TRF3280D26', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (323, 1, N'GEZ000331', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), NULL, NULL, NULL, NULL, N'1533', N'TRF60500NF', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (324, 1, N'GEZ000332', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), N'36746', NULL, NULL, N'22/11/2014', N'819', N'TRF433160B', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (325, 1, N'GEZ000333', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), N'35184', NULL, NULL, N'30/10/2013', N'901', N'TRF3381C7C', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (326, 1, N'GEZ000334', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), N'584', NULL, NULL, N'10/02/2014', N'608', N'TRF3410GBJ', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (327, 1, N'GEZ000335', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), NULL, NULL, NULL, NULL, N'262', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (328, 1, N'GEZ000336', NULL, N'COMPUTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), N'36727', NULL, NULL, N'18/12/2014', N'1238', N'TRF4320FMT', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (329, 1, N'GEZ000337', NULL, N'PROJECTOR', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-17' AS Date), NULL, NULL, NULL, NULL, N'802', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (330, 1, N'GEZ000338', NULL, N'LAPTOP', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), N'1184', NULL, NULL, N'02/03/2016', N'1540', N'PF0A8NAY', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (331, 1, N'GEZ000339', NULL, N'CONFERANCE PHONE', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'774', N'13WZ04430069', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (332, 1, N'GEZ000340', NULL, N'SIP CONFERENCE BI', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), N'172117', NULL, NULL, N'26/11/2014', N'79', N'TRF44507MM', NULL, NULL, NULL, N'ROOM IT/')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (333, 1, N'GEZ000341', NULL, N'WATCH HOUR', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'284', N'2062582500021', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (334, 1, N'GEZ000342', NULL, N'WIRLESS PROJERTOR', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'1799', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (335, 1, N'GEZ000343', NULL, N'PROJECTOR WALL MONT', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'1798', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (336, 1, N'GEZ000344', NULL, N'SPEACKER TRANSPORT', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'1801', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (337, 1, N'GEZ000345', NULL, N'MOBI STAR', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'41', N'0611C000194', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (338, 1, N'GEZ000346', NULL, N'BLOWER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'750', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (339, 1, N'GEZ000347', NULL, N'PROJECTOR SONY', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'776', N'39247', NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (340, 1, N'GEZ000348', NULL, N'ROLL UP', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-03-30' AS Date), NULL, NULL, NULL, NULL, N'1913', NULL, NULL, NULL, NULL, N'ROOM IT/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (341, 1, N'GEZ000349', NULL, N'PRINTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1317', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (342, 1, N'GEZ000350', NULL, N'PRINTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1684', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (343, 1, N'GEZ000351', NULL, N'PRINTER', 101, 101, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1814', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (344, 1, N'GEZ000352', NULL, N'HANDY AVAYA', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1802', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (345, 1, N'GEZ000353', NULL, N'CENTRAL AVAYA', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'40', N'12WZ43000ADD', NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (346, 1, N'GEZ000354', NULL, N'IP OFFICE BITO', 101, 101, 101, 7, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), N'3491', NULL, NULL, N'29/01/2013', N'500', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (347, 1, N'GEZ000355', NULL, N'AVAYA WIRLESS VOICE PROJECT', 101, 101, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'42', N'700413164', NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (348, 1, N'GEZ000356', NULL, N'CABINET', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1803', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (349, 1, N'GEZ000357', NULL, N'CABINET', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1806', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (350, 1, N'GEZ000358', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1808', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (351, 1, N'GEZ000359', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1809', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (352, 1, N'GEZ000360', NULL, N'CABINET', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1810', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (353, 1, N'GEZ000361', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1811', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (354, 1, N'GEZ000362', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1812', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (355, 1, N'GEZ000363', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1815', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (356, 1, N'GEZ000364', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1816', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (357, 1, N'GEZ000365', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1817', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (358, 1, N'GEZ000366', NULL, N'CABINETE', 101, 101, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1818', NULL, NULL, NULL, NULL, N'IT ROOM/WAEL')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (359, 1, N'GEZ000367', NULL, N'TABLE OFFICE', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-05' AS Date), NULL, NULL, NULL, NULL, N'1112', NULL, NULL, NULL, NULL, N'MR AKIL FOUNAI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (360, 1, N'GEZ000368', NULL, N'DRAWER', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1113', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (361, 1, N'GEZ000369', NULL, N'CHAIR OFFICE', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1229', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (362, 1, N'GEZ000370', NULL, N'CHAIR VISIT', 101, 102, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1109', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (363, 1, N'GEZ000371', NULL, N'CHAIR VISIT', 101, 102, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1108', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (364, 1, N'GEZ000372', NULL, N'CHAIR VIDIT', 101, 102, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'179', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (365, 1, N'GEZ000373', NULL, N'CABINET 2 SHUTTERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1832', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (366, 1, N'GEZ000374', NULL, N'CABINETE 4 SHUTTERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1834', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (367, 1, N'GEZ000375', NULL, N'PHONE', 101, 102, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'546', N'12WZ292606WJ', NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (368, 1, N'GEZ000376', NULL, N'SCREEN', 101, 102, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), N'40285', NULL, NULL, N'10/05/2018', N'1673', N'uqx165100169', NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (369, 1, N'GEZ000377', NULL, N'LAPTOP', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), N'40245', NULL, NULL, N'30/04/2018', N'1670', N'043130380153', NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (370, 1, N'GEZ000378', NULL, N'SOFA', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1830', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (371, 1, N'GEZ000379', NULL, N'TABLE VISITOR SMALL', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'540', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (372, 1, N'GEZ000380', NULL, N'TABLE VISITOR SMALL', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1831', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (373, 1, N'GEZ000381', NULL, N'MONEY SAFE CABINETE', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1833', NULL, NULL, NULL, NULL, N'MR AKIL FOUANI')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (374, 1, N'GEZ000382', NULL, N'CABINETTE 2 SHUTTERS', 101, 102, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'749', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (375, 1, N'GEZ000383', NULL, N'CABINETTE 2 SHUTTERS', 101, 102, 102, 17, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'729', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (376, 1, N'GEZ000384', NULL, N'CABINETE 2 SHUTTERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1838', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (377, 1, N'GEZ000385', NULL, N'CABINETE 2 SHUTTERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1839', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (378, 1, N'GEZ000386', NULL, N'EMPTY CABINETE', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1836', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (379, 1, N'GEZ000387', NULL, N'EMPTY CABINETE', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-06' AS Date), NULL, NULL, NULL, NULL, N'1837', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (380, 1, N'GEZ000388', NULL, N'DROWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-08' AS Date), NULL, NULL, NULL, NULL, N'1565', NULL, NULL, NULL, NULL, N'MARC ABI NAJM ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (381, 1, N'GEZ000389', NULL, N'DROWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-05-08' AS Date), NULL, NULL, NULL, NULL, N'1566', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (382, 1, N'GEZ000390', NULL, N'CHAIR TABLE', 101, 102, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-05-08' AS Date), N'4094', NULL, NULL, N'14/01/2015', N'1128', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (383, 1, N'GEZ000391', NULL, N'COMPUTER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1474', N'TRF53203W0', NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (384, 1, N'GEZ000392', NULL, N'TABLE+EX', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1853', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (385, 1, N'GEZ000393', NULL, N'SCREEN', 101, 102, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'665', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (386, 1, N'GEZ000394', NULL, N'PHONE', 101, 102, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), N'31959', NULL, NULL, N'20/11/2013', N'915', N'13WZ105701F7', NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (387, 1, N'GEZ000395', NULL, N'UPS', 101, 102, 101, 19, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1840', NULL, NULL, NULL, NULL, N'marc abi najm')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (388, 1, N'GEZ000396', NULL, N'IT LINKSYS224', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1841', NULL, NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (389, 1, N'GEZ000397', NULL, N'TABLE', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1842', NULL, NULL, NULL, NULL, N'TONNY HANNA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (390, 1, N'GEZ000398', NULL, N'CHAIR', 101, 102, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1843', NULL, NULL, NULL, NULL, N'ANTOINE HANNA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (391, 1, N'GEZ000399', NULL, N'COMPUTER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), N'176922/3', NULL, NULL, N'21/05/2015', N'1448', N'trf51405nh', NULL, NULL, NULL, N'ANTOINE HANNA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (392, 1, N'GEZ000400', NULL, N'PHONE', 101, 102, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1447', N'14wz463701mh', NULL, NULL, NULL, N'tonny hanna')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (393, 1, N'GEZ000401', NULL, N'SCREEN', 101, 102, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1449', N'3cq504531c', NULL, NULL, NULL, N'TONNY HANNA')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (394, 1, N'GEZ000402', NULL, N'TABLE EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1844', NULL, NULL, NULL, NULL, N'ROOM OF MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (395, 1, N'GEZ000403', NULL, N'TABLE EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1845', NULL, NULL, NULL, NULL, N'ROMM OF MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (396, 1, N'GEZ000404', NULL, N'TABLE EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1846', NULL, NULL, NULL, NULL, N'ROOM OF MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (397, 1, N'GEZ000405', NULL, N'LAP TOP', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1458', N'ye094947h', NULL, NULL, NULL, N'MARC ABI NAJM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (398, 1, N'GEZ000406', NULL, N'TABLE COMPTOIR+CABINET 1 DOOR', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1152', NULL, NULL, NULL, NULL, N'AREF TALHOUK&CHAFIC SAADE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (399, 1, N'GEZ000407', NULL, N'DRAWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1160', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (400, 1, N'GEZ000408', NULL, N'CHAIR', 101, 102, 102, 9, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1847', NULL, NULL, NULL, NULL, N'CHAFIC SAADE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (401, 1, N'GEZ000409', NULL, N'COMPUTER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1557', N'TRF6090S1K', NULL, NULL, NULL, N'CHAFIC SAADE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (402, 1, N'GEZ000410', NULL, N'SCREEN', 101, 102, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1848', NULL, NULL, NULL, NULL, N'CHAFIC SAADE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (403, 1, N'GEZ000411', NULL, N'PHONE', 101, 102, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1849', NULL, NULL, NULL, NULL, N'CHAFIC SAADE')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (404, 1, N'GEZ000412', NULL, N'CABINET 2 SHUTTERS', 101, 102, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'835', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (405, 1, N'GEZ000413', NULL, N'CABINET 2 SHUTTERS', 101, 102, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-06-30' AS Date), NULL, NULL, NULL, NULL, N'1854', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (406, 1, N'GEZ000414', NULL, N'DRAWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1552', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (407, 1, N'GEZ000415', NULL, N'DRAWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1563', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (408, 1, N'GEZ000416', NULL, N'DRAWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1564', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (409, 1, N'GEZ000417', NULL, N'DRAWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1553', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (410, 1, N'GEZ000418', NULL, N'DRAWERS', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1561', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (411, 1, N'GEZ000419', NULL, N'PLEXI BIG', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1855', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (412, 1, N'GEZ000420', NULL, N'PLEXI BIG', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1856', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (413, 1, N'GEZ000421', NULL, N'PLEXI SMALL', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1857', NULL, NULL, NULL, NULL, N'KORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (414, 1, N'GEZ000422', NULL, N'BOX RECYCLING', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1858', NULL, NULL, NULL, NULL, N'KORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (415, 1, N'GEZ000423', NULL, N'BOX RECYCLING', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1859', NULL, NULL, NULL, NULL, N'KORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (416, 1, N'GEZ000424', NULL, N'BOX RECYCLING', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), NULL, NULL, NULL, NULL, N'1860', NULL, NULL, NULL, NULL, N'KORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (417, 1, N'GEZ000425', NULL, N'PHONE', 101, 102, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-01' AS Date), N'201200335', NULL, NULL, N'31/11/2012', N'1176', N'12WZ2426027F', NULL, NULL, NULL, N'AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (418, 1, N'GEZ000426', NULL, N'SCREEN', 101, 102, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1175', N'CNC426NWLZ', NULL, NULL, NULL, N'AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (419, 1, N'GEZ000427', NULL, N'COMPUTER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1177', N'TRF43708YP', NULL, NULL, NULL, N'AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (420, 1, N'GEZ000428', NULL, N'CHAIR OFFICE', 101, 102, 102, 9, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), N'4141', NULL, NULL, N'14/01/2015', N'909', NULL, NULL, NULL, NULL, N'AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (421, 1, N'GEZ000429', NULL, N'TABLE EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1850', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (422, 1, N'GEZ000430', NULL, N'TABLE EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1851', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (423, 1, N'GEZ000431', NULL, N'SEEDLINGS', 101, 102, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1852', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (424, 1, N'GEZ000432', NULL, N'PHOTO COPY', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1298', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (425, 1, N'GEZ000433', NULL, N'CABINETE 1 SHUTTER', 101, 102, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1191', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (426, 1, N'GEZ000434', NULL, N'TABLE EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1861', NULL, NULL, NULL, NULL, N'ROOM BISIDE AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (427, 1, N'GEZ000435', NULL, N'TABLE EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1862', NULL, NULL, NULL, NULL, N'ROOM BISIDE AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (428, 1, N'GEZ000436', NULL, N'Clothes hangers', 101, 102, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1863', NULL, NULL, NULL, NULL, N'ROOM BISIDE AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (429, 1, N'GEZ000437', NULL, N'MONEY MACHINE', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1868', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (430, 1, N'GEZ000438', NULL, N'PRINTER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1869', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (431, 1, N'GEZ000439', NULL, N'CABINETE 4 SHUTTERS', 101, 102, 102, 18, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'659', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (432, 1, N'GEZ000440', NULL, N'TABLE WITH DRAWERS', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'169', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (433, 1, N'GEZ000441', NULL, N'TABLE', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1870', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (434, 1, N'GEZ000442', NULL, N'CALCULATER BIG', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'691', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (435, 1, N'GEZ000443', NULL, N'CABINET WITH DRAWERS WITH EMPTY', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1077', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (436, 1, N'GEZ000444', NULL, N'PHOTO ARKAS', 101, 102, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1873', NULL, NULL, NULL, NULL, N'CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (437, 1, N'GEZ000445', NULL, N'WATCH TIMER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1874', NULL, NULL, NULL, NULL, N'CORIDOR')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (438, 1, N'GEZ000446', NULL, N'SCREEN', 101, 102, 101, 8, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1070', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (439, 1, N'GEZ000447', NULL, N'COMPUTER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1071', N'TRF3090FDV', NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (440, 1, N'GEZ000448', NULL, N'PHONE', 101, 102, 101, 4, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), N'201300063', NULL, NULL, N'30/03/2013', N'1073', N'12WZ4417005H', NULL, NULL, NULL, NULL)
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (441, 1, N'GEZ000449', NULL, N'PRINTER', 101, 102, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1871', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (442, 1, N'GEZ000450', NULL, N'MONEY SAFE BIG', 101, 102, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1872', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (443, 1, N'GEZ000451', NULL, N'MONEY SAFE SMALL', 101, 102, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1078', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (444, 1, N'GEZ000452', NULL, N'TABLE COMPTOIR', 101, 102, 102, 11, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1074', NULL, NULL, NULL, NULL, N'YOUSSEF BANNOUT')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (445, 1, N'GEZ000453', NULL, N'AC', 101, 102, 102, 13, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1875', NULL, NULL, NULL, NULL, N'ROOM AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (446, 1, N'GEZ000454', NULL, N'AC', 101, 102, 102, 13, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1101', NULL, NULL, NULL, NULL, N'4 ROOM')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (447, 1, N'GEZ000455', NULL, N'AC', 101, 102, 102, 13, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1876', NULL, NULL, NULL, NULL, N'ROOM BISIDE AREF TALHOUK')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (448, 1, N'GEZ000456', NULL, N'FRIGIDAIRE SANNIN', 101, 102, 102, 14, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1082', NULL, NULL, NULL, NULL, N'KITCHEN/NOT FOR US')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (449, 1, N'GEZ000457', NULL, N'FRIGIDARE ELEC SMALL', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1083', NULL, NULL, NULL, NULL, N'KITCHEN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (450, 1, N'GEZ000458', NULL, N'PAPER MILLING MACHINE', 101, 102, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1086', NULL, NULL, NULL, NULL, N'KITCHEN')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (451, 1, N'GEZ000459', NULL, N'CABINETE 1 SHUTTER', 101, 103, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1877', NULL, NULL, NULL, NULL, N'IBRAHIM ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (452, 1, N'GEZ000460', NULL, N'CABINETE 1 SHUTTER', 101, 103, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1879', NULL, NULL, NULL, NULL, N'IBRAHIM ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (453, 1, N'GEZ000461', NULL, N'CABINETE 1 SHUTTER', 101, 103, 102, 18, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1878', NULL, NULL, NULL, NULL, N'IBRAHIM ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (454, 1, N'GEZ000462', NULL, N'COLORS PRINTER', 101, 103, 101, 7, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), N'25329295', NULL, NULL, N'19/03/2018', N'1666', N'3160323204', NULL, NULL, NULL, N'IBRAHIM ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (455, 1, N'GEZ000463', NULL, N'CABINETE 2 SHUTTER', 101, 103, 102, 18, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), N'3635', NULL, NULL, N'10/06/2013', N'594', NULL, NULL, NULL, NULL, N'IBRAHIM ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (456, 1, N'GEZ000464', NULL, N'CABINETE 2 SHUTTERS', 101, 103, 102, 18, 0, 2, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), N'3635', NULL, NULL, N'10/07/2013', N'595', NULL, NULL, NULL, NULL, N'IBRAHIM ZAITER')
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (457, 1, N'GEZ000465', NULL, N'CLOTHES HANGERS', 101, 103, 102, 17, 0, NULL, NULL, NULL, 0, N'LBP', CAST(N'2020-07-03' AS Date), NULL, NULL, NULL, NULL, N'1880', NULL, NULL, NULL, NULL, N'IBRAHIM ZAITER')
+INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [StatusID], [StatusDate], [Remark], [InstalledAt]) VALUES (462, 9, N'GZG000004', NULL, N'hjkfdyku', 107, 109, 104, 21, 0, 4, N'546256', CAST(N'2026-05-15' AS Date), 55, N'USD', CAST(N'2026-05-15' AS Date), N'2565', CAST(N'2026-05-15' AS Date), CAST(N'2026-05-15' AS Date), N'54265', N'5646245', N'5426', NULL, NULL, N'aegre', N'sgregh')
 GO
 SET IDENTITY_INSERT [AT].[Assets] OFF
 GO
-SET IDENTITY_INSERT [AT].[Inventories] ON 
+SET IDENTITY_INSERT [AT].[Depreciations] ON 
 GO
-INSERT [AT].[Inventories] ([InventoryID], [InventoryStartDate], [InventoryEndDate], [Remark], [StartCreatedByUserID], [StartCreatedByFullName], [StartCreatedByDateTime], [EndCreatedByUserID], [EndCreatedByFullName], [EndCreatedByDateTime]) VALUES (1, CAST(N'2026-05-04' AS Date), NULL, NULL, 3, N'Ali Saker', CAST(N'2026-05-04T11:10:18.560' AS DateTime), NULL, NULL, NULL)
+INSERT [AT].[Depreciations] ([DepID], [DepreciationDate], [Remark], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime], [CompanyID]) VALUES (19, CAST(N'2026-05-15' AS Date), NULL, 6, N'test test', CAST(N'2026-05-15T15:56:47.093' AS DateTime), 1)
 GO
-SET IDENTITY_INSERT [AT].[Inventories] OFF
+INSERT [AT].[Depreciations] ([DepID], [DepreciationDate], [Remark], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime], [CompanyID]) VALUES (20, CAST(N'2028-05-15' AS Date), NULL, 6, N'test test', CAST(N'2026-05-15T15:56:55.270' AS DateTime), 1)
 GO
-SET IDENTITY_INSERT [AT].[InventoriesDetails] ON 
+INSERT [AT].[Depreciations] ([DepID], [DepreciationDate], [Remark], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime], [CompanyID]) VALUES (22, CAST(N'2029-05-15' AS Date), NULL, 6, N'test test', CAST(N'2026-05-15T15:57:11.073' AS DateTime), 9)
 GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1, 1, 1, 0, N'GEZ000009', N'BOX KLINEX', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1742', NULL, NULL, CAST(N'2026-05-04' AS Date))
+SET IDENTITY_INSERT [AT].[Depreciations] OFF
 GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (2, 1, 2, 0, N'GEZ0000010', N'BOX BIN', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1741', NULL, NULL, CAST(N'2026-05-04' AS Date))
+SET IDENTITY_INSERT [AT].[DepreciationsDetails] ON 
 GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (3, 1, 3, 0, N'GEZ000011', N'شخص للصمد', 0, NULL, NULL, 1, 101, 101, 102, 14, N'1740', NULL, NULL, CAST(N'2026-05-04' AS Date))
+INSERT [AT].[DepreciationsDetails] ([DepDetailID], [DepID], [AssetID], [DepreciationRate], [DepreciationValue], [NetBookValue], [PurchasePrice], [PurchaseCurCode], [AccountingEntryDate], [AccountingEntryJVNo], [GroupID], [CategoryID]) VALUES (4, 22, 462, 55, 90.92, 0, 55, N'USD', CAST(N'2026-05-15' AS Date), N'54265', 104, 21)
 GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (4, 1, 4, 0, N'GEZ000012', N'CHAIR MEETING', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1723', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (5, 1, 5, 0, N'GEZ000013', N'CHAIR MEETING', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1724', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (6, 1, 6, 0, N'GEZ000014', N'CHAIR MEETING', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1725', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (7, 1, 7, 0, N'GEZ000015', N'CHAIR MEETING', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1726', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (8, 1, 8, 0, N'GEZ000016', N'TABLE MEETING', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1727', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (9, 1, 9, 0, N'GEZ000017', N'PHOTO BIG', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1728', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (10, 1, 10, 0, N'GEZ000018', N'PHOTO SMALL', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1729', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (11, 1, 11, 0, N'GEZ000019', N'PHOTO MEDIUM', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1730', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (12, 1, 12, 0, N'GEZ000020', N'PHOTO MEDIUM', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1731', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (13, 1, 13, 0, N'GEZ000021', N'PHOTO MEDIUM', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1732', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (14, 1, 14, 0, N'GEZ000022', N'PHOTO MEDIUM', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1734', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (15, 1, 15, 0, N'GEZ000023', N'PHOTO MEDIUM', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1736', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (16, 1, 16, 0, N'GEZ000024', N'PLANT', 0, NULL, NULL, 1, 101, 101, 102, 10, N'1735', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (17, 1, 17, 0, N'GEZ000025', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'695', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (18, 1, 18, 0, N'GEZ000026', N'TABLE OFFICE WITH DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 11, N'699', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (19, 1, 19, 0, N'GEZ000027', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'701', N'11WZ182501PH', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (20, 1, 20, 0, N'GEZ000028', N'LAP TOP', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1590', N'r90kg84q', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (21, 1, 21, 0, N'GEZ000029', N'SOFA', 0, NULL, NULL, 1, 101, 101, 102, 17, N'696', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (22, 1, 22, 0, N'GEZ000030', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 101, 102, 9, N'693', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (23, 1, 23, 0, N'GEZ000031', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 101, 102, 9, N'694', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (24, 1, 24, 0, N'GEZ000032', N'TABLE SMALL GLASS VISIT', 0, NULL, NULL, 1, 101, 101, 102, 11, N'697', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (25, 1, 25, 0, N'GEZ000033', N'SMALL SILK PLASTER', 0, NULL, NULL, 1, 101, 101, 102, 14, N'1739', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (26, 1, 26, 0, N'GEZ000034', N'BOX KLINEX', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1743', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (27, 1, 27, 0, N'GEZ000035', N'AC IN WALL', 0, NULL, NULL, 1, 101, 101, 102, 13, N'1693', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (28, 1, 28, 0, N'GEZ000036', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1694', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (29, 1, 29, 0, N'GEZ000037', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1695', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (30, 1, 30, 0, N'GEZ000038', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'780', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (31, 1, 31, 0, N'GEZ000039', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1696', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (32, 1, 32, 0, N'GEZ000040', N'SOFA SMALL', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1697', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (33, 1, 33, 0, N'GEZ000041', N'SOFA SMALL', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1698', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (34, 1, 34, 0, N'GEZ000042', N'LAP TOP', 0, NULL, NULL, 1, 101, 101, 101, 7, N'801', N'5CD4223DMX', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (35, 1, 35, 0, N'GEZ000043', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'786', N'11WZ182501PX', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (36, 1, 36, 0, N'GEZ000044', N'MIDIUM PLANT', 0, NULL, NULL, 1, 101, 101, 102, 10, N'1699', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (37, 1, 37, 0, N'GEZ000045', N'WASTE PAIL', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1738', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (38, 1, 38, 0, N'GEZ000046', N'CABINETE FILES', 0, NULL, NULL, 1, 101, 101, 102, 18, N'561', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (39, 1, 39, 0, N'GEZ000047', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'538', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (40, 1, 40, 0, N'GEZ000048', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'718', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (41, 1, 41, 0, N'GEZ000049', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'680', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (42, 1, 42, 0, N'GEZ000050', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1700', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (43, 1, 43, 0, N'GEZ000051', N'AC FLOOR', 0, NULL, NULL, 1, 101, 101, 102, 13, N'1701', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (44, 1, 44, 0, N'GEZ000052', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1687', N'w-42c', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (45, 1, 45, 0, N'GEZ000053', N'WASTE PAIL', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1744', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (46, 1, 46, 0, N'GEZ000054', N'WATCH', 0, NULL, NULL, 1, 101, 101, 101, 7, N'963', N'2062582500004', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (47, 1, 47, 0, N'GEZ000055', N'CLOTHES HANGERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'902', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (48, 1, 48, 0, N'GEZ000056', N'BOX RECYCLING', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1720', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (49, 1, 49, 0, N'GEZ000057', N'BOX RECYCLING', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1721', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (50, 1, 50, 0, N'GEZ000058', N'PLEXI SMALL', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1717', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (51, 1, 51, 0, N'GEZ000059', N'PLEXI SMALL', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1718', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (52, 1, 52, 0, N'GEZ000060', N'WASTE PAIL', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1745', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (53, 1, 53, 0, N'GEZ000061', N'WASTE PAIL', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1746', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (54, 1, 54, 0, N'GEZ000062', N'MONEY SAFE SMALL', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1711', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (55, 1, 55, 0, N'GEZ000063', N'SOFA 2 PEOPLES', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1722', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (56, 1, 56, 0, N'GEZ000064', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'289', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (57, 1, 57, 0, N'GEZ000065', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1702', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (58, 1, 58, 0, N'GEZ000066', N'COMPTOIR', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1703', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (59, 1, 59, 0, N'GEZ000067', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'265', N'12WZ13560ANK', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (60, 1, 60, 0, N'GEZ000068', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'266', N'12WZ135600X6', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (61, 1, 61, 0, N'GEZ000069', N'PHONE CENTRAL', 0, NULL, NULL, 1, 101, 101, 101, 4, N'272', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (62, 1, 62, 0, N'GEZ000070', N'LAP TOP', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1481', N'PF07UKSZ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (63, 1, 63, 0, N'GEZ000071', N'PRINTER CHECKS', 0, NULL, NULL, 1, 101, 101, 101, 6, N'468', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (64, 1, 64, 0, N'GEZ000072', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1706', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (65, 1, 65, 0, N'GEZ000073', N'BIG PLANT', 0, NULL, NULL, 1, 101, 101, 102, 10, N'1707', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (66, 1, 66, 0, N'GEZ000074', N'PLANT SMALL', 0, NULL, NULL, 1, 101, 101, 102, 10, N'1712', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (67, 1, 67, 0, N'GEZ000075', N'BIG PLANT', 0, NULL, NULL, 1, 101, 101, 102, 10, N'1719', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (68, 1, 68, 0, N'GEZ000076', N'CABINETE 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1709', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (69, 1, 69, 0, N'GEZ000077', N'CABINETE 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1710', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (70, 1, 70, 0, N'GEZ000078', N'COMPTOIR WITH DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1704', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (71, 1, 71, 0, N'GEZ000079', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'231', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (72, 1, 72, 0, N'GEZ000080', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'622', N'3CQ42203SF', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (73, 1, 73, 0, N'GEZ000081', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'980', N'13WZ105701FJ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (74, 1, 74, 0, N'GEZ000082', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1705', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (75, 1, 75, 0, N'GEZ000083', N'CABINETE 2 SHUTERS+EMPTY', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1708', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (76, 1, 76, 0, N'GEZ000084', N'WASTE PAIL', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1747', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (77, 1, 77, 0, N'GEZ000085', N'WASTE PAIL', 0, NULL, NULL, 1, 101, 101, 102, 12, N'1748', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (78, 1, 78, 0, N'GEZ000086', N'PLEXI BIG', 0, NULL, NULL, 1, 101, 101, 102, 15, N'296', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (79, 1, 79, 0, N'GEZ000087', N'CABINETE 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1713', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (80, 1, 80, 0, N'GEZ000088', N'CABINETE 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1714', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (81, 1, 81, 0, N'GEZ000089', N'CABINETE 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1715', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (82, 1, 82, 0, N'GEZ000090', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'597', N'13WZ056701TN', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (83, 1, 83, 0, N'GEZ000091', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'314', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (84, 1, 84, 0, N'GEZ000092', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'599', N'TRF3280D2V', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (85, 1, 85, 0, N'GEZ000093', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'598', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (86, 1, 86, 0, N'GEZ000094', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 101, 102, 9, N'887', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (87, 1, 87, 0, N'GEZ000095', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 101, 102, 9, N'943', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (88, 1, 88, 0, N'GEZ000096', N'AC FLOOR', 0, NULL, NULL, 1, 101, 101, 102, 13, N'1716', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (89, 1, 89, 0, N'GEZ000097', N'TABLE OFFICE WITH DRAWERS AND SUITE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'569', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (90, 1, 90, 0, N'GEZ000098', N'PHOTO COPY BIG', 0, NULL, NULL, 1, 101, 101, 101, 7, N'637', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (91, 1, 91, 0, N'GEZ000099', N'SAFE DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1749', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (92, 1, 92, 0, N'GEZ0000100', N'MONEY SAFE SMALL', 0, NULL, NULL, 1, 101, 101, 102, 17, N'806', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (93, 1, 93, 0, N'GEZ000101', N'PLEXI SMALL', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1751', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (94, 1, 94, 0, N'GEZ000102', N'CERTIFICATE PHOTO SMALL', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1752', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (95, 1, 95, 0, N'GEZ000103', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1162', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (96, 1, 96, 0, N'GEZ000104', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1026', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (97, 1, 97, 0, N'GEZ000105', N'CABINETE EMPTY', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1037', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (98, 1, 98, 0, N'GEZ000106', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1034', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (99, 1, 99, 0, N'GEZ000107', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1750', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (100, 1, 100, 0, N'GEZ000108', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1054', N'12WZ2446026V', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (101, 1, 101, 0, N'GEZ000109', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1055', N'TRF3381C7X', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (102, 1, 102, 0, N'GEZ000110', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1040', N'CNC230PVVY', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (103, 1, 103, 0, N'GEZ000111', N'TABLE OFFICE EMPTY', 0, NULL, NULL, 1, 101, 101, 102, 11, N'833', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (104, 1, 104, 0, N'GEZ000112', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1468', N'TRF5270MK3', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (105, 1, 105, 0, N'GEZ000113', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1753', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (106, 1, 106, 0, N'GEZ000114', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'589', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (107, 1, 107, 0, N'GEZ000115', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'817', N'13WZ105701BM', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (108, 1, 108, 0, N'GEZ000116', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'92', N'12WZ24460275', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (109, 1, 109, 0, N'GEZ000117', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1453', N'3cq50452z6', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (110, 1, 110, 0, N'GEZ000118', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1754', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (111, 1, 111, 0, N'GEZ000119', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'574', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (112, 1, 112, 0, N'GEZ000120', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1053', N'TRF81C6L', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (113, 1, 113, 0, N'GEZ000121', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1755', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (114, 1, 114, 0, N'GEZ000122', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'896', N'CNC230PVVW', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (115, 1, 115, 0, N'GEZ000123', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1052', N'14wz4567020e', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (116, 1, 116, 0, N'GEZ000124', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1757', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (117, 1, 117, 0, N'GEZ000125', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'837', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (118, 1, 118, 0, N'GEZ000126', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1566', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (119, 1, 119, 0, N'GEZ000127', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1110', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (120, 1, 120, 0, N'GEZ000128', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1585', N'CNC544015R', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (121, 1, 121, 0, N'GEZ000129', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1537', N'14wz456701zd', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (122, 1, 122, 0, N'GEZ000130', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'150', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (123, 1, 123, 0, N'GEZ000131', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'847', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (124, 1, 124, 0, N'GEZ000132', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'161', N'CZC45143HZ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (125, 1, 125, 0, N'GEZ000133', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1756', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (126, 1, 126, 0, N'GEZ000134', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'68', N'CNC203PVR9', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (127, 1, 127, 0, N'GEZ000135', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'585', N'13WZ105701EQ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (128, 1, 128, 0, N'GEZ000136', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1759', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (129, 1, 129, 0, N'GEZ000137', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'891', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (130, 1, 130, 0, N'GEZ000138', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1556', N'TRF6090S2Z', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (131, 1, 131, 0, N'GEZ000139', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'154', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (132, 1, 132, 0, N'GEZ000140', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1013', N'12WZ4417009J', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (133, 1, 133, 0, N'GEZ000141', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1769', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (134, 1, 134, 0, N'GEZ000142', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'573', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (135, 1, 135, 0, N'GEZ000143', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1230', N'TRF32507RF', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (136, 1, 136, 0, N'GEZ000144', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1762', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (137, 1, 137, 0, N'GEZ000145', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1229', N'CNC305P706', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (138, 1, 138, 0, N'GEZ000146', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'160', N'14WZ146701PY', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (139, 1, 139, 0, N'GEZ000147', N'CABINETE SMALL', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1763', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (140, 1, 140, 0, N'GEZ000148', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1761', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (141, 1, 141, 0, N'GEZ000149', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'534', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (142, 1, 142, 0, N'GEZ000150', N'COMPUTER', 0, NULL, NULL, 1, 101, 104, 101, 7, N'818', N'TRF51405N0', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (143, 1, 143, 0, N'GEZ000151', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1760', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (144, 1, 144, 0, N'GEZ000152', N'SREEN', 0, NULL, NULL, 1, 101, 104, 101, 8, N'811', N'3CQ50453PH', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (145, 1, 145, 0, N'GEZ000153', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'189', N'12WZ24460274', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (146, 1, 146, 0, N'GEZ000154', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'564', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (147, 1, 147, 0, N'GEZ000155', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'821', N'TRF4331607', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (148, 1, 148, 0, N'GEZ000156', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'154', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (149, 1, 149, 0, N'GEZ000157', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1069', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (150, 1, 150, 0, N'GEZ000158', N'PLEXI SMALL', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1763', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (151, 1, 151, 0, N'GEZ000159', N'FIRE EXTINGUISHER', 0, NULL, NULL, 1, 101, 101, 102, 14, N'791', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (152, 1, 152, 0, N'GEZ000160', N'FIRE EXTINGUISHER', 0, NULL, NULL, 1, 101, 101, 102, 14, N'1181', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (153, 1, 153, 0, N'GEZ000161', N'FRIGIDAIRE SANNINE', 0, NULL, NULL, 1, 101, 101, 102, 14, N'638', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (154, 1, 154, 0, N'GEZ000162', N'FRIGIDAIRE', 0, NULL, NULL, 1, 101, 101, 102, 14, N'639', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (155, 1, 155, 0, N'GEZ000163', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'944', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (156, 1, 156, 0, N'GEZ000164', N'SERVER BOX', 0, NULL, NULL, 1, 101, 101, 101, 7, N'650', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (157, 1, 157, 0, N'GEZ000165', N'ELECTRIC BOX', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1764', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (158, 1, 158, 0, N'GEZ000166', N'PLEXI BIG', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1775', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (159, 1, 159, 0, N'GEZ000167', N'CABINET 7 BIG SHUTERS&7SMALL', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1176', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (160, 1, 160, 0, N'GEZ000168', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1767', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (161, 1, 161, 0, N'GEZ000169', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1891', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (162, 1, 162, 0, N'GEZ000170', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1478', N'TRF53203WJ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (163, 1, 163, 0, N'GEZ000171', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1445', N'14wz463701qb', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (164, 1, 164, 0, N'GEZ000172', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1147', N'14wz463701mh', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (165, 1, 165, 0, N'GEZ000173', N'CHAIR CISIT', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1183', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (166, 1, 166, 0, N'GEZ000174', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'741', N'12WZ24170079', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (167, 1, 167, 0, N'GEZ000175', N'TABLE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1766', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (168, 1, 168, 0, N'GEZ000176', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 102, 9, N'632', N'TRF3450ZRH', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (169, 1, 169, 0, N'GEZ000177', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'587', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (170, 1, 170, 0, N'GEZ000178', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'810', N'CNC424NTKG', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (171, 1, 171, 0, N'GEZ000179', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'604', N'12WZ4417001R', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (172, 1, 172, 0, N'GEZ000180', N'DRAWER', 0, NULL, NULL, 1, 101, 101, 102, 17, N'734', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (173, 1, 173, 0, N'GEZ000181', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'740', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (174, 1, 174, 0, N'GEZ000182', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1765', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (175, 1, 175, 0, N'GEZ000183', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1146', N'13WZ105701DD', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (176, 1, 176, 0, N'GEZ000184', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'738', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (177, 1, 177, 0, N'GEZ000185', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1532', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (178, 1, 178, 0, N'GEZ000186', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'906', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (179, 1, 179, 0, N'GEZ000187', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'625', N'CNC308NT2X', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (180, 1, 180, 0, N'GEZ000188', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1146', N'13WZ105701DD', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (181, 1, 181, 0, N'GEZ000189', N'DRAWER', 0, NULL, NULL, 1, 101, 101, 102, 17, N'575', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (182, 1, 182, 0, N'GEZ000190', N'DRAWER', 0, NULL, NULL, 1, 101, 101, 102, 17, N'577', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (183, 1, 183, 0, N'GEZ000191', N'DRAWER', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1171', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (184, 1, 184, 0, N'GEZ000192', N'DRAWER', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1170', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (185, 1, 185, 0, N'GEZ000193', N'WATCH', 0, NULL, NULL, 1, 101, 101, 101, 7, N'284', N'2062582500021', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (186, 1, 186, 0, N'GEZ000194', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'832', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (187, 1, 187, 0, N'GEZ000195', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'629', N'TRF3381C6J', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (188, 1, 188, 0, N'GEZ000196', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'584', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (189, 1, 189, 0, N'GEZ000197', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'628', N'CNC230PVJJ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (190, 1, 190, 0, N'GEZ000198', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'630', N'12WZ4417008U', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (191, 1, 191, 0, N'GEZ000199', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'575', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (192, 1, 192, 0, N'GEZ000200', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1773', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (193, 1, 193, 0, N'GEZ000201', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'523', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (194, 1, 194, 0, N'GEZ000202', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'683', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (195, 1, 195, 0, N'GEZ000203', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'157', N'CNC438P2B3', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (196, 1, 196, 0, N'GEZ000204', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'624', N'12WZ2446027C', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (197, 1, 197, 0, N'GEZ000205', N'MONEY MACHINE', 0, NULL, NULL, 1, 101, 101, 101, 6, N'1772', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (198, 1, 198, 0, N'GEZ000206', N'CLOTHES HANGERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'731', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (199, 1, 199, 0, N'GEZ000207', N'PLEXI SMALL', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1774', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (200, 1, 200, 0, N'GEZ000208', N'CABINETE BIG SHUTERS&SMALL', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1777', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (201, 1, 201, 0, N'GEZ000209', N'CABINETE 2 BIG SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1778', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (202, 1, 202, 0, N'GEZ000210', N'LADDER', 0, NULL, NULL, 1, 101, 101, 102, 17, N'881', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (203, 1, 203, 0, N'GEZ000211', N'PHOTO COPY', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1779', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (204, 1, 204, 0, N'GEZ000212', N'RECYCLING BOX', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1495', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (205, 1, 205, 0, N'GEZ000213', N'RECYCLING BOX', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1496', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (206, 1, 206, 0, N'GEZ000214', N'CABINETE TWO SHUTTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'948', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (207, 1, 207, 0, N'GEZ000215', N'TABLE OFFICE+DRAWWERS', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1782', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (208, 1, 208, 0, N'GEZ000216', N'CABINETE 4 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1780', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (209, 1, 209, 0, N'GEZ000217', N'CABINETE 4 SHUTERS+EMPTY', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1784', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (210, 1, 210, 0, N'GEZ000218', N'CABINETE 4 SHUTERS+EMPTY', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1785', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (211, 1, 211, 0, N'GEZ000219', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'690', N'TRF3381C7N', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (212, 1, 212, 0, N'GEZ000220', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'1783', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (213, 1, 213, 0, N'GEZ000221', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1634', N'6cm63619z1', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (214, 1, 214, 0, N'GEZ000222', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'688', N'12WZ292606WW', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (215, 1, 215, 0, N'GEZ000223', N'SAFE SMALL', 0, NULL, NULL, 1, 101, 101, 102, 18, N'472', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (216, 1, 216, 0, N'GEZ000224', N'PAPER MILLING MACHINE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'692', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (217, 1, 217, 0, N'GEZ000225', N'AC WALL', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1781', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (218, 1, 218, 0, N'GEZ000226', N'CLOTHES HANGERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'558', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (219, 1, 219, 0, N'GEZ000227', N'CHAIR VICITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'656', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (220, 1, 220, 0, N'GEZ000228', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'537', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (221, 1, 221, 0, N'GEZ000229', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'617', N'TRF4320FPK', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (222, 1, 222, 0, N'GEZ000230', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'257', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (223, 1, 223, 0, N'GEZ000231', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'616', N'6M3312THM', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (224, 1, 224, 0, N'GEZ000232', N'TABLE OFFICE+DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 11, N'184', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (225, 1, 225, 0, N'GEZ000233', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'528', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (226, 1, 226, 0, N'GEZ000234', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'682', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (227, 1, 227, 0, N'GEZ000235', N'CABINETE 4 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'462', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (228, 1, 228, 0, N'GEZ000236', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'618', N'13WZ1727070T', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (229, 1, 229, 0, N'GEZ000237', N'PLEXI BIG', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1786', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (230, 1, 230, 0, N'GEZ000238', N'AC WALL', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1787', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (231, 1, 231, 0, N'GEZ000239', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'572', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (232, 1, 232, 0, N'GEZ000240', N'TABLE OFFICE WITH DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 11, N'707', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (233, 1, 233, 0, N'GEZ000241', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'705', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (234, 1, 234, 0, N'GEZ000242', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'428', N'CZC3154H1C', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (235, 1, 235, 0, N'GEZ000243', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'253', N'4104A-AR5B225', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (236, 1, 236, 0, N'GEZ000244', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'378', N'''12WZ292606XN', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (237, 1, 237, 0, N'GEZ000245', N'CABINETE 4 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'560', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (238, 1, 238, 0, N'GEZ000246', N'AC WALL', 0, NULL, NULL, 1, 101, 101, 102, 13, N'1789', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (239, 1, 239, 0, N'GEZ000247', N'CLOTHES HANGERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'1788', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (240, 1, 240, 0, N'GEZ000248', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'796', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (241, 1, 241, 0, N'GEZ000249', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'795', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (242, 1, 242, 0, N'GEZ000250', N'PLEXI BIG', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1791', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (243, 1, 243, 0, N'GEZ000251', N'PLANT SMALL', 0, NULL, NULL, 1, 101, 101, 102, 10, N'1790', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (244, 1, 244, 0, N'GEZ000252', N'LAPTOP', 0, NULL, NULL, 1, 101, 101, 101, 7, N'178', N'CND4453F955', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (245, 1, 245, 0, N'GEZ000253', N'TABLE OFFICE WITH DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 11, N'717', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (246, 1, 246, 0, N'GEZ000254', N'CABINETE 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1797', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (247, 1, 247, 0, N'GEZ000255', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'719', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (248, 1, 248, 0, N'GEZ000256', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'317', N'3CM352036S', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (249, 1, 249, 0, N'GEZ000257', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'146', N'12WZ292606GL', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (250, 1, 250, 0, N'GEZ000258', N'DUCK STATION LENOVO DISPLAY', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1793', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (251, 1, 251, 0, N'GEZ000259', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'325', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (252, 1, 252, 0, N'GEZ000260', N'CHAIR VISITE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'657', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (253, 1, 253, 0, N'GEZ000261', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'720', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (254, 1, 254, 0, N'GEZ000262', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 9, N'590', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (255, 1, 255, 0, N'GEZ000263', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1792', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (256, 1, 256, 0, N'GEZ000264', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 101, 102, 11, N'1794', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (257, 1, 257, 0, N'GEZ000265', N'PLEXI SMALL', 0, NULL, NULL, 1, 101, 101, 102, 15, N'1795', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (258, 1, 258, 0, N'GEZ000266', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'737', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (259, 1, 259, 0, N'GEZ000267', N'DRAWERS', 0, NULL, NULL, 1, 101, 101, 102, 17, N'735', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (260, 1, 260, 0, N'GEZ000268', N'CABINETE SMALL 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1796', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (261, 1, 261, 0, N'GEZ000269', N'CABINETE SMALL 2 SHUTERS', 0, NULL, NULL, 1, 101, 101, 102, 18, N'193', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (262, 1, 262, 0, N'GEZ000270', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'627', N'12WZ4417008L', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (263, 1, 263, 0, N'GEZ000271', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'633', N'12WZ44170062', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (264, 1, 264, 0, N'GEZ000272', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'956', N'13WZ056701P0', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (265, 1, 265, 0, N'GEZ000273', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1179', N'13WZ17270704', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (266, 1, 266, 0, N'GEZ000274', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'934', N'13WZ105701D5', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (267, 1, 267, 0, N'GEZ000275', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1014', N'13WZ172706XX', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (268, 1, 268, 0, N'GEZ000276', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'742', N'12WZ24460277', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (269, 1, 269, 0, N'GEZ000277', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'465', N'12WZ44170096', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (270, 1, 270, 0, N'GEZ000278', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'898', N'13WZ1057010C', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (271, 1, 271, 0, N'GEZ000279', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'477', N'12WZ44170084', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (272, 1, 272, 0, N'GEZ000280', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'772', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (273, 1, 273, 0, N'GEZ000281', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'773', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (274, 1, 274, 0, N'GEZ000282', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'270', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (275, 1, 275, 0, N'GEZ000283', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'271', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (276, 1, 276, 0, N'GEZ000284', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1805', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (277, 1, 277, 0, N'GEZ000285', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'478', N'12WZ11060CMD', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (278, 1, 278, 0, N'GEZ000286', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1524', N'14WZ456701ZW', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (279, 1, 279, 0, N'GEZ000287', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'800', N'12WZ292606P2', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (280, 1, 280, 0, N'GEZ000288', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'293', N'12WZ135600ZC', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (281, 1, 281, 0, N'GEZ000289', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1538', N'14wz456701vr', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (282, 1, 282, 0, N'GEZ000290', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1804', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (283, 1, 283, 0, N'GEZ000291', N'PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'859', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (284, 1, 284, 0, N'GEZ000292', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'1603', N'15C12200575', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (285, 1, 285, 0, N'GEZ000293', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'1594', N'E1406047777', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (286, 1, 286, 0, N'GEZ000294', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'518', N'13WZ04430006', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (287, 1, 287, 0, N'GEZ000295', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'1588', N'E1406047824', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (288, 1, 288, 0, N'GEZ000296', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'164', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (289, 1, 289, 0, N'GEZ000297', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'1601', N'15C12200574', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (290, 1, 290, 0, N'GEZ000298', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'210', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (291, 1, 291, 0, N'GEZ000299', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'1595', N'E1406047776', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (292, 1, 292, 0, N'GEZ000300', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'1652', N'e1701043958', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (293, 1, 293, 0, N'GEZ000301', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'163', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (294, 1, 294, 0, N'GEZ000302', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'144', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (295, 1, 295, 0, N'GEZ000303', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'1807', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (296, 1, 296, 0, N'GEZ000304', N'UPS', 0, NULL, NULL, 1, 101, 101, 101, 19, N'474', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (297, 1, 297, 0, N'GEZ000305', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1341', N'QAF074762155', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (298, 1, 298, 0, N'GEZ000306', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1608', N'CNC625038N', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (299, 1, 299, 0, N'GEZ000307', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1010', N'S10101903979', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (300, 1, 300, 0, N'GEZ000308', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1335', N'R18094662437', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (301, 1, 301, 0, N'GEZ000309', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'607', N'CNC328PRMD', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (302, 1, 302, 0, N'GEZ000310', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1466', N'3cq50454rn', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (303, 1, 303, 0, N'GEZ000311', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1041', N'CNC314QZ00', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (304, 1, 304, 0, N'GEZ000312', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'897', N'CNC314QZJ5', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (305, 1, 305, 0, N'GEZ000313', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1609', N'CNC625039D', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (306, 1, 306, 0, N'GEZ000314', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'66', N'CNC308NQT9', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (307, 1, 307, 0, N'GEZ000315', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'1530', N'3ck5281bnq', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (308, 1, 308, 0, N'GEZ000316', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'863', N'R1809466103', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (309, 1, 309, 0, N'GEZ000317', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'951', N'W1943SS-PF', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (310, 1, 310, 0, N'GEZ000318', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'224', N'CNC230PVRS', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (311, 1, 311, 0, N'GEZ000319', N'SCREEN', 0, NULL, NULL, 1, 101, 101, 101, 8, N'466', N'R180930E1334', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (312, 1, 312, 0, N'GEZ000320', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1605', N'CZC63173DX', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (313, 1, 313, 0, N'GEZ000321', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1227', N'TRF407003S', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (314, 1, 314, 0, N'GEZ000322', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'473', N'TRF4310230', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (315, 1, 315, 0, N'GEZ000323', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1555', N'TRF6090S0R', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (316, 1, 316, 0, N'GEZ000324', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1474', N'TRF53203W0', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (317, 1, 317, 0, N'GEZ000325', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'244', N'TRF32507TR', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (318, 1, 318, 0, N'GEZ000326', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1596', N'czc6288h19', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (319, 1, 319, 0, N'GEZ000327', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'63', N'07051725930001', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (320, 1, 320, 0, N'GEZ000328', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1103', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (321, 1, 321, 0, N'GEZ000329', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'114', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (322, 1, 322, 0, N'GEZ000330', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'900', N'TRF3280D26', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (323, 1, 323, 0, N'GEZ000331', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1533', N'TRF60500NF', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (324, 1, 324, 0, N'GEZ000332', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'819', N'TRF433160B', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (325, 1, 325, 0, N'GEZ000333', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'901', N'TRF3381C7C', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (326, 1, 326, 0, N'GEZ000334', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'608', N'TRF3410GBJ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (327, 1, 327, 0, N'GEZ000335', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'262', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (328, 1, 328, 0, N'GEZ000336', N'COMPUTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1238', N'TRF4320FMT', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (329, 1, 329, 0, N'GEZ000337', N'PROJECTOR', 0, NULL, NULL, 1, 101, 101, 101, 7, N'802', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (330, 1, 330, 0, N'GEZ000338', N'LAPTOP', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1540', N'PF0A8NAY', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (331, 1, 331, 0, N'GEZ000339', N'CONFERANCE PHONE', 0, NULL, NULL, 1, 101, 101, 101, 4, N'774', N'13WZ04430069', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (332, 1, 332, 0, N'GEZ000340', N'SIP CONFERENCE BI', 0, NULL, NULL, 1, 101, 101, 101, 4, N'79', N'TRF44507MM', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (333, 1, 333, 0, N'GEZ000341', N'WATCH HOUR', 0, NULL, NULL, 1, 101, 101, 101, 7, N'284', N'2062582500021', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (334, 1, 334, 0, N'GEZ000342', N'WIRLESS PROJERTOR', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1799', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (335, 1, 335, 0, N'GEZ000343', N'PROJECTOR WALL MONT', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1798', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (336, 1, 336, 0, N'GEZ000344', N'SPEACKER TRANSPORT', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1801', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (337, 1, 337, 0, N'GEZ000345', N'MOBI STAR', 0, NULL, NULL, 1, 101, 101, 101, 7, N'41', N'0611C000194', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (338, 1, 338, 0, N'GEZ000346', N'BLOWER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'750', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (339, 1, 339, 0, N'GEZ000347', N'PROJECTOR SONY', 0, NULL, NULL, 1, 101, 101, 101, 7, N'776', N'39247', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (340, 1, 340, 0, N'GEZ000348', N'ROLL UP', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1913', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (341, 1, 341, 0, N'GEZ000349', N'PRINTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1317', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (342, 1, 342, 0, N'GEZ000350', N'PRINTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1684', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (343, 1, 343, 0, N'GEZ000351', N'PRINTER', 0, NULL, NULL, 1, 101, 101, 101, 7, N'1814', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (344, 1, 344, 0, N'GEZ000352', N'HANDY AVAYA', 0, NULL, NULL, 1, 101, 101, 101, 4, N'1802', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (345, 1, 345, 0, N'GEZ000353', N'CENTRAL AVAYA', 0, NULL, NULL, 1, 101, 101, 101, 4, N'40', N'12WZ43000ADD', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (346, 1, 346, 0, N'GEZ000354', N'IP OFFICE BITO', 0, NULL, NULL, 1, 101, 101, 101, 7, N'500', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (347, 1, 347, 0, N'GEZ000355', N'AVAYA WIRLESS VOICE PROJECT', 0, NULL, NULL, 1, 101, 101, 101, 4, N'42', N'700413164', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (348, 1, 348, 0, N'GEZ000356', N'CABINET', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1803', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (349, 1, 349, 0, N'GEZ000357', N'CABINET', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1806', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (350, 1, 350, 0, N'GEZ000358', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1808', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (351, 1, 351, 0, N'GEZ000359', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1809', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (352, 1, 352, 0, N'GEZ000360', N'CABINET', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1810', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (353, 1, 353, 0, N'GEZ000361', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1811', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (354, 1, 354, 0, N'GEZ000362', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1812', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (355, 1, 355, 0, N'GEZ000363', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1815', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (356, 1, 356, 0, N'GEZ000364', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1816', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (357, 1, 357, 0, N'GEZ000365', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1817', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (358, 1, 358, 0, N'GEZ000366', N'CABINETE', 0, NULL, NULL, 1, 101, 101, 102, 18, N'1818', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (359, 1, 359, 0, N'GEZ000367', N'TABLE OFFICE', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1112', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (360, 1, 360, 0, N'GEZ000368', N'DRAWER', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1113', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (361, 1, 361, 0, N'GEZ000369', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1229', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (362, 1, 362, 0, N'GEZ000370', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 102, 102, 9, N'1109', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (363, 1, 363, 0, N'GEZ000371', N'CHAIR VISIT', 0, NULL, NULL, 1, 101, 102, 102, 9, N'1108', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (364, 1, 364, 0, N'GEZ000372', N'CHAIR VIDIT', 0, NULL, NULL, 1, 101, 102, 102, 9, N'179', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (365, 1, 365, 0, N'GEZ000373', N'CABINET 2 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1832', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (366, 1, 366, 0, N'GEZ000374', N'CABINETE 4 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1834', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (367, 1, 367, 0, N'GEZ000375', N'PHONE', 0, NULL, NULL, 1, 101, 102, 101, 4, N'546', N'12WZ292606WJ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (368, 1, 368, 0, N'GEZ000376', N'SCREEN', 0, NULL, NULL, 1, 101, 102, 101, 8, N'1673', N'uqx165100169', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (369, 1, 369, 0, N'GEZ000377', N'LAPTOP', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1670', N'043130380153', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (370, 1, 370, 0, N'GEZ000378', N'SOFA', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1830', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (371, 1, 371, 0, N'GEZ000379', N'TABLE VISITOR SMALL', 0, NULL, NULL, 1, 101, 102, 102, 17, N'540', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (372, 1, 372, 0, N'GEZ000380', N'TABLE VISITOR SMALL', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1831', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (373, 1, 373, 0, N'GEZ000381', N'MONEY SAFE CABINETE', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1833', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (374, 1, 374, 0, N'GEZ000382', N'CABINETTE 2 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'749', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (375, 1, 375, 0, N'GEZ000383', N'CABINETTE 2 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'729', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (376, 1, 376, 0, N'GEZ000384', N'CABINETE 2 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1838', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (377, 1, 377, 0, N'GEZ000385', N'CABINETE 2 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1839', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (378, 1, 378, 0, N'GEZ000386', N'EMPTY CABINETE', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1836', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (379, 1, 379, 0, N'GEZ000387', N'EMPTY CABINETE', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1837', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (380, 1, 380, 0, N'GEZ000388', N'DROWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1565', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (381, 1, 381, 0, N'GEZ000389', N'DROWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1566', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (382, 1, 382, 0, N'GEZ000390', N'CHAIR TABLE', 0, NULL, NULL, 1, 101, 102, 102, 9, N'1128', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (383, 1, 383, 0, N'GEZ000391', N'COMPUTER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1474', N'TRF53203W0', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (384, 1, 384, 0, N'GEZ000392', N'TABLE+EX', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1853', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (385, 1, 385, 0, N'GEZ000393', N'SCREEN', 0, NULL, NULL, 1, 101, 102, 101, 8, N'665', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (386, 1, 386, 0, N'GEZ000394', N'PHONE', 0, NULL, NULL, 1, 101, 102, 101, 4, N'915', N'13WZ105701F7', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (387, 1, 387, 0, N'GEZ000395', N'UPS', 0, NULL, NULL, 1, 101, 102, 101, 19, N'1840', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (388, 1, 388, 0, N'GEZ000396', N'IT LINKSYS224', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1841', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (389, 1, 389, 0, N'GEZ000397', N'TABLE', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1842', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (390, 1, 390, 0, N'GEZ000398', N'CHAIR', 0, NULL, NULL, 1, 101, 102, 102, 9, N'1843', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (391, 1, 391, 0, N'GEZ000399', N'COMPUTER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1448', N'trf51405nh', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (392, 1, 392, 0, N'GEZ000400', N'PHONE', 0, NULL, NULL, 1, 101, 102, 101, 4, N'1447', N'14wz463701mh', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (393, 1, 393, 0, N'GEZ000401', N'SCREEN', 0, NULL, NULL, 1, 101, 102, 101, 8, N'1449', N'3cq504531c', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (394, 1, 394, 0, N'GEZ000402', N'TABLE EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1844', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (395, 1, 395, 0, N'GEZ000403', N'TABLE EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1845', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (396, 1, 396, 0, N'GEZ000404', N'TABLE EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1846', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (397, 1, 397, 0, N'GEZ000405', N'LAP TOP', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1458', N'ye094947h', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (398, 1, 398, 0, N'GEZ000406', N'TABLE COMPTOIR+CABINET 1 DOOR', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1152', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (399, 1, 399, 0, N'GEZ000407', N'DRAWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1160', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (400, 1, 400, 0, N'GEZ000408', N'CHAIR', 0, NULL, NULL, 1, 101, 102, 102, 9, N'1847', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (401, 1, 401, 0, N'GEZ000409', N'COMPUTER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1557', N'TRF6090S1K', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (402, 1, 402, 0, N'GEZ000410', N'SCREEN', 0, NULL, NULL, 1, 101, 102, 101, 8, N'1848', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (403, 1, 403, 0, N'GEZ000411', N'PHONE', 0, NULL, NULL, 1, 101, 102, 101, 4, N'1849', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (404, 1, 404, 0, N'GEZ000412', N'CABINET 2 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 18, N'835', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (405, 1, 405, 0, N'GEZ000413', N'CABINET 2 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 18, N'1854', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (406, 1, 406, 0, N'GEZ000414', N'DRAWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1552', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (407, 1, 407, 0, N'GEZ000415', N'DRAWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1563', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (408, 1, 408, 0, N'GEZ000416', N'DRAWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1564', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (409, 1, 409, 0, N'GEZ000417', N'DRAWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1553', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (410, 1, 410, 0, N'GEZ000418', N'DRAWERS', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1561', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (411, 1, 411, 0, N'GEZ000419', N'PLEXI BIG', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1855', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (412, 1, 412, 0, N'GEZ000420', N'PLEXI BIG', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1856', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (413, 1, 413, 0, N'GEZ000421', N'PLEXI SMALL', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1857', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (414, 1, 414, 0, N'GEZ000422', N'BOX RECYCLING', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1858', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (415, 1, 415, 0, N'GEZ000423', N'BOX RECYCLING', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1859', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (416, 1, 416, 0, N'GEZ000424', N'BOX RECYCLING', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1860', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (417, 1, 417, 0, N'GEZ000425', N'PHONE', 0, NULL, NULL, 1, 101, 102, 101, 4, N'1176', N'12WZ2426027F', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (418, 1, 418, 0, N'GEZ000426', N'SCREEN', 0, NULL, NULL, 1, 101, 102, 101, 8, N'1175', N'CNC426NWLZ', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (419, 1, 419, 0, N'GEZ000427', N'COMPUTER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1177', N'TRF43708YP', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (420, 1, 420, 0, N'GEZ000428', N'CHAIR OFFICE', 0, NULL, NULL, 1, 101, 102, 102, 9, N'909', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (421, 1, 421, 0, N'GEZ000429', N'TABLE EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1850', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (422, 1, 422, 0, N'GEZ000430', N'TABLE EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1851', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (423, 1, 423, 0, N'GEZ000431', N'SEEDLINGS', 0, NULL, NULL, 1, 101, 102, 102, 14, N'1852', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (424, 1, 424, 0, N'GEZ000432', N'PHOTO COPY', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1298', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (425, 1, 425, 0, N'GEZ000433', N'CABINETE 1 SHUTTER', 0, NULL, NULL, 1, 101, 102, 102, 18, N'1191', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (426, 1, 426, 0, N'GEZ000434', N'TABLE EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1861', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (427, 1, 427, 0, N'GEZ000435', N'TABLE EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1862', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (428, 1, 428, 0, N'GEZ000436', N'Clothes hangers', 0, NULL, NULL, 1, 101, 102, 102, 14, N'1863', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (429, 1, 429, 0, N'GEZ000437', N'MONEY MACHINE', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1868', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (430, 1, 430, 0, N'GEZ000438', N'PRINTER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1869', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (431, 1, 431, 0, N'GEZ000439', N'CABINETE 4 SHUTTERS', 0, NULL, NULL, 1, 101, 102, 102, 18, N'659', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (432, 1, 432, 0, N'GEZ000440', N'TABLE WITH DRAWERS', 0, NULL, NULL, 1, 101, 102, 102, 11, N'169', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (433, 1, 433, 0, N'GEZ000441', N'TABLE', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1870', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (434, 1, 434, 0, N'GEZ000442', N'CALCULATER BIG', 0, NULL, NULL, 1, 101, 102, 101, 7, N'691', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (435, 1, 435, 0, N'GEZ000443', N'CABINET WITH DRAWERS WITH EMPTY', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1077', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (436, 1, 436, 0, N'GEZ000444', N'PHOTO ARKAS', 0, NULL, NULL, 1, 101, 102, 102, 14, N'1873', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (437, 1, 437, 0, N'GEZ000445', N'WATCH TIMER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1874', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (438, 1, 438, 0, N'GEZ000446', N'SCREEN', 0, NULL, NULL, 1, 101, 102, 101, 8, N'1070', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (439, 1, 439, 0, N'GEZ000447', N'COMPUTER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1071', N'TRF3090FDV', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (440, 1, 440, 0, N'GEZ000448', N'PHONE', 0, NULL, NULL, 1, 101, 102, 101, 4, N'1073', N'12WZ4417005H', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (441, 1, 441, 0, N'GEZ000449', N'PRINTER', 0, NULL, NULL, 1, 101, 102, 101, 7, N'1871', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (442, 1, 442, 0, N'GEZ000450', N'MONEY SAFE BIG', 0, NULL, NULL, 1, 101, 102, 102, 18, N'1872', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (443, 1, 443, 0, N'GEZ000451', N'MONEY SAFE SMALL', 0, NULL, NULL, 1, 101, 102, 102, 14, N'1078', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (444, 1, 444, 0, N'GEZ000452', N'TABLE COMPTOIR', 0, NULL, NULL, 1, 101, 102, 102, 11, N'1074', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (445, 1, 445, 0, N'GEZ000453', N'AC', 0, NULL, NULL, 1, 101, 102, 102, 13, N'1875', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (446, 1, 446, 0, N'GEZ000454', N'AC', 0, NULL, NULL, 1, 101, 102, 102, 13, N'1101', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (447, 1, 447, 0, N'GEZ000455', N'AC', 0, NULL, NULL, 1, 101, 102, 102, 13, N'1876', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (448, 1, 448, 0, N'GEZ000456', N'FRIGIDAIRE SANNIN', 0, NULL, NULL, 1, 101, 102, 102, 14, N'1082', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (449, 1, 449, 0, N'GEZ000457', N'FRIGIDARE ELEC SMALL', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1083', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (450, 1, 450, 0, N'GEZ000458', N'PAPER MILLING MACHINE', 0, NULL, NULL, 1, 101, 102, 102, 17, N'1086', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (451, 1, 451, 0, N'GEZ000459', N'CABINETE 1 SHUTTER', 0, NULL, NULL, 1, 101, 103, 102, 18, N'1877', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (452, 1, 452, 0, N'GEZ000460', N'CABINETE 1 SHUTTER', 0, NULL, NULL, 1, 101, 103, 102, 18, N'1879', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (453, 1, 453, 0, N'GEZ000461', N'CABINETE 1 SHUTTER', 0, NULL, NULL, 1, 101, 103, 102, 18, N'1878', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (454, 1, 454, 0, N'GEZ000462', N'COLORS PRINTER', 0, NULL, NULL, 1, 101, 103, 101, 7, N'1666', N'3160323204', NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (455, 1, 455, 0, N'GEZ000463', N'CABINETE 2 SHUTTER', 0, NULL, NULL, 1, 101, 103, 102, 18, N'594', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (456, 1, 456, 0, N'GEZ000464', N'CABINETE 2 SHUTTERS', 0, NULL, NULL, 1, 101, 103, 102, 18, N'595', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (457, 1, 457, 0, N'GEZ000465', N'CLOTHES HANGERS', 0, NULL, NULL, 1, 101, 103, 102, 17, N'1880', NULL, NULL, CAST(N'2026-05-04' AS Date))
-GO
-SET IDENTITY_INSERT [AT].[InventoriesDetails] OFF
+SET IDENTITY_INSERT [AT].[DepreciationsDetails] OFF
 GO
 SET IDENTITY_INSERT [ATSET].[CategoryTypes] ON 
 GO
@@ -2623,13 +806,17 @@ INSERT [ATSET].[CategoryTypes] ([CategoryID], [Category], [GroupID]) VALUES (18,
 GO
 INSERT [ATSET].[CategoryTypes] ([CategoryID], [Category], [GroupID]) VALUES (19, N'UPS', 101)
 GO
+INSERT [ATSET].[CategoryTypes] ([CategoryID], [Category], [GroupID]) VALUES (21, N'fgnfxgn', 104)
+GO
 SET IDENTITY_INSERT [ATSET].[CategoryTypes] OFF
 GO
 SET IDENTITY_INSERT [ATSET].[GroupTypes] ON 
 GO
-INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (101, N'COMPUTER & OFFICE MACHINERY', N'COM', 0, NULL, 0, NULL)
+INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (101, N'COMPUTER & OFFICE MACHINERY', N'COM', 10, NULL, 0, N'LB        ')
 GO
-INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (102, N'FURNITURE', N'FUR', 0, NULL, 0, NULL)
+INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (102, N'FURNITURE', N'FUR', 0, NULL, 0, N'LB        ')
+GO
+INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (104, N'test', N'tst', 55, N'', 1, N'IQ        ')
 GO
 SET IDENTITY_INSERT [ATSET].[GroupTypes] OFF
 GO
@@ -2645,6 +832,10 @@ INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], 
 GO
 INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (105, 101, N'MEZ', NULL, NULL)
 GO
+INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (108, 107, N'6', N'', N'')
+GO
+INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (109, 107, N'666', N'GFD', N'')
+GO
 SET IDENTITY_INSERT [ATSET].[LocationDetails] OFF
 GO
 SET IDENTITY_INSERT [ATSET].[LocationTypes] ON 
@@ -2659,13 +850,19 @@ INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (1
 GO
 INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (105, N'YARD', 1)
 GO
+INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (107, N'fnxzfgngf', 9)
+GO
+INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (108, N'zcvbvcb', 9)
+GO
 SET IDENTITY_INSERT [ATSET].[LocationTypes] OFF
 GO
 INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (1, N'GZG', N'Asset Acronym, Max is 5', N'General')
 GO
 INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (2, N'6', N'Asset Code Length, Min is 1 Max is 10', N'General')
 GO
-INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (3, N'465', N'Asset Code Counter', N'General')
+INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (3, N'4', N'Asset Code Counter', N'General')
+GO
+INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (4, N'Country', N'Asset Acronym Start Setting', N'General')
 GO
 INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (3, N'Destroyed')
 GO
@@ -2690,6 +887,8 @@ GO
 SET IDENTITY_INSERT [GSET].[Companies] ON 
 GO
 INSERT [GSET].[Companies] ([CompanyID], [CompanyName], [CompanyAbbreviation], [CompanyPrmCurCode], [CompanyScdCurCode], [CountryID]) VALUES (1, N'GEZAIRI SERVICES', N'GZS', N'LBP', N'USD', N'LB')
+GO
+INSERT [GSET].[Companies] ([CompanyID], [CompanyName], [CompanyAbbreviation], [CompanyPrmCurCode], [CompanyScdCurCode], [CountryID]) VALUES (9, N'test', N'test', N'USD', N'EUR', N'IQ')
 GO
 SET IDENTITY_INSERT [GSET].[Companies] OFF
 GO
@@ -3029,6 +1228,8 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry]) VALUES (N'TD', N'CHAD', N'CHADIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F006E8C54EBDA77FD7C267F315E85E29118D3532063CD1FC8D79868B3E35ED3F2718B84EBF515DF78BEF106909875FF005CBDFD8D79BC7B16B34C2B5FCBFA91C1B4A5CCD3FE6FD0E46EDC2CD853818ED4565DD5D6E94153918EDCD15E5462DAB9FA63D1DAE7FFD9, 0, 0)
 GO
+INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry]) VALUES (N'TE', N'test', N'test', N'test', 0x, 0, 1)
+GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry]) VALUES (N'TG', N'TOGO', N'TOGOLESE', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00D88934E9F47B99A6B9F2EE500F2E30A3E7F5C73FE7DEA3B4B1D267D3A296E752F266607726CCE3935606B9E1EDA036851E71DDC54326BFA0AAED5D0D00F40E2BE12BD6AD51251A728DBAAE5D7EF6CEECD738C163287B28CAFEF5FDE4ECB46B4B6A566D33410C7FE274DF82515136BBA1B3123425FF00BE8514E31C45BED7FE4A7CFAFAAFF73FF2A1FFD9, 0, 0)
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry]) VALUES (N'TH', N'THAILAND', N'THAI', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00D51AAF865546FD3F50638E4F9A9FE155E6D5BC2C7A69BA87FDFD4FF0A0D97863A3CDAA82383FEAEA096C7C2A3A5C6ABF9C55D5CDC3DDBF31AA7C557DDFE051B9BCF0F492868ED350418E9E6AFF0085150DC41E1D59008E4D4D971D7F77452BE4BF6569F33751E22FB4DDFE47FFD9, 0, 0)
@@ -3163,27 +1364,31 @@ INSERT [SEC].[Roles] ([RoleID], [RoleName]) VALUES (3, N'Full Access User')
 GO
 SET IDENTITY_INSERT [SEC].[Users] ON 
 GO
-INSERT [SEC].[Users] ([UserID], [UserName], [UserPassword], [FullName], [RoleID]) VALUES (1, N'saRBChrouch', NULL, N'Rania Chrouch', 1)
-GO
 INSERT [SEC].[Users] ([UserID], [UserName], [UserPassword], [FullName], [RoleID]) VALUES (3, N'alisaker', 0x3316D98CAFC7089B1F39373AF67AE89C1611C630AE3822B4175E7EB510199912, N'Ali Saker', 1)
+GO
+INSERT [SEC].[Users] ([UserID], [UserName], [UserPassword], [FullName], [RoleID]) VALUES (6, N'testtest', 0xA0ECD3BA10BE949974EAF2DD43B03388FB7871037293705800C48C5DE6539804, N'test test', 3)
 GO
 SET IDENTITY_INSERT [SEC].[Users] OFF
 GO
+INSERT [SEC].[UsersPermissions] ([UserID], [CountryID], [CompanyID]) VALUES (6, N'IQ', 9)
+GO
+INSERT [SEC].[UsersPermissions] ([UserID], [CountryID], [CompanyID]) VALUES (6, N'LB', 1)
+GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Assets]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Assets]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [AT].[Assets] ADD  CONSTRAINT [IX_Assets] UNIQUE NONCLUSTERED 
 (
 	[AssetCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Depreciations]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Depreciations]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [AT].[Depreciations] ADD  CONSTRAINT [IX_Depreciations] UNIQUE NONCLUSTERED 
 (
 	[DepreciationDate] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Inventories]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Inventories]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [AT].[Inventories] ADD  CONSTRAINT [IX_Inventories] UNIQUE NONCLUSTERED 
 (
 	[InventoryStartDate] ASC
@@ -3191,7 +1396,7 @@ ALTER TABLE [AT].[Inventories] ADD  CONSTRAINT [IX_Inventories] UNIQUE NONCLUSTE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Categories]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Categories]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [ATSET].[CategoryTypes] ADD  CONSTRAINT [IX_Categories] UNIQUE NONCLUSTERED 
 (
 	[Category] ASC
@@ -3199,7 +1404,7 @@ ALTER TABLE [ATSET].[CategoryTypes] ADD  CONSTRAINT [IX_Categories] UNIQUE NONCL
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_GroupTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_GroupTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [ATSET].[GroupTypes] ADD  CONSTRAINT [IX_GroupTypes] UNIQUE NONCLUSTERED 
 (
 	[GroupName] ASC
@@ -3207,7 +1412,7 @@ ALTER TABLE [ATSET].[GroupTypes] ADD  CONSTRAINT [IX_GroupTypes] UNIQUE NONCLUST
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LocationTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_LocationTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [ATSET].[LocationTypes] ADD  CONSTRAINT [IX_LocationTypes] UNIQUE NONCLUSTERED 
 (
 	[Location] ASC
@@ -3215,7 +1420,7 @@ ALTER TABLE [ATSET].[LocationTypes] ADD  CONSTRAINT [IX_LocationTypes] UNIQUE NO
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_StatusTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_StatusTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [ATSET].[StatusTypes] ADD  CONSTRAINT [IX_StatusTypes] UNIQUE NONCLUSTERED 
 (
 	[Status] ASC
@@ -3223,7 +1428,7 @@ ALTER TABLE [ATSET].[StatusTypes] ADD  CONSTRAINT [IX_StatusTypes] UNIQUE NONCLU
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AddressDetail1]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_AddressDetail1]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[AddressDetail1] ADD  CONSTRAINT [IX_AddressDetail1] UNIQUE NONCLUSTERED 
 (
 	[AddressDetail1] ASC
@@ -3231,7 +1436,7 @@ ALTER TABLE [GSET].[AddressDetail1] ADD  CONSTRAINT [IX_AddressDetail1] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AddressDetail2]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_AddressDetail2]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[AddressDetail2] ADD  CONSTRAINT [IX_AddressDetail2] UNIQUE NONCLUSTERED 
 (
 	[AddressDetail2] ASC
@@ -3239,7 +1444,7 @@ ALTER TABLE [GSET].[AddressDetail2] ADD  CONSTRAINT [IX_AddressDetail2] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Companies]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Companies]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[Companies] ADD  CONSTRAINT [IX_Companies] UNIQUE NONCLUSTERED 
 (
 	[CompanyName] ASC
@@ -3247,7 +1452,7 @@ ALTER TABLE [GSET].[Companies] ADD  CONSTRAINT [IX_Companies] UNIQUE NONCLUSTERE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_ContactTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_ContactTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[ContactTypes] ADD  CONSTRAINT [IX_ContactTypes] UNIQUE NONCLUSTERED 
 (
 	[ContactType] ASC
@@ -3255,7 +1460,7 @@ ALTER TABLE [GSET].[ContactTypes] ADD  CONSTRAINT [IX_ContactTypes] UNIQUE NONCL
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Currencies]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Currencies]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[Currencies] ADD  CONSTRAINT [IX_Currencies] UNIQUE NONCLUSTERED 
 (
 	[CurName] ASC
@@ -3263,7 +1468,7 @@ ALTER TABLE [GSET].[Currencies] ADD  CONSTRAINT [IX_Currencies] UNIQUE NONCLUSTE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogSeverity]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_LogSeverity]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[LogSeverity] ADD  CONSTRAINT [IX_LogSeverity] UNIQUE NONCLUSTERED 
 (
 	[LogSeverity] ASC
@@ -3271,7 +1476,7 @@ ALTER TABLE [GSET].[LogSeverity] ADD  CONSTRAINT [IX_LogSeverity] UNIQUE NONCLUS
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogSystem]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_LogSystem]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[LogSystem] ADD  CONSTRAINT [IX_LogSystem] UNIQUE NONCLUSTERED 
 (
 	[LogSystem] ASC
@@ -3279,13 +1484,13 @@ ALTER TABLE [GSET].[LogSystem] ADD  CONSTRAINT [IX_LogSystem] UNIQUE NONCLUSTERE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_LogTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [GSET].[LogTypes] ADD  CONSTRAINT [IX_LogTypes] UNIQUE NONCLUSTERED 
 (
 	[LogType] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Roles]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Roles]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [SEC].[Roles] ADD  CONSTRAINT [IX_Roles] UNIQUE NONCLUSTERED 
 (
 	[RoleID] ASC
@@ -3293,7 +1498,7 @@ ALTER TABLE [SEC].[Roles] ADD  CONSTRAINT [IX_Roles] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Users]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  Index [IX_Users]    Script Date: 15/05/2026 3:57:51 PM ******/
 ALTER TABLE [SEC].[Users] ADD  CONSTRAINT [IX_Users] UNIQUE NONCLUSTERED 
 (
 	[UserName] ASC
@@ -3392,6 +1597,11 @@ REFERENCES [AT].[Assets] ([AssetID])
 ON DELETE CASCADE
 GO
 ALTER TABLE [AT].[Attachments] CHECK CONSTRAINT [FK_Attachments_Assets]
+GO
+ALTER TABLE [AT].[Depreciations]  WITH CHECK ADD  CONSTRAINT [FK_Depreciations_Companies] FOREIGN KEY([CompanyID])
+REFERENCES [GSET].[Companies] ([CompanyID])
+GO
+ALTER TABLE [AT].[Depreciations] CHECK CONSTRAINT [FK_Depreciations_Companies]
 GO
 ALTER TABLE [AT].[Depreciations]  WITH CHECK ADD  CONSTRAINT [FK_Depreciations_Users] FOREIGN KEY([CreatedByUserID])
 REFERENCES [SEC].[Users] ([UserID])
@@ -3621,7 +1831,7 @@ REFERENCES [SEC].[Users] ([UserID])
 GO
 ALTER TABLE [SEC].[UsersPermissions] CHECK CONSTRAINT [FK_UsersPermissions_Users]
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsList]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsList]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3671,7 +1881,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsListInventory]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsListInventory]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3720,7 +1930,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsNotDepreciated]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsNotDepreciated]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3754,7 +1964,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpDepreciation]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpDepreciation]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3788,7 +1998,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3804,7 +2014,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsDepreciationHistory]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsDepreciationHistory]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3841,7 +2051,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3886,7 +2096,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsInventoryHistory]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsInventoryHistory]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3929,7 +2139,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsList]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsList]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3955,7 +2165,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3973,7 +2183,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsStatusRemove]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsStatusRemove]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4004,7 +2214,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsStatusU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsStatusU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4037,7 +2247,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4099,7 +2309,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4123,7 +2333,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4148,7 +2358,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4167,7 +2377,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4200,18 +2410,14 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpDepreciationLastDelete]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpDepreciationLastDelete]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
 CREATE PROCEDURE [AT].[stpDepreciationLastDelete]
 (
+	@CompanyID smallint,
 	@DepreciationDate date output
 )
 AS
@@ -4219,18 +2425,14 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT OFF;
-	SET @DepreciationDate = (SELECT TOP 1 DepreciationDate From AT.Depreciations ORDER BY DepreciationDate DESC)
+	SET @DepreciationDate = (SELECT TOP 1 DepreciationDate From AT.Depreciations WHERE CompanyID = @CompanyID ORDER BY DepreciationDate DESC)
 		
-	DELETE FROM AT.DepreciationsDetails WHERE DepID = (SELECT DepID FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate)
-	DELETE FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate
+	DELETE FROM AT.DepreciationsDetails WHERE DepID = (SELECT DepID FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID)
+	DELETE FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID
 
 END
-
-
-
-
 GO
-/****** Object:  StoredProcedure [AT].[stpGetAssetCodeList]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetAssetCodeList]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4249,32 +2451,32 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetDepreciation]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetDepreciation]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [AT].[stpGetDepreciation]
+(
+	@CompanyID smallint
+)
 AS
 	SET NOCOUNT ON;
 
-	SELECT DepID, DepreciationDate FROM AT.Depreciations
+	SELECT DepID, DepreciationDate, CompanyID 
+	FROM AT.Depreciations
+	WHERE CompanyID = @CompanyID
 	ORDER BY DepreciationDate DESC
-
-
-
 GO
-/****** Object:  StoredProcedure [AT].[stpGetDepreciationLastDate]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetDepreciationLastDate]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
 CREATE PROCEDURE [AT].[stpGetDepreciationLastDate]
+(
+	@CompanyID smallint
+)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -4282,14 +2484,13 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT TOP 1 * FROM AT.Depreciations ORDER BY DepreciationDate DESC
+	SELECT TOP 1 * 
+	FROM AT.Depreciations 
+	WHERE CompanyID = @CompanyID
+	ORDER BY DepreciationDate DESC
 END
-
-
-
-
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryFinishInfo]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryFinishInfo]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4316,7 +2517,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryInfo]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryInfo]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4333,7 +2534,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryLastDate]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryLastDate]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4358,7 +2559,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryMode]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryMode]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4385,7 +2586,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoriesDetailsList]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoriesDetailsList]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4426,7 +2627,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryGeneratedList]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryGeneratedList]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4451,7 +2652,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailable]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailable]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4479,7 +2680,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableAllAssets]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableAllAssets]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4506,7 +2707,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableByAssetCode]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableByAssetCode]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4535,7 +2736,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4565,7 +2766,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4601,7 +2802,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4625,7 +2826,7 @@ DELETE FROM [AT].[Maintenances] WHERE (([MaintID] = @Original_MaintID) AND ([Ass
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4649,7 +2850,7 @@ SELECT MaintID, AssetID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Rem
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4666,7 +2867,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4700,19 +2901,15 @@ SELECT MaintID, AssetID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Rem
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpProDepreciation]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProDepreciation]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
 CREATE PROCEDURE [AT].[stpProDepreciation]
 (
 	@DepreciationDate date,
+	@CompanyID smallint,
 	@CreatedByUserID smallint,
 	@CreatedByFullName nvarchar(100),
 	@CreatedByDateTime datetime,
@@ -4725,16 +2922,16 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	IF (SELECT COUNT(*) From AT.Depreciations WHERE DepreciationDate = @DepreciationDate) > 0 
+	IF (SELECT COUNT(*) From AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID) > 0 
 	Begin
-		DELETE FROM AT.DepreciationsDetails WHERE DepID = (SELECT DepID FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate)
-		DELETE FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate
+		DELETE FROM AT.DepreciationsDetails WHERE DepID = (SELECT DepID FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID)
+		DELETE FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID
 	End
 
 	Declare @DepID int
 
-    INSERT INTO AT.Depreciations(DepreciationDate, Remark, CreatedByUserID, CreatedByFullName, CreatedByDateTime) 
-						 Values (@DepreciationDate, @Remark, @CreatedByUserID, @CreatedByFullName, @CreatedByDateTime)
+    INSERT INTO AT.Depreciations(DepreciationDate, CompanyID, Remark, CreatedByUserID, CreatedByFullName, CreatedByDateTime) 
+						 Values (@DepreciationDate, @CompanyID, @Remark, @CreatedByUserID, @CreatedByFullName, @CreatedByDateTime)
 
 	SET @DepID = (SELECT SCOPE_IDENTITY())
 
@@ -4753,25 +2950,22 @@ BEGIN
 								FROM	 AT.Assets LEFT OUTER JOIN
 										 ATSET.GroupTypes ON AT.Assets.GroupID = ATSET.GroupTypes.GroupID
 								WHERE    (StatusID Is Null Or StatusID = 8)
+									AND  AT.Assets.CompanyID = @CompanyID
 									AND  AccountingEntryDate < @DepreciationDate
 									AND  PurchasePrice > 0
 									AND  (
-											AssetID IN (SELECT AssetID From AT.DepreciationsDetails WHERE NetBookValue > 0 AND DepID IN (SELECT Top 1 DepID FROM AT.Depreciations WHERE DepID <> @DepID ORDER BY DepreciationDate DESC))
+											AssetID IN (SELECT AssetID From AT.DepreciationsDetails WHERE NetBookValue > 0 AND DepID IN (SELECT Top 1 DepID FROM AT.Depreciations WHERE DepID <> @DepID AND CompanyID = @CompanyID ORDER BY DepreciationDate DESC))
 										    OR
 											Not AssetID IN (SELECT AssetID From AT.DepreciationsDetails)
 										 )
 											  
 
-	UPDATE AT.DepreciationsDetails SET NetBookValue = 0 WHERE NetBookValue < 0
+	UPDATE AT.DepreciationsDetails SET NetBookValue = 0 WHERE NetBookValue < 0 AND DepID = @DepID
 
 	SET @RowEffected = (SELECT COUNT(*) FROM AT.DepreciationsDetails WHERE DepID = @DepID)
 END
-
-
-
-
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryEnd]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryEnd]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4812,7 +3006,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryStart]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryStart]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4860,7 +3054,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryStartRefresh]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryStartRefresh]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4896,27 +3090,27 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpStatusHistoryS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpStatusHistoryS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [AT].[stpStatusHistoryS]
 (
-	@AssetID int
+    @AssetID int
 )
 AS
-	SET NOCOUNT ON;
-	SELECT	AT.StatusHistory.StatusHistID, AT.StatusHistory.AssetID, AT.StatusHistory.StatusID, AT.StatusHistory.StatusDate, AT.StatusHistory.StatusDesc, GTBL.Contacts.ContactName, AT.StatusHistory.StatusSalePrice, 
-			AT.StatusHistory.StatusSaleCurCode, AT.StatusHistory.CreatedByUserID, AT.StatusHistory.CreatedByFullName, AT.StatusHistory.CreatedByDateTime
-	FROM    AT.StatusHistory LEFT OUTER JOIN
-            GTBL.Contacts ON AT.StatusHistory.StatusContactID = GTBL.Contacts.ContactID
-	WHERE	AssetID = @AssetID
-
-
-
+    SET NOCOUNT ON;
+    SELECT  SH.StatusHistID, SH.AssetID, SH.StatusID, ST.[Status] AS StatusName,
+            SH.StatusDate, SH.StatusDesc, C.ContactName,
+            SH.StatusSalePrice, SH.StatusSaleCurCode,
+            SH.CreatedByUserID, SH.CreatedByFullName, SH.CreatedByDateTime
+    FROM    AT.StatusHistory SH
+            LEFT OUTER JOIN GTBL.Contacts C ON SH.StatusContactID = C.ContactID
+            LEFT OUTER JOIN ATSET.StatusTypes ST ON SH.StatusID = ST.StatusID
+    WHERE   SH.AssetID = @AssetID;
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4938,7 +3132,7 @@ DELETE FROM [AT].[Warranties] WHERE (([WarntID] = @Original_WarntID) AND ([Asset
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4960,7 +3154,7 @@ SELECT WarntID, AssetID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranti
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4977,7 +3171,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5007,7 +3201,7 @@ SELECT WarntID, AssetID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranti
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5027,7 +3221,7 @@ DELETE FROM [ATSET].[CategoryTypes] WHERE (([CategoryID] = @Original_CategoryID)
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5048,7 +3242,7 @@ SELECT CategoryID, Category, GroupID FROM ATSET.CategoryTypes WHERE (CategoryID 
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5063,7 +3257,7 @@ SELECT CategoryID, Category, GroupID FROM ATSET.CategoryTypes
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5088,7 +3282,7 @@ SELECT CategoryID, Category, GroupID FROM ATSET.CategoryTypes WHERE (CategoryID 
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetAssetCode]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetAssetCode]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5121,7 +3315,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetCategoryTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetCategoryTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5136,22 +3330,20 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetGroupTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetGroupTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [ATSET].[stpGetGroupTypes]
 AS
-	SET NOCOUNT ON;
-
-	SELECT GroupID, GroupName, Acronym, DepreciationRate FROM ATSET.GroupTypes
-	ORDER BY GroupName
-
-
-
+    SET NOCOUNT ON;
+    SELECT GroupID, GroupName, Acronym, DepreciationRate, CountryID
+    FROM   ATSET.GroupTypes
+    ORDER BY GroupName
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetLocationDetails]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetLocationDetails]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5165,21 +3357,22 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetLocationTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetLocationTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [ATSET].[stpGetLocationTypes]
+    @CompanyID smallint = -1
 AS
-	SET NOCOUNT ON;
-	SELECT LocationID, Location FROM ATSET.LocationTypes
-	ORDER BY Location
-
-
-
+    SET NOCOUNT ON;
+    SELECT LocationID, Location, CompanyID
+    FROM   ATSET.LocationTypes
+    WHERE  CompanyID = CASE @CompanyID WHEN -1 THEN CompanyID ELSE @CompanyID END
+    ORDER BY Location
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetSettings]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetSettings]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5194,7 +3387,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetStatusTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetStatusTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5209,7 +3402,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5228,63 +3421,89 @@ AS
 	SET NOCOUNT OFF;
 DELETE FROM [ATSET].[GroupTypes] WHERE (([GroupID] = @Original_GroupID) AND ([GroupName] = @Original_GroupName) AND ([Acronym] = @Original_Acronym) AND ([DepreciationRate] = @Original_DepreciationRate) AND ((@IsNull_AccountNo = 1 AND [AccountNo] IS NULL) OR ([AccountNo] = @Original_AccountNo)) AND ([AccountingExclusion] = @Original_AccountingExclusion))
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [ATSET].[stpGroupTypesI]
 (
-	@GroupName nvarchar(50),
-	@Acronym nvarchar(5),
-	@DepreciationRate tinyint,
-	@AccountNo nvarchar(20),
-	@AccountingExclusion bit
+    @GroupName            nvarchar(50),
+    @Acronym              nvarchar(5),
+    @DepreciationRate     tinyint,
+    @AccountNo            nvarchar(20),
+    @AccountingExclusion  bit,
+    @CountryID            char(2)
 )
 AS
-	SET NOCOUNT OFF;
-INSERT INTO [ATSET].[GroupTypes] ([GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion]) VALUES (@GroupName, @Acronym, @DepreciationRate, @AccountNo, @AccountingExclusion);
-	
-SELECT GroupID, GroupName, Acronym, DepreciationRate, AccountNo, AccountingExclusion FROM ATSET.GroupTypes WHERE (GroupID = SCOPE_IDENTITY())
+    SET NOCOUNT OFF;
+    INSERT INTO [ATSET].[GroupTypes]
+        ([GroupName],[Acronym],[DepreciationRate],[AccountNo],[AccountingExclusion],[CountryID])
+    VALUES
+        (@GroupName, @Acronym, @DepreciationRate, @AccountNo, @AccountingExclusion, @CountryID);
+
+    SELECT GroupID, GroupName, Acronym, DepreciationRate,
+           AccountNo, AccountingExclusion, CountryID
+    FROM   ATSET.GroupTypes
+    WHERE  GroupID = SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [ATSET].[stpGroupTypesS]
 AS
-	SET NOCOUNT ON;
-SELECT GroupID, GroupName, Acronym, DepreciationRate, AccountNo, AccountingExclusion FROM ATSET.GroupTypes
+    SET NOCOUNT ON;
+    SELECT GroupID, GroupName, Acronym, DepreciationRate,
+           AccountNo, AccountingExclusion, CountryID
+    FROM   ATSET.GroupTypes
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [ATSET].[stpGroupTypesU]
 (
-	@GroupName nvarchar(50),
-	@Acronym nvarchar(5),
-	@DepreciationRate tinyint,
-	@AccountNo nvarchar(20),
-	@AccountingExclusion bit,
-	@Original_GroupID smallint,
-	@Original_GroupName nvarchar(50),
-	@Original_Acronym nvarchar(5),
-	@Original_DepreciationRate tinyint,
-	@IsNull_AccountNo Int,
-	@Original_AccountNo nvarchar(20),
-	@Original_AccountingExclusion bit,
-	@GroupID smallint
+    @GroupName                    nvarchar(50),
+    @Acronym                      nvarchar(5),
+    @DepreciationRate             tinyint,
+    @AccountNo                    nvarchar(20),
+    @AccountingExclusion          bit,
+    @CountryID                    char(2),
+    @Original_GroupID             smallint,
+    @Original_GroupName           nvarchar(50),
+    @Original_Acronym             nvarchar(5),
+    @Original_DepreciationRate    tinyint,
+    @IsNull_AccountNo             int,
+    @Original_AccountNo           nvarchar(20),
+    @Original_AccountingExclusion bit,
+    @GroupID                      smallint
 )
 AS
-	SET NOCOUNT OFF;
-UPDATE [ATSET].[GroupTypes] SET [GroupName] = @GroupName, [Acronym] = @Acronym, [DepreciationRate] = @DepreciationRate, [AccountNo] = @AccountNo, [AccountingExclusion] = @AccountingExclusion WHERE (([GroupID] = @Original_GroupID) AND ([GroupName] = @Original_GroupName) AND ([Acronym] = @Original_Acronym) AND ([DepreciationRate] = @Original_DepreciationRate) AND ((@IsNull_AccountNo = 1 AND [AccountNo] IS NULL) OR ([AccountNo] = @Original_AccountNo)) AND ([AccountingExclusion] = @Original_AccountingExclusion));
-	
-SELECT GroupID, GroupName, Acronym, DepreciationRate, AccountNo, AccountingExclusion FROM ATSET.GroupTypes WHERE (GroupID = @GroupID)
+    SET NOCOUNT OFF;
+    UPDATE [ATSET].[GroupTypes]
+    SET    [GroupName]           = @GroupName,
+           [Acronym]             = @Acronym,
+           [DepreciationRate]    = @DepreciationRate,
+           [AccountNo]           = @AccountNo,
+           [AccountingExclusion] = @AccountingExclusion,
+           [CountryID]           = @CountryID
+    WHERE  [GroupID]             = @Original_GroupID
+      AND  [GroupName]           = @Original_GroupName
+      AND  [Acronym]             = @Original_Acronym
+      AND  [DepreciationRate]    = @Original_DepreciationRate
+      AND  ((@IsNull_AccountNo = 1 AND [AccountNo] IS NULL) OR [AccountNo] = @Original_AccountNo)
+      AND  [AccountingExclusion] = @Original_AccountingExclusion;
+
+    SELECT GroupID, GroupName, Acronym, DepreciationRate,
+           AccountNo, AccountingExclusion, CountryID
+    FROM   ATSET.GroupTypes WHERE GroupID = @GroupID
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5300,7 +3519,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5321,7 +3540,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5338,7 +3557,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5362,7 +3581,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5378,45 +3597,43 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [ATSET].[stpLocationTypesI]
 (
-	@Location nvarchar(50)
+    @Location  nvarchar(50),
+    @CompanyID smallint
 )
 AS
-	SET NOCOUNT OFF;
-
-	INSERT INTO [ATSET].[LocationTypes] ([Location]) VALUES (@Location);
-	SELECT SCOPE_IDENTITY()
-
-
-
+    SET NOCOUNT OFF;
+    INSERT INTO [ATSET].[LocationTypes] ([Location], [CompanyID])
+    VALUES (@Location, @CompanyID);
+    SELECT SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [ATSET].[stpLocationTypesU]
 (
-	@Location nvarchar(50),
-	@LocationID smallint
+    @Location   nvarchar(50),
+    @CompanyID  smallint,
+    @LocationID smallint
 )
 AS
-	SET NOCOUNT OFF;
-	UPDATE [ATSET].[LocationTypes] SET [Location] = @Location 
-	WHERE [LocationID] = @LocationID
-	
-
-
-
-
+    SET NOCOUNT OFF;
+    UPDATE [ATSET].[LocationTypes]
+    SET    [Location]  = @Location,
+           [CompanyID] = @CompanyID
+    WHERE  [LocationID] = @LocationID
 GO
-/****** Object:  StoredProcedure [ATSET].[stpSettingsU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpSettingsU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5436,7 +3653,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5454,7 +3671,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5476,7 +3693,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksList]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksList]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5492,7 +3709,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5511,7 +3728,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5535,7 +3752,116 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail1]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpCompaniesD]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [GSET].[stpCompaniesD]
+(
+    @CompanyID smallint
+)
+AS
+    SET NOCOUNT OFF;
+    DELETE FROM GSET.Companies WHERE CompanyID = @CompanyID
+GO
+/****** Object:  StoredProcedure [GSET].[stpCompaniesI]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [GSET].[stpCompaniesI]
+(
+    @CompanyName         nvarchar(100),
+    @CompanyAbbreviation nvarchar(10),
+    @CompanyPrmCurCode   char(3),
+    @CompanyScdCurCode   char(3),
+    @CountryID           char(2)
+)
+AS
+    SET NOCOUNT OFF;
+    INSERT INTO GSET.Companies
+        (CompanyName, CompanyAbbreviation, CompanyPrmCurCode, CompanyScdCurCode, CountryID)
+    VALUES
+        (@CompanyName, @CompanyAbbreviation, @CompanyPrmCurCode, @CompanyScdCurCode, @CountryID);
+    SELECT CompanyID, CompanyName, CompanyAbbreviation,
+           CompanyPrmCurCode, CompanyScdCurCode, CountryID
+    FROM   GSET.Companies WHERE CompanyID = SCOPE_IDENTITY()
+GO
+/****** Object:  StoredProcedure [GSET].[stpCompaniesU]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [GSET].[stpCompaniesU]
+(
+    @CompanyID           smallint,
+    @CompanyName         nvarchar(100),
+    @CompanyAbbreviation nvarchar(10),
+    @CompanyPrmCurCode   char(3),
+    @CompanyScdCurCode   char(3),
+    @CountryID           char(2)
+)
+AS
+    SET NOCOUNT OFF;
+    UPDATE GSET.Companies
+    SET    CompanyName         = @CompanyName,
+           CompanyAbbreviation = @CompanyAbbreviation,
+           CompanyPrmCurCode   = @CompanyPrmCurCode,
+           CompanyScdCurCode   = @CompanyScdCurCode,
+           CountryID           = @CountryID
+    WHERE  CompanyID = @CompanyID
+GO
+/****** Object:  StoredProcedure [GSET].[stpCountriesI]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [GSET].[stpCountriesI]
+(
+    @CountryID      char(2),
+    @Country        nvarchar(50),
+    @Nationality    nvarchar(50),
+    @ZipCode        varchar(5)  = NULL,
+    @WorkingCountry bit         = 0,
+    @ActiveCountry  bit         = 1
+)
+AS
+    SET NOCOUNT OFF;
+    INSERT INTO GSET.Countries
+        (CountryID, Country, Nationality, ZipCode, Flag, WorkingCountry, ActiveCountry)
+    VALUES
+        (@CountryID, @Country, @Nationality, @ZipCode, 0x, @WorkingCountry, @ActiveCountry);
+    SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry
+    FROM   GSET.Countries WHERE CountryID = @CountryID
+GO
+/****** Object:  StoredProcedure [GSET].[stpCountriesU]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [GSET].[stpCountriesU]
+(
+    @CountryID      char(2),
+    @Country        nvarchar(50),
+    @Nationality    nvarchar(50),
+    @ZipCode        varchar(5)  = NULL,
+    @WorkingCountry bit,
+    @ActiveCountry  bit
+)
+AS
+    SET NOCOUNT OFF;
+    UPDATE GSET.Countries
+    SET    Country        = @Country,
+           Nationality    = @Nationality,
+           ZipCode        = @ZipCode,
+           WorkingCountry = @WorkingCountry,
+           ActiveCountry  = @ActiveCountry
+    WHERE  CountryID = @CountryID
+GO
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail1]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5549,7 +3875,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail2]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail2]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5563,7 +3889,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail3]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail3]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5577,7 +3903,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5591,7 +3917,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetBanks]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetBanks]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5605,7 +3931,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCities]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCities]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5620,21 +3946,20 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCompanies]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCompanies]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [GSET].[stpGetCompanies]
 AS
-	SET NOCOUNT ON;
-	SELECT CompanyID,CompanyName,CompanyAbbreviation,CompanyPrmCurcode,CompanyScdCurCode,FormalHRCurCode,Offshore FROM GSET.Companies
-	ORDER BY CompanyName
-
-
-
+    SET NOCOUNT ON;
+    SELECT CompanyID, CompanyName, CompanyAbbreviation,
+           CompanyPrmCurCode, CompanyScdCurCode, CountryID
+    FROM   GSET.Companies
+    ORDER BY CompanyName
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetContactTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetContactTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5660,21 +3985,21 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCountries]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCountries]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [GSET].[stpGetCountries]
 AS
-	SET NOCOUNT ON;
-	SELECT CountryID, Country, Nationality, ZipCode, Flag FROM GSET.Countries
-	ORDER BY Country
-
-
-
+    SET NOCOUNT ON;
+    SELECT CountryID, Country, Nationality, ZipCode, Flag,
+           WorkingCountry, ActiveCountry
+    FROM   GSET.Countries
+    ORDER BY Country
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCurrencies]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCurrencies]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5688,7 +4013,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogSeverity]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogSeverity]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5702,7 +4027,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogSystem]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogSystem]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5716,7 +4041,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogTypes]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogTypes]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5730,7 +4055,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetSettings]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetSettings]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5744,7 +4069,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetWorkingCountry]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetWorkingCountry]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5760,7 +4085,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpSettingsU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpSettingsU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5780,7 +4105,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsD]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsD]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5798,7 +4123,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5830,7 +4155,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsList]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsList]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5848,7 +4173,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5867,7 +4192,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsU]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsU]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5915,7 +4240,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpGetContacts]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpGetContacts]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5931,7 +4256,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpLogI]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpLogI]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5972,7 +4297,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpLogS]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpLogS]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5988,7 +4313,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetLoginUser]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetLoginUser]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5999,15 +4324,14 @@ CREATE PROCEDURE [SEC].[stpGetLoginUser]
 AS
 BEGIN
     SET NOCOUNT ON;
-
-    SELECT [UserID], [UserName], [FullName], [HR], [Asset], [Contact]
+    SELECT [UserID], [UserName], [FullName], [RoleID]
     FROM   [SEC].[Users]
     WHERE  [UserName]     = @UserName
-      AND  [PasswordHash] = HASHBYTES('SHA2_256', @Password)
-      AND  [PasswordHash] IS NOT NULL
+      AND  [UserPassword] = HASHBYTES('SHA2_256', @Password)
+      AND  [UserPassword] IS NOT NULL
 END
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetRoles]    Script Date: 11/05/2026 1:38:04 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetRoles]    Script Date: 15/05/2026 3:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6021,6 +4345,138 @@ AS
 
 
 
+GO
+/****** Object:  StoredProcedure [SEC].[stpGetUserPermissions]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [SEC].[stpGetUserPermissions]
+(
+    @UserID SMALLINT
+)
+AS
+    SET NOCOUNT ON;
+    SELECT up.UserID, up.CountryID, c.Country,
+           up.CompanyID, co.CompanyName
+    FROM   SEC.UsersPermissions up
+    JOIN   GSET.Countries c  ON up.CountryID = c.CountryID
+    JOIN   GSET.Companies co ON up.CompanyID = co.CompanyID
+    WHERE  up.UserID = @UserID
+    ORDER BY co.CompanyName
+GO
+/****** Object:  StoredProcedure [SEC].[stpUserPermissionsD]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [SEC].[stpUserPermissionsD]
+(
+    @UserID    SMALLINT,
+    @CountryID CHAR(2),
+    @CompanyID SMALLINT
+)
+AS
+    SET NOCOUNT OFF;
+    DELETE FROM SEC.UsersPermissions
+    WHERE  UserID = @UserID AND CountryID = @CountryID AND CompanyID = @CompanyID
+GO
+/****** Object:  StoredProcedure [SEC].[stpUserPermissionsI]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [SEC].[stpUserPermissionsI]
+(
+    @UserID    SMALLINT,
+    @CountryID CHAR(2),
+    @CompanyID SMALLINT
+)
+AS
+    SET NOCOUNT OFF;
+    IF NOT EXISTS (
+        SELECT 1 FROM SEC.UsersPermissions
+        WHERE UserID = @UserID AND CountryID = @CountryID AND CompanyID = @CompanyID
+    )
+        INSERT INTO SEC.UsersPermissions (UserID, CountryID, CompanyID)
+        VALUES (@UserID, @CountryID, @CompanyID)
+GO
+/****** Object:  StoredProcedure [SEC].[stpUsersD]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [SEC].[stpUsersD]
+(
+    @UserID SMALLINT
+)
+AS
+    SET NOCOUNT OFF;
+    DELETE FROM SEC.UsersPermissions WHERE UserID = @UserID;
+    DELETE FROM SEC.Users             WHERE UserID = @UserID
+GO
+/****** Object:  StoredProcedure [SEC].[stpUsersI]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [SEC].[stpUsersI]
+(
+    @UserName  NVARCHAR(100),
+    @Password  NVARCHAR(256),
+    @FullName  NVARCHAR(100),
+    @RoleID    TINYINT
+)
+AS
+    SET NOCOUNT OFF;
+    INSERT INTO SEC.Users (UserName, UserPassword, FullName, RoleID)
+    VALUES (@UserName, HASHBYTES('SHA2_256', @Password), @FullName, @RoleID);
+    SELECT SCOPE_IDENTITY() AS UserID
+GO
+/****** Object:  StoredProcedure [SEC].[stpUsersS]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [SEC].[stpUsersS]
+AS
+    SET NOCOUNT ON;
+    SELECT u.UserID, u.UserName, u.FullName, u.RoleID, r.RoleName
+    FROM   SEC.Users u
+    JOIN   SEC.Roles r ON u.RoleID = r.RoleID
+    ORDER BY u.FullName
+GO
+/****** Object:  StoredProcedure [SEC].[stpUsersU]    Script Date: 15/05/2026 3:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [SEC].[stpUsersU]
+(
+    @UserID    SMALLINT,
+    @UserName  NVARCHAR(100),
+    @Password  NVARCHAR(256) = NULL,
+    @FullName  NVARCHAR(100),
+    @RoleID    TINYINT
+)
+AS
+    SET NOCOUNT OFF;
+    UPDATE SEC.Users
+    SET    UserName     = @UserName,
+           FullName     = @FullName,
+           RoleID       = @RoleID,
+           UserPassword = CASE
+                              WHEN @Password IS NOT NULL AND @Password <> ''
+                              THEN HASHBYTES('SHA2_256', @Password)
+                              ELSE UserPassword
+                          END
+    WHERE  UserID = @UserID
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'' , @level0type=N'SCHEMA',@level0name=N'GTBL', @level1type=N'TABLE',@level1name=N'Logs', @level2type=N'COLUMN',@level2name=N'LogSystemID'
 GO

@@ -6,15 +6,24 @@ namespace AssetManagement.Api.Repositories;
 
 public interface ILookupRepository
 {
-    Task<IEnumerable<CompanyDto>> GetCompaniesAsync();
+    Task<IEnumerable<CompanyDto>> GetCompaniesAsync(short userId = 0);
+    Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest request);
+    Task UpdateCompanyAsync(CompanyUpdateRequest request);
+    Task DeleteCompanyAsync(short companyId);
     Task<IEnumerable<CategoryTypeDto>> GetCategoryTypesAsync();
-    Task<IEnumerable<GroupTypeDto>> GetGroupTypesAsync();
-    Task<IEnumerable<GroupTypeDto>> GetGroupTypesFullAsync();
-    Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync();
-    Task<IEnumerable<LocationDetailDto>> GetLocationDetailsAsync(short? locationId = null);
+    Task<IEnumerable<GroupTypeDto>> GetGroupTypesAsync(short userId = 0);
+    Task<IEnumerable<GroupTypeDto>> GetGroupTypesFullAsync(short userId = 0);
+    Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync(short userId = 0, short? companyId = null);
+    Task<IEnumerable<LocationDetailDto>> GetLocationDetailsAsync(short userId = 0, short? locationId = null);
     Task<IEnumerable<StatusTypeDto>> GetStatusTypesAsync();
     Task<IEnumerable<CurrencyDto>> GetCurrenciesAsync();
-    Task<IEnumerable<CountryDto>> GetCountriesAsync();
+    Task<CurrencyDto?> CreateCurrencyAsync(CurrencyCreateRequest request);
+    Task UpdateCurrencyAsync(CurrencyUpdateRequest request);
+    Task DeleteCurrencyAsync(string curCode);
+    Task<IEnumerable<CountryDto>> GetCountriesAsync(short userId = 0);
+    Task<CountryDto?> CreateCountryAsync(CountryCreateRequest request);
+    Task UpdateCountryAsync(CountryUpdateRequest request);
+    Task ToggleCountryActiveAsync(string countryId, bool active);
     Task<IEnumerable<ContactTypeDto>> GetContactTypesAsync();
     Task<IEnumerable<BankDto>> GetBanksAsync();
     Task<IEnumerable<SettingDto>> GetAtSettingsAsync();
@@ -30,7 +39,7 @@ public interface ILookupRepository
     Task DeleteCategoryTypeAsync(short categoryId);
 
     Task CreateLocationTypeAsync(LocationTypeCreateRequest request);
-    Task UpdateLocationTypeAsync(short locationId, string location);
+    Task UpdateLocationTypeAsync(short locationId, string location, short companyId);
     Task DeleteLocationTypeAsync(short locationId);
 
     Task CreateLocationDetailAsync(LocationDetailCreateRequest request);
@@ -45,43 +54,164 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
 {
     // ── Getters ──────────────────────────────────────────────────────────────
 
-    public Task<IEnumerable<CompanyDto>> GetCompaniesAsync() =>
-        db.QueryAsync<CompanyDto>("GSET.stpGetCompanies", commandType: CommandType.StoredProcedure);
+    public Task<IEnumerable<CompanyDto>> GetCompaniesAsync(short userId = 0)
+    {
+        if (userId == 0)
+            return db.QueryAsync<CompanyDto>("GSET.stpGetCompanies", commandType: CommandType.StoredProcedure);
+
+        return db.QueryAsync<CompanyDto>(
+            @"SELECT CompanyID, CompanyName, CompanyAbbreviation, CompanyPrmCurCode, CompanyScdCurCode, CountryID
+              FROM   GSET.Companies
+              WHERE  CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+              ORDER BY CompanyName",
+            new { UserId = userId });
+    }
+
+    public Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest r) =>
+        db.QueryFirstOrDefaultAsync<CompanyDto>(
+            "GSET.stpCompaniesI",
+            new { r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
+            commandType: CommandType.StoredProcedure);
+
+    public Task UpdateCompanyAsync(CompanyUpdateRequest r) =>
+        db.ExecuteAsync(
+            "GSET.stpCompaniesU",
+            new { r.CompanyID, r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
+            commandType: CommandType.StoredProcedure);
+
+    public Task DeleteCompanyAsync(short companyId) =>
+        db.ExecuteAsync(
+            "GSET.stpCompaniesD",
+            new { CompanyID = companyId },
+            commandType: CommandType.StoredProcedure);
 
     public Task<IEnumerable<CategoryTypeDto>> GetCategoryTypesAsync() =>
         db.QueryAsync<CategoryTypeDto>("ATSET.stpGetCategoryTypes", commandType: CommandType.StoredProcedure);
 
     // Used by dropdowns (returns GroupID, GroupName, Acronym, DepreciationRate)
-    public Task<IEnumerable<GroupTypeDto>> GetGroupTypesAsync() =>
-        db.QueryAsync<GroupTypeDto>("ATSET.stpGetGroupTypes", commandType: CommandType.StoredProcedure);
+    public Task<IEnumerable<GroupTypeDto>> GetGroupTypesAsync(short userId = 0)
+    {
+        if (userId == 0)
+            return db.QueryAsync<GroupTypeDto>("ATSET.stpGetGroupTypes", commandType: CommandType.StoredProcedure);
+
+        return db.QueryAsync<GroupTypeDto>(
+            @"SELECT GroupID, GroupName, Acronym, DepreciationRate, AccountNo, AccountingExclusion, CountryID
+              FROM   ATSET.GroupTypes
+              WHERE  CountryID IN (SELECT CountryID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+              ORDER BY GroupName",
+            new { UserId = userId });
+    }
 
     // Used by Settings CRUD (returns all columns including AccountNo, AccountingExclusion)
-    public Task<IEnumerable<GroupTypeDto>> GetGroupTypesFullAsync() =>
-        db.QueryAsync<GroupTypeDto>("ATSET.stpGroupTypesS", commandType: CommandType.StoredProcedure);
+    public Task<IEnumerable<GroupTypeDto>> GetGroupTypesFullAsync(short userId = 0)
+    {
+        if (userId == 0)
+            return db.QueryAsync<GroupTypeDto>("ATSET.stpGroupTypesS", commandType: CommandType.StoredProcedure);
 
-    public Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync() =>
-        db.QueryAsync<LocationTypeDto>("ATSET.stpGetLocationTypes", commandType: CommandType.StoredProcedure);
+        return db.QueryAsync<GroupTypeDto>(
+            @"SELECT GroupID, GroupName, Acronym, DepreciationRate, AccountNo, AccountingExclusion, CountryID
+              FROM   ATSET.GroupTypes
+              WHERE  CountryID IN (SELECT CountryID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+              ORDER BY GroupName",
+            new { UserId = userId });
+    }
+
+    public Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync(short userId = 0, short? companyId = null)
+    {
+        if (userId == 0)
+            return db.QueryAsync<LocationTypeDto>(
+                "ATSET.stpGetLocationTypes",
+                new { CompanyID = companyId ?? -1 },
+                commandType: CommandType.StoredProcedure);
+
+        return db.QueryAsync<LocationTypeDto>(
+            @"SELECT LocationID, Location, CompanyID
+              FROM   ATSET.LocationTypes
+              WHERE  CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+                AND  (@CompanyID = -1 OR CompanyID = @CompanyID)
+              ORDER BY Location",
+            new { UserId = userId, CompanyID = companyId ?? -1 });
+    }
 
     // stpGetLocationDetails takes NO params → returns all
     // stpLocationDetailS takes @LocationID → returns filtered
-    public Task<IEnumerable<LocationDetailDto>> GetLocationDetailsAsync(short? locationId = null) =>
-        locationId.HasValue
-            ? db.QueryAsync<LocationDetailDto>(
+    public Task<IEnumerable<LocationDetailDto>> GetLocationDetailsAsync(short userId = 0, short? locationId = null)
+    {
+        if (locationId.HasValue)
+            return db.QueryAsync<LocationDetailDto>(
                 "ATSET.stpLocationDetailS",
                 new { LocationID = locationId.Value },
-                commandType: CommandType.StoredProcedure)
-            : db.QueryAsync<LocationDetailDto>(
+                commandType: CommandType.StoredProcedure);
+
+        if (userId == 0)
+            return db.QueryAsync<LocationDetailDto>(
                 "ATSET.stpGetLocationDetails",
                 commandType: CommandType.StoredProcedure);
+
+        return db.QueryAsync<LocationDetailDto>(
+            @"SELECT ld.LocDetailID, ld.LocationID, ld.Floor, ld.Zone, ld.Room
+              FROM   ATSET.LocationDetails ld
+              JOIN   ATSET.LocationTypes lt ON lt.LocationID = ld.LocationID
+              WHERE  lt.CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+              ORDER BY ld.LocationID, ld.Floor, ld.Zone, ld.Room",
+            new { UserId = userId });
+    }
 
     public Task<IEnumerable<StatusTypeDto>> GetStatusTypesAsync() =>
         db.QueryAsync<StatusTypeDto>("ATSET.stpGetStatusTypes", commandType: CommandType.StoredProcedure);
 
     public Task<IEnumerable<CurrencyDto>> GetCurrenciesAsync() =>
-        db.QueryAsync<CurrencyDto>("GSET.stpGetCurrencies", commandType: CommandType.StoredProcedure);
+        db.QueryAsync<CurrencyDto>("SELECT CurCode, CurName FROM GSET.Currencies ORDER BY CurCode");
 
-    public Task<IEnumerable<CountryDto>> GetCountriesAsync() =>
-        db.QueryAsync<CountryDto>("GSET.stpGetCountries", commandType: CommandType.StoredProcedure);
+    public async Task<CurrencyDto?> CreateCurrencyAsync(CurrencyCreateRequest r)
+    {
+        await db.ExecuteAsync(
+            "INSERT INTO GSET.Currencies (CurCode, CurName) VALUES (@CurCode, @CurName)",
+            new { r.CurCode, r.CurName });
+        return await db.QueryFirstOrDefaultAsync<CurrencyDto>(
+            "SELECT CurCode, CurName FROM GSET.Currencies WHERE CurCode = @CurCode",
+            new { r.CurCode });
+    }
+
+    public Task UpdateCurrencyAsync(CurrencyUpdateRequest r) =>
+        db.ExecuteAsync(
+            "UPDATE GSET.Currencies SET CurName = @CurName WHERE CurCode = @CurCode",
+            new { r.CurCode, r.CurName });
+
+    public Task DeleteCurrencyAsync(string curCode) =>
+        db.ExecuteAsync(
+            "DELETE FROM GSET.Currencies WHERE CurCode = @CurCode",
+            new { CurCode = curCode });
+
+    public Task<IEnumerable<CountryDto>> GetCountriesAsync(short userId = 0)
+    {
+        if (userId == 0)
+            return db.QueryAsync<CountryDto>("GSET.stpGetCountries", commandType: CommandType.StoredProcedure);
+
+        return db.QueryAsync<CountryDto>(
+            @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry
+              FROM   GSET.Countries
+              WHERE  CountryID IN (SELECT CountryID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+              ORDER BY Country",
+            new { UserId = userId });
+    }
+
+    public Task<CountryDto?> CreateCountryAsync(CountryCreateRequest r) =>
+        db.QueryFirstOrDefaultAsync<CountryDto>(
+            "GSET.stpCountriesI",
+            new { r.CountryID, r.Country, r.Nationality, r.ZipCode, r.WorkingCountry, r.ActiveCountry },
+            commandType: CommandType.StoredProcedure);
+
+    public Task UpdateCountryAsync(CountryUpdateRequest r) =>
+        db.ExecuteAsync(
+            "GSET.stpCountriesU",
+            new { r.CountryID, r.Country, r.Nationality, r.ZipCode, r.WorkingCountry, r.ActiveCountry },
+            commandType: CommandType.StoredProcedure);
+
+    public Task ToggleCountryActiveAsync(string countryId, bool active) =>
+        db.ExecuteAsync(
+            "UPDATE GSET.Countries SET ActiveCountry = @Active WHERE CountryID = @CountryID",
+            new { CountryID = countryId, Active = active });
 
     public Task<IEnumerable<ContactTypeDto>> GetContactTypesAsync() =>
         db.QueryAsync<ContactTypeDto>("GSET.stpGetContactTypes", commandType: CommandType.StoredProcedure);
@@ -110,7 +240,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     public Task<GroupTypeDto?> CreateGroupTypeAsync(GroupTypeCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<GroupTypeDto>(
             "ATSET.stpGroupTypesI",
-            new { r.GroupName, r.Acronym, r.DepreciationRate, r.AccountNo, r.AccountingExclusion },
+            new { r.GroupName, r.Acronym, r.DepreciationRate, r.AccountNo, r.AccountingExclusion, r.CountryID },
             commandType: CommandType.StoredProcedure);
 
     // SP uses optimistic concurrency → fetch original first, then update
@@ -120,7 +250,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
         if (orig is null) return;
         await db.ExecuteAsync("ATSET.stpGroupTypesU", new
         {
-            r.GroupName, r.Acronym, r.DepreciationRate, r.AccountNo, r.AccountingExclusion,
+            r.GroupName, r.Acronym, r.DepreciationRate, r.AccountNo, r.AccountingExclusion, r.CountryID,
             Original_GroupID = orig.GroupID,
             Original_GroupName = orig.GroupName,
             Original_Acronym = orig.Acronym,
@@ -128,7 +258,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
             IsNull_AccountNo = orig.AccountNo is null ? 1 : 0,
             Original_AccountNo = orig.AccountNo,
             Original_AccountingExclusion = orig.AccountingExclusion,
-            GroupID = r.GroupID
+            r.GroupID
         }, commandType: CommandType.StoredProcedure);
     }
 
@@ -173,7 +303,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
             Original_CategoryID = orig.CategoryID,
             Original_Category = orig.Category,
             Original_GroupID = orig.GroupID,
-            CategoryID = r.CategoryID
+            r.CategoryID
         }, commandType: CommandType.StoredProcedure);
     }
 
@@ -199,12 +329,12 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     // ── Location Types ───────────────────────────────────────────────────────
 
     public Task CreateLocationTypeAsync(LocationTypeCreateRequest r) =>
-        db.ExecuteAsync("ATSET.stpLocationTypesI", new { r.Location },
+        db.ExecuteAsync("ATSET.stpLocationTypesI", new { r.Location, r.CompanyID },
             commandType: CommandType.StoredProcedure);
 
-    public Task UpdateLocationTypeAsync(short locationId, string location) =>
+    public Task UpdateLocationTypeAsync(short locationId, string location, short companyId) =>
         db.ExecuteAsync("ATSET.stpLocationTypesU",
-            new { Location = location, LocationID = locationId },
+            new { Location = location, CompanyID = companyId, LocationID = locationId },
             commandType: CommandType.StoredProcedure);
 
     public Task DeleteLocationTypeAsync(short locationId) =>

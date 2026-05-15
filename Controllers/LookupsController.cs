@@ -10,24 +10,92 @@ namespace AssetManagement.Api.Controllers;
 [Authorize]
 public class LookupsController(ILookupRepository repo) : ControllerBase
 {
+    private bool IsAdmin() =>
+        User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "1";
+
+    private short GetUserId() =>
+        IsAdmin() ? (short)0
+        : short.TryParse(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value, out var id)
+            ? id : (short)0;
+
+    // Country CRUD (admin only)
+    [HttpPost("countries")]
+    public async Task<IActionResult> CreateCountry([FromBody] CountryCreateRequest request)
+    {
+        if (!IsAdmin()) return Forbid();
+        if (string.IsNullOrWhiteSpace(request.CountryID) || request.CountryID.Length != 2)
+            return BadRequest("Country ID must be exactly 2 characters.");
+        if (string.IsNullOrWhiteSpace(request.Country)) return BadRequest("Country name is required.");
+        if (string.IsNullOrWhiteSpace(request.Nationality)) return BadRequest("Nationality is required.");
+        var created = await repo.CreateCountryAsync(request);
+        return Ok(created);
+    }
+
+    [HttpPut("countries/{id}")]
+    public async Task<IActionResult> UpdateCountry(string id, [FromBody] CountryUpdateRequest request)
+    {
+        if (!IsAdmin()) return Forbid();
+        request.CountryID = id.ToUpper();
+        await repo.UpdateCountryAsync(request);
+        return NoContent();
+    }
+
+    [HttpPatch("countries/{id}/active")]
+    public async Task<IActionResult> ToggleCountryActive(string id, [FromBody] bool active)
+    {
+        if (!IsAdmin()) return Forbid();
+        await repo.ToggleCountryActiveAsync(id.ToUpper(), active);
+        return NoContent();
+    }
+
+    // Company CRUD (admin only)
+    [HttpPost("companies")]
+    public async Task<IActionResult> CreateCompany([FromBody] CompanyCreateRequest request)
+    {
+        if (!IsAdmin()) return Forbid();
+        if (string.IsNullOrWhiteSpace(request.CompanyName)) return BadRequest("Company name is required.");
+        if (string.IsNullOrWhiteSpace(request.CompanyAbbreviation)) return BadRequest("Abbreviation is required.");
+        if (string.IsNullOrWhiteSpace(request.CountryID)) return BadRequest("Country is required.");
+        var created = await repo.CreateCompanyAsync(request);
+        return Ok(created);
+    }
+
+    [HttpPut("companies/{id:int}")]
+    public async Task<IActionResult> UpdateCompany(short id, [FromBody] CompanyUpdateRequest request)
+    {
+        if (!IsAdmin()) return Forbid();
+        request.CompanyID = id;
+        await repo.UpdateCompanyAsync(request);
+        return NoContent();
+    }
+
+    [HttpDelete("companies/{id:int}")]
+    public async Task<IActionResult> DeleteCompany(short id)
+    {
+        if (!IsAdmin()) return Forbid();
+        await repo.DeleteCompanyAsync(id);
+        return NoContent();
+    }
+
     [HttpGet("companies")]
-    public async Task<IActionResult> GetCompanies() => Ok(await repo.GetCompaniesAsync());
+    public async Task<IActionResult> GetCompanies() => Ok(await repo.GetCompaniesAsync(GetUserId()));
 
     [HttpGet("categories")]
     public async Task<IActionResult> GetCategories() => Ok(await repo.GetCategoryTypesAsync());
 
     [HttpGet("groups")]
-    public async Task<IActionResult> GetGroups() => Ok(await repo.GetGroupTypesAsync());
+    public async Task<IActionResult> GetGroups() => Ok(await repo.GetGroupTypesAsync(GetUserId()));
 
     [HttpGet("groups/full")]
-    public async Task<IActionResult> GetGroupsFull() => Ok(await repo.GetGroupTypesFullAsync());
+    public async Task<IActionResult> GetGroupsFull() => Ok(await repo.GetGroupTypesFullAsync(GetUserId()));
 
     [HttpGet("locations")]
-    public async Task<IActionResult> GetLocations() => Ok(await repo.GetLocationTypesAsync());
+    public async Task<IActionResult> GetLocations([FromQuery] short? companyId = null) =>
+        Ok(await repo.GetLocationTypesAsync(GetUserId(), companyId));
 
     [HttpGet("location-details")]
     public async Task<IActionResult> GetLocationDetails([FromQuery] short? locationId = null) =>
-        Ok(await repo.GetLocationDetailsAsync(locationId));
+        Ok(await repo.GetLocationDetailsAsync(GetUserId(), locationId));
 
     [HttpGet("statuses")]
     public async Task<IActionResult> GetStatuses() => Ok(await repo.GetStatusTypesAsync());
@@ -35,8 +103,38 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpGet("currencies")]
     public async Task<IActionResult> GetCurrencies() => Ok(await repo.GetCurrenciesAsync());
 
+    [HttpPost("currencies")]
+    public async Task<IActionResult> CreateCurrency([FromBody] CurrencyCreateRequest request)
+    {
+        if (!IsAdmin()) return Forbid();
+        if (string.IsNullOrWhiteSpace(request.CurCode) || request.CurCode.Length != 3)
+            return BadRequest("Currency code must be exactly 3 characters.");
+        if (string.IsNullOrWhiteSpace(request.CurName)) return BadRequest("Currency name is required.");
+        request.CurCode = request.CurCode.ToUpper();
+        var created = await repo.CreateCurrencyAsync(request);
+        return Ok(created);
+    }
+
+    [HttpPut("currencies/{code}")]
+    public async Task<IActionResult> UpdateCurrency(string code, [FromBody] CurrencyUpdateRequest request)
+    {
+        if (!IsAdmin()) return Forbid();
+        if (string.IsNullOrWhiteSpace(request.CurName)) return BadRequest("Currency name is required.");
+        request.CurCode = code.ToUpper();
+        await repo.UpdateCurrencyAsync(request);
+        return NoContent();
+    }
+
+    [HttpDelete("currencies/{code}")]
+    public async Task<IActionResult> DeleteCurrency(string code)
+    {
+        if (!IsAdmin()) return Forbid();
+        await repo.DeleteCurrencyAsync(code.ToUpper());
+        return NoContent();
+    }
+
     [HttpGet("countries")]
-    public async Task<IActionResult> GetCountries() => Ok(await repo.GetCountriesAsync());
+    public async Task<IActionResult> GetCountries() => Ok(await repo.GetCountriesAsync(GetUserId()));
 
     [HttpGet("contact-types")]
     public async Task<IActionResult> GetContactTypes() => Ok(await repo.GetContactTypesAsync());
@@ -111,7 +209,7 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpPut("locations/{id:int}")]
     public async Task<IActionResult> UpdateLocation(short id, [FromBody] LocationTypeCreateRequest request)
     {
-        await repo.UpdateLocationTypeAsync(id, request.Location);
+        await repo.UpdateLocationTypeAsync(id, request.Location, request.CompanyID);
         return NoContent();
     }
 

@@ -7,9 +7,9 @@ namespace AssetManagement.Api.Repositories;
 public interface IMaintenanceRepository
 {
     Task<IEnumerable<MaintenanceDto>> GetMaintenancesAsync(int assetId);
-    Task CreateMaintenanceAsync(MaintenanceCreateRequest request);
-    Task UpdateMaintenanceAsync(MaintenanceUpdateRequest request);
-    Task DeleteMaintenanceAsync(int maintId);
+    Task<MaintenanceDto?> CreateMaintenanceAsync(MaintenanceCreateRequest request);
+    Task<MaintenanceDto?> UpdateMaintenanceAsync(MaintenanceUpdateRequest request);
+    Task DeleteMaintenanceAsync(MaintenanceDeleteRequest request);
 }
 
 public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
@@ -22,9 +22,9 @@ public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task CreateMaintenanceAsync(MaintenanceCreateRequest request)
+    public async Task<MaintenanceDto?> CreateMaintenanceAsync(MaintenanceCreateRequest request)
     {
-        await db.ExecuteAsync(
+        return await db.QueryFirstOrDefaultAsync<MaintenanceDto>(
             "AT.stpMaintenancesI",
             new
             {
@@ -34,24 +34,40 @@ public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task UpdateMaintenanceAsync(MaintenanceUpdateRequest request)
+    public async Task<MaintenanceDto?> UpdateMaintenanceAsync(MaintenanceUpdateRequest request)
     {
-        await db.ExecuteAsync(
+        return await db.QueryFirstOrDefaultAsync<MaintenanceDto>(
             "AT.stpMaintenancesU",
             new
             {
                 request.AssetID, request.FromDate, request.ToDate,
                 request.SupplierContactID, request.Cost, request.CurCode,
-                request.Remark, request.MaintID
+                request.Remark, request.MaintID,
+                request.Original_MaintID, request.Original_AssetID,
+                request.Original_FromDate, request.Original_ToDate,
+                request.Original_SupplierContactID, request.Original_Cost,
+                request.Original_CurCode, request.IsNull_Remark,
+                request.Original_Remark
             },
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task DeleteMaintenanceAsync(int maintId)
+    public async Task DeleteMaintenanceAsync(MaintenanceDeleteRequest request)
     {
         await db.ExecuteAsync(
             "AT.stpMaintenancesD",
-            new { MaintID = maintId },
+            new
+            {
+                Original_MaintID = request.MaintID,
+                Original_AssetID = request.AssetID,
+                Original_FromDate = request.FromDate,
+                Original_ToDate = request.ToDate,
+                Original_SupplierContactID = request.SupplierContactID,
+                Original_Cost = request.Cost,
+                Original_CurCode = request.CurCode,
+                IsNull_Remark = request.Remark is null ? 1 : 0,
+                Original_Remark = request.Remark
+            },
             commandType: CommandType.StoredProcedure);
     }
 }

@@ -29,9 +29,7 @@ public class AuthController(IAuthRepository authRepo, JwtService jwtService) : C
             UserId = user.UserID,
             UserName = user.UserName,
             FullName = user.FullName,
-            Hr = user.HR,
-            Asset = user.Asset,
-            Contact = user.Contact
+            RoleId = user.RoleID
         });
     }
 }

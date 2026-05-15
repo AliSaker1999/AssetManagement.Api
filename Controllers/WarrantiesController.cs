@@ -15,24 +15,21 @@ public class WarrantiesController(IWarrantyRepository repo) : ControllerBase
         Ok(await repo.GetWarrantiesAsync(assetId));
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] WarrantyCreateRequest request)
-    {
-        await repo.CreateWarrantyAsync(request);
-        return Ok();
-    }
+    public async Task<IActionResult> Create([FromBody] WarrantyCreateRequest request) =>
+        Ok(await repo.CreateWarrantyAsync(request));
 
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] WarrantyUpdateRequest request)
     {
         request.WarntID = id;
-        await repo.UpdateWarrantyAsync(request);
-        return NoContent();
+        return Ok(await repo.UpdateWarrantyAsync(request));
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int id, [FromBody] WarrantyDeleteRequest request)
     {
-        await repo.DeleteWarrantyAsync(id);
+        request.WarntID = id;
+        await repo.DeleteWarrantyAsync(request);
         return NoContent();
     }
 }

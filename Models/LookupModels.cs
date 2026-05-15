@@ -6,6 +6,8 @@ public class CompanyDto
     public string CompanyName { get; set; } = string.Empty;
     public string CompanyAbbreviation { get; set; } = string.Empty;
     public string CompanyPrmCurCode { get; set; } = string.Empty;
+    public string CompanyScdCurCode { get; set; } = string.Empty;
+    public string CountryID { get; set; } = string.Empty;
 }
 
 public class CategoryTypeDto
@@ -23,12 +25,14 @@ public class GroupTypeDto
     public byte DepreciationRate { get; set; }
     public string? AccountNo { get; set; }
     public bool AccountingExclusion { get; set; }
+    public string CountryID { get; set; } = string.Empty;
 }
 
 public class LocationTypeDto
 {
     public short LocationID { get; set; }
     public string Location { get; set; } = string.Empty;
+    public short CompanyID { get; set; }
 }
 
 public class LocationDetailDto
@@ -56,8 +60,23 @@ public class CountryDto
 {
     public string CountryID { get; set; } = string.Empty;
     public string Country { get; set; } = string.Empty;
+    public string Nationality { get; set; } = string.Empty;
+    public string? ZipCode { get; set; }
     public bool WorkingCountry { get; set; }
+    public bool ActiveCountry { get; set; }
 }
+
+public class CountryCreateRequest
+{
+    public string CountryID { get; set; } = string.Empty;
+    public string Country { get; set; } = string.Empty;
+    public string Nationality { get; set; } = string.Empty;
+    public string? ZipCode { get; set; }
+    public bool WorkingCountry { get; set; }
+    public bool ActiveCountry { get; set; } = true;
+}
+
+public class CountryUpdateRequest : CountryCreateRequest { }
 
 public class ContactTypeDto
 {
@@ -93,6 +112,7 @@ public class GroupTypeCreateRequest
     public byte DepreciationRate { get; set; }
     public string? AccountNo { get; set; }
     public bool AccountingExclusion { get; set; }
+    public string CountryID { get; set; } = string.Empty;
 }
 
 public class GroupTypeUpdateRequest : GroupTypeCreateRequest
@@ -114,6 +134,7 @@ public class CategoryTypeUpdateRequest : CategoryTypeCreateRequest
 public class LocationTypeCreateRequest
 {
     public string Location { get; set; } = string.Empty;
+    public short CompanyID { get; set; }
 }
 
 public class LocationDetailCreateRequest
@@ -129,8 +150,34 @@ public class LocationDetailUpdateRequest : LocationDetailCreateRequest
     public short LocDetailID { get; set; }
 }
 
+public class CurrencyCreateRequest
+{
+    public string CurCode { get; set; } = string.Empty;
+    public string CurName { get; set; } = string.Empty;
+}
+
+public class CurrencyUpdateRequest
+{
+    public string CurCode { get; set; } = string.Empty;
+    public string CurName { get; set; } = string.Empty;
+}
+
 public class SettingUpdateRequest
 {
     public byte SetID { get; set; }
     public string SetValue { get; set; } = string.Empty;
+}
+
+public class CompanyCreateRequest
+{
+    public string CompanyName { get; set; } = string.Empty;
+    public string CompanyAbbreviation { get; set; } = string.Empty;
+    public string CompanyPrmCurCode { get; set; } = string.Empty;
+    public string CompanyScdCurCode { get; set; } = string.Empty;
+    public string CountryID { get; set; } = string.Empty;
+}
+
+public class CompanyUpdateRequest : CompanyCreateRequest
+{
+    public short CompanyID { get; set; }
 }

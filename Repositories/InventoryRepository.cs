@@ -48,10 +48,10 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
 
     public async Task<DateOnly?> GetInventoryLastDateAsync()
     {
-        var result = await db.QueryFirstOrDefaultAsync<DateTime?>(
+        var result = await db.QueryFirstOrDefaultAsync<InventoryDto>(
             "AT.stpGetInventoryLastDate",
             commandType: CommandType.StoredProcedure);
-        return result.HasValue ? DateOnly.FromDateTime(result.Value) : null;
+        return result?.InventoryStartDate;
     }
 
     public async Task<IEnumerable<InventoryDetailDto>> GetInventoriesDetailsListAsync(InventoryReportFilterRequest filter)

@@ -8,6 +8,7 @@ public class DepreciationDto
     public short CreatedByUserID { get; set; }
     public string CreatedByFullName { get; set; } = string.Empty;
     public DateTime CreatedByDateTime { get; set; }
+    public short CompanyID { get; set; }
 }
 
 public class DepreciationReportItemDto
@@ -35,4 +36,5 @@ public class RunDepreciationRequest
 {
     public DateOnly DepreciationDate { get; set; }
     public string? Remark { get; set; }
+    public short CompanyID { get; set; }
 }

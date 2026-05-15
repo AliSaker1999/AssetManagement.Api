@@ -5,6 +5,7 @@ public class ContactDto
     public int ContactID { get; set; }
     public string ContactName { get; set; } = string.Empty;
     public byte ContactTypeID { get; set; }
+    public string? Country { get; set; }
     public string? ContactPerson { get; set; }
     public string? ContactPersonEmail { get; set; }
     public string? FinancialContact { get; set; }
