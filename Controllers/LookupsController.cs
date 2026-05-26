@@ -149,8 +149,8 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     public async Task<IActionResult> GetGSetSettings() => Ok(await repo.GetGSetSettingsAsync());
 
     [HttpGet("asset-code")]
-    public async Task<IActionResult> GetAssetCode([FromQuery] bool generate = false) =>
-        Ok(new { assetCode = await repo.GetAssetCodeAsync(generate) });
+    public async Task<IActionResult> GetAssetCode([FromQuery] bool generate = false, [FromQuery] string countryId = "") =>
+        Ok(new { assetCode = await repo.GetAssetCodeAsync(generate, countryId) });
 
     // Group Types CRUD
     [HttpPost("groups")]

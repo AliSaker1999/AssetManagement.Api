@@ -6,12 +6,12 @@ namespace AssetManagement.Api.Repositories;
 
 public interface IInventoryRepository
 {
-    Task<object?> GetInventoryModeAsync();
-    Task<object?> GetInventoryInfoAsync();
+    Task<InventoryDto?> GetInventoryModeAsync(short companyId);
+    Task<object?> GetInventoryInfoAsync(short companyId);
     Task<object?> GetInventoryFinishInfoAsync();
-    Task<DateOnly?> GetInventoryLastDateAsync();
+    Task<DateOnly?> GetInventoryLastDateAsync(short companyId);
     Task<IEnumerable<InventoryDetailDto>> GetInventoriesDetailsListAsync(InventoryReportFilterRequest filter);
-    Task<IEnumerable<InventoryGeneratedItemDto>> GetInventoryGeneratedListAsync(int inventoryId);
+    Task<IEnumerable<InventoryGeneratedItemDto>> GetInventoryGeneratedListAsync(short companyId);
     Task StartInventoryAsync(InventoryStartRequest request, short userId, string fullName);
     Task RefreshInventoryAsync(int inventoryId, short userId, string fullName);
     Task EndInventoryAsync(int inventoryId, InventoryEndRequest request, short userId, string fullName);
@@ -21,21 +21,24 @@ public interface IInventoryRepository
     Task UpdateRelocatedAsync(InventoryRelocateRequest request, short userId, string fullName);
     Task<IEnumerable<InventoryDetailDto>> GetRelocatedAsync(int inventoryId);
     Task<IEnumerable<AssetReportItemDto>> GetInventoryReportAsync(InventoryReportFilterRequest filter);
+    Task<IEnumerable<InventoryListItemDto>> GetInventoriesListAsync(short companyId);
 }
 
 public class InventoryRepository(IDbConnection db) : IInventoryRepository
 {
-    public async Task<object?> GetInventoryModeAsync()
+    public async Task<InventoryDto?> GetInventoryModeAsync(short companyId)
     {
-        return await db.QueryFirstOrDefaultAsync(
+        return await db.QueryFirstOrDefaultAsync<InventoryDto>(
             "AT.stpGetInventoryMode",
+            new { CompanyID = companyId },
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<object?> GetInventoryInfoAsync()
+    public async Task<object?> GetInventoryInfoAsync(short companyId)
     {
         return await db.QueryFirstOrDefaultAsync(
             "AT.stpGetInventoryInfo",
+            new { CompanyID = companyId },
             commandType: CommandType.StoredProcedure);
     }
 
@@ -46,10 +49,11 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<DateOnly?> GetInventoryLastDateAsync()
+    public async Task<DateOnly?> GetInventoryLastDateAsync(short companyId)
     {
         var result = await db.QueryFirstOrDefaultAsync<InventoryDto>(
             "AT.stpGetInventoryLastDate",
+            new { CompanyID = companyId },
             commandType: CommandType.StoredProcedure);
         return result?.InventoryStartDate;
     }
@@ -71,11 +75,11 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<IEnumerable<InventoryGeneratedItemDto>> GetInventoryGeneratedListAsync(int inventoryId)
+    public async Task<IEnumerable<InventoryGeneratedItemDto>> GetInventoryGeneratedListAsync(short companyId)
     {
         return await db.QueryAsync<InventoryGeneratedItemDto>(
             "AT.stpInventoryGeneratedList",
-            new { InventoryID = inventoryId },
+            new { CompanyID = companyId },
             commandType: CommandType.StoredProcedure);
     }
 
@@ -87,6 +91,7 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
             {
                 request.InventoryStartDate,
                 request.Remark,
+                request.CompanyID,
                 StartCreatedByUserID = userId,
                 StartCreatedByFullName = fullName,
                 StartCreatedByDateTime = DateTime.Now
@@ -98,13 +103,7 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
     {
         await db.ExecuteAsync(
             "AT.stpProInventoryStartRefresh",
-            new
-            {
-                InventoryID = inventoryId,
-                StartCreatedByUserID = userId,
-                StartCreatedByFullName = fullName,
-                StartCreatedByDateTime = DateTime.Now
-            },
+            new { InventoryID = inventoryId },
             commandType: CommandType.StoredProcedure);
     }
 
@@ -116,9 +115,9 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
             {
                 InventoryID = inventoryId,
                 request.InventoryEndDate,
-                EndCreatedByUserID = userId,
-                EndCreatedByFullName = fullName,
-                EndCreatedByDateTime = DateTime.Now
+                CreatedByUserID = userId,
+                CreatedByFullName = fullName,
+                CreatedByDateTime = DateTime.Now
             },
             commandType: CommandType.StoredProcedure);
     }
@@ -127,14 +126,7 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
     {
         await db.ExecuteAsync(
             "AT.stpInventoryIsAvailable",
-            new
-            {
-                InvDetailID = invDetailId,
-                IsAvailable = isAvailable,
-                CreatedByUserID = userId,
-                CreatedByFullName = fullName,
-                CreatedByDateTime = DateTime.Now
-            },
+            new { InvDetailID = invDetailId, IsAvailable = isAvailable },
             commandType: CommandType.StoredProcedure);
     }
 
@@ -142,14 +134,7 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
     {
         await db.ExecuteAsync(
             "AT.stpInventoryIsAvailableAllAssets",
-            new
-            {
-                IsAvailable = isAvailable,
-                InventoryID = inventoryId,
-                CreatedByUserID = userId,
-                CreatedByFullName = fullName,
-                CreatedByDateTime = DateTime.Now
-            },
+            new { InventoryID = inventoryId },
             commandType: CommandType.StoredProcedure);
     }
 
@@ -157,15 +142,7 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
     {
         await db.ExecuteAsync(
             "AT.stpInventoryIsAvailableByAssetCode",
-            new
-            {
-                AssetCode = assetCode,
-                IsAvailable = isAvailable,
-                InventoryID = inventoryId,
-                CreatedByUserID = userId,
-                CreatedByFullName = fullName,
-                CreatedByDateTime = DateTime.Now
-            },
+            new { AssetCode = assetCode, IsAvailable = isAvailable, InventoryID = inventoryId },
             commandType: CommandType.StoredProcedure);
     }
 
@@ -178,9 +155,8 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
                 request.InvDetailID,
                 request.RelocatedLocationID,
                 request.RelocatedLocDetailID,
-                CreatedByUserID = userId,
-                CreatedByFullName = fullName,
-                CreatedByDateTime = DateTime.Now
+                Relocated = true,
+                Remark = (string?)null
             },
             commandType: CommandType.StoredProcedure);
     }
@@ -207,6 +183,14 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
                 LocationDetailID = filter.LocationDetailID,
                 filter.AccountingExclusion
             },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IEnumerable<InventoryListItemDto>> GetInventoriesListAsync(short companyId)
+    {
+        return await db.QueryAsync<InventoryListItemDto>(
+            "AT.stpInventoriesList",
+            new { CompanyID = companyId },
             commandType: CommandType.StoredProcedure);
     }
 }

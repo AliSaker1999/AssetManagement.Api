@@ -95,7 +95,9 @@ Repositories/
  SettingsRepository.cs
  UserRepository.cs
  WarrantyRepository.cs
-Services/JwtService.cs
+Services/
+ JwtService.cs
+ PermissionService.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.AspNetCore.App.Ref/10.0.8/ref/net10.0/

@@ -3,6 +3,7 @@ namespace AssetManagement.Api.Models;
 public class InventoryDto
 {
     public int InventoryID { get; set; }
+    public short CompanyID { get; set; }
     public DateOnly InventoryStartDate { get; set; }
     public DateOnly? InventoryEndDate { get; set; }
     public string? Remark { get; set; }
@@ -59,6 +60,7 @@ public class InventoryDetailDto
 public class InventoryStartRequest
 {
     public DateOnly InventoryStartDate { get; set; }
+    public short CompanyID { get; set; }
     public string? Remark { get; set; }
 }
 
@@ -92,6 +94,22 @@ public class InventoryGeneratedItemDto
     public short CompanyID { get; set; }
     public string? BarcodeNumber { get; set; }
     public string? SerialNumber { get; set; }
+}
+
+public class InventoryListItemDto
+{
+    public int InventoryID { get; set; }
+    public short CompanyID { get; set; }
+    public DateOnly InventoryStartDate { get; set; }
+    public DateOnly? InventoryEndDate { get; set; }
+    public string? Remark { get; set; }
+    public string StartCreatedByFullName { get; set; } = string.Empty;
+    public DateTime StartCreatedByDateTime { get; set; }
+    public string? EndCreatedByFullName { get; set; }
+    public DateTime? EndCreatedByDateTime { get; set; }
+    public int TotalAssets { get; set; }
+    public int FoundAssets { get; set; }
+    public int RelocatedAssets { get; set; }
 }
 
 public class InventoryReportFilterRequest

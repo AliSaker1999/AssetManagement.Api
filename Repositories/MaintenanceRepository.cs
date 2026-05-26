@@ -7,6 +7,8 @@ namespace AssetManagement.Api.Repositories;
 public interface IMaintenanceRepository
 {
     Task<IEnumerable<MaintenanceDto>> GetMaintenancesAsync(int assetId);
+    Task<MaintenanceDto?> GetByIdAsync(int maintId);
+    Task<int> GetActiveMaintenanceCountAsync();
     Task<MaintenanceDto?> CreateMaintenanceAsync(MaintenanceCreateRequest request);
     Task<MaintenanceDto?> UpdateMaintenanceAsync(MaintenanceUpdateRequest request);
     Task DeleteMaintenanceAsync(MaintenanceDeleteRequest request);
@@ -20,6 +22,21 @@ public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
             "AT.stpMaintenancesS",
             new { AssetID = assetId },
             commandType: CommandType.StoredProcedure);
+    }
+
+    public Task<MaintenanceDto?> GetByIdAsync(int maintId) =>
+        db.QueryFirstOrDefaultAsync<MaintenanceDto>(
+            "SELECT MaintID, AssetID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances WHERE MaintID = @MaintID",
+            new { MaintID = maintId });
+
+    public async Task<int> GetActiveMaintenanceCountAsync()
+    {
+        var today = DateOnly.FromDateTime(DateTime.Today);
+        return await db.ExecuteScalarAsync<int>(
+            @"SELECT COUNT(DISTINCT AssetID)
+              FROM   AT.Maintenances
+              WHERE  @Today BETWEEN FromDate AND ToDate",
+            new { Today = today });
     }
 
     public async Task<MaintenanceDto?> CreateMaintenanceAsync(MaintenanceCreateRequest request)

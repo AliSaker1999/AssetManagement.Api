@@ -8,6 +8,8 @@ public class CompanyDto
     public string CompanyPrmCurCode { get; set; } = string.Empty;
     public string CompanyScdCurCode { get; set; } = string.Empty;
     public string CountryID { get; set; } = string.Empty;
+    public string? EmailNotification { get; set; }
+    public short? UserNotification { get; set; }
 }
 
 public class CategoryTypeDto
@@ -64,6 +66,7 @@ public class CountryDto
     public string? ZipCode { get; set; }
     public bool WorkingCountry { get; set; }
     public bool ActiveCountry { get; set; }
+    public int AssetCodeCounter { get; set; }
 }
 
 public class CountryCreateRequest
@@ -175,6 +178,8 @@ public class CompanyCreateRequest
     public string CompanyPrmCurCode { get; set; } = string.Empty;
     public string CompanyScdCurCode { get; set; } = string.Empty;
     public string CountryID { get; set; } = string.Empty;
+    public string? EmailNotification { get; set; }
+    public short? UserNotification { get; set; }
 }
 
 public class CompanyUpdateRequest : CompanyCreateRequest

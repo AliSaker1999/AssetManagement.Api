@@ -7,8 +7,9 @@ namespace AssetManagement.Api.Repositories;
 public interface IAttachmentRepository
 {
     Task<IEnumerable<AttachmentDto>> GetAttachmentsAsync(int assetId);
-    Task<AttachmentDto?> CreateAttachmentAsync(AttachmentCreateRequest request);
-    Task DeleteAttachmentAsync(AttachmentDeleteRequest request);
+    Task<AttachmentDto?> GetByIdAsync(int attId);
+    Task<AttachmentDto?> CreateAttachmentAsync(AttachmentCreateRequest request, string filePath);
+    Task<string?> DeleteAttachmentAsync(AttachmentDeleteRequest request);
 }
 
 public class AttachmentRepository(IDbConnection db) : IAttachmentRepository
@@ -21,15 +22,22 @@ public class AttachmentRepository(IDbConnection db) : IAttachmentRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<AttachmentDto?> CreateAttachmentAsync(AttachmentCreateRequest request)
+    public async Task<AttachmentDto?> GetByIdAsync(int attId)
     {
-        byte[]? fileBytes = request.FileBase64 is null ? null : Convert.FromBase64String(request.FileBase64);
+        return await db.QueryFirstOrDefaultAsync<AttachmentDto>(
+            "AT.stpAttachmentByID",
+            new { AttID = attId },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<AttachmentDto?> CreateAttachmentAsync(AttachmentCreateRequest request, string filePath)
+    {
         return await db.QueryFirstOrDefaultAsync<AttachmentDto>(
             "AT.stpAttachmentsI",
             new
             {
                 request.AssetID,
-                Attachment = fileBytes,
+                FilePath = filePath,
                 request.AttDesc,
                 request.AttFileName,
                 request.AttFileExt,
@@ -38,8 +46,9 @@ public class AttachmentRepository(IDbConnection db) : IAttachmentRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task DeleteAttachmentAsync(AttachmentDeleteRequest request)
+    public async Task<string?> DeleteAttachmentAsync(AttachmentDeleteRequest request)
     {
+        var att = await GetByIdAsync(request.AttID);
         await db.ExecuteAsync(
             "AT.stpAttachmentsD",
             new
@@ -53,5 +62,6 @@ public class AttachmentRepository(IDbConnection db) : IAttachmentRepository
                 Original_Remark = request.Remark
             },
             commandType: CommandType.StoredProcedure);
+        return att?.FilePath;
     }
 }

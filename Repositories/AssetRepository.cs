@@ -6,8 +6,8 @@ namespace AssetManagement.Api.Repositories;
 
 public interface IAssetRepository
 {
-    Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync(int? companyId = null);
-    Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25, int? companyId = null);
+    Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync(int? companyId = null, IReadOnlySet<int>? allowedCompanyIds = null);
+    Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25, int? companyId = null, IReadOnlySet<int>? allowedCompanyIds = null);
     Task<AssetDto?> GetAssetAsync(int assetId);
     Task<IEnumerable<AssetReportItemDto>> GetAssetsReportAsync(AssetReportFilterRequest filter);
     Task<IEnumerable<AssetNotDepreciatedDto>> GetAssetsNotDepreciatedAsync();
@@ -24,15 +24,35 @@ public interface IAssetRepository
 
 public class AssetRepository(IDbConnection db) : IAssetRepository
 {
-    public async Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync(int? companyId = null)
+    // stpAssetsList does not join StatusTypes, so Status/StatusID may be null.
+    // This enriches the list with the current status name via a single JOIN query.
+    private async Task EnrichWithStatusNamesAsync(IList<AssetListItemDto> items)
     {
-        var all = await db.QueryAsync<AssetListItemDto>(
-            "AT.stpAssetsList",
-            commandType: CommandType.StoredProcedure);
-        return companyId.HasValue ? all.Where(a => a.CompanyID == companyId.Value) : all;
+        if (items.Count == 0 || items.All(i => i.Status != null)) return;
+        var statusMap = (await db.QueryAsync<(int AssetID, string Status)>(
+            @"SELECT a.AssetID, st.Status
+              FROM   AT.Assets a
+              INNER JOIN ATSET.StatusTypes st ON st.StatusID = a.StatusID"))
+            .ToDictionary(x => x.AssetID, x => x.Status);
+        foreach (var item in items.Where(i => i.Status == null))
+            item.Status = statusMap.GetValueOrDefault(item.AssetID);
     }
 
-    public async Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25, int? companyId = null)
+    public async Task<IEnumerable<AssetListItemDto>> GetAssetsListAsync(int? companyId = null, IReadOnlySet<int>? allowedCompanyIds = null)
+    {
+        var all = (await db.QueryAsync<AssetListItemDto>(
+            "AT.stpAssetsList",
+            commandType: CommandType.StoredProcedure)).ToList();
+        await EnrichWithStatusNamesAsync(all);
+        IEnumerable<AssetListItemDto> result = all;
+        if (companyId.HasValue)
+            result = result.Where(a => a.CompanyID == companyId.Value);
+        else if (allowedCompanyIds != null)
+            result = result.Where(a => allowedCompanyIds.Contains(a.CompanyID));
+        return result;
+    }
+
+    public async Task<PaginatedResponse<AssetListItemDto>> GetAssetsListPaginatedAsync(int pageNumber = 1, int pageSize = 25, int? companyId = null, IReadOnlySet<int>? allowedCompanyIds = null)
     {
         pageNumber = Math.Max(1, pageNumber);
         pageSize = Math.Max(1, Math.Min(100, pageSize));
@@ -40,8 +60,15 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
         var all = (await db.QueryAsync<AssetListItemDto>(
             "AT.stpAssetsList",
             commandType: CommandType.StoredProcedure)).ToList();
+        await EnrichWithStatusNamesAsync(all);
 
-        var filtered = companyId.HasValue ? all.Where(a => a.CompanyID == companyId.Value).ToList() : all;
+        List<AssetListItemDto> filtered;
+        if (companyId.HasValue)
+            filtered = all.Where(a => a.CompanyID == companyId.Value).ToList();
+        else if (allowedCompanyIds != null)
+            filtered = all.Where(a => allowedCompanyIds.Contains(a.CompanyID)).ToList();
+        else
+            filtered = all;
 
         var totalCount = filtered.Count;
         var skip = (pageNumber - 1) * pageSize;

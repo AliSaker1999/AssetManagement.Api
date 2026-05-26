@@ -28,7 +28,7 @@ public interface ILookupRepository
     Task<IEnumerable<BankDto>> GetBanksAsync();
     Task<IEnumerable<SettingDto>> GetAtSettingsAsync();
     Task<IEnumerable<SettingDto>> GetGSetSettingsAsync();
-    Task<string> GetAssetCodeAsync(bool generate);
+    Task<string> GetAssetCodeAsync(bool generate, string countryId);
 
     Task<GroupTypeDto?> CreateGroupTypeAsync(GroupTypeCreateRequest request);
     Task UpdateGroupTypeAsync(GroupTypeUpdateRequest request);
@@ -60,7 +60,8 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
             return db.QueryAsync<CompanyDto>("GSET.stpGetCompanies", commandType: CommandType.StoredProcedure);
 
         return db.QueryAsync<CompanyDto>(
-            @"SELECT CompanyID, CompanyName, CompanyAbbreviation, CompanyPrmCurCode, CompanyScdCurCode, CountryID
+            @"SELECT CompanyID, CompanyName, CompanyAbbreviation, CompanyPrmCurCode,
+                     CompanyScdCurCode, CountryID, EmailNotification, UserNotification
               FROM   GSET.Companies
               WHERE  CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
               ORDER BY CompanyName",
@@ -70,13 +71,13 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     public Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<CompanyDto>(
             "GSET.stpCompaniesI",
-            new { r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
+            new { r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID, r.EmailNotification, r.UserNotification },
             commandType: CommandType.StoredProcedure);
 
     public Task UpdateCompanyAsync(CompanyUpdateRequest r) =>
         db.ExecuteAsync(
             "GSET.stpCompaniesU",
-            new { r.CompanyID, r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
+            new { r.CompanyID, r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID, r.EmailNotification, r.UserNotification },
             commandType: CommandType.StoredProcedure);
 
     public Task DeleteCompanyAsync(short companyId) =>
@@ -186,10 +187,13 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     public Task<IEnumerable<CountryDto>> GetCountriesAsync(short userId = 0)
     {
         if (userId == 0)
-            return db.QueryAsync<CountryDto>("GSET.stpGetCountries", commandType: CommandType.StoredProcedure);
+            return db.QueryAsync<CountryDto>(
+                @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry, AssetCodeCounter
+                  FROM   GSET.Countries
+                  ORDER BY Country");
 
         return db.QueryAsync<CountryDto>(
-            @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry
+            @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry, AssetCodeCounter
               FROM   GSET.Countries
               WHERE  CountryID IN (SELECT CountryID FROM SEC.UsersPermissions WHERE UserID = @UserId)
               ORDER BY Country",
@@ -226,11 +230,12 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
         db.QueryAsync<SettingDto>("GSET.stpGetSettings", commandType: CommandType.StoredProcedure);
 
     // stpGetAssetCode uses an OUTPUT parameter
-    public async Task<string> GetAssetCodeAsync(bool generate)
+    public async Task<string> GetAssetCodeAsync(bool generate, string countryId)
     {
         var p = new DynamicParameters();
+        p.Add("@CountryID", countryId, DbType.StringFixedLength, size: 2);
         p.Add("@Generate", generate, DbType.Boolean);
-        p.Add("@AssetCode", dbType: DbType.String, direction: ParameterDirection.Output, size: 15);
+        p.Add("@AssetCode", dbType: DbType.String, direction: ParameterDirection.Output, size: 20);
         await db.ExecuteAsync("ATSET.stpGetAssetCode", p, commandType: CommandType.StoredProcedure);
         return p.Get<string>("@AssetCode") ?? string.Empty;
     }

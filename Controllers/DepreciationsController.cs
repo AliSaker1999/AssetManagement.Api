@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using AssetManagement.Api.Models;
 using AssetManagement.Api.Repositories;
+using AssetManagement.Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,22 +10,37 @@ namespace AssetManagement.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class DepreciationsController(IDepreciationRepository repo) : ControllerBase
+public class DepreciationsController(IDepreciationRepository repo, IPermissionService permissionService) : ControllerBase
 {
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
+    private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
 
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] short companyId) =>
-        Ok(await repo.GetDepreciationsAsync(companyId));
+    public async Task<IActionResult> GetAll([FromQuery] short companyId)
+    {
+        if (!IsAdmin())
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
+            if (!allowed.Contains(companyId)) return Forbid();
+        }
+        return Ok(await repo.GetDepreciationsAsync(companyId));
+    }
 
     [HttpGet("{id:int}/report")]
     public async Task<IActionResult> GetReport(int id) =>
         Ok(await repo.GetDepreciationReportAsync(id));
 
     [HttpGet("last-date")]
-    public async Task<IActionResult> GetLastDate([FromQuery] short companyId) =>
-        Ok(await repo.GetLastDepreciationDateAsync(companyId));
+    public async Task<IActionResult> GetLastDate([FromQuery] short companyId)
+    {
+        if (!IsAdmin())
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
+            if (!allowed.Contains(companyId)) return Forbid();
+        }
+        return Ok(await repo.GetLastDepreciationDateAsync(companyId));
+    }
 
     [HttpGet("not-depreciated")]
     public async Task<IActionResult> GetNotDepreciated() => Ok(await repo.GetAssetsNotDepreciatedAsync());
@@ -32,6 +48,11 @@ public class DepreciationsController(IDepreciationRepository repo) : ControllerB
     [HttpPost("run")]
     public async Task<IActionResult> Run([FromBody] RunDepreciationRequest request)
     {
+        if (!IsAdmin())
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
+            if (!allowed.Contains(request.CompanyID)) return Forbid();
+        }
         try
         {
             await repo.RunDepreciationAsync(request, UserId, FullName);
@@ -46,6 +67,11 @@ public class DepreciationsController(IDepreciationRepository repo) : ControllerB
     [HttpDelete("last")]
     public async Task<IActionResult> DeleteLast([FromQuery] short companyId)
     {
+        if (!IsAdmin())
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
+            if (!allowed.Contains(companyId)) return Forbid();
+        }
         await repo.DeleteLastDepreciationAsync(companyId);
         return NoContent();
     }

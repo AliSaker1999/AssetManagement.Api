@@ -4,6 +4,7 @@ public class AttachmentDto
 {
     public int AttID { get; set; }
     public int AssetID { get; set; }
+    public string FilePath { get; set; } = string.Empty;
     public string AttDesc { get; set; } = string.Empty;
     public string AttFileName { get; set; } = string.Empty;
     public string AttFileExt { get; set; } = string.Empty;
