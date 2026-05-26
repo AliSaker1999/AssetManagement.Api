@@ -12,6 +12,7 @@ obj/
 # Logs
 *.log
 
-# Environment / secrets
-appsettings.Development.json
+# Secrets — ignore all appsettings except the example template
+appsettings.json
 appsettings.*.json
+!appsettings.Example.json
