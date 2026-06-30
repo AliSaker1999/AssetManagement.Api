@@ -305,6 +305,7 @@ GO
 CREATE TABLE [AT].[Maintenances](
 	[MaintID] [int] IDENTITY(1,1) NOT NULL,
 	[AssetID] [int] NOT NULL,
+	[AttID] [int] NULL,
 	[FromDate] [date] NOT NULL,
 	[ToDate] [date] NOT NULL,
 	[SupplierContactID] [int] NOT NULL,
@@ -348,6 +349,7 @@ GO
 CREATE TABLE [AT].[Warranties](
 	[WarntID] [int] IDENTITY(1,1) NOT NULL,
 	[AssetID] [int] NOT NULL,
+	[AttID] [int] NULL,
 	[WarrantyDesc] [nvarchar](50) NOT NULL,
 	[FromDate] [date] NOT NULL,
 	[ToDate] [date] NOT NULL,
@@ -2217,6 +2219,11 @@ REFERENCES [GSET].[Currencies] ([CurCode])
 GO
 ALTER TABLE [AT].[Maintenances] CHECK CONSTRAINT [FK_Maintenances_Currencies]
 GO
+ALTER TABLE [AT].[Maintenances]  WITH CHECK ADD  CONSTRAINT [FK_Maintenances_Attachments] FOREIGN KEY([AttID])
+REFERENCES [AT].[Attachments] ([AttID])
+GO
+ALTER TABLE [AT].[Maintenances] CHECK CONSTRAINT [FK_Maintenances_Attachments]
+GO
 ALTER TABLE [AT].[StatusHistory]  WITH CHECK ADD  CONSTRAINT [FK_StatusHistory_Assets] FOREIGN KEY([AssetID])
 REFERENCES [AT].[Assets] ([AssetID])
 GO
@@ -2247,6 +2254,11 @@ REFERENCES [AT].[Assets] ([AssetID])
 ON DELETE CASCADE
 GO
 ALTER TABLE [AT].[Warranties] CHECK CONSTRAINT [FK_Warranties_Assets]
+GO
+ALTER TABLE [AT].[Warranties]  WITH CHECK ADD  CONSTRAINT [FK_Warranties_Attachments] FOREIGN KEY([AttID])
+REFERENCES [AT].[Attachments] ([AttID])
+GO
+ALTER TABLE [AT].[Warranties] CHECK CONSTRAINT [FK_Warranties_Attachments]
 GO
 ALTER TABLE [ATSET].[LocationDetails]  WITH CHECK ADD  CONSTRAINT [FK_LocationDetails_LocationTypes] FOREIGN KEY([LocationID])
 REFERENCES [ATSET].[LocationTypes] ([LocationID])
@@ -3320,6 +3332,8 @@ CREATE PROCEDURE [AT].[stpMaintenancesD]
 (
 	@Original_MaintID int,
 	@Original_AssetID int,
+	@IsNull_AttID Int,
+	@Original_AttID int,
 	@Original_FromDate date,
 	@Original_ToDate date,
 	@Original_SupplierContactID int,
@@ -3330,7 +3344,7 @@ CREATE PROCEDURE [AT].[stpMaintenancesD]
 )
 AS
 	SET NOCOUNT OFF;
-DELETE FROM [AT].[Maintenances] WHERE (([MaintID] = @Original_MaintID) AND ([AssetID] = @Original_AssetID) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ([SupplierContactID] = @Original_SupplierContactID) AND ([Cost] = @Original_Cost) AND ([CurCode] = @Original_CurCode) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)))
+DELETE FROM [AT].[Maintenances] WHERE (([MaintID] = @Original_MaintID) AND ([AssetID] = @Original_AssetID) AND ((@IsNull_AttID = 1 AND [AttID] IS NULL) OR ([AttID] = @Original_AttID)) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ([SupplierContactID] = @Original_SupplierContactID) AND ([Cost] = @Original_Cost) AND ([CurCode] = @Original_CurCode) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)))
 
 
 
@@ -3343,6 +3357,7 @@ GO
 CREATE PROCEDURE [AT].[stpMaintenancesI]
 (
 	@AssetID int,
+	@AttID int,
 	@FromDate date,
 	@ToDate date,
 	@SupplierContactID int,
@@ -3352,9 +3367,10 @@ CREATE PROCEDURE [AT].[stpMaintenancesI]
 )
 AS
 	SET NOCOUNT OFF;
-INSERT INTO [AT].[Maintenances] ([AssetID], [FromDate], [ToDate], [SupplierContactID], [Cost], [CurCode], [Remark]) VALUES (@AssetID, @FromDate, @ToDate, @SupplierContactID, @Cost, @CurCode, @Remark);
+
+INSERT INTO [AT].[Maintenances] ([AssetID], [AttID], [FromDate], [ToDate], [SupplierContactID], [Cost], [CurCode], [Remark]) VALUES (@AssetID, @AttID, @FromDate, @ToDate, @SupplierContactID, @Cost, @CurCode, @Remark);
 	
-SELECT MaintID, AssetID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances WHERE (MaintID = SCOPE_IDENTITY())
+SELECT MaintID, AssetID, AttID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances WHERE (MaintID = SCOPE_IDENTITY())
 
 
 
@@ -3370,7 +3386,7 @@ CREATE PROCEDURE [AT].[stpMaintenancesS]
 )
 AS
 	SET NOCOUNT ON;
-	SELECT MaintID, AssetID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances
+	SELECT MaintID, AssetID, AttID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances
 	WHERE	AssetID = @AssetID
 
 
@@ -3384,6 +3400,7 @@ GO
 CREATE PROCEDURE [AT].[stpMaintenancesU]
 (
 	@AssetID int,
+	@AttID int,
 	@FromDate date,
 	@ToDate date,
 	@SupplierContactID int,
@@ -3392,6 +3409,8 @@ CREATE PROCEDURE [AT].[stpMaintenancesU]
 	@Remark nvarchar(100),
 	@Original_MaintID int,
 	@Original_AssetID int,
+	@IsNull_AttID Int,
+	@Original_AttID int,
 	@Original_FromDate date,
 	@Original_ToDate date,
 	@Original_SupplierContactID int,
@@ -3403,9 +3422,10 @@ CREATE PROCEDURE [AT].[stpMaintenancesU]
 )
 AS
 	SET NOCOUNT OFF;
-UPDATE [AT].[Maintenances] SET [AssetID] = @AssetID, [FromDate] = @FromDate, [ToDate] = @ToDate, [SupplierContactID] = @SupplierContactID, [Cost] = @Cost, [CurCode] = @CurCode, [Remark] = @Remark WHERE (([MaintID] = @Original_MaintID) AND ([AssetID] = @Original_AssetID) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ([SupplierContactID] = @Original_SupplierContactID) AND ([Cost] = @Original_Cost) AND ([CurCode] = @Original_CurCode) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)));
+
+UPDATE [AT].[Maintenances] SET [AssetID] = @AssetID, [AttID] = @AttID, [FromDate] = @FromDate, [ToDate] = @ToDate, [SupplierContactID] = @SupplierContactID, [Cost] = @Cost, [CurCode] = @CurCode, [Remark] = @Remark WHERE (([MaintID] = @Original_MaintID) AND ([AssetID] = @Original_AssetID) AND ((@IsNull_AttID = 1 AND [AttID] IS NULL) OR ([AttID] = @Original_AttID)) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ([SupplierContactID] = @Original_SupplierContactID) AND ([Cost] = @Original_Cost) AND ([CurCode] = @Original_CurCode) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)));
 	
-SELECT MaintID, AssetID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances WHERE (MaintID = @MaintID)
+SELECT MaintID, AssetID, AttID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances WHERE (MaintID = @MaintID)
 
 
 
@@ -3632,6 +3652,8 @@ CREATE PROCEDURE [AT].[stpWarrantiesD]
 (
 	@Original_WarntID int,
 	@Original_AssetID int,
+	@IsNull_AttID Int,
+	@Original_AttID int,
 	@Original_WarrantyDesc nvarchar(50),
 	@Original_FromDate date,
 	@Original_ToDate date,
@@ -3640,7 +3662,7 @@ CREATE PROCEDURE [AT].[stpWarrantiesD]
 )
 AS
 	SET NOCOUNT OFF;
-DELETE FROM [AT].[Warranties] WHERE (([WarntID] = @Original_WarntID) AND ([AssetID] = @Original_AssetID) AND ([WarrantyDesc] = @Original_WarrantyDesc) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)))
+DELETE FROM [AT].[Warranties] WHERE (([WarntID] = @Original_WarntID) AND ([AssetID] = @Original_AssetID) AND ((@IsNull_AttID = 1 AND [AttID] IS NULL) OR ([AttID] = @Original_AttID)) AND ([WarrantyDesc] = @Original_WarrantyDesc) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)))
 
 
 
@@ -3653,6 +3675,7 @@ GO
 CREATE PROCEDURE [AT].[stpWarrantiesI]
 (
 	@AssetID int,
+	@AttID int,
 	@WarrantyDesc nvarchar(50),
 	@FromDate date,
 	@ToDate date,
@@ -3660,9 +3683,10 @@ CREATE PROCEDURE [AT].[stpWarrantiesI]
 )
 AS
 	SET NOCOUNT OFF;
-INSERT INTO [AT].[Warranties] ([AssetID], [WarrantyDesc], [FromDate], [ToDate], [Remark]) VALUES (@AssetID, @WarrantyDesc, @FromDate, @ToDate, @Remark);
+
+INSERT INTO [AT].[Warranties] ([AssetID], [AttID], [WarrantyDesc], [FromDate], [ToDate], [Remark]) VALUES (@AssetID, @AttID, @WarrantyDesc, @FromDate, @ToDate, @Remark);
 	
-SELECT WarntID, AssetID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranties WHERE (WarntID = SCOPE_IDENTITY())
+SELECT WarntID, AssetID, AttID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranties WHERE (WarntID = SCOPE_IDENTITY())
 
 
 
@@ -3678,7 +3702,7 @@ CREATE PROCEDURE [AT].[stpWarrantiesS]
 )
 AS
 	SET NOCOUNT ON;
-	SELECT	WarntID, AssetID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranties
+	SELECT	WarntID, AssetID, AttID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranties
 	WHERE	AssetID = @AssetID
 
 
@@ -3692,12 +3716,15 @@ GO
 CREATE PROCEDURE [AT].[stpWarrantiesU]
 (
 	@AssetID int,
+	@AttID int,
 	@WarrantyDesc nvarchar(50),
 	@FromDate date,
 	@ToDate date,
 	@Remark nvarchar(100),
 	@Original_WarntID int,
 	@Original_AssetID int,
+	@IsNull_AttID Int,
+	@Original_AttID int,
 	@Original_WarrantyDesc nvarchar(50),
 	@Original_FromDate date,
 	@Original_ToDate date,
@@ -3707,9 +3734,10 @@ CREATE PROCEDURE [AT].[stpWarrantiesU]
 )
 AS
 	SET NOCOUNT OFF;
-UPDATE [AT].[Warranties] SET [AssetID] = @AssetID, [WarrantyDesc] = @WarrantyDesc, [FromDate] = @FromDate, [ToDate] = @ToDate, [Remark] = @Remark WHERE (([WarntID] = @Original_WarntID) AND ([AssetID] = @Original_AssetID) AND ([WarrantyDesc] = @Original_WarrantyDesc) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)));
+
+UPDATE [AT].[Warranties] SET [AssetID] = @AssetID, [AttID] = @AttID, [WarrantyDesc] = @WarrantyDesc, [FromDate] = @FromDate, [ToDate] = @ToDate, [Remark] = @Remark WHERE (([WarntID] = @Original_WarntID) AND ([AssetID] = @Original_AssetID) AND ((@IsNull_AttID = 1 AND [AttID] IS NULL) OR ([AttID] = @Original_AttID)) AND ([WarrantyDesc] = @Original_WarrantyDesc) AND ([FromDate] = @Original_FromDate) AND ([ToDate] = @Original_ToDate) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)));
 	
-SELECT WarntID, AssetID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranties WHERE (WarntID = @WarntID)
+SELECT WarntID, AssetID, AttID, WarrantyDesc, FromDate, ToDate, Remark FROM AT.Warranties WHERE (WarntID = @WarntID)
 
 
 

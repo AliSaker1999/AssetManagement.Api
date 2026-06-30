@@ -28,7 +28,7 @@ public class WarrantyRepository(IDbConnection db) : IWarrantyRepository
             "AT.stpWarrantiesI",
             new
             {
-                request.AssetID, request.WarrantyDesc,
+                request.AssetID, request.AttID, request.WarrantyDesc,
                 request.FromDate, request.ToDate, request.Remark
             },
             commandType: CommandType.StoredProcedure);
@@ -40,9 +40,10 @@ public class WarrantyRepository(IDbConnection db) : IWarrantyRepository
             "AT.stpWarrantiesU",
             new
             {
-                request.AssetID, request.WarrantyDesc,
+                request.AssetID, request.AttID, request.WarrantyDesc,
                 request.FromDate, request.ToDate, request.Remark, request.WarntID,
                 request.Original_WarntID, request.Original_AssetID,
+                request.IsNull_AttID, request.Original_AttID,
                 request.Original_WarrantyDesc, request.Original_FromDate,
                 request.Original_ToDate, request.IsNull_Remark,
                 request.Original_Remark
@@ -58,6 +59,8 @@ public class WarrantyRepository(IDbConnection db) : IWarrantyRepository
             {
                 Original_WarntID = request.WarntID,
                 Original_AssetID = request.AssetID,
+                IsNull_AttID = request.AttID is null ? 1 : 0,
+                Original_AttID = request.AttID,
                 Original_WarrantyDesc = request.WarrantyDesc,
                 Original_FromDate = request.FromDate,
                 Original_ToDate = request.ToDate,

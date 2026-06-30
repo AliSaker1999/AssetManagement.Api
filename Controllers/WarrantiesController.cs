@@ -8,7 +8,7 @@ namespace AssetManagement.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class WarrantiesController(IWarrantyRepository repo) : ControllerBase
+public class WarrantiesController(IWarrantyRepository repo, IAttachmentRepository attachmentRepo) : ControllerBase
 {
     [HttpGet("asset/{assetId:int}")]
     public async Task<IActionResult> GetByAsset(int assetId) =>
@@ -30,6 +30,27 @@ public class WarrantiesController(IWarrantyRepository repo) : ControllerBase
     {
         request.WarntID = id;
         await repo.DeleteWarrantyAsync(request);
+
+        if (request.AttID is int attId)
+        {
+            var att = await attachmentRepo.GetByIdAsync(attId);
+            if (att is not null)
+            {
+                var filePath = await attachmentRepo.DeleteAttachmentAsync(new AttachmentDeleteRequest
+                {
+                    AttID = att.AttID,
+                    AssetID = att.AssetID,
+                    AttDesc = att.AttDesc,
+                    AttFileName = att.AttFileName,
+                    AttFileExt = att.AttFileExt,
+                    Remark = att.Remark
+                });
+
+                if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(filePath))
+                    System.IO.File.Delete(filePath);
+            }
+        }
+
         return NoContent();
     }
 }

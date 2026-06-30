@@ -9,7 +9,7 @@ namespace AssetManagement.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class MaintenancesController(IMaintenanceRepository repo, IAssetRepository assetRepo) : ControllerBase
+public class MaintenancesController(IMaintenanceRepository repo, IAssetRepository assetRepo, IAttachmentRepository attachmentRepo) : ControllerBase
 {
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
@@ -54,6 +54,27 @@ public class MaintenancesController(IMaintenanceRepository repo, IAssetRepositor
     {
         request.MaintID = id;
         await repo.DeleteMaintenanceAsync(request);
+
+        if (request.AttID is int attId)
+        {
+            var att = await attachmentRepo.GetByIdAsync(attId);
+            if (att is not null)
+            {
+                var filePath = await attachmentRepo.DeleteAttachmentAsync(new AttachmentDeleteRequest
+                {
+                    AttID = att.AttID,
+                    AssetID = att.AssetID,
+                    AttDesc = att.AttDesc,
+                    AttFileName = att.AttFileName,
+                    AttFileExt = att.AttFileExt,
+                    Remark = att.Remark
+                });
+
+                if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(filePath))
+                    System.IO.File.Delete(filePath);
+            }
+        }
+
         return NoContent();
     }
 

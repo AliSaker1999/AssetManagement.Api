@@ -4,6 +4,7 @@ public class MaintenanceDto
 {
     public int MaintID { get; set; }
     public int AssetID { get; set; }
+    public int? AttID { get; set; }
     public DateOnly FromDate { get; set; }
     public DateOnly ToDate { get; set; }
     public int SupplierContactID { get; set; }
@@ -15,6 +16,7 @@ public class MaintenanceDto
 public class MaintenanceCreateRequest
 {
     public int AssetID { get; set; }
+    public int? AttID { get; set; }
     public DateOnly FromDate { get; set; }
     public DateOnly ToDate { get; set; }
     public int SupplierContactID { get; set; }
@@ -28,6 +30,8 @@ public class MaintenanceUpdateRequest : MaintenanceCreateRequest
     public int MaintID { get; set; }
     public int Original_MaintID { get; set; }
     public int Original_AssetID { get; set; }
+    public int IsNull_AttID { get; set; }
+    public int? Original_AttID { get; set; }
     public DateOnly Original_FromDate { get; set; }
     public DateOnly Original_ToDate { get; set; }
     public int Original_SupplierContactID { get; set; }
@@ -41,6 +45,7 @@ public class MaintenanceDeleteRequest
 {
     public int MaintID { get; set; }
     public int AssetID { get; set; }
+    public int? AttID { get; set; }
     public DateOnly FromDate { get; set; }
     public DateOnly ToDate { get; set; }
     public int SupplierContactID { get; set; }

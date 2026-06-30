@@ -26,7 +26,7 @@ public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
 
     public Task<MaintenanceDto?> GetByIdAsync(int maintId) =>
         db.QueryFirstOrDefaultAsync<MaintenanceDto>(
-            "SELECT MaintID, AssetID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances WHERE MaintID = @MaintID",
+            "SELECT MaintID, AssetID, AttID, FromDate, ToDate, SupplierContactID, Cost, CurCode, Remark FROM AT.Maintenances WHERE MaintID = @MaintID",
             new { MaintID = maintId });
 
     public async Task<int> GetActiveMaintenanceCountAsync()
@@ -45,7 +45,7 @@ public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
             "AT.stpMaintenancesI",
             new
             {
-                request.AssetID, request.FromDate, request.ToDate,
+                request.AssetID, request.AttID, request.FromDate, request.ToDate,
                 request.SupplierContactID, request.Cost, request.CurCode, request.Remark
             },
             commandType: CommandType.StoredProcedure);
@@ -57,10 +57,11 @@ public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
             "AT.stpMaintenancesU",
             new
             {
-                request.AssetID, request.FromDate, request.ToDate,
+                request.AssetID, request.AttID, request.FromDate, request.ToDate,
                 request.SupplierContactID, request.Cost, request.CurCode,
                 request.Remark, request.MaintID,
                 request.Original_MaintID, request.Original_AssetID,
+                request.IsNull_AttID, request.Original_AttID,
                 request.Original_FromDate, request.Original_ToDate,
                 request.Original_SupplierContactID, request.Original_Cost,
                 request.Original_CurCode, request.IsNull_Remark,
@@ -77,6 +78,8 @@ public class MaintenanceRepository(IDbConnection db) : IMaintenanceRepository
             {
                 Original_MaintID = request.MaintID,
                 Original_AssetID = request.AssetID,
+                IsNull_AttID = request.AttID is null ? 1 : 0,
+                Original_AttID = request.AttID,
                 Original_FromDate = request.FromDate,
                 Original_ToDate = request.ToDate,
                 Original_SupplierContactID = request.SupplierContactID,
