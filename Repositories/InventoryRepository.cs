@@ -134,7 +134,7 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
     {
         await db.ExecuteAsync(
             "AT.stpInventoryIsAvailableAllAssets",
-            new { InventoryID = inventoryId },
+            new { InventoryID = inventoryId, IsAvailable = isAvailable },
             commandType: CommandType.StoredProcedure);
     }
 

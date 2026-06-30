@@ -75,7 +75,7 @@ public class MaintenancesController(IMaintenanceRepository repo, IAssetRepositor
         var today = DateOnly.FromDateTime(DateTime.Today);
         await assetRepo.UpdateAssetStatusAsync(maintenance.AssetID, new AssetStatusUpdateRequest
         {
-            AssetStatusID = 9,
+            AssetStatusID = 0,
             AssetStatusDate = today,
             StatusID = 9,
             StatusDate = today,

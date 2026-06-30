@@ -2711,8 +2711,8 @@ CREATE PROCEDURE [AT].[stpAssetsStatusRemove]
 )
 AS
 	SET NOCOUNT OFF;
-	UPDATE [AT].[Assets] SET [StatusID] = NULL,
-							 [StatusDate] = NULL
+	UPDATE [AT].[Assets] SET [StatusID] = 0,
+							 [StatusDate] = @StatusDate
 	WHERE [AssetID] = @AssetID
 
 	INSERT INTO [AT].[StatusHistory] (AssetID, StatusID, StatusDate, StatusDesc, [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], CreatedByUserID, CreatedByFullName, CreatedByDateTime)
@@ -2744,7 +2744,7 @@ CREATE PROCEDURE [AT].[stpAssetsStatusU]
 )
 AS
 	SET NOCOUNT OFF;
-	UPDATE [AT].[Assets] SET [StatusID] = @AssetStatusID,
+	UPDATE [AT].[Assets] SET [StatusID] = CASE WHEN @StatusID = 9 THEN 0 ELSE @AssetStatusID END,
 							 [StatusDate] = @AssetStatusDate
 	WHERE [AssetID] = @AssetID
 
@@ -3212,7 +3212,8 @@ GO
 -- =============================================
 CREATE PROCEDURE [AT].[stpInventoryIsAvailableAllAssets]
 (
-	@InventoryID int
+	@InventoryID int,
+	@IsAvailable bit
 )
 AS
 BEGIN
@@ -3220,7 +3221,7 @@ BEGIN
 	-- interfering with SELECT statements.
 
     SET NOCOUNT ON;
-    UPDATE AT.InventoriesDetails Set IsAvailable = 1 WHERE InventoryID = @InventoryID
+    UPDATE AT.InventoriesDetails Set IsAvailable = @IsAvailable WHERE InventoryID = @InventoryID
 
 	SELECT @@ROWCOUNT
 END
@@ -3543,10 +3544,6 @@ BEGIN
 
     SET @InventoryID = SCOPE_IDENTITY()
 
-    UPDATE AT.Assets Set StatusID = 10
-    WHERE   StatusID = 0
-      AND   CompanyID = @CompanyID
-
     INSERT INTO AT.InventoriesDetails (InventoryID, AssetID, IsAvailable, AssetCode, AssetDesc,
                                        Relocated, RelocatedLocationID, RelocatedLocDetailID,
                                        CompanyID, LocationID, LocDetailID, GroupID, CategoryID,
@@ -3559,6 +3556,14 @@ BEGIN
     FROM    AT.Assets
     WHERE   StatusID = 0
       AND   CompanyID = @CompanyID
+
+		-- Mark inserted assets as Under Inventory.
+		UPDATE Ast
+		SET    Ast.StatusID = 10
+		FROM   AT.Assets Ast
+					 INNER JOIN AT.InventoriesDetails InvD ON InvD.AssetID = Ast.AssetID
+		WHERE  InvD.InventoryID = @InventoryID
+			AND  Ast.StatusID = 0
 
     SELECT @@ROWCOUNT
 END
@@ -3576,11 +3581,6 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    UPDATE AT.Assets Set StatusID = 10
-    WHERE   StatusID = 0
-      AND   CompanyID = (SELECT CompanyID FROM AT.Inventories WHERE InventoryID = @InventoryID)
-      AND   AssetID NOT IN (SELECT AssetID FROM AT.InventoriesDetails WHERE InventoryID = @InventoryID)
-
     INSERT INTO AT.InventoriesDetails (InventoryID, AssetID, IsAvailable, AssetCode, AssetDesc,
                                        Relocated, RelocatedLocationID, RelocatedLocDetailID,
                                        CompanyID, LocationID, LocDetailID, GroupID, CategoryID,
@@ -3593,6 +3593,14 @@ BEGIN
     WHERE   StatusID = 0
       AND   CompanyID = (SELECT CompanyID FROM AT.Inventories WHERE InventoryID = @InventoryID)
       AND   AssetID NOT IN (SELECT AssetID FROM AT.InventoriesDetails WHERE InventoryID = @InventoryID)
+
+		-- Mark newly attached assets as Under Inventory.
+		UPDATE Ast
+		SET    Ast.StatusID = 10
+		FROM   AT.Assets Ast
+					 INNER JOIN AT.InventoriesDetails InvD ON InvD.AssetID = Ast.AssetID
+		WHERE  InvD.InventoryID = @InventoryID
+			AND  Ast.StatusID = 0
 END
 GO
 /****** Object:  StoredProcedure [AT].[stpStatusHistoryS]    Script Date: 25/06/2026 10:06:52 AM ******/
