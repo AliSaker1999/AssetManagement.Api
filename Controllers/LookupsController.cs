@@ -1,5 +1,6 @@
 using AssetManagement.Api.Models;
 using AssetManagement.Api.Repositories;
+using AssetManagement.Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,13 @@ namespace AssetManagement.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class LookupsController(ILookupRepository repo) : ControllerBase
+public class LookupsController(ILookupRepository repo, IPermissionService permissionService) : ControllerBase
 {
     private bool IsAdmin() =>
         User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "1";
+
+    private bool IsAuditor() =>
+        User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "2";
 
     private short GetUserId() =>
         IsAdmin() ? (short)0
@@ -48,11 +52,11 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
         return NoContent();
     }
 
-    // Company CRUD (admin only)
+    // Company CRUD (admin + full-access; auditor = view only)
     [HttpPost("companies")]
     public async Task<IActionResult> CreateCompany([FromBody] CompanyCreateRequest request)
     {
-        if (!IsAdmin()) return Forbid();
+        if (IsAuditor()) return Forbid();
         if (string.IsNullOrWhiteSpace(request.CompanyName)) return BadRequest("Company name is required.");
         if (string.IsNullOrWhiteSpace(request.CompanyAbbreviation)) return BadRequest("Abbreviation is required.");
         if (string.IsNullOrWhiteSpace(request.CountryID)) return BadRequest("Country is required.");
@@ -63,7 +67,12 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpPut("companies/{id:int}")]
     public async Task<IActionResult> UpdateCompany(short id, [FromBody] CompanyUpdateRequest request)
     {
-        if (!IsAdmin()) return Forbid();
+        if (IsAuditor()) return Forbid();
+        if (!IsAdmin())
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(GetUserId());
+            if (!allowed.Contains(id)) return Forbid();
+        }
         request.CompanyID = id;
         await repo.UpdateCompanyAsync(request);
         return NoContent();
@@ -72,7 +81,12 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpDelete("companies/{id:int}")]
     public async Task<IActionResult> DeleteCompany(short id)
     {
-        if (!IsAdmin()) return Forbid();
+        if (IsAuditor()) return Forbid();
+        if (!IsAdmin())
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(GetUserId());
+            if (!allowed.Contains(id)) return Forbid();
+        }
         await repo.DeleteCompanyAsync(id);
         return NoContent();
     }
@@ -156,6 +170,7 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpPost("groups")]
     public async Task<IActionResult> CreateGroup([FromBody] GroupTypeCreateRequest request)
     {
+        if (!IsAdmin()) return Forbid();
         var created = await repo.CreateGroupTypeAsync(request);
         return Ok(created);
     }
@@ -163,6 +178,7 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpPut("groups/{id:int}")]
     public async Task<IActionResult> UpdateGroup(short id, [FromBody] GroupTypeUpdateRequest request)
     {
+        if (!IsAdmin()) return Forbid();
         request.GroupID = id;
         await repo.UpdateGroupTypeAsync(request);
         return NoContent();
@@ -171,6 +187,7 @@ public class LookupsController(ILookupRepository repo) : ControllerBase
     [HttpDelete("groups/{id:int}")]
     public async Task<IActionResult> DeleteGroup(short id)
     {
+        if (!IsAdmin()) return Forbid();
         await repo.DeleteGroupTypeAsync(id);
         return NoContent();
     }

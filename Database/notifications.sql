@@ -46,14 +46,15 @@ AS
     SELECT
         w.WarntID, w.AssetID, w.WarrantyDesc, w.ToDate,
         a.CompanyID, a.AssetCode, a.AssetDesc,
-        c.EmailNotification, c.UserNotification,
+                up.UserID AS RecipientUserID,
+                u.EmailAddress AS RecipientEmailAddress,
         DATEDIFF(day, CAST(GETDATE() AS date), w.ToDate) AS DaysLeft
     FROM  AT.Warranties w
     INNER JOIN AT.Assets a      ON a.AssetID   = w.AssetID
-    INNER JOIN GSET.Companies c ON c.CompanyID = a.CompanyID
+        INNER JOIN SEC.UsersPermissions up ON up.CompanyID = a.CompanyID
+        INNER JOIN SEC.Users u ON u.UserID = up.UserID
     WHERE w.ToDate >= CAST(GETDATE() AS date)
-      AND DATEDIFF(day, CAST(GETDATE() AS date), w.ToDate) <= 14
-      AND (c.EmailNotification IS NOT NULL OR c.UserNotification IS NOT NULL);
+            AND DATEDIFF(day, CAST(GETDATE() AS date), w.ToDate) <= 14;
 GO
 
 -- 5. stpGetPendingMaintenanceNotifications
@@ -66,13 +67,14 @@ AS
     SELECT
         m.MaintID, m.AssetID, m.FromDate, m.ToDate,
         a.CompanyID, a.AssetCode, a.AssetDesc, a.StatusID,
-        c.EmailNotification, c.UserNotification,
+                up.UserID AS RecipientUserID,
+                u.EmailAddress AS RecipientEmailAddress,
         DATEDIFF(day, CAST(GETDATE() AS date), m.ToDate) AS DaysLeft
     FROM  AT.Maintenances m
     INNER JOIN AT.Assets a      ON a.AssetID   = m.AssetID
-    INNER JOIN GSET.Companies c ON c.CompanyID = a.CompanyID
-    WHERE a.StatusID = 8
-      AND (c.EmailNotification IS NOT NULL OR c.UserNotification IS NOT NULL);
+        INNER JOIN SEC.UsersPermissions up ON up.CompanyID = a.CompanyID
+        INNER JOIN SEC.Users u ON u.UserID = up.UserID
+        WHERE a.StatusID = 8;
 GO
 
 -- 6. stpCreateNotification

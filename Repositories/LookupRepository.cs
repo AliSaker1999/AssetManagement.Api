@@ -61,7 +61,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
 
         return db.QueryAsync<CompanyDto>(
             @"SELECT CompanyID, CompanyName, CompanyAbbreviation, CompanyPrmCurCode,
-                     CompanyScdCurCode, CountryID, EmailNotification, UserNotification
+                                         CompanyScdCurCode, CountryID
               FROM   GSET.Companies
               WHERE  CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
               ORDER BY CompanyName",
@@ -71,13 +71,13 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     public Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<CompanyDto>(
             "GSET.stpCompaniesI",
-            new { r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID, r.EmailNotification, r.UserNotification },
+            new { r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
             commandType: CommandType.StoredProcedure);
 
     public Task UpdateCompanyAsync(CompanyUpdateRequest r) =>
         db.ExecuteAsync(
             "GSET.stpCompaniesU",
-            new { r.CompanyID, r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID, r.EmailNotification, r.UserNotification },
+            new { r.CompanyID, r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
             commandType: CommandType.StoredProcedure);
 
     public Task DeleteCompanyAsync(short companyId) =>
@@ -295,7 +295,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     public Task<CategoryTypeDto?> CreateCategoryTypeAsync(CategoryTypeCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<CategoryTypeDto>(
             "ATSET.stpCategoryTypesI",
-            new { r.Category, r.GroupID },
+            new { r.Category },
             commandType: CommandType.StoredProcedure);
 
     public async Task UpdateCategoryTypeAsync(CategoryTypeUpdateRequest r)
@@ -304,10 +304,9 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
         if (orig is null) return;
         await db.ExecuteAsync("ATSET.stpCategoryTypesU", new
         {
-            r.Category, r.GroupID,
+            r.Category,
             Original_CategoryID = orig.CategoryID,
             Original_Category = orig.Category,
-            Original_GroupID = orig.GroupID,
             r.CategoryID
         }, commandType: CommandType.StoredProcedure);
     }
@@ -319,8 +318,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
         await db.ExecuteAsync("ATSET.stpCategoryTypesD", new
         {
             Original_CategoryID = orig.CategoryID,
-            Original_Category = orig.Category,
-            Original_GroupID = orig.GroupID
+            Original_Category = orig.Category
         }, commandType: CommandType.StoredProcedure);
     }
 

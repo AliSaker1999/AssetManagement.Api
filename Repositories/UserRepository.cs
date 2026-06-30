@@ -20,7 +20,7 @@ public class UserRepository(IDbConnection db) : IUserRepository
 {
     public Task<IEnumerable<UserListDto>> GetUsersAsync() =>
         db.QueryAsync<UserListDto>(
-            @"SELECT u.UserID, u.UserName, u.FullName, u.RoleID, r.RoleName
+                        @"SELECT u.UserID, u.UserName, u.FullName, u.EmailAddress, u.RoleID, r.RoleName
               FROM   SEC.Users u
               JOIN   SEC.Roles r ON u.RoleID = r.RoleID
               WHERE  u.RoleID <> 1
@@ -30,7 +30,7 @@ public class UserRepository(IDbConnection db) : IUserRepository
     {
         var result = await db.QueryFirstOrDefaultAsync<dynamic>(
             "SEC.stpUsersI",
-            new { r.UserName, r.Password, r.FullName, r.RoleID },
+            new { r.UserName, r.Password, r.FullName, r.EmailAddress, r.RoleID },
             commandType: CommandType.StoredProcedure);
         return (int)(result?.UserID ?? 0);
     }
@@ -38,7 +38,7 @@ public class UserRepository(IDbConnection db) : IUserRepository
     public Task UpdateUserAsync(UserUpdateRequest r) =>
         db.ExecuteAsync(
             "SEC.stpUsersU",
-            new { r.UserID, r.UserName, r.Password, r.FullName, r.RoleID },
+            new { r.UserID, r.UserName, r.Password, r.FullName, r.EmailAddress, r.RoleID },
             commandType: CommandType.StoredProcedure);
 
     public Task DeleteUserAsync(short userId) =>

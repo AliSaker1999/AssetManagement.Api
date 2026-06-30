@@ -5,6 +5,7 @@ public class UserListDto
     public short UserID { get; set; }
     public string UserName { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
+    public string EmailAddress { get; set; } = string.Empty;
     public byte RoleID { get; set; }
     public string RoleName { get; set; } = string.Empty;
 }
@@ -14,6 +15,7 @@ public class UserCreateRequest
     public string UserName { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
+    public string EmailAddress { get; set; } = string.Empty;
     public byte RoleID { get; set; }
 }
 
@@ -23,6 +25,7 @@ public class UserUpdateRequest
     public string UserName { get; set; } = string.Empty;
     public string? Password { get; set; }
     public string FullName { get; set; } = string.Empty;
+    public string EmailAddress { get; set; } = string.Empty;
     public byte RoleID { get; set; }
 }
 

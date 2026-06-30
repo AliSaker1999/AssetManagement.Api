@@ -22,8 +22,8 @@ public class PendingWarrantyNotif
     public short CompanyID { get; set; }
     public string AssetCode { get; set; } = string.Empty;
     public string AssetDesc { get; set; } = string.Empty;
-    public string? EmailNotification { get; set; }
-    public short? UserNotification { get; set; }
+    public short RecipientUserID { get; set; }
+    public string? RecipientEmailAddress { get; set; }
     public int DaysLeft { get; set; }
 }
 
@@ -37,7 +37,7 @@ public class PendingMaintenanceNotif
     public string AssetCode { get; set; } = string.Empty;
     public string AssetDesc { get; set; } = string.Empty;
     public byte? StatusID { get; set; }
-    public string? EmailNotification { get; set; }
-    public short? UserNotification { get; set; }
+    public short RecipientUserID { get; set; }
+    public string? RecipientEmailAddress { get; set; }
     public int DaysLeft { get; set; }
 }

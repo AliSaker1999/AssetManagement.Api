@@ -15,6 +15,7 @@ public class DepreciationsController(IDepreciationRepository repo, IPermissionSe
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
     private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
+    private bool IsAuditor() => User.FindFirstValue("roleId") == "2";
 
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] short companyId)
@@ -48,6 +49,7 @@ public class DepreciationsController(IDepreciationRepository repo, IPermissionSe
     [HttpPost("run")]
     public async Task<IActionResult> Run([FromBody] RunDepreciationRequest request)
     {
+        if (IsAuditor()) return Forbid();
         if (!IsAdmin())
         {
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
@@ -67,6 +69,7 @@ public class DepreciationsController(IDepreciationRepository repo, IPermissionSe
     [HttpDelete("last")]
     public async Task<IActionResult> DeleteLast([FromQuery] short companyId)
     {
+        if (IsAuditor()) return Forbid();
         if (!IsAdmin())
         {
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);

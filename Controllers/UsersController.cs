@@ -2,6 +2,7 @@ using AssetManagement.Api.Models;
 using AssetManagement.Api.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace AssetManagement.Api.Controllers;
 
@@ -10,6 +11,8 @@ namespace AssetManagement.Api.Controllers;
 [Authorize]
 public class UsersController(IUserRepository userRepo) : ControllerBase
 {
+    private static readonly EmailAddressAttribute EmailValidator = new();
+
     private bool IsAdmin() =>
         User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "1";
 
@@ -29,6 +32,8 @@ public class UsersController(IUserRepository userRepo) : ControllerBase
         if (string.IsNullOrWhiteSpace(request.UserName)) return BadRequest("Username is required.");
         if (string.IsNullOrWhiteSpace(request.Password)) return BadRequest("Password is required.");
         if (string.IsNullOrWhiteSpace(request.FullName)) return BadRequest("Full name is required.");
+        if (string.IsNullOrWhiteSpace(request.EmailAddress)) return BadRequest("Email is required.");
+        if (!EmailValidator.IsValid(request.EmailAddress)) return BadRequest("Email is invalid.");
 
         var userId = await userRepo.CreateUserAsync(request);
         return Ok(new { userId });
@@ -38,6 +43,10 @@ public class UsersController(IUserRepository userRepo) : ControllerBase
     public async Task<IActionResult> UpdateUser(short id, [FromBody] UserUpdateRequest request)
     {
         if (!IsAdmin()) return Forbid();
+        if (string.IsNullOrWhiteSpace(request.UserName)) return BadRequest("Username is required.");
+        if (string.IsNullOrWhiteSpace(request.FullName)) return BadRequest("Full name is required.");
+        if (string.IsNullOrWhiteSpace(request.EmailAddress)) return BadRequest("Email is required.");
+        if (!EmailValidator.IsValid(request.EmailAddress)) return BadRequest("Email is invalid.");
         request.UserID = id;
         await userRepo.UpdateUserAsync(request);
         return NoContent();

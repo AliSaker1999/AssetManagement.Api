@@ -52,10 +52,19 @@ public class NotificationBackgroundService(
         CancellationToken ct)
     {
         var pending = await notifRepo.GetPendingWarrantiesAsync();
+        var grouped = pending.GroupBy(w => w.WarntID);
 
-        foreach (var w in pending)
+        foreach (var group in grouped)
         {
             if (ct.IsCancellationRequested) return;
+
+            var w = group.First();
+            var recipients = group
+                .Select(x => new NotificationRecipient(x.RecipientUserID, x.RecipientEmailAddress))
+                .DistinctBy(x => x.UserId)
+                .ToList();
+
+            if (recipients.Count == 0) continue;
 
             foreach (var days in intervals)
             {
@@ -72,7 +81,7 @@ public class NotificationBackgroundService(
 
                 await SendAndPersistAsync(notifRepo, emailSvc,
                     "Warranty", w.WarntID, w.AssetID, w.CompanyID,
-                    w.EmailNotification, w.UserNotification,
+                    recipients,
                     subject, body, label);
             }
         }
@@ -87,10 +96,19 @@ public class NotificationBackgroundService(
         CancellationToken ct)
     {
         var pending = await notifRepo.GetPendingMaintenancesAsync();
+        var grouped = pending.GroupBy(m => m.MaintID);
 
-        foreach (var m in pending)
+        foreach (var group in grouped)
         {
             if (ct.IsCancellationRequested) return;
+
+            var m = group.First();
+            var recipients = group
+                .Select(x => new NotificationRecipient(x.RecipientUserID, x.RecipientEmailAddress))
+                .DistinctBy(x => x.UserId)
+                .ToList();
+
+            if (recipients.Count == 0) continue;
 
             // Pre-end interval notifications
             foreach (var days in intervals)
@@ -105,7 +123,7 @@ public class NotificationBackgroundService(
 
                 await SendAndPersistAsync(notifRepo, emailSvc,
                     "Maintenance", m.MaintID, m.AssetID, m.CompanyID,
-                    m.EmailNotification, m.UserNotification,
+                    recipients,
                     subject, body, label);
             }
 
@@ -120,7 +138,7 @@ public class NotificationBackgroundService(
 
                 await SendAndPersistAsync(notifRepo, emailSvc,
                     "Maintenance", m.MaintID, m.AssetID, m.CompanyID,
-                    m.EmailNotification, m.UserNotification,
+                    recipients,
                     subject, body, dailyLabel);
             }
         }
@@ -132,26 +150,30 @@ public class NotificationBackgroundService(
         INotificationRepository notifRepo,
         IEmailService emailSvc,
         string type, int entityId, int assetId, short companyId,
-        string? email, short? userId,
+        IReadOnlyCollection<NotificationRecipient> recipients,
         string subject, string htmlBody, string intervalLabel)
     {
-        // Email
-        if (!string.IsNullOrWhiteSpace(email))
+        foreach (var recipient in recipients)
         {
-            try { await emailSvc.SendAsync(email, email, subject, htmlBody); }
-            catch (Exception ex) { logger.LogWarning(ex, "Email send failed to {Email}", email); }
-        }
+            if (!string.IsNullOrWhiteSpace(recipient.EmailAddress))
+            {
+                try
+                {
+                    await emailSvc.SendAsync(recipient.EmailAddress, recipient.EmailAddress, subject, htmlBody);
+                }
+                catch (Exception ex)
+                {
+                    logger.LogWarning(ex, "Email send failed to {Email}", recipient.EmailAddress);
+                }
+            }
 
-        // In-app notification
-        if (userId.HasValue)
-        {
             var message = StripHtml(htmlBody);
-            var notifId = await notifRepo.CreateAsync(userId.Value, companyId, type, entityId, assetId, message);
+            var notifId = await notifRepo.CreateAsync(recipient.UserId, companyId, type, entityId, assetId, message);
 
             var dto = new NotificationDto
             {
                 NotifID = notifId,
-                UserID = userId.Value,
+                UserID = recipient.UserId,
                 CompanyID = companyId,
                 Type = type,
                 EntityID = entityId,
@@ -161,12 +183,14 @@ public class NotificationBackgroundService(
                 CreatedAt = DateTime.Now
             };
 
-            await hub.Clients.Group($"user-{userId.Value}")
+            await hub.Clients.Group($"user-{recipient.UserId}")
                 .SendAsync("ReceiveNotification", dto);
         }
 
         await notifRepo.LogNotificationAsync(type, entityId, intervalLabel);
     }
+
+    private sealed record NotificationRecipient(short UserId, string? EmailAddress);
 
     // ── Email templates ──────────────────────────────────────────────────────
 

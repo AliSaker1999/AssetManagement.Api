@@ -85,10 +85,19 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
 
     public async Task<AssetDto?> GetAssetAsync(int assetId)
     {
-        return await db.QueryFirstOrDefaultAsync<AssetDto>(
+        var asset = await db.QueryFirstOrDefaultAsync<AssetDto>(
             "AT.stpAssetsS",
             new { AssetID = assetId },
             commandType: CommandType.StoredProcedure);
+
+        if (asset is null || asset.StatusID is null) return asset;
+
+        var statusName = await db.QuerySingleOrDefaultAsync<string?>(
+            "SELECT [Status] FROM ATSET.StatusTypes WHERE StatusID = @StatusID",
+            new { StatusID = asset.StatusID.Value });
+
+        asset.StatusName = statusName;
+        return asset;
     }
 
     public async Task<IEnumerable<AssetReportItemDto>> GetAssetsReportAsync(AssetReportFilterRequest filter)
@@ -160,6 +169,19 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
             commandType: CommandType.StoredProcedure);
     }
 
+    public async Task RemoveAssetStatusAsync(int assetId, AssetStatusRemoveRequest request, short userId, string fullName)
+    {
+        await db.ExecuteAsync(
+            "AT.stpAssetsStatusRemove",
+            new
+            {
+                request.StatusID, request.StatusDate, request.StatusContactID,
+                request.StatusSalePrice, request.StatusSaleCurCode, request.StatusDesc,
+                CreatedByUserID = userId, CreatedByFullName = fullName,
+                CreatedByDateTime = DateTime.Now, AssetID = assetId
+            },
+            commandType: CommandType.StoredProcedure);
+    }
     public async Task UpdateAssetStatusAsync(int assetId, AssetStatusUpdateRequest request, short userId, string fullName)
     {
         await db.ExecuteAsync(
@@ -174,21 +196,6 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
             },
             commandType: CommandType.StoredProcedure);
     }
-
-    public async Task RemoveAssetStatusAsync(int assetId, AssetStatusRemoveRequest request, short userId, string fullName)
-    {
-        await db.ExecuteAsync(
-            "AT.stpAssetsStatusRemove",
-            new
-            {
-                request.StatusID, request.StatusDate, request.StatusContactID,
-                request.StatusSalePrice, request.StatusSaleCurCode, request.StatusDesc,
-                CreatedByUserID = userId, CreatedByFullName = fullName,
-                CreatedByDateTime = DateTime.Now, AssetID = assetId
-            },
-            commandType: CommandType.StoredProcedure);
-    }
-
     public async Task<IEnumerable<AssetDepreciationHistoryDto>> GetDepreciationHistoryAsync(int assetId)
     {
         return await db.QueryAsync<AssetDepreciationHistoryDto>(

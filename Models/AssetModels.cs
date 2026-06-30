@@ -41,6 +41,7 @@ public class AssetDto
     public string? BarcodeNumber { get; set; }
     public string? SerialNumber { get; set; }
     public byte? StatusID { get; set; }
+    public string? StatusName { get; set; }
     public DateOnly? StatusDate { get; set; }
     public string? Remark { get; set; }
     public string? InstalledAt { get; set; }
@@ -214,9 +215,11 @@ public class StatusHistoryDto
     public int StatusHistID { get; set; }
     public int AssetID { get; set; }
     public byte StatusID { get; set; }
+    public string? StatusName { get; set; }
     public DateOnly StatusDate { get; set; }
     public string? StatusDesc { get; set; }
     public int? StatusContactID { get; set; }
+    public string? ContactName { get; set; }
     public double StatusSalePrice { get; set; }
     public string? StatusSaleCurCode { get; set; }
     public short CreatedByUserID { get; set; }

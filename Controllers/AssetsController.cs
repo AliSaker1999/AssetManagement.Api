@@ -16,6 +16,7 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
     private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
+    private bool IsAuditor() => User.FindFirstValue("roleId") == "2";
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] int? companyId = null)
@@ -72,6 +73,7 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] AssetCreateRequest request)
     {
+        if (IsAuditor()) return Forbid();
         if (!IsAdmin())
         {
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
@@ -84,6 +86,7 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] AssetUpdateRequest request)
     {
+        if (IsAuditor()) return Forbid();
         if (!IsAdmin())
         {
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
@@ -97,6 +100,7 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
+        if (IsAuditor()) return Forbid();
         if (!IsAdmin())
         {
             var asset = await repo.GetAssetAsync(id);
@@ -118,6 +122,7 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     [HttpPut("{id:int}/status")]
     public async Task<IActionResult> UpdateStatus(int id, [FromBody] AssetStatusUpdateRequest request)
     {
+        if (IsAuditor()) return Forbid();
         if (!IsAdmin())
         {
             var asset = await repo.GetAssetAsync(id);
@@ -132,6 +137,7 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     [HttpDelete("{id:int}/status")]
     public async Task<IActionResult> RemoveStatus(int id, [FromBody] AssetStatusRemoveRequest request)
     {
+        if (IsAuditor()) return Forbid();
         if (!IsAdmin())
         {
             var asset = await repo.GetAssetAsync(id);

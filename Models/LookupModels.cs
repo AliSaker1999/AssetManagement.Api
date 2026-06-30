@@ -8,15 +8,12 @@ public class CompanyDto
     public string CompanyPrmCurCode { get; set; } = string.Empty;
     public string CompanyScdCurCode { get; set; } = string.Empty;
     public string CountryID { get; set; } = string.Empty;
-    public string? EmailNotification { get; set; }
-    public short? UserNotification { get; set; }
 }
 
 public class CategoryTypeDto
 {
     public short CategoryID { get; set; }
     public string Category { get; set; } = string.Empty;
-    public short GroupID { get; set; }
 }
 
 public class GroupTypeDto
@@ -126,7 +123,6 @@ public class GroupTypeUpdateRequest : GroupTypeCreateRequest
 public class CategoryTypeCreateRequest
 {
     public string Category { get; set; } = string.Empty;
-    public short GroupID { get; set; }
 }
 
 public class CategoryTypeUpdateRequest : CategoryTypeCreateRequest
@@ -178,8 +174,6 @@ public class CompanyCreateRequest
     public string CompanyPrmCurCode { get; set; } = string.Empty;
     public string CompanyScdCurCode { get; set; } = string.Empty;
     public string CountryID { get; set; } = string.Empty;
-    public string? EmailNotification { get; set; }
-    public short? UserNotification { get; set; }
 }
 
 public class CompanyUpdateRequest : CompanyCreateRequest

@@ -16,6 +16,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
     private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
+    private bool IsAuditor() => User.FindFirstValue("roleId") == "2";
 
     [HttpGet("history")]
     public async Task<IActionResult> GetHistory([FromQuery] short companyId) =>
@@ -66,6 +67,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     [HttpPost("start")]
     public async Task<IActionResult> Start([FromBody] InventoryStartRequest request)
     {
+        if (IsAuditor()) return Forbid();
         try
         {
             await repo.StartInventoryAsync(request, UserId, FullName);
@@ -80,6 +82,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     [HttpPost("{id:int}/refresh")]
     public async Task<IActionResult> Refresh(int id)
     {
+        if (IsAuditor()) return Forbid();
         await repo.RefreshInventoryAsync(id, UserId, FullName);
         return Ok();
     }
@@ -87,6 +90,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     [HttpPost("{id:int}/end")]
     public async Task<IActionResult> End(int id, [FromBody] InventoryEndRequest request)
     {
+        if (IsAuditor()) return Forbid();
         await repo.EndInventoryAsync(id, request, UserId, FullName);
         return Ok();
     }
@@ -94,6 +98,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     [HttpPut("available/{invDetailId:int}")]
     public async Task<IActionResult> SetAvailable(int invDetailId, [FromBody] bool isAvailable)
     {
+        if (IsAuditor()) return Forbid();
         await repo.SetAvailableAsync(invDetailId, isAvailable, UserId, FullName);
         return NoContent();
     }
@@ -101,6 +106,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     [HttpPut("{inventoryId:int}/available-all")]
     public async Task<IActionResult> SetAvailableAll(int inventoryId, [FromBody] bool isAvailable)
     {
+        if (IsAuditor()) return Forbid();
         await repo.SetAvailableAllAssetsAsync(isAvailable, inventoryId, UserId, FullName);
         return NoContent();
     }
@@ -108,6 +114,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     [HttpPut("{inventoryId:int}/available-by-code")]
     public async Task<IActionResult> SetAvailableByCode(int inventoryId, [FromQuery] string assetCode, [FromBody] bool isAvailable)
     {
+        if (IsAuditor()) return Forbid();
         await repo.SetAvailableByAssetCodeAsync(assetCode, isAvailable, inventoryId, UserId, FullName);
         return NoContent();
     }
@@ -115,6 +122,7 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     [HttpPut("relocate")]
     public async Task<IActionResult> Relocate([FromBody] InventoryRelocateRequest request)
     {
+        if (IsAuditor()) return Forbid();
         await repo.UpdateRelocatedAsync(request, UserId, FullName);
         return NoContent();
     }
