@@ -13,6 +13,7 @@ namespace AssetManagement.Api.Controllers;
 [Authorize]
 public class AssetsController(IAssetRepository repo, IPermissionService permissionService) : ControllerBase
 {
+    private const byte CompanyOwnerId = 1;
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
     private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
@@ -74,6 +75,8 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     public async Task<IActionResult> Create([FromBody] AssetCreateRequest request)
     {
         if (IsAuditor()) return Forbid();
+        var validationError = ValidateAssetRequest(request);
+        if (validationError is not null) return BadRequest(validationError);
         if (!IsAdmin())
         {
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
@@ -87,6 +90,8 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     public async Task<IActionResult> Update(int id, [FromBody] AssetUpdateRequest request)
     {
         if (IsAuditor()) return Forbid();
+        var validationError = ValidateAssetRequest(request);
+        if (validationError is not null) return BadRequest(validationError);
         if (!IsAdmin())
         {
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
@@ -191,4 +196,19 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     [HttpGet("codes")]
     public async Task<IActionResult> GetAssetCodes() =>
         Ok(await repo.GetAssetCodeListAsync());
+
+    private static string? ValidateAssetRequest(AssetCreateRequest request)
+    {
+        if (request.BrandID <= 0) return "Brand is required.";
+        if (string.IsNullOrWhiteSpace(request.Model)) return "Model is required.";
+        if (request.OwnerID <= 0) return "Owner is required.";
+        if (request.OwnerID != CompanyOwnerId && string.IsNullOrWhiteSpace(request.OwnerDesc))
+            return "Owner description is required when the asset is not company-owned.";
+
+        request.Model = request.Model.Trim();
+        request.OwnerDesc = request.OwnerID == CompanyOwnerId
+            ? null
+            : request.OwnerDesc?.Trim();
+        return null;
+    }
 }

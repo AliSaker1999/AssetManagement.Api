@@ -60,6 +60,10 @@ public class DepreciationsController(IDepreciationRepository repo, IPermissionSe
             await repo.RunDepreciationAsync(request, UserId, FullName);
             return Ok();
         }
+        catch (Microsoft.Data.SqlClient.SqlException ex) when (ex.Number == 50021 || ex.Number == 50022)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
         catch (Microsoft.Data.SqlClient.SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
         {
             return Conflict(new { message = $"A depreciation run for {request.DepreciationDate:yyyy-MM-dd} already exists. Delete the existing run first or choose a different date." });

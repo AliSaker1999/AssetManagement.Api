@@ -16,7 +16,10 @@ public interface ILookupRepository
     Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync(short userId = 0, short? companyId = null);
     Task<IEnumerable<LocationDetailDto>> GetLocationDetailsAsync(short userId = 0, short? locationId = null);
     Task<IEnumerable<StatusTypeDto>> GetStatusTypesAsync();
+    Task<IEnumerable<BrandTypeDto>> GetBrandTypesAsync();
+    Task<IEnumerable<OwnerTypeDto>> GetOwnerTypesAsync();
     Task<IEnumerable<CurrencyDto>> GetCurrenciesAsync();
+    Task<BrandTypeDto?> CreateBrandTypeAsync(BrandTypeCreateRequest request);
     Task<CurrencyDto?> CreateCurrencyAsync(CurrencyCreateRequest request);
     Task UpdateCurrencyAsync(CurrencyUpdateRequest request);
     Task DeleteCurrencyAsync(string curCode);
@@ -160,6 +163,18 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
 
     public Task<IEnumerable<StatusTypeDto>> GetStatusTypesAsync() =>
         db.QueryAsync<StatusTypeDto>("ATSET.stpGetStatusTypes", commandType: CommandType.StoredProcedure);
+
+    public Task<IEnumerable<BrandTypeDto>> GetBrandTypesAsync() =>
+        db.QueryAsync<BrandTypeDto>("ATSET.stpGetBrandTypes", commandType: CommandType.StoredProcedure);
+
+    public Task<IEnumerable<OwnerTypeDto>> GetOwnerTypesAsync() =>
+        db.QueryAsync<OwnerTypeDto>("ATSET.stpGetOwnerTypes", commandType: CommandType.StoredProcedure);
+
+    public Task<BrandTypeDto?> CreateBrandTypeAsync(BrandTypeCreateRequest r) =>
+        db.QueryFirstOrDefaultAsync<BrandTypeDto>(
+            "ATSET.stpBrandTypesI",
+            new { r.BrandDesc },
+            commandType: CommandType.StoredProcedure);
 
     public Task<IEnumerable<CurrencyDto>> GetCurrenciesAsync() =>
         db.QueryAsync<CurrencyDto>("SELECT CurCode, CurName FROM GSET.Currencies ORDER BY CurCode");

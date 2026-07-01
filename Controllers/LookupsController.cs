@@ -114,8 +114,22 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     [HttpGet("statuses")]
     public async Task<IActionResult> GetStatuses() => Ok(await repo.GetStatusTypesAsync());
 
+    [HttpGet("brands")]
+    public async Task<IActionResult> GetBrands() => Ok(await repo.GetBrandTypesAsync());
+
+    [HttpGet("owners")]
+    public async Task<IActionResult> GetOwners() => Ok(await repo.GetOwnerTypesAsync());
+
     [HttpGet("currencies")]
     public async Task<IActionResult> GetCurrencies() => Ok(await repo.GetCurrenciesAsync());
+
+    [HttpPost("brands")]
+    public async Task<IActionResult> CreateBrand([FromBody] BrandTypeCreateRequest request)
+    {
+        if (string.IsNullOrWhiteSpace(request.BrandDesc)) return BadRequest("Brand name is required.");
+        var created = await repo.CreateBrandTypeAsync(request);
+        return Ok(created);
+    }
 
     [HttpPost("currencies")]
     public async Task<IActionResult> CreateCurrency([FromBody] CurrencyCreateRequest request)

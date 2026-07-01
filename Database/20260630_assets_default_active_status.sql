@@ -29,12 +29,23 @@ CREATE OR ALTER PROCEDURE [AT].[stpAssetsI]
     @AccountingEntryJVNo nvarchar(10),
     @BarcodeNumber nvarchar(20),
     @SerialNumber nvarchar(50),
+    @BrandID smallint,
+    @Model nvarchar(50),
     @Remark nvarchar(100),
-    @InstalledAt nvarchar(50)
+    @InstalledAt nvarchar(50),
+    @OwnerID tinyint,
+    @OwnerDesc nvarchar(50)
 )
 AS
 BEGIN
     SET NOCOUNT OFF;
+
+    IF NULLIF(LTRIM(RTRIM(@Model)), N'') IS NULL
+        THROW 50001, 'Model is required.', 1;
+
+    IF EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc <> N'Company')
+       AND NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') IS NULL
+        THROW 50002, 'Owner description is required when the asset is not company-owned.', 1;
 
     INSERT INTO [AT].[Assets]
     (
@@ -42,7 +53,7 @@ BEGIN
         [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate],
         [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate],
         [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber],
-        [BrandID], [Model], [StatusID], [Remark], [InstalledAt], [OwnerID]
+        [BrandID], [Model], [StatusID], [Remark], [InstalledAt], [OwnerID], [OwnerInfo]
     )
     VALUES
     (
@@ -50,7 +61,9 @@ BEGIN
         @GroupID, @CategoryID, @Donation, @ContactID, @PurchaseOrderNo, @PurchaseDate,
         @PurchasePrice, @PurchaseCurCode, @InServiceDate, @InvoiceNo, @InvoiceDate,
         @AccountingEntryDate, @AccountingEntryJVNo, @BarcodeNumber, @SerialNumber,
-        1, N'', 0, @Remark, @InstalledAt, 1
+        @BrandID, LTRIM(RTRIM(@Model)), 0, @Remark, @InstalledAt, @OwnerID,
+        CASE WHEN EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc = N'Company')
+            THEN NULL ELSE NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') END
     );
 
     SELECT SCOPE_IDENTITY();

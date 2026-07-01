@@ -49,6 +49,18 @@ public class StatusTypeDto
     public string Status { get; set; } = string.Empty;
 }
 
+public class BrandTypeDto
+{
+    public short BrandID { get; set; }
+    public string BrandDesc { get; set; } = string.Empty;
+}
+
+public class OwnerTypeDto
+{
+    public byte OwnerID { get; set; }
+    public string OwnerDesc { get; set; } = string.Empty;
+}
+
 public class CurrencyDto
 {
     public string CurCode { get; set; } = string.Empty;
@@ -153,6 +165,11 @@ public class CurrencyCreateRequest
 {
     public string CurCode { get; set; } = string.Empty;
     public string CurName { get; set; } = string.Empty;
+}
+
+public class BrandTypeCreateRequest
+{
+    public string BrandDesc { get; set; } = string.Empty;
 }
 
 public class CurrencyUpdateRequest

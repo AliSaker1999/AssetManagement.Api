@@ -40,11 +40,17 @@ public class AssetDto
     public string? AccountingEntryJVNo { get; set; }
     public string? BarcodeNumber { get; set; }
     public string? SerialNumber { get; set; }
+    public short BrandID { get; set; }
+    public string Model { get; set; } = string.Empty;
     public byte? StatusID { get; set; }
     public string? StatusName { get; set; }
+    public string? BrandDesc { get; set; }
     public DateOnly? StatusDate { get; set; }
     public string? Remark { get; set; }
     public string? InstalledAt { get; set; }
+    public byte OwnerID { get; set; }
+    public string? OwnerDesc { get; set; }
+    public string? OwnerTypeDesc { get; set; }
 }
 
 public class AssetListItemDto
@@ -109,8 +115,12 @@ public class AssetCreateRequest
     public string? AccountingEntryJVNo { get; set; }
     public string? BarcodeNumber { get; set; }
     public string? SerialNumber { get; set; }
+    public short BrandID { get; set; }
+    public string Model { get; set; } = string.Empty;
     public string? Remark { get; set; }
     public string? InstalledAt { get; set; }
+    public byte OwnerID { get; set; }
+    public string? OwnerDesc { get; set; }
 }
 
 public class AssetUpdateRequest : AssetCreateRequest

@@ -136,7 +136,8 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
                 request.PurchaseOrderNo, request.PurchaseDate, request.PurchasePrice,
                 request.PurchaseCurCode, request.InServiceDate, request.InvoiceNo,
                 request.InvoiceDate, request.AccountingEntryDate, request.AccountingEntryJVNo,
-                request.BarcodeNumber, request.SerialNumber, request.Remark, request.InstalledAt
+                request.BarcodeNumber, request.SerialNumber, request.BrandID, request.Model,
+                request.Remark, request.InstalledAt, request.OwnerID, request.OwnerDesc
             },
             commandType: CommandType.StoredProcedure);
         return result;
@@ -155,7 +156,8 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
                 request.PurchaseOrderNo, request.PurchaseDate, request.PurchasePrice,
                 request.PurchaseCurCode, request.InServiceDate, request.InvoiceNo,
                 request.InvoiceDate, request.AccountingEntryDate, request.AccountingEntryJVNo,
-                request.BarcodeNumber, request.SerialNumber, request.Remark, request.InstalledAt,
+                request.BarcodeNumber, request.SerialNumber, request.BrandID, request.Model,
+                request.Remark, request.InstalledAt, request.OwnerID, request.OwnerDesc,
                 request.AssetID
             },
             commandType: CommandType.StoredProcedure);
