@@ -10,8 +10,29 @@ namespace AssetManagement.Api.Controllers;
 [Authorize]
 public class ContactsController(IContactRepository repo) : ControllerBase
 {
+    private static int NormalizePageSize(int pageSize) => pageSize is 20 or 30 ? pageSize : 10;
+
     [HttpGet]
     public async Task<IActionResult> GetList() => Ok(await repo.GetContactsListAsync());
+
+    [HttpGet("paginated")]
+    public async Task<IActionResult> GetListPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetContactsListAsync()).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<ContactDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
+    }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id)

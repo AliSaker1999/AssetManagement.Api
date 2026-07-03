@@ -12,6 +12,8 @@ namespace AssetManagement.Api.Controllers;
 [Authorize]
 public class DepreciationsController(IDepreciationRepository repo, IPermissionService permissionService) : ControllerBase
 {
+    private static int NormalizePageSize(int pageSize) => pageSize is 20 or 30 ? pageSize : 10;
+
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
     private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
@@ -31,6 +33,25 @@ public class DepreciationsController(IDepreciationRepository repo, IPermissionSe
     [HttpGet("{id:int}/report")]
     public async Task<IActionResult> GetReport(int id) =>
         Ok(await repo.GetDepreciationReportAsync(id));
+
+    [HttpGet("{id:int}/report/paginated")]
+    public async Task<IActionResult> GetReportPaginated(int id, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetDepreciationReportAsync(id)).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<DepreciationReportItemDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
+    }
 
     [HttpGet("last-date")]
     public async Task<IActionResult> GetLastDate([FromQuery] short companyId)

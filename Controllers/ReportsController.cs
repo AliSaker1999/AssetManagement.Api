@@ -23,6 +23,7 @@ public class ReportsController(IReportRepository repo) : ControllerBase
     private static string Fmt(DateOnly d) => d.ToString("dd/MM/yyyy");
     private static string Fmt(DateTime d) => d.ToString("dd/MM/yyyy HH:mm");
     private static string Bool(bool v) => v ? "Yes" : "No";
+    private static int NormalizePageSize(int pageSize) => pageSize is 20 or 30 ? pageSize : 10;
 
     private FileContentResult MakeFile(byte[] data, string format, string name)
     {
@@ -188,6 +189,8 @@ public class ReportsController(IReportRepository repo) : ControllerBase
     public async Task<IActionResult> AssetsListPreview([FromBody] AssetsListReportRequest req)
     {
         var rows = (await repo.GetAssetsListAsync(req)).ToList();
+        var pageNumber = Math.Max(1, req.PageNumber);
+        var pageSize = NormalizePageSize(req.PageSize);
 
         string[] headers = req.AdditionalDetail
             ? ["Company", "Code", "Description", "Category", "Group", "Location", "In Service", "Status", "Barcode", "Serial No.", "Last Inventory"]
@@ -211,13 +214,16 @@ public class ReportsController(IReportRepository repo) : ControllerBase
             ).ToList();
         }
 
+        var totalCount = rows.Count;
+        data = data.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
         return Ok(new ReportPreviewDto
         {
             Title    = "Assets List Report",
             Subtitle = $"Total: {rows.Count} asset(s)",
             Headers  = headers,
             Rows     = data,
-            TotalCount = rows.Count
+            TotalCount = totalCount
         });
     }
 
@@ -225,6 +231,8 @@ public class ReportsController(IReportRepository repo) : ControllerBase
     public async Task<IActionResult> AssetsListInventoryPreview([FromBody] AssetsListInventoryReportRequest req)
     {
         var rows = (await repo.GetAssetsListInventoryAsync(req)).ToList();
+        var pageNumber = Math.Max(1, req.PageNumber);
+        var pageSize = NormalizePageSize(req.PageSize);
         IEnumerable<AssetsListInventoryReportRowDto> filtered = req.ListType switch
         {
             "NotAvailable" => rows.Where(r => !r.IsAvailable),
@@ -256,13 +264,16 @@ public class ReportsController(IReportRepository repo) : ControllerBase
             ]).ToList();
         }
 
+        var totalCount = list.Count;
+        data = data.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
         return Ok(new ReportPreviewDto
         {
             Title    = "Assets List Inventory Report",
             Subtitle = $"Total: {list.Count}  |  Available: {list.Count(r => r.IsAvailable)}  |  Not Available: {list.Count(r => !r.IsAvailable)}",
             Headers  = headers,
             Rows     = data,
-            TotalCount = list.Count
+            TotalCount = totalCount
         });
     }
 
@@ -270,6 +281,8 @@ public class ReportsController(IReportRepository repo) : ControllerBase
     public async Task<IActionResult> DepreciationPreview([FromBody] DepreciationReportGenerateRequest req)
     {
         var rows = (await repo.GetDepreciationAsync(req.DepID)).ToList();
+        var pageNumber = Math.Max(1, req.PageNumber);
+        var pageSize = NormalizePageSize(req.PageSize);
 
         string[] headers = ["Code", "Description", "Rate %", "Depreciation Value", "Net Book Value", "Acct. Entry Date", "JV No.", "Run Date"];
 
@@ -282,6 +295,8 @@ public class ReportsController(IReportRepository repo) : ControllerBase
             r.AccountingEntryJVNo ?? "—",
             Fmt(r.DepreciationDate)
         ]).ToList();
+        var totalCount = rows.Count;
+        data = data.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
         var first = rows.FirstOrDefault();
         return Ok(new ReportPreviewDto
@@ -292,7 +307,7 @@ public class ReportsController(IReportRepository repo) : ControllerBase
                 : $"Assets: {rows.Count}",
             Headers    = headers,
             Rows       = data,
-            TotalCount = rows.Count
+            TotalCount = totalCount
         });
     }
 
@@ -300,6 +315,8 @@ public class ReportsController(IReportRepository repo) : ControllerBase
     public async Task<IActionResult> AssetsNotDepreciatedPreview([FromBody] AssetsNotDepreciatedReportRequest req)
     {
         var rows = (await repo.GetAssetsNotDepreciatedAsync()).ToList();
+        var pageNumber = Math.Max(1, req.PageNumber);
+        var pageSize = NormalizePageSize(req.PageSize);
 
         string[] headers = ["Code", "Description", "Category", "Group", "Location", "Donation", "Has Price", "Has Acct. Date"];
 
@@ -308,6 +325,8 @@ public class ReportsController(IReportRepository repo) : ControllerBase
             Loc(r.Location, r.Floor, r.Room, r.Zone),
             Bool(r.Donation), r.PriceExist, r.AcctEntryDateExist
         ]).ToList();
+        var totalCount = rows.Count;
+        data = data.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
         return Ok(new ReportPreviewDto
         {
@@ -315,7 +334,7 @@ public class ReportsController(IReportRepository repo) : ControllerBase
             Subtitle   = $"Total: {rows.Count} asset(s) pending depreciation setup",
             Headers    = headers,
             Rows       = data,
-            TotalCount = rows.Count
+            TotalCount = totalCount
         });
     }
 }

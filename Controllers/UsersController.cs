@@ -12,6 +12,7 @@ namespace AssetManagement.Api.Controllers;
 public class UsersController(IUserRepository userRepo) : ControllerBase
 {
     private static readonly EmailAddressAttribute EmailValidator = new();
+    private static int NormalizePageSize(int pageSize) => pageSize is 20 or 30 ? pageSize : 10;
 
     private bool IsAdmin() =>
         User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "1";
@@ -23,6 +24,27 @@ public class UsersController(IUserRepository userRepo) : ControllerBase
     {
         if (!IsAdmin()) return Forbid();
         return Ok(await userRepo.GetUsersAsync());
+    }
+
+    [HttpGet("paginated")]
+    public async Task<IActionResult> GetUsersPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        if (!IsAdmin()) return Forbid();
+
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await userRepo.GetUsersAsync()).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<UserListDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
     }
 
     [HttpPost]

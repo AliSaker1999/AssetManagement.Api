@@ -14,6 +14,7 @@ namespace AssetManagement.Api.Controllers;
 public class AssetsController(IAssetRepository repo, IPermissionService permissionService) : ControllerBase
 {
     private const byte CompanyOwnerId = 1;
+    private static int NormalizePageSize(int pageSize) => pageSize is 20 or 30 ? pageSize : 10;
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
     private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
@@ -32,8 +33,10 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
     }
 
     [HttpGet("paginated")]
-    public async Task<IActionResult> GetListPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25, [FromQuery] int? companyId = null)
+    public async Task<IActionResult> GetListPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] int? companyId = null)
     {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
         if (!IsAdmin())
         {
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
@@ -117,6 +120,14 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
         {
             await repo.DeleteAssetAsync(id);
             return NoContent();
+        }
+        catch (SqlException ex) when (ex.Number == 50011)
+        {
+            return BadRequest(new { message = "This is not the last record." });
+        }
+        catch (SqlException ex) when (ex.Number == 50010)
+        {
+            return NotFound(new { message = "Asset not found." });
         }
         catch (SqlException ex) when (ex.Number == 547)
         {

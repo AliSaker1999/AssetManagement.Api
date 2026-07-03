@@ -13,6 +13,8 @@ namespace AssetManagement.Api.Controllers;
 [Authorize]
 public class InventoriesController(IInventoryRepository repo, IPermissionService permissionService) : ControllerBase
 {
+    private static int NormalizePageSize(int pageSize) => pageSize is 20 or 30 ? pageSize : 10;
+
     private short UserId => short.Parse(User.FindFirstValue("userId")!);
     private string FullName => User.FindFirstValue("fullName")!;
     private bool IsAdmin() => User.FindFirstValue("roleId") == "1";
@@ -43,6 +45,31 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
             if (!allowed.Contains(filter.CompanyID)) return Forbid();
         }
         return Ok(await repo.GetInventoriesDetailsListAsync(filter));
+    }
+
+    [HttpPost("details/paginated")]
+    public async Task<IActionResult> GetDetailsPaginated([FromBody] InventoryReportFilterRequest filter, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        if (!IsAdmin() && filter.CompanyID > 0)
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
+            if (!allowed.Contains(filter.CompanyID)) return Forbid();
+        }
+
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetInventoriesDetailsListAsync(filter)).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<InventoryDetailDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
     }
 
     [HttpGet("generated")]

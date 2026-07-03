@@ -11,6 +11,8 @@ namespace AssetManagement.Api.Controllers;
 [Authorize]
 public class LookupsController(ILookupRepository repo, IPermissionService permissionService) : ControllerBase
 {
+    private static int NormalizePageSize(int pageSize) => pageSize is 20 or 30 ? pageSize : 10;
+
     private bool IsAdmin() =>
         User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "1";
 
@@ -97,6 +99,25 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     [HttpGet("categories")]
     public async Task<IActionResult> GetCategories() => Ok(await repo.GetCategoryTypesAsync());
 
+    [HttpGet("categories/paginated")]
+    public async Task<IActionResult> GetCategoriesPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetCategoryTypesAsync()).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<CategoryTypeDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
+    }
+
     [HttpGet("groups")]
     public async Task<IActionResult> GetGroups() => Ok(await repo.GetGroupTypesAsync(GetUserId()));
 
@@ -163,6 +184,25 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
 
     [HttpGet("countries")]
     public async Task<IActionResult> GetCountries() => Ok(await repo.GetCountriesAsync(GetUserId()));
+
+    [HttpGet("countries/paginated")]
+    public async Task<IActionResult> GetCountriesPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetCountriesAsync(GetUserId())).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<CountryDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
+    }
 
     [HttpGet("contact-types")]
     public async Task<IActionResult> GetContactTypes() => Ok(await repo.GetContactTypesAsync());

@@ -2,6 +2,7 @@ using AssetManagement.Api.Hubs;
 using AssetManagement.Api.Models;
 using AssetManagement.Api.Repositories;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Data.SqlClient;
 
 namespace AssetManagement.Api.Services;
 
@@ -19,7 +20,7 @@ public class NotificationBackgroundService(
         {
             try
             {
-                await RunAsync(ct);
+                await RunWithRetryAsync(ct);
             }
             catch (Exception ex)
             {
@@ -30,7 +31,36 @@ public class NotificationBackgroundService(
         }
     }
 
-    private async Task RunAsync(CancellationToken ct)
+    private async Task RunWithRetryAsync(CancellationToken ct)
+    {
+        var maxAttempts = Math.Max(1, config.GetValue<int>("Notification:SqlRetryCount", 3));
+        var baseDelaySeconds = Math.Max(1, config.GetValue<int>("Notification:SqlRetryDelaySeconds", 5));
+
+        for (var attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            ct.ThrowIfCancellationRequested();
+
+            try
+            {
+                await RunOnceAsync(ct);
+                return;
+            }
+            catch (Exception ex) when (IsTransientSqlException(ex) && attempt < maxAttempts)
+            {
+                var delay = TimeSpan.FromSeconds(baseDelaySeconds * attempt);
+                logger.LogWarning(
+                    ex,
+                    "Transient SQL failure in notification job (attempt {Attempt}/{MaxAttempts}). Retrying in {DelaySeconds}s.",
+                    attempt,
+                    maxAttempts,
+                    (int)delay.TotalSeconds);
+
+                await Task.Delay(delay, ct);
+            }
+        }
+    }
+
+    private async Task RunOnceAsync(CancellationToken ct)
     {
         using var scope = services.CreateScope();
         var notifRepo = scope.ServiceProvider.GetRequiredService<INotificationRepository>();
@@ -41,6 +71,21 @@ public class NotificationBackgroundService(
 
         await ProcessWarrantiesAsync(notifRepo, emailSvc, warrantyIntervals, ct);
         await ProcessMaintenancesAsync(notifRepo, emailSvc, maintenanceIntervals, ct);
+    }
+
+    private static bool IsTransientSqlException(Exception ex)
+    {
+        if (ex is SqlException sqlEx)
+        {
+            return sqlEx.Number is -2 or 53 or 64 or 233 or 10053 or 10054 or 10060 or 40197 or 40501 or 40613 or 49918 or 49919 or 49920;
+        }
+
+        if (ex.InnerException is not null)
+        {
+            return IsTransientSqlException(ex.InnerException);
+        }
+
+        return false;
     }
 
     // ── Warranty ────────────────────────────────────────────────────────────

@@ -14,6 +14,8 @@ public class AssetsListReportRequest
     public string ListType { get; set; } = "ALL";        // ALL | NotAvailable | Relocated
     public bool AdditionalDetail { get; set; } = true;
     public bool TotalOnly { get; set; }
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
 }
 
 public class AssetsListInventoryReportRequest
@@ -28,17 +30,23 @@ public class AssetsListInventoryReportRequest
     public bool AccountingExclusion { get; set; }
     public string ListType { get; set; } = "ALL";        // ALL | NotAvailable | Relocated
     public bool TotalOnly { get; set; }
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
 }
 
 public class DepreciationReportGenerateRequest
 {
     public string Format { get; set; } = "pdf";
     public int DepID { get; set; }
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
 }
 
 public class AssetsNotDepreciatedReportRequest
 {
     public string Format { get; set; } = "pdf";
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
 }
 
 // ── Row DTOs ─────────────────────────────────────────────────────────────────
