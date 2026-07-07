@@ -1,12 +1,16 @@
 using System.Data;
+using System.Text.RegularExpressions;
 using AssetManagement.Api.Models;
 using Dapper;
+using Microsoft.Data.SqlClient;
 
 namespace AssetManagement.Api.Repositories;
 
 public interface ILookupRepository
 {
     Task<IEnumerable<CompanyDto>> GetCompaniesAsync(short userId = 0);
+    Task<IEnumerable<HrCompanyProfileDto>> GetHrCompaniesByCountryAsync(string countryId);
+    Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyAsync(short companyId);
     Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest request);
     Task UpdateCompanyAsync(CompanyUpdateRequest request);
     Task DeleteCompanyAsync(short companyId);
@@ -60,28 +64,128 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     public Task<IEnumerable<CompanyDto>> GetCompaniesAsync(short userId = 0)
     {
         if (userId == 0)
-            return db.QueryAsync<CompanyDto>("GSET.stpGetCompanies", commandType: CommandType.StoredProcedure);
+            return db.QueryAsync<CompanyDto>(
+                @"SELECT CompanyID, CompanyName, CompanyAbbreviation, CompanyPrmCurCode,
+                         CompanyScdCurCode, CountryID, HRCompanyProfileID
+                  FROM   GSET.Companies
+                  ORDER BY CompanyName");
 
         return db.QueryAsync<CompanyDto>(
             @"SELECT CompanyID, CompanyName, CompanyAbbreviation, CompanyPrmCurCode,
-                                         CompanyScdCurCode, CountryID
+                     CompanyScdCurCode, CountryID, HRCompanyProfileID
               FROM   GSET.Companies
               WHERE  CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
               ORDER BY CompanyName",
             new { UserId = userId });
     }
 
+    public async Task<IEnumerable<HrCompanyProfileDto>> GetHrCompaniesByCountryAsync(string countryId)
+    {
+        var cfg = await db.QueryFirstOrDefaultAsync<(bool HRConnect, string? HRDatabase)>(
+            @"SELECT HRConnect, HRDatabase
+              FROM GSET.Countries
+              WHERE CountryID = @CountryID",
+            new { CountryID = countryId });
+
+        if (!cfg.HRConnect || string.IsNullOrWhiteSpace(cfg.HRDatabase))
+            return [];
+
+        var dbName = cfg.HRDatabase.Trim();
+        if (!Regex.IsMatch(dbName, "^[A-Za-z0-9_]+$"))
+            throw new InvalidOperationException("Country HRDatabase contains unsupported characters.");
+
+        var sql = $@"SELECT CompanyProfileId AS CompanyProfileID, PrmName
+                     FROM [{dbName}].[dbo].[vw_AssetsCompanies]
+                     ORDER BY PrmName";
+
+        try
+        {
+            return await db.QueryAsync<HrCompanyProfileDto>(sql);
+        }
+        catch (SqlException ex)
+        {
+            throw new InvalidOperationException(
+                $"Could not read HR companies from database '{dbName}'. Verify country HRDatabase and SQL permissions.",
+                ex);
+        }
+    }
+
+    public async Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyAsync(short companyId)
+    {
+        var cfg = await db.QueryFirstOrDefaultAsync<(bool HRConnect, string? HRDatabase, int? HRCompanyProfileID)>(
+            @"SELECT ctry.HRConnect, ctry.HRDatabase, cmp.HRCompanyProfileID
+              FROM GSET.Companies cmp
+              INNER JOIN GSET.Countries ctry ON ctry.CountryID = cmp.CountryID
+              WHERE cmp.CompanyID = @CompanyID",
+            new { CompanyID = companyId });
+
+        if (!cfg.HRConnect || string.IsNullOrWhiteSpace(cfg.HRDatabase) || !cfg.HRCompanyProfileID.HasValue)
+            return [];
+
+        var dbName = cfg.HRDatabase.Trim();
+        if (!Regex.IsMatch(dbName, "^[A-Za-z0-9_]+$"))
+            throw new InvalidOperationException("Country HRDatabase contains unsupported characters.");
+
+        var sql = $@"SELECT
+                        CAST(EmpId AS nvarchar(10)) AS EmpID,
+                        FullName,
+                        CompanyProfileId AS CompanyProfileID,
+                        PrmName
+                     FROM [{dbName}].[dbo].[vw_AssetsEmpList]
+                     WHERE CompanyProfileId = @CompanyProfileID
+                       AND LeaveDate IS NULL
+                     ORDER BY FullName";
+
+        try
+        {
+            return await db.QueryAsync<HrEmployeeDto>(sql, new { CompanyProfileID = cfg.HRCompanyProfileID.Value });
+        }
+        catch (SqlException ex)
+        {
+            throw new InvalidOperationException(
+                $"Could not read HR employees from database '{dbName}'. Verify country HRDatabase and SQL permissions.",
+                ex);
+        }
+    }
+
     public Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<CompanyDto>(
-            "GSET.stpCompaniesI",
-            new { r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
-            commandType: CommandType.StoredProcedure);
+            @"INSERT INTO GSET.Companies
+              (
+                  CompanyName,
+                  CompanyAbbreviation,
+                  CompanyPrmCurCode,
+                  CompanyScdCurCode,
+                  CountryID,
+                  HRCompanyProfileID
+              )
+              VALUES
+              (
+                  @CompanyName,
+                  @CompanyAbbreviation,
+                  @CompanyPrmCurCode,
+                  @CompanyScdCurCode,
+                  @CountryID,
+                  @HRCompanyProfileID
+              );
+
+              SELECT CompanyID, CompanyName, CompanyAbbreviation, CompanyPrmCurCode,
+                     CompanyScdCurCode, CountryID, HRCompanyProfileID
+              FROM GSET.Companies
+              WHERE CompanyID = CAST(SCOPE_IDENTITY() AS smallint);",
+            new { r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID, r.HRCompanyProfileID });
 
     public Task UpdateCompanyAsync(CompanyUpdateRequest r) =>
         db.ExecuteAsync(
-            "GSET.stpCompaniesU",
-            new { r.CompanyID, r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID },
-            commandType: CommandType.StoredProcedure);
+            @"UPDATE GSET.Companies
+              SET CompanyName = @CompanyName,
+                  CompanyAbbreviation = @CompanyAbbreviation,
+                  CompanyPrmCurCode = @CompanyPrmCurCode,
+                  CompanyScdCurCode = @CompanyScdCurCode,
+                  CountryID = @CountryID,
+                  HRCompanyProfileID = @HRCompanyProfileID
+              WHERE CompanyID = @CompanyID;",
+            new { r.CompanyID, r.CompanyName, r.CompanyAbbreviation, r.CompanyPrmCurCode, r.CompanyScdCurCode, r.CountryID, r.HRCompanyProfileID });
 
     public Task DeleteCompanyAsync(short companyId) =>
         db.ExecuteAsync(
@@ -203,12 +307,14 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     {
         if (userId == 0)
             return db.QueryAsync<CountryDto>(
-                @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry, AssetCodeCounter
+                @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry,
+                         AssetCodeCounter, HRConnect, HRDatabase
                   FROM   GSET.Countries
                   ORDER BY Country");
 
         return db.QueryAsync<CountryDto>(
-            @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry, AssetCodeCounter
+            @"SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry,
+                     AssetCodeCounter, HRConnect, HRDatabase
               FROM   GSET.Countries
               WHERE  CountryID IN (SELECT CountryID FROM SEC.UsersPermissions WHERE UserID = @UserId)
               ORDER BY Country",
@@ -217,15 +323,67 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
 
     public Task<CountryDto?> CreateCountryAsync(CountryCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<CountryDto>(
-            "GSET.stpCountriesI",
-            new { r.CountryID, r.Country, r.Nationality, r.ZipCode, r.WorkingCountry, r.ActiveCountry },
-            commandType: CommandType.StoredProcedure);
+            @"INSERT INTO GSET.Countries
+              (
+                  CountryID,
+                  Country,
+                  Nationality,
+                  ZipCode,
+                  WorkingCountry,
+                  ActiveCountry,
+                  HRConnect,
+                  HRDatabase
+              )
+              VALUES
+              (
+                  @CountryID,
+                  @Country,
+                  @Nationality,
+                  @ZipCode,
+                  @WorkingCountry,
+                  @ActiveCountry,
+                  @HRConnect,
+                  @HRDatabase
+              );
+
+              SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry,
+                     AssetCodeCounter, HRConnect, HRDatabase
+              FROM GSET.Countries
+              WHERE CountryID = @CountryID;",
+            new
+            {
+                r.CountryID,
+                r.Country,
+                r.Nationality,
+                r.ZipCode,
+                r.WorkingCountry,
+                r.ActiveCountry,
+                r.HRConnect,
+                r.HRDatabase
+            });
 
     public Task UpdateCountryAsync(CountryUpdateRequest r) =>
         db.ExecuteAsync(
-            "GSET.stpCountriesU",
-            new { r.CountryID, r.Country, r.Nationality, r.ZipCode, r.WorkingCountry, r.ActiveCountry },
-            commandType: CommandType.StoredProcedure);
+            @"UPDATE GSET.Countries
+              SET Country = @Country,
+                  Nationality = @Nationality,
+                  ZipCode = @ZipCode,
+                  WorkingCountry = @WorkingCountry,
+                  ActiveCountry = @ActiveCountry,
+                  HRConnect = @HRConnect,
+                  HRDatabase = @HRDatabase
+              WHERE CountryID = @CountryID;",
+            new
+            {
+                r.CountryID,
+                r.Country,
+                r.Nationality,
+                r.ZipCode,
+                r.WorkingCountry,
+                r.ActiveCountry,
+                r.HRConnect,
+                r.HRDatabase
+            });
 
     public Task ToggleCountryActiveAsync(string countryId, bool active) =>
         db.ExecuteAsync(

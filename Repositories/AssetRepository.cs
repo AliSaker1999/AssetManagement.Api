@@ -137,7 +137,8 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
                 request.PurchaseCurCode, request.InServiceDate, request.InvoiceNo,
                 request.InvoiceDate, request.AccountingEntryDate, request.AccountingEntryJVNo,
                 request.BarcodeNumber, request.SerialNumber, request.BrandID, request.Model,
-                request.Remark, request.InstalledAt, request.OwnerID, request.OwnerDesc
+                request.Remark, request.InstalledAt, request.OwnerID, request.OwnerDesc,
+                HREmpIDUsedBy = request.HrEmpIDUsedBy
             },
             commandType: CommandType.StoredProcedure);
         return result;
@@ -158,6 +159,7 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
                 request.InvoiceDate, request.AccountingEntryDate, request.AccountingEntryJVNo,
                 request.BarcodeNumber, request.SerialNumber, request.BrandID, request.Model,
                 request.Remark, request.InstalledAt, request.OwnerID, request.OwnerDesc,
+                HREmpIDUsedBy = request.HrEmpIDUsedBy,
                 request.AssetID
             },
             commandType: CommandType.StoredProcedure);

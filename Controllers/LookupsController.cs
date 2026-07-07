@@ -33,6 +33,9 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
             return BadRequest("Country ID must be exactly 2 characters.");
         if (string.IsNullOrWhiteSpace(request.Country)) return BadRequest("Country name is required.");
         if (string.IsNullOrWhiteSpace(request.Nationality)) return BadRequest("Nationality is required.");
+        if (request.HRConnect && string.IsNullOrWhiteSpace(request.HRDatabase))
+            return BadRequest("HRDatabase is required when HRConnect is enabled.");
+        request.HRDatabase = request.HRConnect ? request.HRDatabase?.Trim() : null;
         var created = await repo.CreateCountryAsync(request);
         return Ok(created);
     }
@@ -42,6 +45,9 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     {
         if (!IsAdmin()) return Forbid();
         request.CountryID = id.ToUpper();
+        if (request.HRConnect && string.IsNullOrWhiteSpace(request.HRDatabase))
+            return BadRequest("HRDatabase is required when HRConnect is enabled.");
+        request.HRDatabase = request.HRConnect ? request.HRDatabase?.Trim() : null;
         await repo.UpdateCountryAsync(request);
         return NoContent();
     }
@@ -62,6 +68,14 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
         if (string.IsNullOrWhiteSpace(request.CompanyName)) return BadRequest("Company name is required.");
         if (string.IsNullOrWhiteSpace(request.CompanyAbbreviation)) return BadRequest("Abbreviation is required.");
         if (string.IsNullOrWhiteSpace(request.CountryID)) return BadRequest("Country is required.");
+
+        var country = (await repo.GetCountriesAsync()).FirstOrDefault(c => c.CountryID.Trim().Equals(request.CountryID.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (country is null) return BadRequest("Invalid country.");
+        if (country.HRConnect && !request.HRCompanyProfileID.HasValue)
+            return BadRequest("HR company is required for countries with HRConnect enabled.");
+        if (!country.HRConnect)
+            request.HRCompanyProfileID = null;
+
         var created = await repo.CreateCompanyAsync(request);
         return Ok(created);
     }
@@ -75,6 +89,14 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(GetUserId());
             if (!allowed.Contains(id)) return Forbid();
         }
+
+        var country = (await repo.GetCountriesAsync()).FirstOrDefault(c => c.CountryID.Trim().Equals(request.CountryID.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (country is null) return BadRequest("Invalid country.");
+        if (country.HRConnect && !request.HRCompanyProfileID.HasValue)
+            return BadRequest("HR company is required for countries with HRConnect enabled.");
+        if (!country.HRConnect)
+            request.HRCompanyProfileID = null;
+
         request.CompanyID = id;
         await repo.UpdateCompanyAsync(request);
         return NoContent();
@@ -184,6 +206,29 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
 
     [HttpGet("countries")]
     public async Task<IActionResult> GetCountries() => Ok(await repo.GetCountriesAsync(GetUserId()));
+
+    [HttpGet("hr-companies")]
+    public async Task<IActionResult> GetHrCompanies([FromQuery] string countryId)
+    {
+        if (IsAuditor()) return Forbid();
+        if (string.IsNullOrWhiteSpace(countryId)) return BadRequest("countryId is required.");
+        return Ok(await repo.GetHrCompaniesByCountryAsync(countryId.ToUpper()));
+    }
+
+    [HttpGet("hr-employees")]
+    public async Task<IActionResult> GetHrEmployees([FromQuery] short companyId)
+    {
+        if (IsAuditor()) return Forbid();
+        if (companyId <= 0) return BadRequest("companyId is required.");
+
+        if (!IsAdmin())
+        {
+            var allowed = await permissionService.GetAllowedCompanyIdsAsync(GetUserId());
+            if (!allowed.Contains(companyId)) return Forbid();
+        }
+
+        return Ok(await repo.GetHrEmployeesByCompanyAsync(companyId));
+    }
 
     [HttpGet("countries/paginated")]
     public async Task<IActionResult> GetCountriesPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)

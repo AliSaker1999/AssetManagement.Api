@@ -51,6 +51,15 @@ public class AssetDto
     public byte OwnerID { get; set; }
     public string? OwnerDesc { get; set; }
     public string? OwnerTypeDesc { get; set; }
+    public string? HrEmpIDUsedBy { get; set; }
+}
+
+public class HrEmployeeDto
+{
+    public string EmpID { get; set; } = string.Empty;
+    public string FullName { get; set; } = string.Empty;
+    public int CompanyProfileID { get; set; }
+    public string? PrmName { get; set; }
 }
 
 public class AssetListItemDto
@@ -121,6 +130,7 @@ public class AssetCreateRequest
     public string? InstalledAt { get; set; }
     public byte OwnerID { get; set; }
     public string? OwnerDesc { get; set; }
+    public string? HrEmpIDUsedBy { get; set; }
 }
 
 public class AssetUpdateRequest : AssetCreateRequest

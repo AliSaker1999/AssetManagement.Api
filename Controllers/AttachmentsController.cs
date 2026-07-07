@@ -8,26 +8,65 @@ namespace AssetManagement.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class AttachmentsController(IAttachmentRepository repo, IConfiguration config) : ControllerBase
+public class AttachmentsController(IAttachmentRepository repo, ISettingsRepository settingsRepo, IConfiguration config) : ControllerBase
 {
-    private string StoragePath => config["AttachmentsPath"] ?? "C:\\Attachments\\AssetFiles";
+    private const byte AttachmentsPathSettingId = 1;
+    private static readonly HashSet<string> BlockedExtensions = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "csv", "txt", "gif", "webp"
+    };
+
+    private async Task<string> GetStoragePathAsync()
+    {
+        var dbPath = await settingsRepo.GetGeneralSettingValueAsync(AttachmentsPathSettingId);
+        if (!string.IsNullOrWhiteSpace(dbPath)) return dbPath.Trim();
+        return config["AttachmentsPath"] ?? "C:\\Attachments\\AssetFiles";
+    }
 
     [HttpGet("asset/{assetId:int}")]
     public async Task<IActionResult> GetByAsset(int assetId) =>
         Ok(await repo.GetAttachmentsAsync(assetId));
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] AttachmentCreateRequest request)
+    public async Task<IActionResult> Create([FromBody] AttachmentCreateRequest? request)
     {
+        if (request is null)
+            return BadRequest("Request body is required.");
+
+        if (request.AssetID <= 0)
+            return BadRequest("A valid asset ID is required.");
+
+        if (string.IsNullOrWhiteSpace(request.AttDesc))
+            return BadRequest("Attachment description is required.");
+
+        if (string.IsNullOrWhiteSpace(request.AttFileName))
+            return BadRequest("Attachment file name is required.");
+
         if (string.IsNullOrWhiteSpace(request.FileBase64))
             return BadRequest("File content is required.");
 
-        byte[] fileBytes = Convert.FromBase64String(request.FileBase64);
         string ext = (request.AttFileExt ?? string.Empty).Trim().TrimStart('.');
+        if (string.IsNullOrWhiteSpace(ext))
+            return BadRequest("Attachment extension is required.");
+
+        if (BlockedExtensions.Contains(ext))
+            return BadRequest("This file type is not allowed.");
+
+        byte[] fileBytes;
+        try
+        {
+            fileBytes = Convert.FromBase64String(request.FileBase64);
+        }
+        catch (FormatException)
+        {
+            return BadRequest("Invalid file content.");
+        }
+
         string storedName = $"{Guid.NewGuid():N}.{ext}";
 
-        Directory.CreateDirectory(StoragePath);
-        string filePath = Path.Combine(StoragePath, storedName);
+        string storagePath = await GetStoragePathAsync();
+        Directory.CreateDirectory(storagePath);
+        string filePath = Path.Combine(storagePath, storedName);
         await System.IO.File.WriteAllBytesAsync(filePath, fileBytes);
 
         var result = await repo.CreateAttachmentAsync(request, filePath);
@@ -81,8 +120,6 @@ public class AttachmentsController(IAttachmentRepository repo, IConfiguration co
             "png"  => "image/png",
             "jpg"  => "image/jpeg",
             "jpeg" => "image/jpeg",
-            "gif"  => "image/gif",
-            "webp" => "image/webp",
             "bmp"  => "image/bmp",
             "svg"  => "image/svg+xml",
             "xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -91,8 +128,6 @@ public class AttachmentsController(IAttachmentRepository repo, IConfiguration co
             "doc"  => "application/msword",
             "pptx" => "application/vnd.openxmlformats-officedocument.presentationml.presentation",
             "ppt"  => "application/vnd.ms-powerpoint",
-            "txt"  => "text/plain",
-            "csv"  => "text/csv",
             _      => "application/octet-stream"
         };
     }

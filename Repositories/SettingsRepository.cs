@@ -11,6 +11,7 @@ public interface ISettingsRepository
     Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync();
     Task<IEnumerable<LocationDetailDto>> GetLocationDetailsAsync();
     Task<IEnumerable<SettingDto>> GetSettingsAsync();
+    Task<string?> GetGeneralSettingValueAsync(byte setId);
 }
 
 public class SettingsRepository(IDbConnection db) : ISettingsRepository
@@ -29,4 +30,9 @@ public class SettingsRepository(IDbConnection db) : ISettingsRepository
 
     public Task<IEnumerable<SettingDto>> GetSettingsAsync() =>
         db.QueryAsync<SettingDto>("ATSET.stpGetSettings", commandType: CommandType.StoredProcedure);
+
+    public Task<string?> GetGeneralSettingValueAsync(byte setId) =>
+        db.QueryFirstOrDefaultAsync<string?>(
+            "SELECT SetValue FROM GSET.Settings WHERE SetID = @SetID",
+            new { SetID = setId });
 }
