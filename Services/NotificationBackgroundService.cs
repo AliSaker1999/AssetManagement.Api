@@ -66,11 +66,11 @@ public class NotificationBackgroundService(
         var notifRepo = scope.ServiceProvider.GetRequiredService<INotificationRepository>();
         var emailSvc = scope.ServiceProvider.GetRequiredService<IEmailService>();
 
-        var warrantyIntervals = await ParseIntervalsAsync(notifRepo, setId: 4);
-        var maintenanceIntervals = await ParseIntervalsAsync(notifRepo, setId: 5);
+        var warrantyThresholdDays = await ParseSelectedIntervalDaysAsync(notifRepo, setId: 4, defaultLabel: "1 Week");
+        var maintenanceThresholdDays = await ParseSelectedIntervalDaysAsync(notifRepo, setId: 5, defaultLabel: "1 Week");
 
-        await ProcessWarrantiesAsync(notifRepo, emailSvc, warrantyIntervals, ct);
-        await ProcessMaintenancesAsync(notifRepo, emailSvc, maintenanceIntervals, ct);
+        await ProcessWarrantiesAsync(notifRepo, emailSvc, warrantyThresholdDays, ct);
+        await ProcessMaintenancesAsync(notifRepo, emailSvc, maintenanceThresholdDays, ct);
     }
 
     private static bool IsTransientSqlException(Exception ex)
@@ -93,7 +93,7 @@ public class NotificationBackgroundService(
     private async Task ProcessWarrantiesAsync(
         INotificationRepository notifRepo,
         IEmailService emailSvc,
-        int[] intervals,
+        int thresholdDays,
         CancellationToken ct)
     {
         var pending = await notifRepo.GetPendingWarrantiesAsync();
@@ -111,18 +111,17 @@ public class NotificationBackgroundService(
 
             if (recipients.Count == 0) continue;
 
-            foreach (var days in intervals)
+            // Send once every day starting from the selected threshold until expiry day.
+            if (w.DaysLeft >= 0 && w.DaysLeft <= thresholdDays)
             {
-                if (w.DaysLeft != days) continue;
-
-                var label = days.ToString();
+                var label = BuildDailyLabel(thresholdDays);
                 if (await notifRepo.IsLoggedAsync("Warranty", w.WarntID, label)) continue;
 
-                var subject = days == 0
+                var subject = w.DaysLeft == 0
                     ? $"Warranty Expires Today — {w.AssetCode}"
-                    : $"Warranty Expiring in {days} Day(s) — {w.AssetCode}";
+                    : $"Warranty Expiring in {w.DaysLeft} Day(s) — {w.AssetCode}";
 
-                var body = BuildWarrantyEmail(w, days);
+                var body = BuildWarrantyEmail(w, w.DaysLeft);
 
                 await SendAndPersistAsync(notifRepo, emailSvc,
                     "Warranty", w.WarntID, w.AssetID, w.CompanyID,
@@ -137,7 +136,7 @@ public class NotificationBackgroundService(
     private async Task ProcessMaintenancesAsync(
         INotificationRepository notifRepo,
         IEmailService emailSvc,
-        int[] intervals,
+        int thresholdDays,
         CancellationToken ct)
     {
         var pending = await notifRepo.GetPendingMaintenancesAsync();
@@ -155,36 +154,23 @@ public class NotificationBackgroundService(
 
             if (recipients.Count == 0) continue;
 
-            // Pre-end interval notifications
-            foreach (var days in intervals)
+            // Send once every day from selected threshold until returned from maintenance.
+            if (m.DaysLeft <= thresholdDays)
             {
-                if (m.DaysLeft != days) continue;
-
-                var label = days.ToString();
+                var label = BuildDailyLabel(thresholdDays);
                 if (await notifRepo.IsLoggedAsync("Maintenance", m.MaintID, label)) continue;
 
-                var subject = $"Maintenance Ending in {days} Day(s) — {m.AssetCode}";
-                var body = BuildMaintenanceEmail(m, days);
+                var subject = m.DaysLeft <= 0
+                    ? $"Maintenance Overdue — Daily Reminder — {m.AssetCode}"
+                    : $"Maintenance Ending in {m.DaysLeft} Day(s) — {m.AssetCode}";
+                var body = m.DaysLeft <= 0
+                    ? BuildMaintenanceOverdueEmail(m)
+                    : BuildMaintenanceEmail(m, m.DaysLeft);
 
                 await SendAndPersistAsync(notifRepo, emailSvc,
                     "Maintenance", m.MaintID, m.AssetID, m.CompanyID,
                     recipients,
                     subject, body, label);
-            }
-
-            // Daily reminder once overdue (ToDate passed, still Under Maintenance)
-            if (m.DaysLeft <= 0)
-            {
-                var dailyLabel = $"Daily-{DateOnly.FromDateTime(DateTime.Today):yyyy-MM-dd}";
-                if (await notifRepo.IsLoggedAsync("Maintenance", m.MaintID, dailyLabel)) continue;
-
-                var subject = $"Maintenance Overdue — Daily Reminder — {m.AssetCode}";
-                var body = BuildMaintenanceOverdueEmail(m);
-
-                await SendAndPersistAsync(notifRepo, emailSvc,
-                    "Maintenance", m.MaintID, m.AssetID, m.CompanyID,
-                    recipients,
-                    subject, body, dailyLabel);
             }
         }
     }
@@ -269,20 +255,28 @@ public class NotificationBackgroundService(
 
     // ── Helpers ──────────────────────────────────────────────────────────────
 
-    private static async Task<int[]> ParseIntervalsAsync(INotificationRepository repo, byte setId)
+    private static async Task<int> ParseSelectedIntervalDaysAsync(INotificationRepository repo, byte setId, string defaultLabel)
     {
-        var value = await repo.GetSettingValueAsync(setId) ?? string.Empty;
-        return value.Split(',')
-            .Select(s => s.Trim().ToLower())
-            .Select(s => s switch
-            {
-                var v when v.Contains("week") => int.Parse(v.Split(' ')[0]) * 7,
-                var v when v.StartsWith("same") => 0,
-                var v => int.TryParse(v.Split(' ')[0], out var n) ? n : -1
-            })
-            .Where(n => n >= 0)
-            .ToArray();
+        var rawValue = await repo.GetSettingValueAsync(setId);
+        var selected = string.IsNullOrWhiteSpace(rawValue) ? defaultLabel : rawValue.Trim();
+        return ParseIntervalDays(selected) ?? ParseIntervalDays(defaultLabel) ?? 7;
     }
+
+    private static int? ParseIntervalDays(string value)
+    {
+        var normalized = value.Trim().ToLowerInvariant();
+        if (normalized.StartsWith("same")) return 0;
+
+        var firstToken = normalized.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+        if (!int.TryParse(firstToken, out var number)) return null;
+
+        if (normalized.Contains("week")) return number * 7;
+        if (normalized.Contains("day")) return number;
+        return null;
+    }
+
+    private static string BuildDailyLabel(int thresholdDays) =>
+        $"T{thresholdDays}-Daily-{DateOnly.FromDateTime(DateTime.Today):yyyy-MM-dd}";
 
     private static string StripHtml(string html) =>
         System.Text.RegularExpressions.Regex.Replace(html, "<.*?>", string.Empty).Trim();

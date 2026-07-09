@@ -207,6 +207,13 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     [HttpGet("countries")]
     public async Task<IActionResult> GetCountries() => Ok(await repo.GetCountriesAsync(GetUserId()));
 
+    [HttpGet("hr-databases")]
+    public async Task<IActionResult> GetHrDatabases()
+    {
+        if (!IsAdmin()) return Forbid();
+        return Ok(await repo.GetAvailableHrDatabasesAsync());
+    }
+
     [HttpGet("hr-companies")]
     public async Task<IActionResult> GetHrCompanies([FromQuery] string countryId)
     {

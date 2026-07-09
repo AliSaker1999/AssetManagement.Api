@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [Assets]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Database [Assets]    Script Date: 09/07/2026 11:18:03 AM ******/
 CREATE DATABASE [Assets]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -87,30 +87,30 @@ ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
 GO
 USE [Assets]
 GO
-/****** Object:  User [saAsset]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  User [saAsset]    Script Date: 09/07/2026 11:18:03 AM ******/
 CREATE USER [saAsset] FOR LOGIN [saAsset] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [saAsset]
 GO
-/****** Object:  Schema [AT]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Schema [AT]    Script Date: 09/07/2026 11:18:04 AM ******/
 CREATE SCHEMA [AT]
 GO
-/****** Object:  Schema [ATSET]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Schema [ATSET]    Script Date: 09/07/2026 11:18:04 AM ******/
 CREATE SCHEMA [ATSET]
 GO
-/****** Object:  Schema [GSET]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Schema [GSET]    Script Date: 09/07/2026 11:18:04 AM ******/
 CREATE SCHEMA [GSET]
 GO
-/****** Object:  Schema [GTBL]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Schema [GTBL]    Script Date: 09/07/2026 11:18:04 AM ******/
 CREATE SCHEMA [GTBL]
 GO
-/****** Object:  Schema [NOTIF]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Schema [NOTIF]    Script Date: 09/07/2026 11:18:04 AM ******/
 CREATE SCHEMA [NOTIF]
 GO
-/****** Object:  Schema [SEC]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Schema [SEC]    Script Date: 09/07/2026 11:18:04 AM ******/
 CREATE SCHEMA [SEC]
 GO
-/****** Object:  UserDefinedFunction [AT].[fnLastInventoryDateByItem]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  UserDefinedFunction [AT].[fnLastInventoryDateByItem]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +140,7 @@ END
 
 
 GO
-/****** Object:  Table [AT].[Assets]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[Assets]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -183,7 +183,7 @@ CREATE TABLE [AT].[Assets](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Attachments]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[Attachments]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -202,7 +202,7 @@ CREATE TABLE [AT].[Attachments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Depreciations]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[Depreciations]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -221,7 +221,7 @@ CREATE TABLE [AT].[Depreciations](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[DepreciationsDetails]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[DepreciationsDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -245,7 +245,7 @@ CREATE TABLE [AT].[DepreciationsDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Inventories]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[Inventories]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -268,7 +268,7 @@ CREATE TABLE [AT].[Inventories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[InventoriesDetails]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[InventoriesDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -298,7 +298,7 @@ CREATE TABLE [AT].[InventoriesDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Maintenances]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[Maintenances]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -319,7 +319,7 @@ CREATE TABLE [AT].[Maintenances](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[StatusHistory]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[StatusHistory]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -342,7 +342,7 @@ CREATE TABLE [AT].[StatusHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Warranties]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [AT].[Warranties]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -361,7 +361,7 @@ CREATE TABLE [AT].[Warranties](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[BrandTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[BrandTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -375,7 +375,7 @@ CREATE TABLE [ATSET].[BrandTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[CategoryTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[CategoryTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -389,7 +389,7 @@ CREATE TABLE [ATSET].[CategoryTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[GroupTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[GroupTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -408,7 +408,7 @@ CREATE TABLE [ATSET].[GroupTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[LocationDetails]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[LocationDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -425,7 +425,7 @@ CREATE TABLE [ATSET].[LocationDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[LocationTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[LocationTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -440,7 +440,7 @@ CREATE TABLE [ATSET].[LocationTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[OwnerTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[OwnerTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -454,7 +454,7 @@ CREATE TABLE [ATSET].[OwnerTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[Settings]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[Settings]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -470,7 +470,7 @@ CREATE TABLE [ATSET].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[StatusTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [ATSET].[StatusTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -484,7 +484,7 @@ CREATE TABLE [ATSET].[StatusTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail1]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[AddressDetail1]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -499,7 +499,7 @@ CREATE TABLE [GSET].[AddressDetail1](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail2]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[AddressDetail2]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -514,7 +514,7 @@ CREATE TABLE [GSET].[AddressDetail2](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail3]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[AddressDetail3]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -529,7 +529,7 @@ CREATE TABLE [GSET].[AddressDetail3](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Companies]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[Companies]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -548,7 +548,7 @@ CREATE TABLE [GSET].[Companies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[ContactTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[ContactTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -562,7 +562,7 @@ CREATE TABLE [GSET].[ContactTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Countries]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[Countries]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -584,7 +584,7 @@ CREATE TABLE [GSET].[Countries](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Currencies]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[Currencies]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -598,7 +598,7 @@ CREATE TABLE [GSET].[Currencies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[CurrenciesRates]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[CurrenciesRates]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -614,7 +614,7 @@ CREATE TABLE [GSET].[CurrenciesRates](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogSeverity]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[LogSeverity]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -628,7 +628,7 @@ CREATE TABLE [GSET].[LogSeverity](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogSystem]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[LogSystem]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -642,7 +642,7 @@ CREATE TABLE [GSET].[LogSystem](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[LogTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -656,7 +656,7 @@ CREATE TABLE [GSET].[LogTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Settings]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GSET].[Settings]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -672,7 +672,7 @@ CREATE TABLE [GSET].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GTBL].[Contacts]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GTBL].[Contacts]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -700,7 +700,7 @@ CREATE TABLE [GTBL].[Contacts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GTBL].[Logs]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [GTBL].[Logs]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -728,7 +728,7 @@ CREATE TABLE [GTBL].[Logs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [NOTIF].[NotificationLogs]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [NOTIF].[NotificationLogs]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -745,7 +745,7 @@ CREATE TABLE [NOTIF].[NotificationLogs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [NOTIF].[Notifications]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [NOTIF].[Notifications]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -766,7 +766,7 @@ CREATE TABLE [NOTIF].[Notifications](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[Roles]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [SEC].[Roles]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -780,7 +780,7 @@ CREATE TABLE [SEC].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[Users]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [SEC].[Users]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -798,7 +798,7 @@ CREATE TABLE [SEC].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[UsersPermissions]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Table [SEC].[UsersPermissions]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -817,209 +817,53 @@ CREATE TABLE [SEC].[UsersPermissions](
 GO
 SET IDENTITY_INSERT [AT].[Assets] ON 
 GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [BrandID], [Model], [StatusID], [StatusDate], [Remark], [InstalledAt], [OwnerID], [OwnerInfo], [HREmpIDUsedBy]) VALUES (3, 1, N'LB-GZG-000008', NULL, N'ergergwe', 101, 102, 101, 204, 1, 5, N'56456', CAST(N'2024-01-01' AS Date), 555, N'USD', CAST(N'2026-06-30' AS Date), N'2456245624', CAST(N'2024-01-01' AS Date), CAST(N'2024-01-01' AS Date), N'562456524', N'45462465245', N'425624562', 1, N'sdfvasd', 6, CAST(N'2026-07-07' AS Date), NULL, N'twreshgr', 1, NULL, NULL)
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [BrandID], [Model], [StatusID], [StatusDate], [Remark], [InstalledAt], [OwnerID], [OwnerInfo], [HREmpIDUsedBy]) VALUES (4, 1, N'LB-GZG-000009', NULL, N'rahrfg', 101, 101, 107, 251, 0, NULL, NULL, NULL, 0, N'USD', CAST(N'2026-07-02' AS Date), NULL, NULL, NULL, NULL, NULL, NULL, 2, N'dafhdfgbd', 1, CAST(N'2026-07-07' AS Date), NULL, NULL, 1, NULL, NULL)
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [BrandID], [Model], [StatusID], [StatusDate], [Remark], [InstalledAt], [OwnerID], [OwnerInfo], [HREmpIDUsedBy]) VALUES (8, 1, N'LB-GZG-000013', NULL, N'werwer', 101, 102, 101, 204, 0, NULL, NULL, NULL, 0, N'USD', CAST(N'2026-07-03' AS Date), NULL, NULL, NULL, NULL, NULL, NULL, 2, N'asdfasdf', 8, CAST(N'2026-07-07' AS Date), NULL, NULL, 1, NULL, NULL)
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [BrandID], [Model], [StatusID], [StatusDate], [Remark], [InstalledAt], [OwnerID], [OwnerInfo], [HREmpIDUsedBy]) VALUES (15, 1, N'LB-GZG-000015', NULL, N'trhtrhww', 104, 112, 105, 316, 0, NULL, NULL, NULL, 0, N'USD', CAST(N'2026-07-03' AS Date), NULL, NULL, NULL, NULL, NULL, NULL, 2, N'wrhtwr', 0, NULL, NULL, NULL, 1, NULL, NULL)
+INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [BrandID], [Model], [StatusID], [StatusDate], [Remark], [InstalledAt], [OwnerID], [OwnerInfo], [HREmpIDUsedBy]) VALUES (16, 13, N'CY-GZG-000001', NULL, N'dzxgdf', 109, 113, 109, 251, 0, NULL, NULL, NULL, 0, N'USD', CAST(N'2026-07-09' AS Date), NULL, NULL, NULL, NULL, NULL, NULL, 2, N'dwg', 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 1, NULL, N'2024001   ')
 GO
 SET IDENTITY_INSERT [AT].[Assets] OFF
 GO
-SET IDENTITY_INSERT [AT].[Attachments] ON 
-GO
-INSERT [AT].[Attachments] ([AttID], [AssetID], [AttDesc], [AttFileName], [AttFileExt], [Remark], [FilePath]) VALUES (19, 3, N'Maintenance Attachment', N'AssetsListReport_20260630.pdf', N'pdf  ', NULL, N'H:\E-Unity\Reports\8b18be86cd964e74ad7d978cb15f8f14.pdf')
-GO
-SET IDENTITY_INSERT [AT].[Attachments] OFF
-GO
-SET IDENTITY_INSERT [AT].[Depreciations] ON 
-GO
-INSERT [AT].[Depreciations] ([DepID], [DepreciationDate], [Remark], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime], [CompanyID]) VALUES (49, CAST(N'2025-06-24' AS Date), NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:08:36.387' AS DateTime), 1)
-GO
-INSERT [AT].[Depreciations] ([DepID], [DepreciationDate], [Remark], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime], [CompanyID]) VALUES (51, CAST(N'2026-07-03' AS Date), NULL, 3, N'Ali Saker', CAST(N'2026-07-03T13:32:45.023' AS DateTime), 1)
-GO
-SET IDENTITY_INSERT [AT].[Depreciations] OFF
-GO
-SET IDENTITY_INSERT [AT].[DepreciationsDetails] ON 
-GO
-INSERT [AT].[DepreciationsDetails] ([DepDetailID], [DepID], [AssetID], [DepreciationRate], [DepreciationValue], [NetBookValue], [PurchasePrice], [PurchaseCurCode], [AccountingEntryDate], [AccountingEntryJVNo], [GroupID], [CategoryID]) VALUES (24, 49, 3, 10, 82.26, 472.74, 555, N'USD', CAST(N'2024-01-01' AS Date), N'562456524', 101, 204)
-GO
-INSERT [AT].[DepreciationsDetails] ([DepDetailID], [DepID], [AssetID], [DepreciationRate], [DepreciationValue], [NetBookValue], [PurchasePrice], [PurchaseCurCode], [AccountingEntryDate], [AccountingEntryJVNo], [GroupID], [CategoryID]) VALUES (26, 51, 3, 10, 139.13, 415.87, 555, N'USD', CAST(N'2024-01-01' AS Date), N'562456524', 101, 204)
-GO
-SET IDENTITY_INSERT [AT].[DepreciationsDetails] OFF
-GO
 SET IDENTITY_INSERT [AT].[Inventories] ON 
 GO
-INSERT [AT].[Inventories] ([InventoryID], [InventoryStartDate], [InventoryEndDate], [Remark], [CompanyID], [StartCreatedByUserID], [StartCreatedByFullName], [StartCreatedByDateTime], [EndCreatedByUserID], [EndCreatedByFullName], [EndCreatedByDateTime]) VALUES (23, CAST(N'2026-06-30' AS Date), CAST(N'2026-06-30' AS Date), NULL, 1, 3, N'Ali Saker', CAST(N'2026-06-30T10:58:36.433' AS DateTime), 3, N'Ali Saker', CAST(N'2026-06-30T11:00:58.440' AS DateTime))
-GO
-INSERT [AT].[Inventories] ([InventoryID], [InventoryStartDate], [InventoryEndDate], [Remark], [CompanyID], [StartCreatedByUserID], [StartCreatedByFullName], [StartCreatedByDateTime], [EndCreatedByUserID], [EndCreatedByFullName], [EndCreatedByDateTime]) VALUES (26, CAST(N'2026-07-01' AS Date), CAST(N'2026-07-01' AS Date), NULL, 1, 3, N'Ali Saker', CAST(N'2026-07-01T10:19:57.263' AS DateTime), 3, N'Ali Saker', CAST(N'2026-07-01T10:20:09.497' AS DateTime))
-GO
-INSERT [AT].[Inventories] ([InventoryID], [InventoryStartDate], [InventoryEndDate], [Remark], [CompanyID], [StartCreatedByUserID], [StartCreatedByFullName], [StartCreatedByDateTime], [EndCreatedByUserID], [EndCreatedByFullName], [EndCreatedByDateTime]) VALUES (29, CAST(N'2026-07-03' AS Date), CAST(N'2026-07-03' AS Date), NULL, 1, 3, N'Ali Saker', CAST(N'2026-07-03T10:36:21.623' AS DateTime), 3, N'Ali Saker', CAST(N'2026-07-03T12:42:38.740' AS DateTime))
+INSERT [AT].[Inventories] ([InventoryID], [InventoryStartDate], [InventoryEndDate], [Remark], [CompanyID], [StartCreatedByUserID], [StartCreatedByFullName], [StartCreatedByDateTime], [EndCreatedByUserID], [EndCreatedByFullName], [EndCreatedByDateTime]) VALUES (32, CAST(N'2026-07-09' AS Date), CAST(N'2026-07-09' AS Date), NULL, 13, 3, N'Ali Saker', CAST(N'2026-07-09T10:37:42.563' AS DateTime), 3, N'Ali Saker', CAST(N'2026-07-09T10:37:48.067' AS DateTime))
 GO
 SET IDENTITY_INSERT [AT].[Inventories] OFF
 GO
 SET IDENTITY_INSERT [AT].[InventoriesDetails] ON 
 GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1862, 23, 3, 1, N'LB-GZG-000008', N'ergergwe', 0, NULL, NULL, 1, 101, 102, 101, 204, NULL, NULL, NULL, CAST(N'2026-06-30' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1865, 26, 3, 1, N'LB-GZG-000008', N'ergergwe', 0, NULL, NULL, 1, 101, 102, 101, 204, NULL, NULL, NULL, CAST(N'2026-07-01' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1870, 29, 3, 1, N'LB-GZG-000008', N'ergergwe', 0, NULL, NULL, 1, 101, 102, 101, 204, N'45462465245', N'425624562', NULL, CAST(N'2026-07-03' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1871, 29, 4, 1, N'LB-GZG-000009', N'rahrfg', 0, NULL, NULL, 1, 101, 101, 107, 251, NULL, NULL, NULL, CAST(N'2026-07-03' AS Date))
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1872, 29, 8, 1, N'LB-GZG-000013', N'werwer', 0, NULL, NULL, 1, 101, 102, 101, 204, NULL, NULL, NULL, CAST(N'2026-07-03' AS Date))
+INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1874, 32, 16, 1, N'CY-GZG-000001', N'dzxgdf', 0, NULL, NULL, 13, 109, 113, 109, 251, NULL, NULL, NULL, CAST(N'2026-07-09' AS Date))
 GO
 SET IDENTITY_INSERT [AT].[InventoriesDetails] OFF
 GO
-SET IDENTITY_INSERT [AT].[Maintenances] ON 
-GO
-INSERT [AT].[Maintenances] ([MaintID], [AssetID], [FromDate], [ToDate], [SupplierContactID], [Cost], [CurCode], [Remark], [AttID]) VALUES (6, 4, CAST(N'2026-07-01' AS Date), CAST(N'2026-07-02' AS Date), 5, 0, N'EUR', N'', NULL)
-GO
-INSERT [AT].[Maintenances] ([MaintID], [AssetID], [FromDate], [ToDate], [SupplierContactID], [Cost], [CurCode], [Remark], [AttID]) VALUES (10, 3, CAST(N'2026-07-01' AS Date), CAST(N'2026-07-02' AS Date), 5, 43, N'EUR', N'', 19)
-GO
-INSERT [AT].[Maintenances] ([MaintID], [AssetID], [FromDate], [ToDate], [SupplierContactID], [Cost], [CurCode], [Remark], [AttID]) VALUES (11, 8, CAST(N'2026-07-02' AS Date), CAST(N'2026-07-17' AS Date), 5, 0, N'EUR', N'', NULL)
-GO
-SET IDENTITY_INSERT [AT].[Maintenances] OFF
-GO
 SET IDENTITY_INSERT [AT].[StatusHistory] ON 
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (37, 3, 1, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T10:58:30.833' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (101, 16, 11, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T09:37:37.013' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (38, 3, 5, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T10:58:31.853' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (102, 16, 5, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T09:37:47.670' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (39, 3, 1, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:28:39.777' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (103, 16, 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:36:37.927' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (40, 3, 0, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:28:56.850' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (104, 16, 1, CAST(N'2026-07-09' AS Date), N'k;lj', 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:27.580' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (41, 3, 4, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:30:43.967' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (105, 16, 0, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:30.687' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (42, 3, 5, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:30:44.887' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (106, 16, 1, CAST(N'2026-07-09' AS Date), NULL, 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:39.767' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (43, 3, 8, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:31:26.087' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (107, 16, 5, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:41.893' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (44, 3, 5, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:31:30.067' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (108, 16, 1, CAST(N'2026-07-09' AS Date), NULL, 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:45:53.967' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (45, 3, 8, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:31:33.517' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (109, 16, 3, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:45:59.727' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (46, 3, 5, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:31:37.200' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (110, 16, 4, CAST(N'2026-07-09' AS Date), NULL, 5, 0, N'EUR', 3, N'Ali Saker', CAST(N'2026-07-09T10:46:18.450' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (47, 3, 8, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:33:43.690' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (111, 16, 0, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:46:48.297' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (48, 3, 8, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:33:43.720' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (112, 16, 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:47:14.447' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (49, 3, 9, CAST(N'2026-06-30' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-06-30T12:38:30.617' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (113, 16, 5, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:47:16.773' AS DateTime))
 GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (50, 3, 1, CAST(N'2026-07-01' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-01T09:25:27.600' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (51, 3, 5, CAST(N'2026-07-01' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-01T09:25:28.930' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (52, 3, 3, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-02T13:03:53.860' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (53, 3, 5, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-02T13:03:56.087' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (54, 3, 3, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-02T13:04:17.783' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (55, 3, 2, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-02T13:04:19.530' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (56, 3, 0, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-02T13:04:22.493' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (57, 3, 8, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-02T13:25:24.950' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (58, 3, 8, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-02T13:25:24.990' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (59, 4, 8, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 6, N'test1', CAST(N'2026-07-02T13:26:55.743' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (60, 4, 8, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 6, N'test1', CAST(N'2026-07-02T13:26:55.790' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (61, 3, 5, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 6, N'test1', CAST(N'2026-07-02T14:21:51.370' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (62, 4, 5, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 6, N'test1', CAST(N'2026-07-02T14:21:52.330' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (63, 3, 1, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 6, N'test1', CAST(N'2026-07-02T14:25:27.733' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (64, 3, 0, CAST(N'2026-07-02' AS Date), NULL, NULL, 0, NULL, 6, N'test1', CAST(N'2026-07-02T14:25:48.490' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (65, 3, 1, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T09:42:06.827' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (66, 3, 5, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T09:42:09.387' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (67, 3, 6, CAST(N'2026-07-03' AS Date), N'Not found during Inventory', NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:29:05.027' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (68, 4, 6, CAST(N'2026-07-03' AS Date), N'Not found during Inventory', NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:29:05.027' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (69, 8, 6, CAST(N'2026-07-03' AS Date), N'Not found during Inventory', NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:29:05.027' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (70, 3, 0, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:29:38.463' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (71, 4, 0, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:29:39.517' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (72, 8, 0, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:29:40.717' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (73, 3, 8, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:30:39.623' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (74, 3, 8, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:30:39.677' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (75, 3, 5, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:30:42.893' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (76, 3, 8, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:30:55.983' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (77, 3, 8, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:30:56.033' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (78, 3, 5, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:31:29.360' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (79, 3, 8, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:37:35.560' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (80, 3, 5, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T10:58:32.983' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (81, 3, 1, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:37.443' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (82, 3, 2, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:38.773' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (83, 3, 3, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:40.203' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (84, 3, 4, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:41.640' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (85, 3, 6, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:43.073' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (86, 3, 7, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:52.907' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (87, 3, 11, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:57.730' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (88, 3, 5, CAST(N'2026-07-03' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-03T11:11:59.250' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (89, 3, 1, CAST(N'2026-07-07' AS Date), N'djgndgn', 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T08:49:14.843' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (90, 3, 2, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T08:49:29.127' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (91, 3, 1, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T08:49:30.790' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (92, 3, 0, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T08:49:32.380' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (93, 3, 8, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T09:09:22.353' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (94, 3, 5, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T11:10:13.383' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (95, 3, 2, CAST(N'2026-07-07' AS Date), N'cgyh', NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T11:10:37.097' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (96, 3, 0, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T11:10:38.730' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (97, 3, 6, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T11:34:37.070' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (98, 4, 1, CAST(N'2026-07-07' AS Date), NULL, 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T11:34:45.043' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (99, 8, 8, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T11:34:57.660' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (100, 8, 8, CAST(N'2026-07-07' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-07T11:34:57.693' AS DateTime))
+INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (114, 16, 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:47:25.730' AS DateTime))
 GO
 SET IDENTITY_INSERT [AT].[StatusHistory] OFF
-GO
-SET IDENTITY_INSERT [AT].[Warranties] ON 
-GO
-INSERT [AT].[Warranties] ([WarntID], [AssetID], [WarrantyDesc], [FromDate], [ToDate], [Remark], [AttID]) VALUES (7, 3, N'sgva', CAST(N'2026-01-01' AS Date), CAST(N'2026-07-02' AS Date), N'', NULL)
-GO
-SET IDENTITY_INSERT [AT].[Warranties] OFF
 GO
 SET IDENTITY_INSERT [ATSET].[BrandTypes] ON 
 GO
@@ -1433,7 +1277,7 @@ SET IDENTITY_INSERT [ATSET].[GroupTypes] ON
 GO
 INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (101, N'COMPUTER & OFFICE MACHINERY', N'COM', 10, NULL, 0, N'LB        ')
 GO
-INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (102, N'FURNITURE', N'FUR', 0, NULL, 0, N'LB        ')
+INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (102, N'FURNITURE', N'FUR', 15, NULL, 0, N'LB        ')
 GO
 INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (105, N'NETWORKING & IT INFRASTRUCTURE', N'NET', 10, NULL, 0, N'LB        ')
 GO
@@ -1441,41 +1285,21 @@ INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRat
 GO
 INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (107, N'APPLIANCES & ELECTRONICS', N'APP', 10, NULL, 0, N'LB        ')
 GO
-INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (108, N'OFFICE SUPPLIES & ACCESSORIES', N'SUP', 0, NULL, 0, N'LB        ')
+INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (108, N'OFFICE SUPPLIES & ACCESSORIES', N'SUP', 50, NULL, 0, N'LB        ')
+GO
+INSERT [ATSET].[GroupTypes] ([GroupID], [GroupName], [Acronym], [DepreciationRate], [AccountNo], [AccountingExclusion], [CountryID]) VALUES (109, N'test', N'elk', 20, N'', 0, N'CY        ')
 GO
 SET IDENTITY_INSERT [ATSET].[GroupTypes] OFF
 GO
 SET IDENTITY_INSERT [ATSET].[LocationDetails] ON 
 GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (101, 101, N'F1', NULL, NULL)
-GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (102, 101, N'F2', NULL, NULL)
-GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (103, 101, N'F3', NULL, NULL)
-GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (104, 101, N'F4', NULL, NULL)
-GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (105, 101, N'MEZ', NULL, NULL)
-GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (110, 102, N'asd', N'fasdf', N'asdf')
-GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (111, 103, N'dzbf', N'db', N'fd')
-GO
-INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (112, 104, N'5', N'', N'')
+INSERT [ATSET].[LocationDetails] ([LocDetailID], [LocationID], [Floor], [Zone], [Room]) VALUES (113, 109, N'3', N'', N'')
 GO
 SET IDENTITY_INSERT [ATSET].[LocationDetails] OFF
 GO
 SET IDENTITY_INSERT [ATSET].[LocationTypes] ON 
 GO
-INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (101, N'PORT', 1)
-GO
-INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (102, N'FREEZONE', 1)
-GO
-INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (103, N'WAREHOUSE', 1)
-GO
-INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (104, N'AIRPORT', 1)
-GO
-INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (105, N'YARD', 1)
+INSERT [ATSET].[LocationTypes] ([LocationID], [Location], [CompanyID]) VALUES (109, N'kl;h', 13)
 GO
 SET IDENTITY_INSERT [ATSET].[LocationTypes] OFF
 GO
@@ -1493,9 +1317,9 @@ INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VAL
 GO
 INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (3, N'Country', N'Asset Acronym Start Setting', N'General')
 GO
-INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (4, N'Same Day', N'Warranty Notification Start Setting', N'General')
+INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (4, N'sdfasdf', N'Warranty Notification Start Setting', N'General')
 GO
-INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (5, N'Same Day', N'Maintenace Notification Start Setting', N'General')
+INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (5, N'1 Week, 2 Days, 1 Day', N'Maintenace Notification Start Setting', N'General')
 GO
 INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (0, N'Active')
 GO
@@ -1504,6 +1328,8 @@ GO
 INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (3, N'Destroyed')
 GO
 INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (1, N'Donated')
+GO
+INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (12, N'In Stock')
 GO
 INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (6, N'Lost')
 GO
@@ -1523,7 +1349,7 @@ INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (8, N'Under Maintenan
 GO
 SET IDENTITY_INSERT [GSET].[Companies] ON 
 GO
-INSERT [GSET].[Companies] ([CompanyID], [CompanyName], [CompanyAbbreviation], [CompanyPrmCurCode], [CompanyScdCurCode], [CountryID], [HRCompanyProfileID]) VALUES (1, N'GEZAIRI SERVICES', N'GZS', N'LBP', N'USD', N'LB', NULL)
+INSERT [GSET].[Companies] ([CompanyID], [CompanyName], [CompanyAbbreviation], [CompanyPrmCurCode], [CompanyScdCurCode], [CountryID], [HRCompanyProfileID]) VALUES (13, N'test', N'dd', N'LBP', N'USD', N'CY', 11)
 GO
 SET IDENTITY_INSERT [GSET].[Companies] OFF
 GO
@@ -1613,7 +1439,7 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'CU', N'CUBA', N'CUBAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00D6B7D02DE686DEEAFDA7B6B49B813C681803C7247A7352CBA0F84173FF001551C8EDE4FF00F5AB22CFC436F02DBC37D1CD7569100C2DD2408377D7F139AD197C61E157CFFC5210E4F7F307F857A594BCC7D8AF6BCDCB656F86FF008F4EC73E7B4F2C5887EC7979EEF9BE2B7E1D7BDB4F9DCA371A678723936C5E20775C7511E28A86E3C47A0C926E8BC351A2E3A6E07FA515DD275EFF006BFF00253CD8468F2AB72FFE4C7FFFD9, 0, 0, 0, 0, NULL)
 GO
-INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'CY', N'CYPRUS', N'CYPRIOT', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F71792DADAC5269630576AE70A0F51598752B79E411456A0C849C67007E7561A78E6B1117DA110941CE41C7D41EB54A22216DCF3DB2A818D9080031F524F3F8573D4559D45C8ED1EBA1A4674D46D28DDFE056BE016651B541DBCED1C7534556D42E15AE010EA46DEC7DCD15D0667FFD9, 0, 1, 0, 0, NULL)
+INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'CY', N'CYPRUS', N'CYPRIOT', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F71792DADAC5269630576AE70A0F51598752B79E411456A0C849C67007E7561A78E6B1117DA110941CE41C7D41EB54A22216DCF3DB2A818D9080031F524F3F8573D4559D45C8ED1EBA1A4674D46D28DDFE056BE016651B541DBCED1C7534556D42E15AE010EA46DEC7DCD15D0667FFD9, 0, 1, 1, 1, N'HRCYP')
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'CZ', N'CZECH REPUBLIC', N'CZECH', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC0001108000F001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00E8FC31E3F6D3645B2D5B335A67093632F17D7D47EA2BD024BFB29A25962B9B76471B95848304578B58E9A19FCEB91B8672A9FE357AE00C70A314F3ACCB0B1AD6C32BBEBDAFE5FAF43AB20C8B175687362A5CA9ECB776F3FD3A9E8D2DDDBEF3FBF87FEFB14579314CB1F94515E32CD25FC9F89F42F86E1FF3F7F0FF00827FFFD9, 0, 0, 0, 0, NULL)
 GO
@@ -1683,7 +1509,7 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'IN', N'INDIA', N'INDIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F528B47B9F28398E2C6DC9258564DAC96FAAB4EB64D13B4270E3A7E359D1F8D752FB38569ADFEEE08318F4FAD60DBEB73E8ED3B58FD9D1A63972501FC2BE7E30CBB965CDCF7E9B5BCEE672CFE6A69C569D74FCB53A3BBB19D26030A38ECD4571D73E31D6259771684E063E58A8A6B0D836BED1D11E2695B6FC3FE09FFFD9, 0, 1, 0, 0, NULL)
 GO
-INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'IQ', N'IRAQ', N'IRAQI', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00EA97C29A8BA88FCBB4F3366F20CCB9C7AFD2A85C783F522AEC12CC84243113AFCA475CD647FC2C4D6815909B132840BB9ADD738EB8FCEB3EE3E22EB60B90BA765F25BFD157E6CF5CF3DEBCE797537D5FDFFF0000F6167D8C8BD147EE7FE65DBAF096AC2452A906D65C82B30C1F7E28AE7A7F889E2166501AD82AA85012DC600F4A2B48E069256D46F3DC53776A3F77FC13FFD9, 1, 1, 2, 0, NULL)
+INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'IQ', N'IRAQ', N'IRAQI', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00EA97C29A8BA88FCBB4F3366F20CCB9C7AFD2A85C783F522AEC12CC84243113AFCA475CD647FC2C4D6815909B132840BB9ADD738EB8FCEB3EE3E22EB60B90BA765F25BFD157E6CF5CF3DEBCE797537D5FDFFF0000F6167D8C8BD147EE7FE65DBAF096AC2452A906D65C82B30C1F7E28AE7A7F889E2166501AD82AA85012DC600F4A2B48E069256D46F3DC53776A3F77FC13FFD9, 1, 1, 0, 1, N'HRIRQ')
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'IR', N'IRAN', N'IRANIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00EAED3C15AA98958C76E7201C961552E3C17A9CDBBCAFB29DA7070E38356E0F1A6A28814C908C0C7DD154DFC5F776C1FC836C9BCE5B03A9AF9F71C25EFA9D8B84E6D38B7AFAFF00C031A7F04EB31C982D0AE4671E6514EBAF1C6A866FF9777E3AECFF000A2BA60B0DCAAD721F09D48FBBA7DFFF0000FFD9, 0, 0, 0, 0, NULL)
 GO
@@ -1697,7 +1523,7 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'JM', N'JAMAICA', N'JAMAICAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00E8349F1469BE288534BD644506A0BC4172000243E9EC7DBA1ED533E8B63A32C97FAECD12DB44D848D7FE5A9EDC77FA565E8FE1EB0F0BC09AA6B8D1CFA89E60B6041119F5F73EFD076AB0FE21B1D6E392C35D8626B795B2922F1E51EDCF6FAD7C8E2A549D5BD0BF275B7E3CBFD7A1955585F6B155FE3FC3CB9BFAF531353F1EDFDCDE17B2D96B6E06123D809C7A9F7A2A86A7E08D56DEF0A5818EEEDB19493CC5538F423D68AF6294F2C705CAE36F3B5FE77D4ED71AF7EA7FFFD9, 0, 0, 0, 0, NULL)
 GO
-INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'JO', N'JORDAN', N'JORDANIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F004D43C3CF35A47796F0AC7148C14BB8C465BEBDAA19BE1978964412470D93230CAB2DCA9047B56A5B5F5C49A7C56D3DC7FA2A10EB033704FBFB7B5684FE35D52188470B5A2C6A30AAB10000F40335E361F30505CB3BB3A338C660A95671A6EEFADB6FF87EF6D0E166F86DE274931E55B0E3B5C8A2B76E3C67ACC92E4B4278C7CB1515DAB1B49ABEA792B30A2D5F5FB8FFD9, 0, 1, 0, 0, NULL)
+INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'JO', N'JORDAN', N'JORDANIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F004D43C3CF35A47796F0AC7148C14BB8C465BEBDAA19BE1978964412470D93230CAB2DCA9047B56A5B5F5C49A7C56D3DC7FA2A10EB033704FBFB7B5684FE35D52188470B5A2C6A30AAB10000F40335E361F30505CB3BB3A338C660A95671A6EEFADB6FF87EF6D0E166F86DE274931E55B0E3B5C8A2B76E3C67ACC92E4B4278C7CB1515DAB1B49ABEA792B30A2D5F5FB8FFD9, 0, 1, 0, 1, N'HRJOD')
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'JP', N'JAPAN', N'JAPANESE', NULL, 0xFFD8FFE000104A46494600010101004700470000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC0001108000F001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F61D4F51B6D2345177242B2360045FEF1AE56C7C65F69BF8EDEF2D2058E56DAAD18FBA4F4AE82FED20D5F471673B3282A0AB81CA9F5AE6F4FF00072595FA5D5D5E89D623B911508C9EC4D70D7589F6B1F65F0FF5B9EBE09E5FF569FD63E3E9BFCAC7453C718948D8BF95150CF3832E73DA8AEE3C83FFD9, 0, 0, 0, 0, NULL)
 GO
@@ -1719,7 +1545,7 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'LA', N'LAOS', N'LAO', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F0092D6F2395D225B72F2390AA303249ABDE23D1EEF408E17BEB58C24D90AD190C011D8FBD67DB59C51B24AB70C8EA43290C010455DF10EAD77AEA4297D78AEB0E76AA05504FA9F7ACA7FD87CF1E5BF2F5F8AFF0023D6A5FEB2DA5CDCBCDD3E1B7CCE42E2E54CB9405463B714525CDBC6B2E15D88C76E68AD57F625BDDE6B7CCD7FE323FB5CB7FF00B74FFFD9, 0, 0, 0, 0, NULL)
 GO
-INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'LB', N'LEBANON', N'LEBANESE', N'961', 0x89504E470D0A1A0A0000000D494844520000001400000010080600000016185F1B000000017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048597300000EC300000EC301C76FA8640000044F49444154384F1D936B4CD36714C6FB651FB66C249A654BC616333341ED202838D189A23061160507A8ABA220990E4574BA4C179D9179C99C99371CBA18C3926D7171CE0B635EA6D3C409A89816A517DA52CABF3769D7CBBF17DA522EBFBDF3C3C97372DE3727CF93F33C8AF8EA9944ABB2F0572971AD9982BD3A0DE7FA34DCEBA632A89E8A77793AF15533F015A5E35E3409F9A30CFA8BDE44939782B3FC1DEC856F639EFB0683454A9E66BF8622BE761EC3B5F349D42D20BA398F70431ED1EDF90C7D964FAC7E3E347C40589D0D1B0AA06E31FECA2CE2B5798C6F2DA2BF341DFFCA1C9C2A25DEF21CB4B9A9289CA573F0A91712AA55216F5842E05315FEFA12020D2A7C9B0B096C2A205A5F48A2A18860ED02DC6AF1BFA6105F7511A6A53371A8E7D25B9A415FE52CFECE7D1DC5D88983D0D204BFFE28AA05CE9F83DF055EFD01AE1C83B6C370799F98ED854B5FC32F071839D3C8E829313F7B94E8A93D0C1EA9C77F72278FB7AF44316232C2B367108881774854142209480661DC0EF470FDDE373C369E7DDEC7835D241C4FC11F60DCDCCF986420D8DB41C4AA4573E3020A83D580DBEB212C8F20FB46080520310A2192387073D1799EBA8BEBA8BB54C585C116F4689186255C1E1F669384E4B6D36B336276F6D176E71A0ABD538B2BE4201A1B22124E12172487051759ACEC45C79E8EAD6CE95843D9C53C36DEACE47AE437FAC45A93C38C437263EA35A0EB798249286D6B6B45D1ED7C80236C451E0A120A45188A8AA58CE0C249E7D85D763EDC4843F7C7D4741653D9BA805DB737D2EEBF4920E9C366EDC7DED78FD568C461B571EBFA0D141AE91FDC512BD1B8E0140C938C8F9310723B1CF7D9776D17E53F2DA2FAEE87A82ECFA0E09C92FDF7B7F140BE8D3D3080DBE942B258B1E8F5CFF1AF362159D3D78ED3DF872C07F00F0690C5518291301AF7635ABA9AD9D7B18DFC2625EA2B0B3939B09BD3DA43B4E92FE0F0DAB118CC98F43A7AB41ACC063D7FB45E4161B6F4E0F5B88805E3C4FE1D61C83F4A223E46704CC63262E0D1E85D569F51B1A3B5469CE30EBA6427468FF6B91A738F0549B261B0E8B00C98B976EB4F14C3DD8FC06800ABB048FF20D83CE012283B8575AC74DC6BA2A9B98AEF4E54F0A0FD28A38187C25A7AE83581C144CCD085577B8780AE93AEAB3FA3E0F06EC6BFFD0A8E34C23161F2E307193EBA97D8F12F897DFF39E1E62DC2CC5FE03DBE16C78155249BB7231FAAC7D6504DA87107DEC6CD58778BB7FD9B68FFA4044570792E9EA539B84B73F054CEC1BBFA7D11AFD938566663AFC8C4523219A9340D87C8AD7BF934DC6519484B94D88A33702ECBC65A92C1934593319564722B6B82902CC21EA9789740793ADE156904D64E47AECD2454934148AD84F5B9444AA7912813BD7A16A32BB2885666102C9F8E543C098F6A2AB6FCC978559974CFFC3FCB2BA613AB988277592AD6E2144C4B52E82F9B886DE9AB0C2C9E88343705B92095E0BC549ECD9A803377227DB35FE2E97B2F609E9F822EEB15B4692F629BFD169AB497F90FBC65BE4695FDFA3D0000000049454E44AE426082, 1, 1, 15, 0, NULL)
+INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'LB', N'LEBANON', N'LEBANESE', N'961', 0x89504E470D0A1A0A0000000D494844520000001400000010080600000016185F1B000000017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048597300000EC300000EC301C76FA8640000044F49444154384F1D936B4CD36714C6FB651FB66C249A654BC616333341ED202838D189A23061160507A8ABA220990E4574BA4C179D9179C99C99371CBA18C3926D7171CE0B635EA6D3C409A89816A517DA52CABF3769D7CBBF17DA522EBFBDF3C3C97372DE3727CF93F33C8AF8EA9944ABB2F0572971AD9982BD3A0DE7FA34DCEBA632A89E8A77793AF15533F015A5E35E3409F9A30CFA8BDE44939782B3FC1DEC856F639EFB0683454A9E66BF8622BE761EC3B5F349D42D20BA398F70431ED1EDF90C7D964FAC7E3E347C40589D0D1B0AA06E31FECA2CE2B5798C6F2DA2BF341DFFCA1C9C2A25DEF21CB4B9A9289CA573F0A91712AA55216F5842E05315FEFA12020D2A7C9B0B096C2A205A5F48A2A18860ED02DC6AF1BFA6105F7511A6A53371A8E7D25B9A415FE52CFECE7D1DC5D88983D0D204BFFE28AA05CE9F83DF055EFD01AE1C83B6C370799F98ED854B5FC32F071839D3C8E829313F7B94E8A93D0C1EA9C77F72278FB7AF44316232C2B367108881774854142209480661DC0EF470FDDE373C369E7DDEC7835D241C4FC11F60DCDCCF986420D8DB41C4AA4573E3020A83D580DBEB212C8F20FB46080520310A2192387073D1799EBA8BEBA8BB54C585C116F4689186255C1E1F669384E4B6D36B336276F6D176E71A0ABD538B2BE4201A1B22124E12172487051759ACEC45C79E8EAD6CE95843D9C53C36DEACE47AE437FAC45A93C38C437263EA35A0EB798249286D6B6B45D1ED7C80236C451E0A120A45188A8AA58CE0C249E7D85D763EDC4843F7C7D4741653D9BA805DB737D2EEBF4920E9C366EDC7DED78FD568C461B571EBFA0D141AE91FDC512BD1B8E0140C938C8F9310723B1CF7D9776D17E53F2DA2FAEE87A82ECFA0E09C92FDF7B7F140BE8D3D3080DBE942B258B1E8F5CFF1AF362159D3D78ED3DF872C07F00F0690C5518291301AF7635ABA9AD9D7B18DFC2625EA2B0B3939B09BD3DA43B4E92FE0F0DAB118CC98F43A7AB41ACC063D7FB45E4161B6F4E0F5B88805E3C4FE1D61C83F4A223E46704CC63262E0D1E85D569F51B1A3B5469CE30EBA6427468FF6B91A738F0549B261B0E8B00C98B976EB4F14C3DD8FC06800ABB048FF20D83CE012283B8575AC74DC6BA2A9B98AEF4E54F0A0FD28A38187C25A7AE83581C144CCD085577B8780AE93AEAB3FA3E0F06EC6BFFD0A8E34C23161F2E307193EBA97D8F12F897DFF39E1E62DC2CC5FE03DBE16C78155249BB7231FAAC7D6504DA87107DEC6CD58778BB7FD9B68FFA4044570792E9EA539B84B73F054CEC1BBFA7D11AFD938566663AFC8C4523219A9340D87C8AD7BF934DC6519484B94D88A33702ECBC65A92C1934593319564722B6B82902CC21EA9789740793ADE156904D64E47AECD2454934148AD84F5B9444AA7912813BD7A16A32BB2885666102C9F8E543C098F6A2AB6FCC978559974CFFC3FCB2BA613AB988277592AD6E2144C4B52E82F9B886DE9AB0C2C9E88343705B92095E0BC549ECD9A803377227DB35FE2E97B2F609E9F822EEB15B4692F629BFD169AB497F90FBC65BE4695FDFA3D0000000049454E44AE426082, 1, 1, 0, 1, N'HRLEB')
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'LI', N'LIECHTENSTEIN', N'LIECHTENSTEINER', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F006591D2BEC2DF69797ED277701723DB9AC79CF5C0AEA219A355E4AF4EE6A0B99A220FCE9F98AAA3C51ECA5397B372E677B3968BC97BBA23AA7C0FCED2F6C95BB477F5F78E45DD8370587D0D1576F5C19FE53918EDCD15B2E27E6F7BD97E3FF00DBFD4D50F77DBEDFDDFFED8FFD9, 0, 0, 0, 0, NULL)
 GO
@@ -1827,7 +1653,7 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'RW', N'RWANDA', N'RWANDAN; RWANDESE', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00EAED041E52978909DA3AA8A7449A79BAFF00498D0458ECA053A0F19868C06B58978EF2FF00F5AAB5D78D4267169137FDB5FF00EB5797538B7173528AC2B57EAAA2FF00E44F1E34308AD7ABA2FEEB39ED58C29A8482D788BB63A51535CF8D9E497234F5E0638933FD28AF468F16621538A786E9D66BFF009131780C1C9DD57DFF00B8FF00CCFFD9, 0, 0, 0, 0, NULL)
 GO
-INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'SA', N'SAUDI ARABIA', N'SAUDI ARABIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00DAD1B498750B496466DAF185C0D80EECFBD59B9F0C5BEF5413B293D7E4538E0E3E9DAB9BB6BF11280CEE1703211F69CD13DFDB956DAF700E38FDE83CF6ED5F2D1704ACE3A9F34A74F96CD199740C570F183F7491C71D0D155A590B3E7AD15B413E544455D1FFD9, 0, 1, 0, 0, NULL)
+INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'SA', N'SAUDI ARABIA', N'SAUDI ARABIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00DAD1B498750B496466DAF185C0D80EECFBD59B9F0C5BEF5413B293D7E4538E0E3E9DAB9BB6BF11280CEE1703211F69CD13DFDB956DAF700E38FDE83CF6ED5F2D1704ACE3A9F34A74F96CD199740C570F183F7491C71D0D155A590B3E7AD15B413E544455D1FFD9, 0, 1, 0, 1, N'HRKSA')
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'SB', N'SOLOMON ISLANDS', N'SOLOMON ISLANDER', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00EEACEDEDDE3B72F14064280A838C3F5E58E783514963696F0B5DDF6C8ADD7A2E396F6A87ED36BA259A5C5FBAB4E47EEE052339F7AE4B57D6E7D4E632CF20C0FBA80F0A3DABCECD73EAB5A72A18095A3B39FE90FF00E4BEE3C56A9E1E09D68DE5D23FACBFCBEF2C6A3E2EBC6BB3F6358E0B7518442809C7A9A2B999242CF9009FA515E3D2C252505EE92B1D8992BF3B3FFFD9, 0, 0, 0, 0, NULL)
 GO
@@ -1863,8 +1689,6 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'TD', N'CHAD', N'CHADIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F006E8C54EBDA77FD7C267F315E85E29118D3532063CD1FC8D79868B3E35ED3F2718B84EBF515DF78BEF106909875FF005CBDFD8D79BC7B16B34C2B5FCBFA91C1B4A5CCD3FE6FD0E46EDC2CD853818ED4565DD5D6E94153918EDCD15E5462DAB9FA63D1DAE7FFD9, 0, 0, 0, 0, NULL)
 GO
-INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'TE', N'test', N'test', N'test', 0x, 0, 1, 0, 0, NULL)
-GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'TG', N'TOGO', N'TOGOLESE', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00D88934E9F47B99A6B9F2EE500F2E30A3E7F5C73FE7DEA3B4B1D267D3A296E752F266607726CCE3935606B9E1EDA036851E71DDC54326BFA0AAED5D0D00F40E2BE12BD6AD51251A728DBAAE5D7EF6CEECD738C163287B28CAFEF5FDE4ECB46B4B6A566D33410C7FE274DF82515136BBA1B3123425FF00BE8514E31C45BED7FE4A7CFAFAAFF73FF2A1FFD9, 0, 0, 0, 0, NULL)
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'TH', N'THAILAND', N'THAI', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00D51AAF865546FD3F50638E4F9A9FE155E6D5BC2C7A69BA87FDFD4FF0A0D97863A3CDAA82383FEAEA096C7C2A3A5C6ABF9C55D5CDC3DDBF31AA7C557DDFE051B9BCF0F492868ED350418E9E6AFF0085150DC41E1D59008E4D4D971D7F77452BE4BF6569F33751E22FB4DDFE47FFD9, 0, 0, 0, 0, NULL)
@@ -1889,7 +1713,7 @@ INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Fl
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'UA', N'UKRAINE', N'UKRAINIAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00EAED0C1E4AEF8D09DA3AA8AAD7A21C1DB1A0FA28AED63923551929D3D45472CB11FE24FCC5782BC426A77FAB7FE4FF00FDA9CCF206D72FB4FC3FE09E5374FB662172063B515DE5EBA19C60A9F97B7D4D15E9438F79A2A5F56FFC9BFF00B5335C316D3DAFFE4BFF0004FFD9, 0, 0, 0, 0, NULL)
 GO
-INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'UE', N'UNITED ARAB EMIRATES', N'EMIRATE', NULL, 0xFFD8FFE000104A46494600010101004700470000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001503012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00B96F66B7CD6B6F0451B4D36D550C00C923D6AD5CFC3FD6867FD12D47FDB55AE7ADF5B3A7882EE09A213C015D3710402077152DC7C57F109CFF00A5D87FDF95FF001AF0B0585A75E2E53BE87AFC5382855AF4DCEFB7EA3750F03EB51B2660B719CF49451581AAFC52F10B347FE91647AF4847B7BD15E82CBE9256D4F97596505DCFFFD9, 1, 1, 0, 0, NULL)
+INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'UE', N'UNITED ARAB EMIRATES', N'EMIRATE', NULL, 0xFFD8FFE000104A46494600010101004700470000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001503012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00B96F66B7CD6B6F0451B4D36D550C00C923D6AD5CFC3FD6867FD12D47FDB55AE7ADF5B3A7882EE09A213C015D3710402077152DC7C57F109CFF00A5D87FDF95FF001AF0B0585A75E2E53BE87AFC5382855AF4DCEFB7EA3750F03EB51B2660B719CF49451581AAFC52F10B347FE91647AF4847B7BD15E82CBE9256D4F97596505DCFFFD9, 1, 1, 0, 1, N'HRUAE')
 GO
 INSERT [GSET].[Countries] ([CountryID], [Country], [Nationality], [ZipCode], [Flag], [WorkingCountry], [ActiveCountry], [AssetCodeCounter], [HRConnect], [HRDatabase]) VALUES (N'UG', N'UGANDA', N'UGANDAN', NULL, 0xFFD8FFE000104A46494600010101006000600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232FFC00011080010001403012200021101031101FFC4001F0000010501010101010100000000000000000102030405060708090A0BFFC400B5100002010303020403050504040000017D01020300041105122131410613516107227114328191A1082342B1C11552D1F02433627282090A161718191A25262728292A3435363738393A434445464748494A535455565758595A636465666768696A737475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F0100030101010101010101010000000000000102030405060708090A0BFFC400B51100020102040403040705040400010277000102031104052131061241510761711322328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35363738393A434445464748494A535455565758595A636465666768696A737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00D483C39E179080B77A83331C0055793F952EABE09F0F5822B5D4FA8C61C95180BC11D8F1C51069FE138D83AC57C8CA720F9E0107F3A975B9FC39ABB06BD17B2303B8912A824FA9C1E7FF00AE6BE49621D9DEA55BFA47FCCF77EA327356A3A76E6FD6DA7DCCE78F87FC2609DB7FA9FE4BFE145074FF000702716DA89FFB6E3FC68AA55E76FE254FB97F99D3F505FF0040FF00F93FFF006A7FFFD9, 0, 0, 0, 0, NULL)
 GO
@@ -1989,79 +1813,6 @@ INSERT [GTBL].[Logs] ([LogID], [UserID], [FullName], [DateTime], [DomainUser], [
 GO
 SET IDENTITY_INSERT [GTBL].[Logs] OFF
 GO
-SET IDENTITY_INSERT [NOTIF].[NotificationLogs] ON 
-GO
-INSERT [NOTIF].[NotificationLogs] ([LogID], [Type], [EntityID], [IntervalLabel], [SentAt]) VALUES (6, N'Warranty', 7, N'0', CAST(N'2026-07-02T13:31:28.253' AS DateTime))
-GO
-INSERT [NOTIF].[NotificationLogs] ([LogID], [Type], [EntityID], [IntervalLabel], [SentAt]) VALUES (7, N'Maintenance', 5, N'0', CAST(N'2026-07-02T13:31:28.380' AS DateTime))
-GO
-INSERT [NOTIF].[NotificationLogs] ([LogID], [Type], [EntityID], [IntervalLabel], [SentAt]) VALUES (8, N'Maintenance', 5, N'Daily-2026-07-02', CAST(N'2026-07-02T13:31:28.507' AS DateTime))
-GO
-INSERT [NOTIF].[NotificationLogs] ([LogID], [Type], [EntityID], [IntervalLabel], [SentAt]) VALUES (9, N'Maintenance', 6, N'0', CAST(N'2026-07-02T13:31:28.630' AS DateTime))
-GO
-INSERT [NOTIF].[NotificationLogs] ([LogID], [Type], [EntityID], [IntervalLabel], [SentAt]) VALUES (10, N'Maintenance', 6, N'Daily-2026-07-02', CAST(N'2026-07-02T13:31:28.740' AS DateTime))
-GO
-SET IDENTITY_INSERT [NOTIF].[NotificationLogs] OFF
-GO
-SET IDENTITY_INSERT [NOTIF].[Notifications] ON 
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (1, 7, 9, N'Maintenance', 2, 467, N'The scheduled maintenance for asset IQ-GZG-000001 (ghjdghmn)
-is ending in 1 day(s).
-Maintenance end date: 21 May 2026
-Please ensure the return procedure is completed on time.', 1, CAST(N'2026-05-20T14:55:12.980' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (2, 7, 9, N'Maintenance', 2, 467, N'Overdue maintenance reminder: Asset IQ-GZG-000001 (ghjdghmn)
-has been under maintenance since 20 May 2026.
-The expected end date was 21 May 2026 but the asset has not been
-returned yet.
-Please update the maintenance status to Return From Maintenance.', 1, CAST(N'2026-05-21T09:05:29.600' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (3, 7, 9, N'Maintenance', 2, 467, N'Overdue maintenance reminder: Asset IQ-GZG-000001 (ghjdghmn)
-has been under maintenance since 20 May 2026.
-The expected end date was 21 May 2026 but the asset has not been
-returned yet.
-Please update the maintenance status to Return From Maintenance.', 1, CAST(N'2026-06-01T08:24:47.770' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (4, 6, 1, N'Maintenance', 3, 469, N'Overdue maintenance reminder: Asset LB-GZG-000004 (laptop)
-has been under maintenance since 21 Jun 2026.
-The expected end date was 22 Jun 2026 but the asset has not been
-returned yet.
-Please update the maintenance status to Return From Maintenance.', 1, CAST(N'2026-06-24T09:37:17.720' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (5, 6, 1, N'Maintenance', 4, 3, N'The scheduled maintenance for asset LB-GZG-000008 (ergergwe)
-is ending in 1 day(s).
-Maintenance end date: 01 Jul 2026
-Please ensure the return procedure is completed on time.', 1, CAST(N'2026-06-30T12:33:09.537' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (6, 6, 1, N'Warranty', 7, 3, N'The warranty "sgva" for asset
-LB-GZG-000008 (ergergwe) expires today.
-Expiry date: 02 Jul 2026
-Please take the necessary action.', 1, CAST(N'2026-07-02T13:31:28.237' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (7, 6, 1, N'Maintenance', 5, 3, N'The scheduled maintenance for asset LB-GZG-000008 (ergergwe)
-is ending in 0 day(s).
-Maintenance end date: 02 Jul 2026
-Please ensure the return procedure is completed on time.', 1, CAST(N'2026-07-02T13:31:28.380' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (8, 6, 1, N'Maintenance', 5, 3, N'Overdue maintenance reminder: Asset LB-GZG-000008 (ergergwe)
-has been under maintenance since 01 Jul 2026.
-The expected end date was 02 Jul 2026 but the asset has not been
-returned yet.
-Please update the maintenance status to Return From Maintenance.', 1, CAST(N'2026-07-02T13:31:28.507' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (9, 6, 1, N'Maintenance', 6, 4, N'The scheduled maintenance for asset LB-GZG-000009 (rahrfg)
-is ending in 0 day(s).
-Maintenance end date: 02 Jul 2026
-Please ensure the return procedure is completed on time.', 1, CAST(N'2026-07-02T13:31:28.630' AS DateTime))
-GO
-INSERT [NOTIF].[Notifications] ([NotifID], [UserID], [CompanyID], [Type], [EntityID], [AssetID], [Message], [IsRead], [CreatedAt]) VALUES (10, 6, 1, N'Maintenance', 6, 4, N'Overdue maintenance reminder: Asset LB-GZG-000009 (rahrfg)
-has been under maintenance since 01 Jul 2026.
-The expected end date was 02 Jul 2026 but the asset has not been
-returned yet.
-Please update the maintenance status to Return From Maintenance.', 1, CAST(N'2026-07-02T13:31:28.740' AS DateTime))
-GO
-SET IDENTITY_INSERT [NOTIF].[Notifications] OFF
-GO
 INSERT [SEC].[Roles] ([RoleID], [RoleName]) VALUES (1, N'Administrator')
 GO
 INSERT [SEC].[Roles] ([RoleID], [RoleName]) VALUES (2, N'System Auditor')
@@ -2078,26 +1829,22 @@ INSERT [SEC].[Users] ([UserID], [UserName], [UserPassword], [FullName], [RoleID]
 GO
 SET IDENTITY_INSERT [SEC].[Users] OFF
 GO
-INSERT [SEC].[UsersPermissions] ([UserID], [CountryID], [CompanyID]) VALUES (6, N'LB', 1)
-GO
-INSERT [SEC].[UsersPermissions] ([UserID], [CountryID], [CompanyID]) VALUES (7, N'LB', 1)
-GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Assets]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Assets]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [AT].[Assets] ADD  CONSTRAINT [IX_Assets] UNIQUE NONCLUSTERED 
 (
 	[AssetCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Depreciations]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Depreciations]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [AT].[Depreciations] ADD  CONSTRAINT [IX_Depreciations] UNIQUE NONCLUSTERED 
 (
 	[DepreciationDate] ASC,
 	[CompanyID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Inventories]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Inventories]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [AT].[Inventories] ADD  CONSTRAINT [IX_Inventories] UNIQUE NONCLUSTERED 
 (
 	[InventoryStartDate] ASC,
@@ -2106,7 +1853,7 @@ ALTER TABLE [AT].[Inventories] ADD  CONSTRAINT [IX_Inventories] UNIQUE NONCLUSTE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_BrandTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_BrandTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [ATSET].[BrandTypes] ADD  CONSTRAINT [IX_BrandTypes] UNIQUE NONCLUSTERED 
 (
 	[BrandDesc] ASC
@@ -2114,7 +1861,7 @@ ALTER TABLE [ATSET].[BrandTypes] ADD  CONSTRAINT [IX_BrandTypes] UNIQUE NONCLUST
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Categories]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Categories]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [ATSET].[CategoryTypes] ADD  CONSTRAINT [IX_Categories] UNIQUE NONCLUSTERED 
 (
 	[Category] ASC
@@ -2122,7 +1869,7 @@ ALTER TABLE [ATSET].[CategoryTypes] ADD  CONSTRAINT [IX_Categories] UNIQUE NONCL
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_GroupTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_GroupTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [ATSET].[GroupTypes] ADD  CONSTRAINT [IX_GroupTypes] UNIQUE NONCLUSTERED 
 (
 	[GroupName] ASC
@@ -2130,7 +1877,7 @@ ALTER TABLE [ATSET].[GroupTypes] ADD  CONSTRAINT [IX_GroupTypes] UNIQUE NONCLUST
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LocationTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_LocationTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [ATSET].[LocationTypes] ADD  CONSTRAINT [IX_LocationTypes] UNIQUE NONCLUSTERED 
 (
 	[Location] ASC
@@ -2138,7 +1885,7 @@ ALTER TABLE [ATSET].[LocationTypes] ADD  CONSTRAINT [IX_LocationTypes] UNIQUE NO
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_OwnerTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_OwnerTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [ATSET].[OwnerTypes] ADD  CONSTRAINT [IX_OwnerTypes] UNIQUE NONCLUSTERED 
 (
 	[OwnerDesc] ASC
@@ -2146,7 +1893,7 @@ ALTER TABLE [ATSET].[OwnerTypes] ADD  CONSTRAINT [IX_OwnerTypes] UNIQUE NONCLUST
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_StatusTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_StatusTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [ATSET].[StatusTypes] ADD  CONSTRAINT [IX_StatusTypes] UNIQUE NONCLUSTERED 
 (
 	[Status] ASC
@@ -2154,7 +1901,7 @@ ALTER TABLE [ATSET].[StatusTypes] ADD  CONSTRAINT [IX_StatusTypes] UNIQUE NONCLU
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AddressDetail1]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_AddressDetail1]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[AddressDetail1] ADD  CONSTRAINT [IX_AddressDetail1] UNIQUE NONCLUSTERED 
 (
 	[AddressDetail1] ASC
@@ -2162,7 +1909,7 @@ ALTER TABLE [GSET].[AddressDetail1] ADD  CONSTRAINT [IX_AddressDetail1] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AddressDetail2]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_AddressDetail2]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[AddressDetail2] ADD  CONSTRAINT [IX_AddressDetail2] UNIQUE NONCLUSTERED 
 (
 	[AddressDetail2] ASC
@@ -2170,7 +1917,7 @@ ALTER TABLE [GSET].[AddressDetail2] ADD  CONSTRAINT [IX_AddressDetail2] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Companies]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Companies]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[Companies] ADD  CONSTRAINT [IX_Companies] UNIQUE NONCLUSTERED 
 (
 	[CompanyName] ASC
@@ -2178,7 +1925,7 @@ ALTER TABLE [GSET].[Companies] ADD  CONSTRAINT [IX_Companies] UNIQUE NONCLUSTERE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_ContactTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_ContactTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[ContactTypes] ADD  CONSTRAINT [IX_ContactTypes] UNIQUE NONCLUSTERED 
 (
 	[ContactType] ASC
@@ -2186,7 +1933,7 @@ ALTER TABLE [GSET].[ContactTypes] ADD  CONSTRAINT [IX_ContactTypes] UNIQUE NONCL
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Currencies]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Currencies]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[Currencies] ADD  CONSTRAINT [IX_Currencies] UNIQUE NONCLUSTERED 
 (
 	[CurName] ASC
@@ -2194,7 +1941,7 @@ ALTER TABLE [GSET].[Currencies] ADD  CONSTRAINT [IX_Currencies] UNIQUE NONCLUSTE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogSeverity]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_LogSeverity]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[LogSeverity] ADD  CONSTRAINT [IX_LogSeverity] UNIQUE NONCLUSTERED 
 (
 	[LogSeverity] ASC
@@ -2202,7 +1949,7 @@ ALTER TABLE [GSET].[LogSeverity] ADD  CONSTRAINT [IX_LogSeverity] UNIQUE NONCLUS
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogSystem]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_LogSystem]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[LogSystem] ADD  CONSTRAINT [IX_LogSystem] UNIQUE NONCLUSTERED 
 (
 	[LogSystem] ASC
@@ -2210,7 +1957,7 @@ ALTER TABLE [GSET].[LogSystem] ADD  CONSTRAINT [IX_LogSystem] UNIQUE NONCLUSTERE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_LogTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [GSET].[LogTypes] ADD  CONSTRAINT [IX_LogTypes] UNIQUE NONCLUSTERED 
 (
 	[LogType] ASC
@@ -2218,7 +1965,7 @@ ALTER TABLE [GSET].[LogTypes] ADD  CONSTRAINT [IX_LogTypes] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ_NotifLog]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [UQ_NotifLog]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [NOTIF].[NotificationLogs] ADD  CONSTRAINT [UQ_NotifLog] UNIQUE NONCLUSTERED 
 (
 	[Type] ASC,
@@ -2226,7 +1973,7 @@ ALTER TABLE [NOTIF].[NotificationLogs] ADD  CONSTRAINT [UQ_NotifLog] UNIQUE NONC
 	[IntervalLabel] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Roles]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Roles]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [SEC].[Roles] ADD  CONSTRAINT [IX_Roles] UNIQUE NONCLUSTERED 
 (
 	[RoleID] ASC
@@ -2234,7 +1981,7 @@ ALTER TABLE [SEC].[Roles] ADD  CONSTRAINT [IX_Roles] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Users]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  Index [IX_Users]    Script Date: 09/07/2026 11:18:04 AM ******/
 ALTER TABLE [SEC].[Users] ADD  CONSTRAINT [IX_Users] UNIQUE NONCLUSTERED 
 (
 	[UserName] ASC
@@ -2599,7 +2346,7 @@ REFERENCES [SEC].[Users] ([UserID])
 GO
 ALTER TABLE [SEC].[UsersPermissions] CHECK CONSTRAINT [FK_UsersPermissions_Users]
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2649,7 +2396,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsListInventory]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsListInventory]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2698,7 +2445,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsNotDepreciated]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsNotDepreciated]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2732,7 +2479,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpDepreciation]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[rstpDepreciation]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2766,7 +2513,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2824,7 +2571,7 @@ BEGIN CATCH
 END CATCH
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsDepreciationHistory]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsDepreciationHistory]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2861,7 +2608,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2869,68 +2616,69 @@ GO
 
 CREATE   PROCEDURE [AT].[stpAssetsI]
 (
-    @CompanyID smallint,
-    @AssetCode nvarchar(15),
-    @AssetImage image,
-    @AssetDesc nvarchar(50),
-    @LocationID smallint,
-    @LocDetailID smallint,
-    @GroupID smallint,
-    @CategoryID smallint,
-    @Donation bit,
-    @ContactID int,
-    @PurchaseOrderNo nvarchar(10),
-    @PurchaseDate date,
-    @PurchasePrice float,
-    @PurchaseCurCode char(3),
-    @InServiceDate date,
-    @InvoiceNo nvarchar(10),
-    @InvoiceDate date,
-    @AccountingEntryDate date,
-    @AccountingEntryJVNo nvarchar(10),
-    @BarcodeNumber nvarchar(20),
-    @SerialNumber nvarchar(50),
-    @BrandID smallint,
-    @Model nvarchar(50),
-    @Remark nvarchar(100),
-    @InstalledAt nvarchar(50),
-    @OwnerID tinyint,
-    @OwnerDesc nvarchar(50)
+@CompanyID smallint,
+@AssetCode nvarchar(15),
+@AssetImage image,
+@AssetDesc nvarchar(50),
+@LocationID smallint,
+@LocDetailID smallint,
+@GroupID smallint,
+@CategoryID smallint,
+@Donation bit,
+@ContactID int,
+@PurchaseOrderNo nvarchar(10),
+@PurchaseDate date,
+@PurchasePrice float,
+@PurchaseCurCode char(3),
+@InServiceDate date,
+@InvoiceNo nvarchar(10),
+@InvoiceDate date,
+@AccountingEntryDate date,
+@AccountingEntryJVNo nvarchar(10),
+@BarcodeNumber nvarchar(20),
+@SerialNumber nvarchar(50),
+@BrandID smallint,
+@Model nvarchar(50),
+@Remark nvarchar(100),
+@InstalledAt nvarchar(50),
+@OwnerID tinyint,
+@OwnerDesc nvarchar(50),
+@HREmpIDUsedBy nchar(10)
 )
 AS
 BEGIN
-    SET NOCOUNT OFF;
+SET NOCOUNT OFF;
+IF NULLIF(LTRIM(RTRIM(@Model)), N'') IS NULL
+    THROW 50001, 'Model is required.', 1;
 
-    IF NULLIF(LTRIM(RTRIM(@Model)), N'') IS NULL
-        THROW 50001, 'Model is required.', 1;
+IF EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc <> N'Company')
+   AND NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') IS NULL
+    THROW 50002, 'Owner description is required when the asset is not company-owned.', 1;
 
-    IF EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc <> N'Company')
-       AND NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') IS NULL
-        THROW 50002, 'Owner description is required when the asset is not company-owned.', 1;
+INSERT INTO [AT].[Assets]
+(
+    [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID],
+    [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate],
+    [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate],
+    [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber],
+    [BrandID], [Model], [StatusID], [Remark], [InstalledAt], [OwnerID], [OwnerInfo], [HREmpIDUsedBy]
+)
+VALUES
+(
+    @CompanyID, @AssetCode, @AssetImage, @AssetDesc, @LocationID, @LocDetailID,
+    @GroupID, @CategoryID, @Donation, @ContactID, @PurchaseOrderNo, @PurchaseDate,
+    @PurchasePrice, @PurchaseCurCode, @InServiceDate, @InvoiceNo, @InvoiceDate,
+    @AccountingEntryDate, @AccountingEntryJVNo, @BarcodeNumber, @SerialNumber,
+    @BrandID, LTRIM(RTRIM(@Model)), 0, @Remark, @InstalledAt, @OwnerID,
+    CASE WHEN EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc = N'Company')
+        THEN NULL ELSE NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') END,
+    NULLIF(LTRIM(RTRIM(@HREmpIDUsedBy)), N'')
+);
 
-    INSERT INTO [AT].[Assets]
-    (
-        [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID],
-        [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate],
-        [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate],
-        [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber],
-        [BrandID], [Model], [StatusID], [Remark], [InstalledAt], [OwnerID], [OwnerInfo]
-    )
-    VALUES
-    (
-        @CompanyID, @AssetCode, @AssetImage, @AssetDesc, @LocationID, @LocDetailID,
-        @GroupID, @CategoryID, @Donation, @ContactID, @PurchaseOrderNo, @PurchaseDate,
-        @PurchasePrice, @PurchaseCurCode, @InServiceDate, @InvoiceNo, @InvoiceDate,
-        @AccountingEntryDate, @AccountingEntryJVNo, @BarcodeNumber, @SerialNumber,
-        @BrandID, LTRIM(RTRIM(@Model)), 0, @Remark, @InstalledAt, @OwnerID,
-        CASE WHEN EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc = N'Company')
-            THEN NULL ELSE NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') END
-    );
-
-    SELECT SCOPE_IDENTITY();
+SELECT SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsInventoryHistory]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsInventoryHistory]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2973,7 +2721,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2999,7 +2747,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3007,27 +2755,28 @@ GO
 
 CREATE   PROCEDURE [AT].[stpAssetsS]
 (
-    @AssetID int
+@AssetID int
 )
 AS
 BEGIN
-    SET NOCOUNT ON;
+SET NOCOUNT ON;
 
-    SELECT      a.AssetID, a.CompanyID, a.AssetCode, a.AssetDesc, a.LocationID, a.LocDetailID,
-                a.GroupID, a.CategoryID, a.Donation, a.ContactID, a.PurchaseOrderNo, a.PurchaseDate,
-                a.PurchasePrice, a.PurchaseCurCode, a.InServiceDate, a.InvoiceNo, a.InvoiceDate,
-                a.AccountingEntryDate, a.AccountingEntryJVNo, a.BarcodeNumber, a.SerialNumber,
-                a.BrandID, a.Model, a.StatusID, st.Status AS StatusName, bt.BrandDesc,
-                a.StatusDate, a.Remark, a.InstalledAt, a.OwnerID, a.OwnerInfo AS OwnerDesc,
-                ot.OwnerDesc AS OwnerTypeDesc
-    FROM AT.Assets a
-    LEFT OUTER JOIN ATSET.StatusTypes st ON a.StatusID = st.StatusID
-    LEFT OUTER JOIN ATSET.BrandTypes bt ON a.BrandID = bt.BrandID
-    LEFT OUTER JOIN ATSET.OwnerTypes ot ON a.OwnerID = ot.OwnerID
-    WHERE a.AssetID = @AssetID;
+SELECT      a.AssetID, a.CompanyID, a.AssetCode, a.AssetDesc, a.LocationID, a.LocDetailID,
+            a.GroupID, a.CategoryID, a.Donation, a.ContactID, a.PurchaseOrderNo, a.PurchaseDate,
+            a.PurchasePrice, a.PurchaseCurCode, a.InServiceDate, a.InvoiceNo, a.InvoiceDate,
+            a.AccountingEntryDate, a.AccountingEntryJVNo, a.BarcodeNumber, a.SerialNumber,
+            a.BrandID, a.Model, a.StatusID, st.Status AS StatusName, bt.BrandDesc,
+            a.StatusDate, a.Remark, a.InstalledAt, a.OwnerID, a.OwnerInfo AS OwnerDesc,
+            ot.OwnerDesc AS OwnerTypeDesc,
+            a.HREmpIDUsedBy AS HrEmpIDUsedBy
+FROM AT.Assets a
+LEFT OUTER JOIN ATSET.StatusTypes st ON a.StatusID = st.StatusID
+LEFT OUTER JOIN ATSET.BrandTypes bt ON a.BrandID = bt.BrandID
+LEFT OUTER JOIN ATSET.OwnerTypes ot ON a.OwnerID = ot.OwnerID
+WHERE a.AssetID = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsStatusRemove]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsStatusRemove]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3084,7 +2833,7 @@ BEGIN
     );
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsStatusU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsStatusU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3143,7 +2892,7 @@ BEGIN
     );
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3151,79 +2900,80 @@ GO
 
 CREATE   PROCEDURE [AT].[stpAssetsU]
 (
-    @CompanyID smallint,
-    @AssetCode nvarchar(15),
-    @AssetImage image,
-    @AssetDesc nvarchar(50),
-    @LocationID smallint,
-    @LocDetailID smallint,
-    @GroupID smallint,
-    @CategoryID smallint,
-    @Donation bit,
-    @ContactID int,
-    @PurchaseOrderNo nvarchar(10),
-    @PurchaseDate date,
-    @PurchasePrice float,
-    @PurchaseCurCode char(3),
-    @InServiceDate date,
-    @InvoiceNo nvarchar(10),
-    @InvoiceDate date,
-    @AccountingEntryDate date,
-    @AccountingEntryJVNo nvarchar(10),
-    @BarcodeNumber nvarchar(20),
-    @SerialNumber nvarchar(50),
-    @BrandID smallint,
-    @Model nvarchar(50),
-    @Remark nvarchar(100),
-    @InstalledAt nvarchar(50),
-    @OwnerID tinyint,
-    @OwnerDesc nvarchar(50),
-    @AssetID int
+@CompanyID smallint,
+@AssetCode nvarchar(15),
+@AssetImage image,
+@AssetDesc nvarchar(50),
+@LocationID smallint,
+@LocDetailID smallint,
+@GroupID smallint,
+@CategoryID smallint,
+@Donation bit,
+@ContactID int,
+@PurchaseOrderNo nvarchar(10),
+@PurchaseDate date,
+@PurchasePrice float,
+@PurchaseCurCode char(3),
+@InServiceDate date,
+@InvoiceNo nvarchar(10),
+@InvoiceDate date,
+@AccountingEntryDate date,
+@AccountingEntryJVNo nvarchar(10),
+@BarcodeNumber nvarchar(20),
+@SerialNumber nvarchar(50),
+@BrandID smallint,
+@Model nvarchar(50),
+@Remark nvarchar(100),
+@InstalledAt nvarchar(50),
+@OwnerID tinyint,
+@OwnerDesc nvarchar(50),
+@HREmpIDUsedBy nchar(10),
+@AssetID int
 )
 AS
 BEGIN
-    SET NOCOUNT OFF;
+SET NOCOUNT OFF;
+IF NULLIF(LTRIM(RTRIM(@Model)), N'') IS NULL
+    THROW 50001, 'Model is required.', 1;
 
-    IF NULLIF(LTRIM(RTRIM(@Model)), N'') IS NULL
-        THROW 50001, 'Model is required.', 1;
+IF EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc <> N'Company')
+   AND NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') IS NULL
+    THROW 50002, 'Owner description is required when the asset is not company-owned.', 1;
 
-    IF EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc <> N'Company')
-       AND NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') IS NULL
-        THROW 50002, 'Owner description is required when the asset is not company-owned.', 1;
-
-    UPDATE [AT].[Assets]
-    SET [CompanyID] = @CompanyID,
-        [AssetCode] = @AssetCode,
-        [AssetImage] = @AssetImage,
-        [AssetDesc] = @AssetDesc,
-        [LocationID] = @LocationID,
-        [LocDetailID] = @LocDetailID,
-        [GroupID] = @GroupID,
-        [CategoryID] = @CategoryID,
-        [Donation] = @Donation,
-        [ContactID] = @ContactID,
-        [PurchaseOrderNo] = @PurchaseOrderNo,
-        [PurchaseDate] = @PurchaseDate,
-        [PurchasePrice] = @PurchasePrice,
-        [PurchaseCurCode] = @PurchaseCurCode,
-        [InServiceDate] = @InServiceDate,
-        [InvoiceNo] = @InvoiceNo,
-        [InvoiceDate] = @InvoiceDate,
-        [AccountingEntryDate] = @AccountingEntryDate,
-        [AccountingEntryJVNo] = @AccountingEntryJVNo,
-        [BarcodeNumber] = @BarcodeNumber,
-        [SerialNumber] = @SerialNumber,
-        [BrandID] = @BrandID,
-        [Model] = LTRIM(RTRIM(@Model)),
-        [Remark] = @Remark,
-        [InstalledAt] = @InstalledAt,
-        [OwnerID] = @OwnerID,
-        [OwnerInfo] = CASE WHEN EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc = N'Company')
-            THEN NULL ELSE NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') END
-    WHERE [AssetID] = @AssetID;
+UPDATE [AT].[Assets]
+SET [CompanyID] = @CompanyID,
+    [AssetCode] = @AssetCode,
+    [AssetImage] = @AssetImage,
+    [AssetDesc] = @AssetDesc,
+    [LocationID] = @LocationID,
+    [LocDetailID] = @LocDetailID,
+    [GroupID] = @GroupID,
+    [CategoryID] = @CategoryID,
+    [Donation] = @Donation,
+    [ContactID] = @ContactID,
+    [PurchaseOrderNo] = @PurchaseOrderNo,
+    [PurchaseDate] = @PurchaseDate,
+    [PurchasePrice] = @PurchasePrice,
+    [PurchaseCurCode] = @PurchaseCurCode,
+    [InServiceDate] = @InServiceDate,
+    [InvoiceNo] = @InvoiceNo,
+    [InvoiceDate] = @InvoiceDate,
+    [AccountingEntryDate] = @AccountingEntryDate,
+    [AccountingEntryJVNo] = @AccountingEntryJVNo,
+    [BarcodeNumber] = @BarcodeNumber,
+    [SerialNumber] = @SerialNumber,
+    [BrandID] = @BrandID,
+    [Model] = LTRIM(RTRIM(@Model)),
+    [Remark] = @Remark,
+    [InstalledAt] = @InstalledAt,
+    [OwnerID] = @OwnerID,
+    [OwnerInfo] = CASE WHEN EXISTS (SELECT 1 FROM ATSET.OwnerTypes WHERE OwnerID = @OwnerID AND OwnerDesc = N'Company')
+        THEN NULL ELSE NULLIF(LTRIM(RTRIM(@OwnerDesc)), N'') END,
+    [HREmpIDUsedBy] = NULLIF(LTRIM(RTRIM(@HREmpIDUsedBy)), N'')
+WHERE [AssetID] = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentByID]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentByID]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3235,7 +2985,7 @@ AS
     FROM AT.Attachments WHERE AttID = @AttID
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3259,7 +3009,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3274,7 +3024,7 @@ AS
     SELECT AttID,AssetID,FilePath,AttDesc,AttFileName,AttFileExt,Remark
     FROM AT.Attachments WHERE AttID = SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3285,7 +3035,7 @@ AS
     SELECT AttID,AssetID,FilePath,AttDesc,AttFileName,AttFileExt,Remark
     FROM AT.Attachments WHERE AssetID = @AssetID
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3318,7 +3068,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpDepreciationLastDelete]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpDepreciationLastDelete]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3340,7 +3090,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpGetAssetCodeList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetAssetCodeList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3359,7 +3109,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetDepreciation]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetDepreciation]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3376,7 +3126,7 @@ AS
 	WHERE CompanyID = @CompanyID
 	ORDER BY DepreciationDate DESC
 GO
-/****** Object:  StoredProcedure [AT].[stpGetDepreciationLastDate]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetDepreciationLastDate]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3398,7 +3148,7 @@ BEGIN
 	ORDER BY DepreciationDate DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryFinishInfo]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryFinishInfo]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3425,7 +3175,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryInfo]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryInfo]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3442,7 +3192,7 @@ AS
     WHERE   CompanyID = @CompanyID
     ORDER BY InventoryID DESC
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryLastDate]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryLastDate]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3459,7 +3209,7 @@ BEGIN
     ORDER BY InventoryStartDate DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryMode]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryMode]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3479,7 +3229,7 @@ BEGIN
     ORDER BY InventoryID DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoriesDetailsList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoriesDetailsList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3525,7 +3275,7 @@ BEGIN
       AND   (@LocationDetailID = -1 OR ID.LocDetailID = @LocationDetailID)
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoriesList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoriesList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3561,7 +3311,7 @@ BEGIN
     ORDER BY i.InventoryStartDate DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryGeneratedList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryGeneratedList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3578,7 +3328,7 @@ BEGIN
     ORDER BY InventoryStartDate ASC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailable]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailable]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3606,7 +3356,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableAllAssets]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableAllAssets]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3628,7 +3378,7 @@ BEGIN
     SELECT @@ROWCOUNT;
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableByAssetCode]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableByAssetCode]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3657,7 +3407,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3687,7 +3437,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3711,7 +3461,7 @@ BEGIN
     WHERE InvDetailID = @InvDetailID
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3748,7 +3498,7 @@ BEGIN
       AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark));
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3785,7 +3535,7 @@ BEGIN
     WHERE MaintID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3804,7 +3554,7 @@ BEGIN
     WHERE AssetID = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3861,127 +3611,116 @@ BEGIN
     WHERE MaintID = @MaintID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpProDepreciation]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProDepreciation]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [AT].[stpProDepreciation]
 (
-@DepreciationDate date,
-@CompanyID smallint,
-@CreatedByUserID smallint,
-@CreatedByFullName nvarchar(100),
-@CreatedByDateTime datetime,
-@Remark nvarchar(100),
-@RowEffected int output
+    @DepreciationDate date,
+    @CompanyID smallint,
+    @CreatedByUserID smallint,
+    @CreatedByFullName nvarchar(100),
+    @CreatedByDateTime datetime,
+    @Remark nvarchar(100),
+    @RowEffected int output
 )
 AS
 BEGIN
-SET NOCOUNT ON;
-DECLARE @LastDepreciationDate date;
-DECLARE @DepID int;
 
--- Must be after the last prior depreciation date for this company.
--- Excluding current date keeps same-date rerun behavior.
-SELECT @LastDepreciationDate = MAX(DepreciationDate)
-FROM AT.Depreciations
-WHERE CompanyID = @CompanyID
-  AND DepreciationDate <> @DepreciationDate;
+    SET NOCOUNT ON;
 
-IF @LastDepreciationDate IS NOT NULL
-   AND @DepreciationDate <= @LastDepreciationDate
-BEGIN
-    THROW 50022, 'Cannot run depreciation: DepreciationDate must be after the last depreciation date.', 1;
-END
+    DECLARE @LastDepreciationDate date;
+    DECLARE @DepID int;
 
-IF (SELECT COUNT(*) FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID) > 0
-BEGIN
-    DELETE FROM AT.DepreciationsDetails
-    WHERE DepID = (SELECT DepID FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID);
+    -- Must be after the last prior depreciation date for this company.
+    -- Excluding current date keeps same-date rerun behavior.
+    SELECT @LastDepreciationDate = MAX(DepreciationDate)
+    FROM AT.Depreciations
+    WHERE CompanyID = @CompanyID
+      AND DepreciationDate <> @DepreciationDate;
 
-    DELETE FROM AT.Depreciations
-    WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID;
-END
+    IF @LastDepreciationDate IS NOT NULL AND @DepreciationDate <= @LastDepreciationDate
+        THROW 50022, 'Cannot run depreciation: DepreciationDate must be after the last depreciation date.', 1;
 
-INSERT INTO AT.Depreciations
-(
-    DepreciationDate, CompanyID, Remark, CreatedByUserID, CreatedByFullName, CreatedByDateTime
-)
-VALUES
-(
-    @DepreciationDate, @CompanyID, @Remark, @CreatedByUserID, @CreatedByFullName, @CreatedByDateTime
-);
+    IF (SELECT COUNT(*) FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID) > 0
+    BEGIN
+        DELETE FROM AT.DepreciationsDetails
+        WHERE DepID = (SELECT DepID FROM AT.Depreciations WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID);
 
-SET @DepID = SCOPE_IDENTITY();
+        DELETE FROM AT.Depreciations
+        WHERE DepreciationDate = @DepreciationDate AND CompanyID = @CompanyID;
+    END
 
-INSERT INTO AT.DepreciationsDetails
-(
-    DepID, AssetID, DepreciationRate,
-    DepreciationValue, NetBookValue,
-    PurchasePrice, PurchaseCurCode,
-    AccountingEntryJVNo, AccountingEntryDate,
-    GroupID, CategoryID
-)
-SELECT
-    @DepID,
-    A.AssetID,
-    GT.DepreciationRate,
-    ROUND((A.PurchasePrice * GT.DepreciationRate / 100.0) * (DATEDIFF(DAY, A.AccountingEntryDate, @DepreciationDate) + 1) / 365.0, 2),
-    ROUND(A.PurchasePrice - ((A.PurchasePrice * GT.DepreciationRate / 100.0) * (DATEDIFF(DAY, A.AccountingEntryDate, @DepreciationDate) + 1) / 365.0), 2),
-    A.PurchasePrice,
-    A.PurchaseCurCode,
-    A.AccountingEntryJVNo,
-    A.AccountingEntryDate,
-    A.GroupID,
-    A.CategoryID
-FROM AT.Assets A
-LEFT JOIN ATSET.GroupTypes GT ON A.GroupID = GT.GroupID
-WHERE
-    A.CompanyID = @CompanyID
-    AND A.AccountingEntryDate < @DepreciationDate
-    AND A.PurchasePrice > 0
-    AND A.StatusID IN
+    INSERT INTO AT.Depreciations
     (
-        SELECT ST.StatusID
-        FROM ATSET.StatusTypes ST
-        WHERE ST.Status IN (N'Active', N'Under Maintenance')
+        DepreciationDate, CompanyID, Remark, CreatedByUserID, CreatedByFullName, CreatedByDateTime
     )
-    AND A.OwnerID IN
+    VALUES
     (
-        SELECT OT.OwnerID
-        FROM ATSET.OwnerTypes OT
-        WHERE OT.OwnerDesc = N'Company'
-    )
-    AND
-    (
-        A.AssetID IN
-        (
-            SELECT DD.AssetID
-            FROM AT.DepreciationsDetails DD
-            WHERE DD.NetBookValue > 0
-              AND DD.DepID IN
-              (
-                  SELECT TOP 1 D.DepID
-                  FROM AT.Depreciations D
-                  WHERE D.DepID <> @DepID
-                    AND D.CompanyID = @CompanyID
-                  ORDER BY D.DepreciationDate DESC
-              )
-        )
-        OR
-        A.AssetID NOT IN (SELECT DD2.AssetID FROM AT.DepreciationsDetails DD2)
+        @DepreciationDate, @CompanyID, @Remark, @CreatedByUserID, @CreatedByFullName, @CreatedByDateTime
     );
 
-UPDATE AT.DepreciationsDetails
-SET NetBookValue = 0
-WHERE NetBookValue < 0
-  AND DepID = @DepID;
+    SET @DepID = SCOPE_IDENTITY();
 
-SET @RowEffected = (SELECT COUNT(*) FROM AT.DepreciationsDetails WHERE DepID = @DepID);
+    INSERT INTO AT.DepreciationsDetails
+    (
+        DepID, AssetID, DepreciationRate,
+        DepreciationValue, NetBookValue,
+        PurchasePrice, PurchaseCurCode,
+        AccountingEntryJVNo, AccountingEntryDate,
+        GroupID, CategoryID
+    )
+    SELECT
+        @DepID,
+        A.AssetID,
+        GT.DepreciationRate,
+        ROUND((A.PurchasePrice * GT.DepreciationRate / 100.0) * (DATEDIFF(DAY, A.AccountingEntryDate, @DepreciationDate) + 1) / 365.0, 2),
+        ROUND(A.PurchasePrice - ((A.PurchasePrice * GT.DepreciationRate / 100.0) * (DATEDIFF(DAY, A.AccountingEntryDate, @DepreciationDate) + 1) / 365.0), 2),
+        A.PurchasePrice,
+        A.PurchaseCurCode,
+        A.AccountingEntryJVNo,
+        A.AccountingEntryDate,
+        A.GroupID,
+        A.CategoryID
+    FROM AT.Assets A
+    LEFT JOIN ATSET.GroupTypes GT ON A.GroupID = GT.GroupID
+    WHERE
+        A.CompanyID = @CompanyID
+        AND A.AccountingEntryDate < @DepreciationDate
+        AND A.PurchasePrice > 0
+        AND StatusID in (0, 8 , 12)
+        AND A.OwnerID IN (1, 3)
+        AND
+        (
+            A.AssetID IN
+            (
+                SELECT AssetID
+                FROM AT.DepreciationsDetails DD
+                WHERE NetBookValue > 0
+                  AND DepID IN
+                  (
+                      SELECT TOP 1 DepID
+                      FROM AT.Depreciations
+                      WHERE DepID <> @DepID
+                        AND CompanyID = @CompanyID
+                      ORDER BY DepreciationDate DESC
+                  )
+            )
+            OR
+            A.AssetID NOT IN (SELECT AssetID FROM AT.DepreciationsDetails)
+        );
+
+    UPDATE AT.DepreciationsDetails
+    SET NetBookValue = 0
+    WHERE NetBookValue < 0
+      AND DepID = @DepID;
+
+    SET @RowEffected = (SELECT COUNT(*) FROM AT.DepreciationsDetails WHERE DepID = @DepID);
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryEnd]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryEnd]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4026,7 +3765,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryStart]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryStart]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4104,7 +3843,7 @@ BEGIN
         SerialNumber,
         NULL
     FROM AT.Assets
-    WHERE StatusID = 0
+    WHERE (StatusID = 0 OR StatusID = 12)
       AND CompanyID = @CompanyID;
 
     UPDATE Ast
@@ -4112,12 +3851,12 @@ BEGIN
     FROM AT.Assets Ast
     INNER JOIN AT.InventoriesDetails InvD ON InvD.AssetID = Ast.AssetID
     WHERE InvD.InventoryID = @InventoryID
-      AND Ast.StatusID = 0;
+      AND (Ast.StatusID = 0 OR Ast.StatusID = 12);
 
     SELECT @@ROWCOUNT;
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryStartRefresh]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryStartRefresh]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4168,7 +3907,7 @@ BEGIN
         SerialNumber,
         NULL
     FROM AT.Assets
-    WHERE StatusID = 0
+    WHERE (StatusID = 0 OR StatusID = 12)
       AND CompanyID = (SELECT CompanyID FROM AT.Inventories WHERE InventoryID = @InventoryID)
       AND AssetID NOT IN (SELECT AssetID FROM AT.InventoriesDetails WHERE InventoryID = @InventoryID);
 
@@ -4177,10 +3916,10 @@ BEGIN
     FROM AT.Assets Ast
     INNER JOIN AT.InventoriesDetails InvD ON InvD.AssetID = Ast.AssetID
     WHERE InvD.InventoryID = @InventoryID
-      AND Ast.StatusID = 0;
+      AND (Ast.StatusID = 0 OR Ast.StatusID = 12);
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpStatusHistoryS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpStatusHistoryS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4200,7 +3939,7 @@ AS
             LEFT OUTER JOIN ATSET.StatusTypes ST ON SH.StatusID = ST.StatusID
     WHERE   SH.AssetID = @AssetID;
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4233,7 +3972,7 @@ BEGIN
       AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark));
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4266,7 +4005,7 @@ BEGIN
     WHERE WarntID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4285,7 +4024,7 @@ BEGIN
     WHERE AssetID = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4334,7 +4073,7 @@ BEGIN
     WHERE WarntID = @WarntID;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpBrandTypesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpBrandTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4356,7 +4095,7 @@ BEGIN
     WHERE BrandID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4375,7 +4114,7 @@ BEGIN
       AND [Category] = @Original_Category;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4397,7 +4136,7 @@ BEGIN
     WHERE CategoryID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4413,7 +4152,7 @@ BEGIN
     ORDER BY Category;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4440,7 +4179,7 @@ BEGIN
     WHERE CategoryID = @CategoryID;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetAssetCode]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetAssetCode]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4474,7 +4213,7 @@ BEGIN
         WHERE  CountryID = @CountryID
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetBrandTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetBrandTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4496,7 +4235,7 @@ BEGIN
     ORDER BY BrandDesc;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetCategoryTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetCategoryTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4511,7 +4250,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetGroupTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetGroupTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4524,7 +4263,7 @@ AS
     FROM   ATSET.GroupTypes
     ORDER BY GroupName
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetLocationDetails]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetLocationDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4538,7 +4277,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetLocationTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetLocationTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4553,7 +4292,7 @@ AS
     WHERE  CompanyID = CASE @CompanyID WHEN -1 THEN CompanyID ELSE @CompanyID END
     ORDER BY Location
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetOwnerTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetOwnerTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4569,7 +4308,7 @@ BEGIN
     ORDER BY OwnerDesc;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetSettings]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetSettings]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4584,7 +4323,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetStatusTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetStatusTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4599,7 +4338,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4618,7 +4357,7 @@ AS
 	SET NOCOUNT OFF;
 DELETE FROM [ATSET].[GroupTypes] WHERE (([GroupID] = @Original_GroupID) AND ([GroupName] = @Original_GroupName) AND ([Acronym] = @Original_Acronym) AND ([DepreciationRate] = @Original_DepreciationRate) AND ((@IsNull_AccountNo = 1 AND [AccountNo] IS NULL) OR ([AccountNo] = @Original_AccountNo)) AND ([AccountingExclusion] = @Original_AccountingExclusion))
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4644,7 +4383,7 @@ AS
     FROM   ATSET.GroupTypes
     WHERE  GroupID = SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4657,7 +4396,7 @@ AS
            AccountNo, AccountingExclusion, CountryID
     FROM   ATSET.GroupTypes
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4700,7 +4439,7 @@ AS
            AccountNo, AccountingExclusion, CountryID
     FROM   ATSET.GroupTypes WHERE GroupID = @GroupID
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4716,7 +4455,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4737,7 +4476,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4754,7 +4493,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4778,7 +4517,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4794,7 +4533,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4811,7 +4550,7 @@ AS
     VALUES (@Location, @CompanyID);
     SELECT SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4830,7 +4569,7 @@ AS
            [CompanyID] = @CompanyID
     WHERE  [LocationID] = @LocationID
 GO
-/****** Object:  StoredProcedure [ATSET].[stpSettingsU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [ATSET].[stpSettingsU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4850,7 +4589,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4868,7 +4607,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4890,7 +4629,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4906,7 +4645,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4925,7 +4664,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4949,7 +4688,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpCompaniesD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpCompaniesD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4962,7 +4701,7 @@ AS
     SET NOCOUNT OFF;
     DELETE FROM GSET.Companies WHERE CompanyID = @CompanyID
 GO
-/****** Object:  StoredProcedure [GSET].[stpCompaniesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpCompaniesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4991,7 +4730,7 @@ BEGIN
     WHERE  CompanyID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [GSET].[stpCompaniesU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpCompaniesU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5019,7 +4758,7 @@ BEGIN
     WHERE  CompanyID = @CompanyID;
 END
 GO
-/****** Object:  StoredProcedure [GSET].[stpCountriesI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpCountriesI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5043,7 +4782,7 @@ AS
     SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry
     FROM   GSET.Countries WHERE CountryID = @CountryID
 GO
-/****** Object:  StoredProcedure [GSET].[stpCountriesU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpCountriesU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5068,7 +4807,7 @@ AS
            ActiveCountry  = @ActiveCountry
     WHERE  CountryID = @CountryID
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail1]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail1]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5082,7 +4821,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail2]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail2]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5096,7 +4835,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail3]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail3]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5110,7 +4849,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetBanks]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetBanks]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5124,7 +4863,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCities]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCities]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5139,7 +4878,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCompanies]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCompanies]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5156,7 +4895,7 @@ BEGIN
     ORDER BY CompanyName;
 END
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetContactTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetContactTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5182,7 +4921,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCountries]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCountries]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5196,7 +4935,7 @@ AS
     FROM   GSET.Countries
     ORDER BY Country
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCurrencies]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCurrencies]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5210,7 +4949,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogSeverity]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogSeverity]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5224,7 +4963,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogSystem]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogSystem]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5238,7 +4977,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogTypes]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5252,7 +4991,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetSettings]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetSettings]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5266,7 +5005,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetWorkingCountry]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetWorkingCountry]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5282,7 +5021,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpSettingsU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GSET].[stpSettingsU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5302,7 +5041,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5320,7 +5059,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5352,7 +5091,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsList]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsList]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5370,7 +5109,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5389,7 +5128,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5437,7 +5176,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpGetContacts]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpGetContacts]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5453,7 +5192,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpLogI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpLogI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5494,7 +5233,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpLogS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [GTBL].[stpLogS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5510,7 +5249,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpCreateNotification]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpCreateNotification]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5530,7 +5269,7 @@ AS
     VALUES (@UserID, @CompanyID, @Type, @EntityID, @AssetID, @Message);
     SELECT SCOPE_IDENTITY() AS NotifID;
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpGetNotifications]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpGetNotifications]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5547,7 +5286,7 @@ AS
     WHERE UserID = @UserID
     ORDER BY CreatedAt DESC;
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpGetPendingMaintenanceNotifications]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpGetPendingMaintenanceNotifications]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5577,7 +5316,7 @@ BEGIN
     WHERE a.StatusID = 8;
 END
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpGetPendingWarrantyNotifications]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpGetPendingWarrantyNotifications]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5607,7 +5346,7 @@ BEGIN
       AND DATEDIFF(day, CAST(GETDATE() AS date), w.ToDate) <= 14;
 END
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpLogNotification]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpLogNotification]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5626,7 +5365,7 @@ AS
         INSERT INTO NOTIF.NotificationLogs(Type, EntityID, IntervalLabel)
         VALUES (@Type, @EntityID, @IntervalLabel);
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpMarkAllNotificationsRead]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpMarkAllNotificationsRead]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5640,7 +5379,7 @@ AS
     SET    IsRead = 1
     WHERE  UserID = @UserID AND IsRead = 0;
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpMarkNotificationRead]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpMarkNotificationRead]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5655,7 +5394,7 @@ AS
     SET    IsRead = 1
     WHERE  NotifID = @NotifID AND UserID = @UserID;
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetLoginUser]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetLoginUser]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5673,7 +5412,7 @@ BEGIN
       AND  [UserPassword] IS NOT NULL
 END
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetRoles]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetRoles]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5688,7 +5427,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetUserPermissions]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetUserPermissions]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5708,7 +5447,7 @@ AS
     WHERE  up.UserID = @UserID
     ORDER BY co.CompanyName
 GO
-/****** Object:  StoredProcedure [SEC].[stpUserPermissionsD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpUserPermissionsD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5725,7 +5464,7 @@ AS
     DELETE FROM SEC.UsersPermissions
     WHERE  UserID = @UserID AND CountryID = @CountryID AND CompanyID = @CompanyID
 GO
-/****** Object:  StoredProcedure [SEC].[stpUserPermissionsI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpUserPermissionsI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5746,7 +5485,7 @@ AS
         INSERT INTO SEC.UsersPermissions (UserID, CountryID, CompanyID)
         VALUES (@UserID, @CountryID, @CompanyID)
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersD]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersD]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5761,7 +5500,7 @@ AS
     DELETE FROM SEC.UsersPermissions WHERE UserID = @UserID;
     DELETE FROM SEC.Users             WHERE UserID = @UserID
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersI]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersI]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5785,7 +5524,7 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS UserID;
 END
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersS]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersS]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5802,7 +5541,7 @@ BEGIN
     ORDER BY u.FullName;
 END
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersU]    Script Date: 07/07/2026 1:44:41 PM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersU]    Script Date: 09/07/2026 11:18:04 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
