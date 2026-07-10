@@ -223,9 +223,19 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     }
 
     [HttpGet("hr-employees")]
-    public async Task<IActionResult> GetHrEmployees([FromQuery] short companyId)
+    public async Task<IActionResult> GetHrEmployees(
+        [FromQuery] short companyId = 0,
+        [FromQuery] string? countryId = null,
+        [FromQuery] int? companyProfileId = null)
     {
         if (IsAuditor()) return Forbid();
+        if (companyProfileId.HasValue)
+        {
+            if (string.IsNullOrWhiteSpace(countryId)) return BadRequest("countryId is required.");
+            if (companyProfileId <= 0) return BadRequest("companyProfileId is required.");
+            return Ok(await repo.GetHrEmployeesByCompanyProfileAsync(countryId.ToUpper(), companyProfileId.Value));
+        }
+
         if (companyId <= 0) return BadRequest("companyId is required.");
 
         if (!IsAdmin())

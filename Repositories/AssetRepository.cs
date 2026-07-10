@@ -195,6 +195,7 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
                 request.AssetStatusID, request.AssetStatusDate,
                 request.StatusID, request.StatusDate, request.StatusContactID,
                 request.StatusSalePrice, request.StatusSaleCurCode, request.StatusDesc,
+                request.TransferCompanyProfileID, request.TransferEmpID,
                 CreatedByUserID = userId, CreatedByFullName = fullName,
                 CreatedByDateTime = DateTime.Now, AssetID = assetId
             },

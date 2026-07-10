@@ -148,6 +148,8 @@ public class AssetStatusUpdateRequest
     public double StatusSalePrice { get; set; }
     public string? StatusSaleCurCode { get; set; }
     public string? StatusDesc { get; set; }
+    public int? TransferCompanyProfileID { get; set; }
+    public string? TransferEmpID { get; set; }
 }
 
 public class AssetStatusRemoveRequest

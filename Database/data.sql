@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [Assets]    Script Date: 09/07/2026 11:18:03 AM ******/
+/****** Object:  Database [Assets]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE DATABASE [Assets]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -87,30 +87,30 @@ ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
 GO
 USE [Assets]
 GO
-/****** Object:  User [saAsset]    Script Date: 09/07/2026 11:18:03 AM ******/
+/****** Object:  User [saAsset]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE USER [saAsset] FOR LOGIN [saAsset] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [saAsset]
 GO
-/****** Object:  Schema [AT]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Schema [AT]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE SCHEMA [AT]
 GO
-/****** Object:  Schema [ATSET]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Schema [ATSET]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE SCHEMA [ATSET]
 GO
-/****** Object:  Schema [GSET]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Schema [GSET]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE SCHEMA [GSET]
 GO
-/****** Object:  Schema [GTBL]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Schema [GTBL]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE SCHEMA [GTBL]
 GO
-/****** Object:  Schema [NOTIF]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Schema [NOTIF]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE SCHEMA [NOTIF]
 GO
-/****** Object:  Schema [SEC]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Schema [SEC]    Script Date: 10/07/2026 10:17:02 AM ******/
 CREATE SCHEMA [SEC]
 GO
-/****** Object:  UserDefinedFunction [AT].[fnLastInventoryDateByItem]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  UserDefinedFunction [AT].[fnLastInventoryDateByItem]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +140,7 @@ END
 
 
 GO
-/****** Object:  Table [AT].[Assets]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[Assets]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -183,7 +183,7 @@ CREATE TABLE [AT].[Assets](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Attachments]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[Attachments]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -202,7 +202,7 @@ CREATE TABLE [AT].[Attachments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Depreciations]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[Depreciations]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -221,7 +221,7 @@ CREATE TABLE [AT].[Depreciations](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[DepreciationsDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[DepreciationsDetails]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -245,7 +245,7 @@ CREATE TABLE [AT].[DepreciationsDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Inventories]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[Inventories]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -268,7 +268,7 @@ CREATE TABLE [AT].[Inventories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[InventoriesDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[InventoriesDetails]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -292,13 +292,14 @@ CREATE TABLE [AT].[InventoriesDetails](
 	[SerialNumber] [nvarchar](50) NULL,
 	[Remark] [nvarchar](100) NULL,
 	[CreatedDate] [date] NOT NULL,
+	[StatusIDPrevious] [tinyint] NOT NULL,
  CONSTRAINT [PK_InventoriesDetails] PRIMARY KEY CLUSTERED 
 (
 	[InvDetailID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Maintenances]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[Maintenances]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -319,7 +320,7 @@ CREATE TABLE [AT].[Maintenances](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[StatusHistory]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[StatusHistory]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -329,7 +330,7 @@ CREATE TABLE [AT].[StatusHistory](
 	[AssetID] [int] NOT NULL,
 	[StatusID] [tinyint] NOT NULL,
 	[StatusDate] [date] NOT NULL,
-	[StatusDesc] [nvarchar](50) NULL,
+    [StatusDesc] [nvarchar](200) NULL,
 	[StatusContactID] [int] NULL,
 	[StatusSalePrice] [float] NOT NULL,
 	[StatusSaleCurCode] [char](3) NULL,
@@ -342,7 +343,7 @@ CREATE TABLE [AT].[StatusHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [AT].[Warranties]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [AT].[Warranties]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -361,7 +362,7 @@ CREATE TABLE [AT].[Warranties](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[BrandTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[BrandTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -375,7 +376,7 @@ CREATE TABLE [ATSET].[BrandTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[CategoryTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[CategoryTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -389,7 +390,7 @@ CREATE TABLE [ATSET].[CategoryTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[GroupTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[GroupTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -408,7 +409,7 @@ CREATE TABLE [ATSET].[GroupTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[LocationDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[LocationDetails]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -425,7 +426,7 @@ CREATE TABLE [ATSET].[LocationDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[LocationTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[LocationTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -440,7 +441,7 @@ CREATE TABLE [ATSET].[LocationTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[OwnerTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[OwnerTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -454,7 +455,7 @@ CREATE TABLE [ATSET].[OwnerTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[Settings]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[Settings]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -470,7 +471,7 @@ CREATE TABLE [ATSET].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [ATSET].[StatusTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [ATSET].[StatusTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -484,7 +485,7 @@ CREATE TABLE [ATSET].[StatusTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail1]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[AddressDetail1]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -499,7 +500,7 @@ CREATE TABLE [GSET].[AddressDetail1](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail2]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[AddressDetail2]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -514,7 +515,7 @@ CREATE TABLE [GSET].[AddressDetail2](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[AddressDetail3]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[AddressDetail3]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -529,7 +530,7 @@ CREATE TABLE [GSET].[AddressDetail3](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Companies]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[Companies]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -548,7 +549,7 @@ CREATE TABLE [GSET].[Companies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[ContactTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[ContactTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -562,7 +563,7 @@ CREATE TABLE [GSET].[ContactTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Countries]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[Countries]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -584,7 +585,7 @@ CREATE TABLE [GSET].[Countries](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Currencies]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[Currencies]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -598,7 +599,7 @@ CREATE TABLE [GSET].[Currencies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[CurrenciesRates]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[CurrenciesRates]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -614,7 +615,7 @@ CREATE TABLE [GSET].[CurrenciesRates](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogSeverity]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[LogSeverity]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -628,7 +629,7 @@ CREATE TABLE [GSET].[LogSeverity](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogSystem]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[LogSystem]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -642,7 +643,7 @@ CREATE TABLE [GSET].[LogSystem](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[LogTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[LogTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -656,7 +657,7 @@ CREATE TABLE [GSET].[LogTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GSET].[Settings]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GSET].[Settings]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -672,7 +673,7 @@ CREATE TABLE [GSET].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GTBL].[Contacts]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GTBL].[Contacts]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -700,7 +701,7 @@ CREATE TABLE [GTBL].[Contacts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [GTBL].[Logs]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [GTBL].[Logs]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -728,7 +729,7 @@ CREATE TABLE [GTBL].[Logs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [NOTIF].[NotificationLogs]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [NOTIF].[NotificationLogs]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -745,7 +746,7 @@ CREATE TABLE [NOTIF].[NotificationLogs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [NOTIF].[Notifications]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [NOTIF].[Notifications]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -766,7 +767,7 @@ CREATE TABLE [NOTIF].[Notifications](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[Roles]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [SEC].[Roles]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -780,7 +781,7 @@ CREATE TABLE [SEC].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[Users]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [SEC].[Users]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -798,7 +799,7 @@ CREATE TABLE [SEC].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [SEC].[UsersPermissions]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Table [SEC].[UsersPermissions]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -814,56 +815,6 @@ CREATE TABLE [SEC].[UsersPermissions](
 	[CompanyID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-SET IDENTITY_INSERT [AT].[Assets] ON 
-GO
-INSERT [AT].[Assets] ([AssetID], [CompanyID], [AssetCode], [AssetImage], [AssetDesc], [LocationID], [LocDetailID], [GroupID], [CategoryID], [Donation], [ContactID], [PurchaseOrderNo], [PurchaseDate], [PurchasePrice], [PurchaseCurCode], [InServiceDate], [InvoiceNo], [InvoiceDate], [AccountingEntryDate], [AccountingEntryJVNo], [BarcodeNumber], [SerialNumber], [BrandID], [Model], [StatusID], [StatusDate], [Remark], [InstalledAt], [OwnerID], [OwnerInfo], [HREmpIDUsedBy]) VALUES (16, 13, N'CY-GZG-000001', NULL, N'dzxgdf', 109, 113, 109, 251, 0, NULL, NULL, NULL, 0, N'USD', CAST(N'2026-07-09' AS Date), NULL, NULL, NULL, NULL, NULL, NULL, 2, N'dwg', 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 1, NULL, N'2024001   ')
-GO
-SET IDENTITY_INSERT [AT].[Assets] OFF
-GO
-SET IDENTITY_INSERT [AT].[Inventories] ON 
-GO
-INSERT [AT].[Inventories] ([InventoryID], [InventoryStartDate], [InventoryEndDate], [Remark], [CompanyID], [StartCreatedByUserID], [StartCreatedByFullName], [StartCreatedByDateTime], [EndCreatedByUserID], [EndCreatedByFullName], [EndCreatedByDateTime]) VALUES (32, CAST(N'2026-07-09' AS Date), CAST(N'2026-07-09' AS Date), NULL, 13, 3, N'Ali Saker', CAST(N'2026-07-09T10:37:42.563' AS DateTime), 3, N'Ali Saker', CAST(N'2026-07-09T10:37:48.067' AS DateTime))
-GO
-SET IDENTITY_INSERT [AT].[Inventories] OFF
-GO
-SET IDENTITY_INSERT [AT].[InventoriesDetails] ON 
-GO
-INSERT [AT].[InventoriesDetails] ([InvDetailID], [InventoryID], [AssetID], [IsAvailable], [AssetCode], [AssetDesc], [Relocated], [RelocatedLocationID], [RelocatedLocDetailID], [CompanyID], [LocationID], [LocDetailID], [GroupID], [CategoryID], [BarcodeNumber], [SerialNumber], [Remark], [CreatedDate]) VALUES (1874, 32, 16, 1, N'CY-GZG-000001', N'dzxgdf', 0, NULL, NULL, 13, 109, 113, 109, 251, NULL, NULL, NULL, CAST(N'2026-07-09' AS Date))
-GO
-SET IDENTITY_INSERT [AT].[InventoriesDetails] OFF
-GO
-SET IDENTITY_INSERT [AT].[StatusHistory] ON 
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (101, 16, 11, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T09:37:37.013' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (102, 16, 5, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T09:37:47.670' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (103, 16, 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:36:37.927' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (104, 16, 1, CAST(N'2026-07-09' AS Date), N'k;lj', 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:27.580' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (105, 16, 0, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:30.687' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (106, 16, 1, CAST(N'2026-07-09' AS Date), NULL, 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:39.767' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (107, 16, 5, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:44:41.893' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (108, 16, 1, CAST(N'2026-07-09' AS Date), NULL, 5, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:45:53.967' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (109, 16, 3, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:45:59.727' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (110, 16, 4, CAST(N'2026-07-09' AS Date), NULL, 5, 0, N'EUR', 3, N'Ali Saker', CAST(N'2026-07-09T10:46:18.450' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (111, 16, 0, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:46:48.297' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (112, 16, 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:47:14.447' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (113, 16, 5, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:47:16.773' AS DateTime))
-GO
-INSERT [AT].[StatusHistory] ([StatusHistID], [AssetID], [StatusID], [StatusDate], [StatusDesc], [StatusContactID], [StatusSalePrice], [StatusSaleCurCode], [CreatedByUserID], [CreatedByFullName], [CreatedByDateTime]) VALUES (114, 16, 12, CAST(N'2026-07-09' AS Date), NULL, NULL, 0, NULL, 3, N'Ali Saker', CAST(N'2026-07-09T10:47:25.730' AS DateTime))
-GO
-SET IDENTITY_INSERT [AT].[StatusHistory] OFF
 GO
 SET IDENTITY_INSERT [ATSET].[BrandTypes] ON 
 GO
@@ -1317,9 +1268,9 @@ INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VAL
 GO
 INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (3, N'Country', N'Asset Acronym Start Setting', N'General')
 GO
-INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (4, N'sdfasdf', N'Warranty Notification Start Setting', N'General')
+INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (4, N'1 Day', N'Warranty Notification Start Setting', N'General')
 GO
-INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (5, N'1 Week, 2 Days, 1 Day', N'Maintenace Notification Start Setting', N'General')
+INSERT [ATSET].[Settings] ([SetID], [SetValue], [SetDescription], [SetType]) VALUES (5, N'1 Day', N'Maintenace Notification Start Setting', N'General')
 GO
 INSERT [ATSET].[StatusTypes] ([StatusID], [Status]) VALUES (0, N'Active')
 GO
@@ -1831,20 +1782,20 @@ SET IDENTITY_INSERT [SEC].[Users] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Assets]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Assets]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [AT].[Assets] ADD  CONSTRAINT [IX_Assets] UNIQUE NONCLUSTERED 
 (
 	[AssetCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Depreciations]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Depreciations]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [AT].[Depreciations] ADD  CONSTRAINT [IX_Depreciations] UNIQUE NONCLUSTERED 
 (
 	[DepreciationDate] ASC,
 	[CompanyID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Inventories]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Inventories]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [AT].[Inventories] ADD  CONSTRAINT [IX_Inventories] UNIQUE NONCLUSTERED 
 (
 	[InventoryStartDate] ASC,
@@ -1853,7 +1804,7 @@ ALTER TABLE [AT].[Inventories] ADD  CONSTRAINT [IX_Inventories] UNIQUE NONCLUSTE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_BrandTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_BrandTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [ATSET].[BrandTypes] ADD  CONSTRAINT [IX_BrandTypes] UNIQUE NONCLUSTERED 
 (
 	[BrandDesc] ASC
@@ -1861,7 +1812,7 @@ ALTER TABLE [ATSET].[BrandTypes] ADD  CONSTRAINT [IX_BrandTypes] UNIQUE NONCLUST
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Categories]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Categories]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [ATSET].[CategoryTypes] ADD  CONSTRAINT [IX_Categories] UNIQUE NONCLUSTERED 
 (
 	[Category] ASC
@@ -1869,7 +1820,7 @@ ALTER TABLE [ATSET].[CategoryTypes] ADD  CONSTRAINT [IX_Categories] UNIQUE NONCL
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_GroupTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_GroupTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [ATSET].[GroupTypes] ADD  CONSTRAINT [IX_GroupTypes] UNIQUE NONCLUSTERED 
 (
 	[GroupName] ASC
@@ -1877,7 +1828,7 @@ ALTER TABLE [ATSET].[GroupTypes] ADD  CONSTRAINT [IX_GroupTypes] UNIQUE NONCLUST
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LocationTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_LocationTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [ATSET].[LocationTypes] ADD  CONSTRAINT [IX_LocationTypes] UNIQUE NONCLUSTERED 
 (
 	[Location] ASC
@@ -1885,7 +1836,7 @@ ALTER TABLE [ATSET].[LocationTypes] ADD  CONSTRAINT [IX_LocationTypes] UNIQUE NO
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_OwnerTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_OwnerTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [ATSET].[OwnerTypes] ADD  CONSTRAINT [IX_OwnerTypes] UNIQUE NONCLUSTERED 
 (
 	[OwnerDesc] ASC
@@ -1893,7 +1844,7 @@ ALTER TABLE [ATSET].[OwnerTypes] ADD  CONSTRAINT [IX_OwnerTypes] UNIQUE NONCLUST
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_StatusTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_StatusTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [ATSET].[StatusTypes] ADD  CONSTRAINT [IX_StatusTypes] UNIQUE NONCLUSTERED 
 (
 	[Status] ASC
@@ -1901,7 +1852,7 @@ ALTER TABLE [ATSET].[StatusTypes] ADD  CONSTRAINT [IX_StatusTypes] UNIQUE NONCLU
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AddressDetail1]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_AddressDetail1]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[AddressDetail1] ADD  CONSTRAINT [IX_AddressDetail1] UNIQUE NONCLUSTERED 
 (
 	[AddressDetail1] ASC
@@ -1909,7 +1860,7 @@ ALTER TABLE [GSET].[AddressDetail1] ADD  CONSTRAINT [IX_AddressDetail1] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AddressDetail2]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_AddressDetail2]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[AddressDetail2] ADD  CONSTRAINT [IX_AddressDetail2] UNIQUE NONCLUSTERED 
 (
 	[AddressDetail2] ASC
@@ -1917,7 +1868,7 @@ ALTER TABLE [GSET].[AddressDetail2] ADD  CONSTRAINT [IX_AddressDetail2] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Companies]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Companies]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[Companies] ADD  CONSTRAINT [IX_Companies] UNIQUE NONCLUSTERED 
 (
 	[CompanyName] ASC
@@ -1925,7 +1876,7 @@ ALTER TABLE [GSET].[Companies] ADD  CONSTRAINT [IX_Companies] UNIQUE NONCLUSTERE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_ContactTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_ContactTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[ContactTypes] ADD  CONSTRAINT [IX_ContactTypes] UNIQUE NONCLUSTERED 
 (
 	[ContactType] ASC
@@ -1933,7 +1884,7 @@ ALTER TABLE [GSET].[ContactTypes] ADD  CONSTRAINT [IX_ContactTypes] UNIQUE NONCL
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Currencies]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Currencies]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[Currencies] ADD  CONSTRAINT [IX_Currencies] UNIQUE NONCLUSTERED 
 (
 	[CurName] ASC
@@ -1941,7 +1892,7 @@ ALTER TABLE [GSET].[Currencies] ADD  CONSTRAINT [IX_Currencies] UNIQUE NONCLUSTE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogSeverity]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_LogSeverity]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[LogSeverity] ADD  CONSTRAINT [IX_LogSeverity] UNIQUE NONCLUSTERED 
 (
 	[LogSeverity] ASC
@@ -1949,7 +1900,7 @@ ALTER TABLE [GSET].[LogSeverity] ADD  CONSTRAINT [IX_LogSeverity] UNIQUE NONCLUS
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogSystem]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_LogSystem]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[LogSystem] ADD  CONSTRAINT [IX_LogSystem] UNIQUE NONCLUSTERED 
 (
 	[LogSystem] ASC
@@ -1957,7 +1908,7 @@ ALTER TABLE [GSET].[LogSystem] ADD  CONSTRAINT [IX_LogSystem] UNIQUE NONCLUSTERE
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_LogTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_LogTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [GSET].[LogTypes] ADD  CONSTRAINT [IX_LogTypes] UNIQUE NONCLUSTERED 
 (
 	[LogType] ASC
@@ -1965,7 +1916,7 @@ ALTER TABLE [GSET].[LogTypes] ADD  CONSTRAINT [IX_LogTypes] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ_NotifLog]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [UQ_NotifLog]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [NOTIF].[NotificationLogs] ADD  CONSTRAINT [UQ_NotifLog] UNIQUE NONCLUSTERED 
 (
 	[Type] ASC,
@@ -1973,7 +1924,7 @@ ALTER TABLE [NOTIF].[NotificationLogs] ADD  CONSTRAINT [UQ_NotifLog] UNIQUE NONC
 	[IntervalLabel] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Roles]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Roles]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [SEC].[Roles] ADD  CONSTRAINT [IX_Roles] UNIQUE NONCLUSTERED 
 (
 	[RoleID] ASC
@@ -1981,7 +1932,7 @@ ALTER TABLE [SEC].[Roles] ADD  CONSTRAINT [IX_Roles] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Users]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  Index [IX_Users]    Script Date: 10/07/2026 10:17:02 AM ******/
 ALTER TABLE [SEC].[Users] ADD  CONSTRAINT [IX_Users] UNIQUE NONCLUSTERED 
 (
 	[UserName] ASC
@@ -2198,6 +2149,11 @@ REFERENCES [ATSET].[LocationTypes] ([LocationID])
 GO
 ALTER TABLE [AT].[InventoriesDetails] CHECK CONSTRAINT [FK_InventoriesDetails_LocationTypes1]
 GO
+ALTER TABLE [AT].[InventoriesDetails]  WITH CHECK ADD  CONSTRAINT [FK_InventoriesDetails_StatusTypes] FOREIGN KEY([StatusIDPrevious])
+REFERENCES [ATSET].[StatusTypes] ([StatusID])
+GO
+ALTER TABLE [AT].[InventoriesDetails] CHECK CONSTRAINT [FK_InventoriesDetails_StatusTypes]
+GO
 ALTER TABLE [AT].[Maintenances]  WITH CHECK ADD  CONSTRAINT [FK_Maintenances_Assets] FOREIGN KEY([AssetID])
 REFERENCES [AT].[Assets] ([AssetID])
 ON DELETE CASCADE
@@ -2346,7 +2302,7 @@ REFERENCES [SEC].[Users] ([UserID])
 GO
 ALTER TABLE [SEC].[UsersPermissions] CHECK CONSTRAINT [FK_UsersPermissions_Users]
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2396,7 +2352,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsListInventory]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsListInventory]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2445,7 +2401,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpAssetsNotDepreciated]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[rstpAssetsNotDepreciated]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2479,7 +2435,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[rstpDepreciation]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[rstpDepreciation]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2513,7 +2469,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2571,7 +2527,7 @@ BEGIN CATCH
 END CATCH
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsDepreciationHistory]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsDepreciationHistory]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2608,7 +2564,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2678,7 +2634,7 @@ VALUES
 SELECT SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsInventoryHistory]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsInventoryHistory]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2721,7 +2677,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2747,7 +2703,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2776,7 +2732,7 @@ LEFT OUTER JOIN ATSET.OwnerTypes ot ON a.OwnerID = ot.OwnerID
 WHERE a.AssetID = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsStatusRemove]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsStatusRemove]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2833,13 +2789,13 @@ BEGIN
     );
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsStatusU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsStatusU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-/* Recreate AT.stpAssetsStatusU with return-from-maintenance rule */
+/* Recreate AT.stpAssetsStatusU with transfer support */
 CREATE PROCEDURE [AT].[stpAssetsStatusU]
 (
     @AssetStatusID tinyint,
@@ -2849,15 +2805,118 @@ CREATE PROCEDURE [AT].[stpAssetsStatusU]
     @StatusContactID int,
     @StatusSalePrice float,
     @StatusSaleCurCode char(3),
-    @StatusDesc nvarchar(50),
+    @StatusDesc nvarchar(200),
     @CreatedByUserID smallint,
     @CreatedByFullName nvarchar(100),
     @CreatedByDateTime datetime,
-    @AssetID int
+    @AssetID int,
+    @TransferCompanyProfileID int = NULL,
+    @TransferEmpID nchar(10) = NULL
 )
 AS
 BEGIN
     SET NOCOUNT OFF;
+
+    IF @StatusID = 2
+    BEGIN
+        DECLARE @CurrentEmpID nchar(10);
+        DECLARE @CurrentCompanyProfileID int;
+        DECLARE @CountryID nchar(2);
+        DECLARE @HRDatabase sysname;
+        DECLARE @OldEmpName nvarchar(100) = NULL;
+        DECLARE @NewEmpName nvarchar(100) = NULL;
+        DECLARE @TransferDesc nvarchar(200);
+        DECLARE @Sql nvarchar(max);
+
+        IF NOT EXISTS (SELECT 1 FROM [AT].[Assets] WHERE [AssetID] = @AssetID)
+            THROW 50010, 'Asset not found.', 1;
+
+        IF @TransferCompanyProfileID IS NULL OR @TransferCompanyProfileID <= 0
+            THROW 50003, 'Transfer company is required for transferred assets.', 1;
+
+        IF NULLIF(LTRIM(RTRIM(@TransferEmpID)), N'') IS NULL
+            THROW 50004, 'Transfer employee is required for transferred assets.', 1;
+
+        SELECT
+            @CurrentEmpID = a.[HREmpIDUsedBy],
+            @CurrentCompanyProfileID = cmp.[HRCompanyProfileID],
+            @CountryID = cmp.[CountryID],
+            @HRDatabase = ctry.[HRDatabase]
+        FROM [AT].[Assets] a
+        INNER JOIN [GSET].[Companies] cmp ON cmp.[CompanyID] = a.[CompanyID]
+        INNER JOIN [GSET].[Countries] ctry ON ctry.[CountryID] = cmp.[CountryID]
+        WHERE a.[AssetID] = @AssetID;
+
+        IF @HRDatabase IS NULL OR LTRIM(RTRIM(@HRDatabase)) = '' OR @HRDatabase LIKE '%[^A-Za-z0-9_]%' 
+            THROW 50005, 'Asset country is not configured for HR transfers.', 1;
+
+        IF @CurrentCompanyProfileID IS NOT NULL AND NULLIF(LTRIM(RTRIM(@CurrentEmpID)), N'') IS NOT NULL
+        BEGIN
+            SET @Sql = N'
+                SELECT TOP 1 @EmployeeName = FullName
+                FROM [' + @HRDatabase + N'].[dbo].[vw_AssetsEmpList]
+                WHERE CompanyProfileId = @CompanyProfileID
+                  AND CAST(EmpId AS nvarchar(10)) = @EmpID';
+
+            EXEC sp_executesql @Sql,
+                N'@CompanyProfileID int, @EmpID nchar(10), @EmployeeName nvarchar(100) OUTPUT',
+                @CompanyProfileID = @CurrentCompanyProfileID,
+                @EmpID = @CurrentEmpID,
+                @EmployeeName = @OldEmpName OUTPUT;
+        END
+
+        SET @Sql = N'
+            SELECT TOP 1 @EmployeeName = FullName
+            FROM [' + @HRDatabase + N'].[dbo].[vw_AssetsEmpList]
+            WHERE CompanyProfileId = @CompanyProfileID
+              AND CAST(EmpId AS nvarchar(10)) = @EmpID';
+
+        EXEC sp_executesql @Sql,
+            N'@CompanyProfileID int, @EmpID nchar(10), @EmployeeName nvarchar(100) OUTPUT',
+            @CompanyProfileID = @TransferCompanyProfileID,
+            @EmpID = @TransferEmpID,
+            @EmployeeName = @NewEmpName OUTPUT;
+
+        SET @TransferDesc = CONCAT(
+            N'Transferred from ',
+            COALESCE(NULLIF(LTRIM(RTRIM(@OldEmpName)), N''), NULLIF(LTRIM(RTRIM(@CurrentEmpID)), N''), N'Unassigned'),
+            N' to ',
+            COALESCE(NULLIF(LTRIM(RTRIM(@NewEmpName)), N''), NULLIF(LTRIM(RTRIM(@TransferEmpID)), N''), N'Unknown')
+        );
+
+        UPDATE [AT].[Assets]
+        SET [HREmpIDUsedBy] = NULLIF(LTRIM(RTRIM(@TransferEmpID)), N'')
+        WHERE [AssetID] = @AssetID;
+
+        INSERT INTO [AT].[StatusHistory]
+        (
+            AssetID,
+            StatusID,
+            StatusDate,
+            StatusDesc,
+            [StatusContactID],
+            [StatusSalePrice],
+            [StatusSaleCurCode],
+            CreatedByUserID,
+            CreatedByFullName,
+            CreatedByDateTime
+        )
+        VALUES
+        (
+            @AssetID,
+            @StatusID,
+            @StatusDate,
+            @TransferDesc,
+            NULL,
+            0,
+            NULL,
+            @CreatedByUserID,
+            @CreatedByFullName,
+            @CreatedByDateTime
+        );
+
+        RETURN;
+    END;
 
     UPDATE [AT].[Assets]
     SET [StatusID] = CASE WHEN @StatusID = 9 THEN 0 ELSE @AssetStatusID END,
@@ -2892,7 +2951,7 @@ BEGIN
     );
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpAssetsU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAssetsU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2973,7 +3032,7 @@ SET [CompanyID] = @CompanyID,
 WHERE [AssetID] = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentByID]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentByID]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2985,7 +3044,7 @@ AS
     FROM AT.Attachments WHERE AttID = @AttID
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3009,7 +3068,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3024,7 +3083,7 @@ AS
     SELECT AttID,AssetID,FilePath,AttDesc,AttFileName,AttFileExt,Remark
     FROM AT.Attachments WHERE AttID = SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3035,7 +3094,7 @@ AS
     SELECT AttID,AssetID,FilePath,AttDesc,AttFileName,AttFileExt,Remark
     FROM AT.Attachments WHERE AssetID = @AssetID
 GO
-/****** Object:  StoredProcedure [AT].[stpAttachmentsU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpAttachmentsU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3068,7 +3127,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpDepreciationLastDelete]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpDepreciationLastDelete]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3090,7 +3149,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpGetAssetCodeList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpGetAssetCodeList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3109,7 +3168,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetDepreciation]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpGetDepreciation]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3126,7 +3185,7 @@ AS
 	WHERE CompanyID = @CompanyID
 	ORDER BY DepreciationDate DESC
 GO
-/****** Object:  StoredProcedure [AT].[stpGetDepreciationLastDate]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpGetDepreciationLastDate]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3148,7 +3207,7 @@ BEGIN
 	ORDER BY DepreciationDate DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryFinishInfo]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryFinishInfo]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3175,7 +3234,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryInfo]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryInfo]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3192,7 +3251,7 @@ AS
     WHERE   CompanyID = @CompanyID
     ORDER BY InventoryID DESC
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryLastDate]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryLastDate]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3209,7 +3268,7 @@ BEGIN
     ORDER BY InventoryStartDate DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpGetInventoryMode]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpGetInventoryMode]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3229,7 +3288,7 @@ BEGIN
     ORDER BY InventoryID DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoriesDetailsList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoriesDetailsList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3275,7 +3334,7 @@ BEGIN
       AND   (@LocationDetailID = -1 OR ID.LocDetailID = @LocationDetailID)
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoriesList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoriesList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3311,7 +3370,7 @@ BEGIN
     ORDER BY i.InventoryStartDate DESC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryGeneratedList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryGeneratedList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3328,7 +3387,7 @@ BEGIN
     ORDER BY InventoryStartDate ASC
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailable]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailable]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3356,7 +3415,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableAllAssets]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableAllAssets]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3378,7 +3437,7 @@ BEGIN
     SELECT @@ROWCOUNT;
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableByAssetCode]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryIsAvailableByAssetCode]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3407,7 +3466,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3437,7 +3496,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpInventoryRelocatedU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3461,7 +3520,7 @@ BEGIN
     WHERE InvDetailID = @InvDetailID
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3498,7 +3557,7 @@ BEGIN
       AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark));
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3535,7 +3594,7 @@ BEGIN
     WHERE MaintID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3554,7 +3613,7 @@ BEGIN
     WHERE AssetID = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpMaintenancesU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpMaintenancesU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3611,7 +3670,7 @@ BEGIN
     WHERE MaintID = @MaintID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpProDepreciation]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpProDepreciation]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3720,7 +3779,7 @@ BEGIN
     SET @RowEffected = (SELECT COUNT(*) FROM AT.DepreciationsDetails WHERE DepID = @DepID);
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryEnd]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryEnd]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3737,11 +3796,11 @@ CREATE PROCEDURE [AT].[stpProInventoryEnd]
 AS
 	SET NOCOUNT ON;
 
-	UPDATE	AT.Assets SET StatusID = 0
+	UPDATE	AT.Assets SET StatusID = InvD.StatusIDPrevious
 	FROM	AT.Assets Ast Inner Join AT.InventoriesDetails InvD On Ast.AssetID = InvD.AssetID
 	WHERE	InvD.IsAvailable = 1 AND InvD.Relocated = 0 AND InvD.InventoryID = @InventoryID
 
-	UPDATE	AT.Assets SET StatusID = 0, LocationID = InvD.RelocatedLocationID, LocDetailID = InvD.RelocatedLocDetailID
+	UPDATE	AT.Assets SET StatusID = InvD.StatusIDPrevious, LocationID = InvD.RelocatedLocationID, LocDetailID = InvD.RelocatedLocDetailID
 	FROM	AT.Assets Ast Inner Join AT.InventoriesDetails InvD On Ast.AssetID = InvD.AssetID
 	WHERE	InvD.IsAvailable = 1 AND InvD.Relocated = 1  AND InvD.InventoryID = @InventoryID
 
@@ -3765,12 +3824,11 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryStart]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryStart]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE PROCEDURE [AT].[stpProInventoryStart]
 (
     @InventoryStartDate date,
@@ -3783,7 +3841,25 @@ CREATE PROCEDURE [AT].[stpProInventoryStart]
 AS
 BEGIN
     SET NOCOUNT ON;
+
     DECLARE @InventoryID int;
+
+    -- Check if there are assets available for inventory
+    IF NOT EXISTS
+    (
+        SELECT 1
+        FROM AT.Assets
+        WHERE (StatusID = 0 OR StatusID = 12)
+          AND CompanyID = @CompanyID
+    )
+    BEGIN
+        -- Return 0 to indicate no assets available
+        SELECT
+            0 AS Success,
+            'No assets available for inventory.' AS Message;
+
+        RETURN;
+    END
 
     INSERT INTO AT.Inventories
     (
@@ -3823,7 +3899,8 @@ BEGIN
         CategoryID,
         BarcodeNumber,
         SerialNumber,
-        Remark
+        Remark,
+        StatusIDPrevious
     )
     SELECT
         @InventoryID,
@@ -3841,7 +3918,8 @@ BEGIN
         CategoryID,
         BarcodeNumber,
         SerialNumber,
-        NULL
+        NULL,
+        StatusID
     FROM AT.Assets
     WHERE (StatusID = 0 OR StatusID = 12)
       AND CompanyID = @CompanyID;
@@ -3849,14 +3927,19 @@ BEGIN
     UPDATE Ast
     SET Ast.StatusID = 10
     FROM AT.Assets Ast
-    INNER JOIN AT.InventoriesDetails InvD ON InvD.AssetID = Ast.AssetID
+    INNER JOIN AT.InventoriesDetails InvD
+        ON InvD.AssetID = Ast.AssetID
     WHERE InvD.InventoryID = @InventoryID
       AND (Ast.StatusID = 0 OR Ast.StatusID = 12);
 
-    SELECT @@ROWCOUNT;
-END;
+    SELECT
+        1 AS Success,
+        'Inventory created successfully.' AS Message,
+        @InventoryID AS InventoryID,
+        @@ROWCOUNT AS UpdatedAssets;
+END
 GO
-/****** Object:  StoredProcedure [AT].[stpProInventoryStartRefresh]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpProInventoryStartRefresh]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3887,7 +3970,8 @@ BEGIN
         CategoryID,
         BarcodeNumber,
         SerialNumber,
-        Remark
+        Remark,
+        StatusIDPrevious
     )
     SELECT
         @InventoryID,
@@ -3905,7 +3989,8 @@ BEGIN
         CategoryID,
         BarcodeNumber,
         SerialNumber,
-        NULL
+        NULL,
+        StatusID
     FROM AT.Assets
     WHERE (StatusID = 0 OR StatusID = 12)
       AND CompanyID = (SELECT CompanyID FROM AT.Inventories WHERE InventoryID = @InventoryID)
@@ -3919,7 +4004,7 @@ BEGIN
       AND (Ast.StatusID = 0 OR Ast.StatusID = 12);
 END;
 GO
-/****** Object:  StoredProcedure [AT].[stpStatusHistoryS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpStatusHistoryS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3939,7 +4024,7 @@ AS
             LEFT OUTER JOIN ATSET.StatusTypes ST ON SH.StatusID = ST.StatusID
     WHERE   SH.AssetID = @AssetID;
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3972,7 +4057,7 @@ BEGIN
       AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark));
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4005,7 +4090,7 @@ BEGIN
     WHERE WarntID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4024,7 +4109,7 @@ BEGIN
     WHERE AssetID = @AssetID;
 END
 GO
-/****** Object:  StoredProcedure [AT].[stpWarrantiesU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [AT].[stpWarrantiesU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4073,7 +4158,7 @@ BEGIN
     WHERE WarntID = @WarntID;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpBrandTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpBrandTypesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4095,7 +4180,7 @@ BEGIN
     WHERE BrandID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4114,7 +4199,7 @@ BEGIN
       AND [Category] = @Original_Category;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4136,7 +4221,7 @@ BEGIN
     WHERE CategoryID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4152,7 +4237,7 @@ BEGIN
     ORDER BY Category;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpCategoryTypesU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4179,7 +4264,7 @@ BEGIN
     WHERE CategoryID = @CategoryID;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetAssetCode]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetAssetCode]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4213,7 +4298,7 @@ BEGIN
         WHERE  CountryID = @CountryID
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetBrandTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetBrandTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4235,7 +4320,7 @@ BEGIN
     ORDER BY BrandDesc;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetCategoryTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetCategoryTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4250,7 +4335,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetGroupTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetGroupTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4263,7 +4348,7 @@ AS
     FROM   ATSET.GroupTypes
     ORDER BY GroupName
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetLocationDetails]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetLocationDetails]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4277,7 +4362,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetLocationTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetLocationTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4292,7 +4377,7 @@ AS
     WHERE  CompanyID = CASE @CompanyID WHEN -1 THEN CompanyID ELSE @CompanyID END
     ORDER BY Location
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetOwnerTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetOwnerTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4308,7 +4393,7 @@ BEGIN
     ORDER BY OwnerDesc;
 END
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetSettings]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetSettings]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4323,7 +4408,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGetStatusTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGetStatusTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4338,7 +4423,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4357,7 +4442,7 @@ AS
 	SET NOCOUNT OFF;
 DELETE FROM [ATSET].[GroupTypes] WHERE (([GroupID] = @Original_GroupID) AND ([GroupName] = @Original_GroupName) AND ([Acronym] = @Original_Acronym) AND ([DepreciationRate] = @Original_DepreciationRate) AND ((@IsNull_AccountNo = 1 AND [AccountNo] IS NULL) OR ([AccountNo] = @Original_AccountNo)) AND ([AccountingExclusion] = @Original_AccountingExclusion))
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4383,7 +4468,7 @@ AS
     FROM   ATSET.GroupTypes
     WHERE  GroupID = SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4396,7 +4481,7 @@ AS
            AccountNo, AccountingExclusion, CountryID
     FROM   ATSET.GroupTypes
 GO
-/****** Object:  StoredProcedure [ATSET].[stpGroupTypesU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpGroupTypesU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4439,7 +4524,7 @@ AS
            AccountNo, AccountingExclusion, CountryID
     FROM   ATSET.GroupTypes WHERE GroupID = @GroupID
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4455,7 +4540,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4476,7 +4561,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4493,7 +4578,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationDetailU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationDetailU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4517,7 +4602,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4533,7 +4618,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4550,7 +4635,7 @@ AS
     VALUES (@Location, @CompanyID);
     SELECT SCOPE_IDENTITY()
 GO
-/****** Object:  StoredProcedure [ATSET].[stpLocationTypesU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpLocationTypesU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4569,7 +4654,7 @@ AS
            [CompanyID] = @CompanyID
     WHERE  [LocationID] = @LocationID
 GO
-/****** Object:  StoredProcedure [ATSET].[stpSettingsU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [ATSET].[stpSettingsU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4589,7 +4674,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4607,7 +4692,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4629,7 +4714,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4645,7 +4730,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4664,7 +4749,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpBanksU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpBanksU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4688,7 +4773,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpCompaniesD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpCompaniesD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4701,7 +4786,7 @@ AS
     SET NOCOUNT OFF;
     DELETE FROM GSET.Companies WHERE CompanyID = @CompanyID
 GO
-/****** Object:  StoredProcedure [GSET].[stpCompaniesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpCompaniesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4730,7 +4815,7 @@ BEGIN
     WHERE  CompanyID = SCOPE_IDENTITY();
 END
 GO
-/****** Object:  StoredProcedure [GSET].[stpCompaniesU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpCompaniesU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4758,7 +4843,7 @@ BEGIN
     WHERE  CompanyID = @CompanyID;
 END
 GO
-/****** Object:  StoredProcedure [GSET].[stpCountriesI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpCountriesI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4782,7 +4867,7 @@ AS
     SELECT CountryID, Country, Nationality, ZipCode, WorkingCountry, ActiveCountry
     FROM   GSET.Countries WHERE CountryID = @CountryID
 GO
-/****** Object:  StoredProcedure [GSET].[stpCountriesU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpCountriesU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4807,7 +4892,7 @@ AS
            ActiveCountry  = @ActiveCountry
     WHERE  CountryID = @CountryID
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail1]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail1]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4821,7 +4906,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail2]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail2]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4835,7 +4920,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail3]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetAddressDetail3]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4849,7 +4934,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetBanks]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetBanks]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4863,7 +4948,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCities]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCities]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4878,7 +4963,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCompanies]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCompanies]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4895,7 +4980,7 @@ BEGIN
     ORDER BY CompanyName;
 END
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetContactTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetContactTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4921,7 +5006,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCountries]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCountries]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4935,7 +5020,7 @@ AS
     FROM   GSET.Countries
     ORDER BY Country
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetCurrencies]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetCurrencies]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4949,7 +5034,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogSeverity]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogSeverity]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4963,7 +5048,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogSystem]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogSystem]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4977,7 +5062,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetLogTypes]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetLogTypes]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4991,7 +5076,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetSettings]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetSettings]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5005,7 +5090,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpGetWorkingCountry]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpGetWorkingCountry]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5021,7 +5106,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GSET].[stpSettingsU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GSET].[stpSettingsU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5041,7 +5126,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5059,7 +5144,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5091,7 +5176,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsList]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsList]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5109,7 +5194,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5128,7 +5213,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpContactsU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpContactsU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5176,7 +5261,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpGetContacts]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpGetContacts]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5192,7 +5277,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpLogI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpLogI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5233,7 +5318,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [GTBL].[stpLogS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [GTBL].[stpLogS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5249,7 +5334,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpCreateNotification]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpCreateNotification]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5269,7 +5354,7 @@ AS
     VALUES (@UserID, @CompanyID, @Type, @EntityID, @AssetID, @Message);
     SELECT SCOPE_IDENTITY() AS NotifID;
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpGetNotifications]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpGetNotifications]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5286,7 +5371,7 @@ AS
     WHERE UserID = @UserID
     ORDER BY CreatedAt DESC;
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpGetPendingMaintenanceNotifications]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpGetPendingMaintenanceNotifications]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5316,7 +5401,7 @@ BEGIN
     WHERE a.StatusID = 8;
 END
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpGetPendingWarrantyNotifications]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpGetPendingWarrantyNotifications]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5346,7 +5431,7 @@ BEGIN
       AND DATEDIFF(day, CAST(GETDATE() AS date), w.ToDate) <= 14;
 END
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpLogNotification]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpLogNotification]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5365,7 +5450,7 @@ AS
         INSERT INTO NOTIF.NotificationLogs(Type, EntityID, IntervalLabel)
         VALUES (@Type, @EntityID, @IntervalLabel);
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpMarkAllNotificationsRead]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpMarkAllNotificationsRead]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5379,7 +5464,7 @@ AS
     SET    IsRead = 1
     WHERE  UserID = @UserID AND IsRead = 0;
 GO
-/****** Object:  StoredProcedure [NOTIF].[stpMarkNotificationRead]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [NOTIF].[stpMarkNotificationRead]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5394,7 +5479,7 @@ AS
     SET    IsRead = 1
     WHERE  NotifID = @NotifID AND UserID = @UserID;
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetLoginUser]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetLoginUser]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5412,7 +5497,7 @@ BEGIN
       AND  [UserPassword] IS NOT NULL
 END
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetRoles]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetRoles]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5427,7 +5512,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [SEC].[stpGetUserPermissions]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpGetUserPermissions]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5447,7 +5532,7 @@ AS
     WHERE  up.UserID = @UserID
     ORDER BY co.CompanyName
 GO
-/****** Object:  StoredProcedure [SEC].[stpUserPermissionsD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpUserPermissionsD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5464,7 +5549,7 @@ AS
     DELETE FROM SEC.UsersPermissions
     WHERE  UserID = @UserID AND CountryID = @CountryID AND CompanyID = @CompanyID
 GO
-/****** Object:  StoredProcedure [SEC].[stpUserPermissionsI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpUserPermissionsI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5485,7 +5570,7 @@ AS
         INSERT INTO SEC.UsersPermissions (UserID, CountryID, CompanyID)
         VALUES (@UserID, @CountryID, @CompanyID)
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersD]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersD]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5500,7 +5585,7 @@ AS
     DELETE FROM SEC.UsersPermissions WHERE UserID = @UserID;
     DELETE FROM SEC.Users             WHERE UserID = @UserID
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersI]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersI]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5524,7 +5609,7 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS UserID;
 END
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersS]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersS]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5541,7 +5626,7 @@ BEGIN
     ORDER BY u.FullName;
 END
 GO
-/****** Object:  StoredProcedure [SEC].[stpUsersU]    Script Date: 09/07/2026 11:18:04 AM ******/
+/****** Object:  StoredProcedure [SEC].[stpUsersU]    Script Date: 10/07/2026 10:17:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

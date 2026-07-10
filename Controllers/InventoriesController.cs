@@ -95,14 +95,24 @@ public class InventoriesController(IInventoryRepository repo, IPermissionService
     public async Task<IActionResult> Start([FromBody] InventoryStartRequest request)
     {
         if (IsAuditor()) return Forbid();
+
         try
         {
-            await repo.StartInventoryAsync(request, UserId, FullName);
-            return Ok();
+            var result = await repo.StartInventoryAsync(request, UserId, FullName);
+
+            if (result.Success == 0)
+            {
+                return BadRequest(new { message = result.Message });
+            }
+
+            return Ok(result);
         }
         catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
         {
-            return Conflict(new { message = $"An inventory session for {request.InventoryStartDate:yyyy-MM-dd} already exists." });
+            return Conflict(new
+            {
+                message = $"An inventory session for {request.InventoryStartDate:yyyy-MM-dd} already exists."
+            });
         }
     }
 

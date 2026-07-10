@@ -122,3 +122,11 @@ public class InventoryReportFilterRequest
     public short LocationDetailID { get; set; } = -1;
     public bool AccountingExclusion { get; set; }
 }
+
+public class InventoryStartResult
+{
+    public int Success { get; set; }
+    public string Message { get; set; } = string.Empty;
+    public int? InventoryID { get; set; }
+    public int? UpdatedAssets { get; set; }
+}

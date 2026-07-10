@@ -146,6 +146,15 @@ public class AssetsController(IAssetRepository repo, IPermissionService permissi
             var allowed = await permissionService.GetAllowedCompanyIdsAsync(UserId);
             if (!allowed.Contains(asset.CompanyID)) return Forbid();
         }
+
+        if (request.StatusID == 2)
+        {
+            if (!request.TransferCompanyProfileID.HasValue || request.TransferCompanyProfileID <= 0)
+                return BadRequest("Transfer company is required for transferred assets.");
+            if (string.IsNullOrWhiteSpace(request.TransferEmpID))
+                return BadRequest("Transfer employee is required for transferred assets.");
+        }
+
         await repo.UpdateAssetStatusAsync(id, request, UserId, FullName);
         return NoContent();
     }

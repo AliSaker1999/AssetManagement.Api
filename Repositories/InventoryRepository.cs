@@ -12,7 +12,7 @@ public interface IInventoryRepository
     Task<DateOnly?> GetInventoryLastDateAsync(short companyId);
     Task<IEnumerable<InventoryDetailDto>> GetInventoriesDetailsListAsync(InventoryReportFilterRequest filter);
     Task<IEnumerable<InventoryGeneratedItemDto>> GetInventoryGeneratedListAsync(short companyId);
-    Task StartInventoryAsync(InventoryStartRequest request, short userId, string fullName);
+    Task<InventoryStartResult> StartInventoryAsync(InventoryStartRequest request, short userId, string fullName);
     Task RefreshInventoryAsync(int inventoryId, short userId, string fullName);
     Task EndInventoryAsync(int inventoryId, InventoryEndRequest request, short userId, string fullName);
     Task SetAvailableAsync(int invDetailId, bool isAvailable, short userId, string fullName);
@@ -83,9 +83,9 @@ public class InventoryRepository(IDbConnection db) : IInventoryRepository
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task StartInventoryAsync(InventoryStartRequest request, short userId, string fullName)
+    public async Task<InventoryStartResult> StartInventoryAsync(InventoryStartRequest request, short userId, string fullName)
     {
-        await db.ExecuteAsync(
+        return await db.QuerySingleAsync<InventoryStartResult>(
             "AT.stpProInventoryStart",
             new
             {

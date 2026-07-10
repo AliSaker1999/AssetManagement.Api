@@ -11,6 +11,7 @@ public interface ILookupRepository
     Task<IEnumerable<CompanyDto>> GetCompaniesAsync(short userId = 0);
     Task<IEnumerable<HrCompanyProfileDto>> GetHrCompaniesByCountryAsync(string countryId);
     Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyAsync(short companyId);
+    Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyProfileAsync(string countryId, int companyProfileId);
     Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest request);
     Task UpdateCompanyAsync(CompanyUpdateRequest request);
     Task DeleteCompanyAsync(short companyId);
@@ -125,8 +126,30 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
         if (!cfg.HRConnect || string.IsNullOrWhiteSpace(cfg.HRDatabase) || !cfg.HRCompanyProfileID.HasValue)
             return [];
 
-        var dbName = cfg.HRDatabase.Trim();
-        if (!Regex.IsMatch(dbName, "^[A-Za-z0-9_]+$"))
+        return await QueryHrEmployeesAsync(cfg.HRDatabase, cfg.HRCompanyProfileID.Value);
+    }
+
+    public async Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyProfileAsync(string countryId, int companyProfileId)
+    {
+        var dbName = await db.QueryFirstOrDefaultAsync<string?>(
+            @"SELECT HRDatabase
+              FROM GSET.Countries
+              WHERE CountryID = @CountryID",
+            new { CountryID = countryId });
+
+        if (string.IsNullOrWhiteSpace(dbName))
+            return [];
+
+        return await QueryHrEmployeesAsync(dbName, companyProfileId);
+    }
+
+    private async Task<IEnumerable<HrEmployeeDto>> QueryHrEmployeesAsync(string? dbName, int companyProfileId)
+    {
+        if (string.IsNullOrWhiteSpace(dbName))
+            return [];
+
+        var normalizedDbName = dbName.Trim();
+        if (!Regex.IsMatch(normalizedDbName, "^[A-Za-z0-9_]+$"))
             throw new InvalidOperationException("Country HRDatabase contains unsupported characters.");
 
         var sql = $@"SELECT
@@ -134,19 +157,19 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
                         FullName,
                         CompanyProfileId AS CompanyProfileID,
                         PrmName
-                     FROM [{dbName}].[dbo].[vw_AssetsEmpList]
+                     FROM [{normalizedDbName}].[dbo].[vw_AssetsEmpList]
                      WHERE CompanyProfileId = @CompanyProfileID
                        AND LeaveDate IS NULL
                      ORDER BY FullName";
 
         try
         {
-            return await db.QueryAsync<HrEmployeeDto>(sql, new { CompanyProfileID = cfg.HRCompanyProfileID.Value });
+            return await db.QueryAsync<HrEmployeeDto>(sql, new { CompanyProfileID = companyProfileId });
         }
         catch (SqlException ex)
         {
             throw new InvalidOperationException(
-                $"Could not read HR employees from database '{dbName}'. Verify country HRDatabase and SQL permissions.",
+                $"Could not read HR employees from database '{normalizedDbName}'. Verify country HRDatabase and SQL permissions.",
                 ex);
         }
     }
