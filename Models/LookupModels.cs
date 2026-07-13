@@ -38,7 +38,7 @@ public class LocationTypeDto
 {
     public short LocationID { get; set; }
     public string Location { get; set; } = string.Empty;
-    public short CompanyID { get; set; }
+    public string CountryID { get; set; } = string.Empty;
 }
 
 public class LocationDetailDto
@@ -156,7 +156,7 @@ public class CategoryTypeUpdateRequest : CategoryTypeCreateRequest
 public class LocationTypeCreateRequest
 {
     public string Location { get; set; } = string.Empty;
-    public short CompanyID { get; set; }
+    public string CountryID { get; set; } = string.Empty;
 }
 
 public class LocationDetailCreateRequest

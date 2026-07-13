@@ -18,7 +18,7 @@ public interface ILookupRepository
     Task<IEnumerable<CategoryTypeDto>> GetCategoryTypesAsync();
     Task<IEnumerable<GroupTypeDto>> GetGroupTypesAsync(short userId = 0);
     Task<IEnumerable<GroupTypeDto>> GetGroupTypesFullAsync(short userId = 0);
-    Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync(short userId = 0, short? companyId = null);
+    Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync(short userId = 0, string? countryId = null);
     Task<IEnumerable<LocationDetailDto>> GetLocationDetailsAsync(short userId = 0, short? locationId = null);
     Task<IEnumerable<StatusTypeDto>> GetStatusTypesAsync();
     Task<IEnumerable<BrandTypeDto>> GetBrandTypesAsync();
@@ -48,7 +48,7 @@ public interface ILookupRepository
     Task DeleteCategoryTypeAsync(short categoryId);
 
     Task CreateLocationTypeAsync(LocationTypeCreateRequest request);
-    Task UpdateLocationTypeAsync(short locationId, string location, short companyId);
+    Task UpdateLocationTypeAsync(short locationId, string location, string countryId);
     Task DeleteLocationTypeAsync(short locationId);
 
     Task CreateLocationDetailAsync(LocationDetailCreateRequest request);
@@ -250,21 +250,23 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
             new { UserId = userId });
     }
 
-    public Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync(short userId = 0, short? companyId = null)
+    public Task<IEnumerable<LocationTypeDto>> GetLocationTypesAsync(short userId = 0, string? countryId = null)
     {
         if (userId == 0)
             return db.QueryAsync<LocationTypeDto>(
-                "ATSET.stpGetLocationTypes",
-                new { CompanyID = companyId ?? -1 },
-                commandType: CommandType.StoredProcedure);
+                                @"SELECT LocationID, Location, CountryID
+                                    FROM   ATSET.LocationTypes
+                                    WHERE  (@CountryID = '' OR CountryID = @CountryID)
+                                    ORDER BY Location",
+                                new { CountryID = countryId ?? string.Empty });
 
         return db.QueryAsync<LocationTypeDto>(
-            @"SELECT LocationID, Location, CompanyID
+            @"SELECT LocationID, Location, CountryID
               FROM   ATSET.LocationTypes
-              WHERE  CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
-                AND  (@CompanyID = -1 OR CompanyID = @CompanyID)
+              WHERE  CountryID IN (SELECT CountryID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+                AND  (@CountryID = '' OR CountryID = @CountryID)
               ORDER BY Location",
-            new { UserId = userId, CompanyID = companyId ?? -1 });
+            new { UserId = userId, CountryID = countryId ?? string.Empty });
     }
 
     // stpGetLocationDetails takes NO params → returns all
@@ -286,7 +288,7 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
             @"SELECT ld.LocDetailID, ld.LocationID, ld.Floor, ld.Zone, ld.Room
               FROM   ATSET.LocationDetails ld
               JOIN   ATSET.LocationTypes lt ON lt.LocationID = ld.LocationID
-              WHERE  lt.CompanyID IN (SELECT CompanyID FROM SEC.UsersPermissions WHERE UserID = @UserId)
+              WHERE  lt.CountryID IN (SELECT CountryID FROM SEC.UsersPermissions WHERE UserID = @UserId)
               ORDER BY ld.LocationID, ld.Floor, ld.Zone, ld.Room",
             new { UserId = userId });
     }
@@ -570,34 +572,45 @@ SELECT DbName FROM #results ORDER BY DbName;");
     // ── Location Types ───────────────────────────────────────────────────────
 
     public Task CreateLocationTypeAsync(LocationTypeCreateRequest r) =>
-        db.ExecuteAsync("ATSET.stpLocationTypesI", new { r.Location, r.CompanyID },
-            commandType: CommandType.StoredProcedure);
+        db.ExecuteAsync(
+            @"INSERT INTO ATSET.LocationTypes (Location, CountryID)
+              VALUES (@Location, @CountryID)",
+            new { r.Location, r.CountryID });
 
-    public Task UpdateLocationTypeAsync(short locationId, string location, short companyId) =>
-        db.ExecuteAsync("ATSET.stpLocationTypesU",
-            new { Location = location, CompanyID = companyId, LocationID = locationId },
-            commandType: CommandType.StoredProcedure);
+    public Task UpdateLocationTypeAsync(short locationId, string location, string countryId) =>
+        db.ExecuteAsync(
+            @"UPDATE ATSET.LocationTypes
+              SET    Location = @Location,
+                     CountryID = @CountryID
+              WHERE  LocationID = @LocationID",
+            new { Location = location, CountryID = countryId, LocationID = locationId });
 
     public Task DeleteLocationTypeAsync(short locationId) =>
-        db.ExecuteAsync("ATSET.stpLocationTypesD", new { LocationID = locationId },
-            commandType: CommandType.StoredProcedure);
+        db.ExecuteAsync(
+            "DELETE FROM ATSET.LocationTypes WHERE LocationID = @LocationID",
+            new { LocationID = locationId });
 
     // ── Location Details ─────────────────────────────────────────────────────
 
     public Task CreateLocationDetailAsync(LocationDetailCreateRequest r) =>
-        db.ExecuteAsync("ATSET.stpLocationDetailI",
-            new { r.LocationID, r.Floor, r.Zone, r.Room },
-            commandType: CommandType.StoredProcedure);
+        db.ExecuteAsync(
+            @"INSERT INTO ATSET.LocationDetails (LocationID, Floor, Zone, Room)
+              VALUES (@LocationID, @Floor, @Zone, @Room)",
+            new { r.LocationID, r.Floor, r.Zone, r.Room });
 
-    // SP takes Floor, Zone, Room, LocDetailID — no LocationID
     public Task UpdateLocationDetailAsync(LocationDetailUpdateRequest r) =>
-        db.ExecuteAsync("ATSET.stpLocationDetailU",
-            new { r.Floor, r.Zone, r.Room, r.LocDetailID },
-            commandType: CommandType.StoredProcedure);
+        db.ExecuteAsync(
+            @"UPDATE ATSET.LocationDetails
+              SET    Floor = @Floor,
+                     Zone = @Zone,
+                     Room = @Room
+              WHERE  LocDetailID = @LocDetailID",
+            new { r.Floor, r.Zone, r.Room, r.LocDetailID });
 
     public Task DeleteLocationDetailAsync(short locDetailId) =>
-        db.ExecuteAsync("ATSET.stpLocationDetailD", new { LocDetailID = locDetailId },
-            commandType: CommandType.StoredProcedure);
+        db.ExecuteAsync(
+            "DELETE FROM ATSET.LocationDetails WHERE LocDetailID = @LocDetailID",
+            new { LocDetailID = locDetailId });
 
     // ── Settings ─────────────────────────────────────────────────────────────
 

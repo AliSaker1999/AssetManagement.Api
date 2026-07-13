@@ -19,8 +19,11 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     private bool IsAuditor() =>
         User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "2";
 
+    private bool IsFullAccess() =>
+        User.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value == "3";
+
     private short GetUserId() =>
-        IsAdmin() ? (short)0
+        (IsAdmin() || IsFullAccess()) ? (short)0
         : short.TryParse(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value, out var id)
             ? id : (short)0;
 
@@ -147,8 +150,8 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     public async Task<IActionResult> GetGroupsFull() => Ok(await repo.GetGroupTypesFullAsync(GetUserId()));
 
     [HttpGet("locations")]
-    public async Task<IActionResult> GetLocations([FromQuery] short? companyId = null) =>
-        Ok(await repo.GetLocationTypesAsync(GetUserId(), companyId));
+    public async Task<IActionResult> GetLocations([FromQuery] string? countryId = null) =>
+        Ok(await repo.GetLocationTypesAsync(GetUserId(), countryId));
 
     [HttpGet("location-details")]
     public async Task<IActionResult> GetLocationDetails([FromQuery] short? locationId = null) =>
@@ -342,7 +345,7 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     [HttpPut("locations/{id:int}")]
     public async Task<IActionResult> UpdateLocation(short id, [FromBody] LocationTypeCreateRequest request)
     {
-        await repo.UpdateLocationTypeAsync(id, request.Location, request.CompanyID);
+        await repo.UpdateLocationTypeAsync(id, request.Location, request.CountryID);
         return NoContent();
     }
 
