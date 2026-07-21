@@ -80,6 +80,8 @@ public class AssetListItemDto
     public string? SerialNumber { get; set; }
     public string? PurchaseOrderNo { get; set; }
     public string? InvoiceNo { get; set; }
+    public string? HrEmpIDUsedBy { get; set; }   // raw ID from AT.Assets, used to resolve EmployeeName
+    public string? EmployeeName { get; set; }    // resolved in AssetRepository, not from the SP
 }
 
 public class AssetReportItemDto

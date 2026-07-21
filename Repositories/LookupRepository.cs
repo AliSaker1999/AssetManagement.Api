@@ -1,6 +1,7 @@
 using System.Data;
 using System.Text.RegularExpressions;
 using AssetManagement.Api.Models;
+using AssetManagement.Api.Services;
 using Dapper;
 using Microsoft.Data.SqlClient;
 
@@ -61,7 +62,7 @@ public interface ILookupRepository
     
 }
 
-public class LookupRepository(IDbConnection db) : ILookupRepository
+public class LookupRepository(IDbConnection db, IHrEmployeeLookupService hrEmployeeLookupService) : ILookupRepository
 {
     // ── Getters ──────────────────────────────────────────────────────────────
 
@@ -114,65 +115,13 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
         }
     }
 
-    public async Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyAsync(short companyId)
-    {
-        var cfg = await db.QueryFirstOrDefaultAsync<(bool HRConnect, string? HRDatabase, int? HRCompanyProfileID)>(
-            @"SELECT ctry.HRConnect, ctry.HRDatabase, cmp.HRCompanyProfileID
-              FROM GSET.Companies cmp
-              INNER JOIN GSET.Countries ctry ON ctry.CountryID = cmp.CountryID
-              WHERE cmp.CompanyID = @CompanyID",
-            new { CompanyID = companyId });
+    public Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyAsync(short companyId) =>
+        hrEmployeeLookupService.GetEmployeesByCompanyAsync(companyId);
 
-        if (!cfg.HRConnect || string.IsNullOrWhiteSpace(cfg.HRDatabase) || !cfg.HRCompanyProfileID.HasValue)
-            return [];
+public Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyProfileAsync(string countryId, int companyProfileId) =>
+        hrEmployeeLookupService.GetEmployeesByCompanyProfileAsync(countryId, companyProfileId);
 
-        return await QueryHrEmployeesAsync(cfg.HRDatabase, cfg.HRCompanyProfileID.Value);
-    }
-
-    public async Task<IEnumerable<HrEmployeeDto>> GetHrEmployeesByCompanyProfileAsync(string countryId, int companyProfileId)
-    {
-        var dbName = await db.QueryFirstOrDefaultAsync<string?>(
-            @"SELECT HRDatabase
-              FROM GSET.Countries
-              WHERE CountryID = @CountryID",
-            new { CountryID = countryId });
-
-        if (string.IsNullOrWhiteSpace(dbName))
-            return [];
-
-        return await QueryHrEmployeesAsync(dbName, companyProfileId);
-    }
-
-    private async Task<IEnumerable<HrEmployeeDto>> QueryHrEmployeesAsync(string? dbName, int companyProfileId)
-    {
-        if (string.IsNullOrWhiteSpace(dbName))
-            return [];
-
-        var normalizedDbName = dbName.Trim();
-        if (!Regex.IsMatch(normalizedDbName, "^[A-Za-z0-9_]+$"))
-            throw new InvalidOperationException("Country HRDatabase contains unsupported characters.");
-
-        var sql = $@"SELECT
-                        CAST(EmpId AS nvarchar(10)) AS EmpID,
-                        FullName,
-                        CompanyProfileId AS CompanyProfileID,
-                        PrmName
-                     FROM [{normalizedDbName}].[dbo].[vw_AssetsEmpList]
-                     WHERE CompanyProfileId = @CompanyProfileID
-                       AND LeaveDate IS NULL
-                     ORDER BY FullName";
-
-        try
-        {
-            return await db.QueryAsync<HrEmployeeDto>(sql, new { CompanyProfileID = companyProfileId });
-        }
-        catch (SqlException ex)
-        {
-            throw new InvalidOperationException(
-                $"Could not read HR employees from database '{normalizedDbName}'. Verify country HRDatabase and SQL permissions.",
-                ex);
-        }
-    }
+    
 
     public Task<CompanyDto?> CreateCompanyAsync(CompanyCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<CompanyDto>(

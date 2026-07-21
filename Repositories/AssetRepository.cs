@@ -1,7 +1,7 @@
 using System.Data;
 using AssetManagement.Api.Models;
 using Dapper;
-
+using AssetManagement.Api.Services;
 namespace AssetManagement.Api.Repositories;
 
 public interface IAssetRepository
@@ -22,7 +22,7 @@ public interface IAssetRepository
     Task<IEnumerable<string>> GetAssetCodeListAsync();
 }
 
-public class AssetRepository(IDbConnection db) : IAssetRepository
+public class AssetRepository(IDbConnection db, IHrEmployeeLookupService hrEmployeeLookupService) : IAssetRepository
 {
     // stpAssetsList does not join StatusTypes, so Status/StatusID may be null.
     // This enriches the list with the current status name via a single JOIN query.
@@ -44,6 +44,7 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
             "AT.stpAssetsList",
             commandType: CommandType.StoredProcedure)).ToList();
         await EnrichWithStatusNamesAsync(all);
+        await EnrichWithEmployeeNamesAsync(all);
         IEnumerable<AssetListItemDto> result = all;
         if (companyId.HasValue)
             result = result.Where(a => a.CompanyID == companyId.Value);
@@ -61,6 +62,7 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
             "AT.stpAssetsList",
             commandType: CommandType.StoredProcedure)).ToList();
         await EnrichWithStatusNamesAsync(all);
+         await EnrichWithEmployeeNamesAsync(all);
 
         List<AssetListItemDto> filtered;
         if (companyId.HasValue)
@@ -81,6 +83,29 @@ public class AssetRepository(IDbConnection db) : IAssetRepository
             PageSize = pageSize,
             TotalCount = totalCount
         };
+    }
+    private async Task EnrichWithEmployeeNamesAsync(IList<AssetListItemDto> items)
+    {
+        var withEmployee = items.Where(i => !string.IsNullOrWhiteSpace(i.HrEmpIDUsedBy)).ToList();
+        if (withEmployee.Count == 0) return;
+
+        foreach (var group in withEmployee.GroupBy(i => i.CompanyID))
+        {
+            IEnumerable<HrEmployeeDto> employees;
+            try
+            {
+                employees = await hrEmployeeLookupService.GetEmployeesByCompanyAsync(group.Key);
+            }
+            catch (InvalidOperationException)
+            {
+                // Company's HR database is misconfigured/unreachable — skip, don't fail the whole list.
+                continue;
+            }
+
+            var nameByEmpId = employees.ToDictionary(e => e.EmpID, e => e.FullName);
+            foreach (var item in group)
+                item.EmployeeName = nameByEmpId.GetValueOrDefault(item.HrEmpIDUsedBy!);
+        }
     }
 
     public async Task<AssetDto?> GetAssetAsync(int assetId)
