@@ -157,6 +157,25 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     public async Task<IActionResult> GetLocationDetails([FromQuery] short? locationId = null) =>
         Ok(await repo.GetLocationDetailsAsync(GetUserId(), locationId));
 
+    [HttpGet("location-details/paginated")]
+    public async Task<IActionResult> GetLocationDetailsPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetLocationDetailsAsync(GetUserId())).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<LocationDetailDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
+    }
+
     [HttpGet("statuses")]
     public async Task<IActionResult> GetStatuses() => Ok(await repo.GetStatusTypesAsync());
 

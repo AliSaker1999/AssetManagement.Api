@@ -352,41 +352,41 @@ public class LookupRepository(IDbConnection db) : ILookupRepository
     public Task<IEnumerable<string>> GetAvailableHrDatabasesAsync() =>
         db.QueryAsync<string>(
             @"DECLARE @db sysname;
-DECLARE @sql nvarchar(max);
-CREATE TABLE #results (DbName sysname PRIMARY KEY);
+            DECLARE @sql nvarchar(max);
+            CREATE TABLE #results (DbName sysname PRIMARY KEY);
 
-DECLARE dbs CURSOR LOCAL FAST_FORWARD FOR
-SELECT name
-FROM sys.databases
-WHERE database_id > 4
-  AND state_desc = 'ONLINE'
-  AND HAS_DBACCESS(name) = 1;
+            DECLARE dbs CURSOR LOCAL FAST_FORWARD FOR
+            SELECT name
+            FROM sys.databases
+            WHERE database_id > 4
+            AND state_desc = 'ONLINE'
+            AND HAS_DBACCESS(name) = 1;
 
-OPEN dbs;
-FETCH NEXT FROM dbs INTO @db;
+            OPEN dbs;
+            FETCH NEXT FROM dbs INTO @db;
 
-WHILE @@FETCH_STATUS = 0
-BEGIN
-    SET @sql = N'
-    BEGIN TRY
-        IF EXISTS (
-            SELECT 1
-            FROM ' + QUOTENAME(@db) + N'.sys.views
-            WHERE name = ''vw_AssetsCompanies''
-        )
-            INSERT INTO #results (DbName) VALUES (N''' + REPLACE(@db, '''', '''''') + N''');
-    END TRY
-    BEGIN CATCH
-    END CATCH;';
+            WHILE @@FETCH_STATUS = 0
+            BEGIN
+                SET @sql = N'
+                BEGIN TRY
+                    IF EXISTS (
+                        SELECT 1
+                        FROM ' + QUOTENAME(@db) + N'.sys.views
+                        WHERE name = ''vw_AssetsCompanies''
+                    )
+                        INSERT INTO #results (DbName) VALUES (N''' + REPLACE(@db, '''', '''''') + N''');
+                END TRY
+                BEGIN CATCH
+                END CATCH;';
 
-    EXEC(@sql);
-    FETCH NEXT FROM dbs INTO @db;
-END
+                EXEC(@sql);
+                FETCH NEXT FROM dbs INTO @db;
+            END
 
-CLOSE dbs;
-DEALLOCATE dbs;
+            CLOSE dbs;
+            DEALLOCATE dbs;
 
-SELECT DbName FROM #results ORDER BY DbName;");
+            SELECT DbName FROM #results ORDER BY DbName;");
 
     public Task<CountryDto?> CreateCountryAsync(CountryCreateRequest r) =>
         db.QueryFirstOrDefaultAsync<CountryDto>(
