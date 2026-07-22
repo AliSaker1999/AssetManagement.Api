@@ -149,6 +149,25 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
     [HttpGet("groups/full")]
     public async Task<IActionResult> GetGroupsFull() => Ok(await repo.GetGroupTypesFullAsync(GetUserId()));
 
+    [HttpGet("groups/paginated")]
+    public async Task<IActionResult> GetGroupsPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetGroupTypesAsync(GetUserId())).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<GroupTypeDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
+    }
+
     [HttpGet("locations")]
     public async Task<IActionResult> GetLocations([FromQuery] string? countryId = null) =>
         Ok(await repo.GetLocationTypesAsync(GetUserId(), countryId));
@@ -206,6 +225,25 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
 
     [HttpGet("currencies")]
     public async Task<IActionResult> GetCurrencies() => Ok(await repo.GetCurrenciesAsync());
+
+    [HttpGet("currencies/paginated")]
+    public async Task<IActionResult> GetCurrenciesPaginated([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        pageNumber = Math.Max(1, pageNumber);
+        pageSize = NormalizePageSize(pageSize);
+
+        var all = (await repo.GetCurrenciesAsync()).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var data = all.Skip(skip).Take(pageSize).ToList();
+
+        return Ok(new PaginatedResponse<CurrencyDto>
+        {
+            Data = data,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = all.Count
+        });
+    }
 
     [HttpPost("brands")]
     public async Task<IActionResult> CreateBrand([FromBody] BrandTypeCreateRequest request)
