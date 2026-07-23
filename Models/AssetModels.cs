@@ -82,6 +82,7 @@ public class AssetListItemDto
     public string? InvoiceNo { get; set; }
     public string? HrEmpIDUsedBy { get; set; }   // raw ID from AT.Assets, used to resolve EmployeeName
     public string? EmployeeName { get; set; }    // resolved in AssetRepository, not from the SP
+    public string? InstalledAt { get; set; }
 }
 
 public class AssetReportItemDto

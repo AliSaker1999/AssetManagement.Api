@@ -307,7 +307,7 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
         [FromQuery] string? countryId = null,
         [FromQuery] int? companyProfileId = null)
     {
-        if (IsAuditor()) return Forbid();
+        // if (IsAuditor()) return Forbid();
         if (companyProfileId.HasValue)
         {
             if (string.IsNullOrWhiteSpace(countryId)) return BadRequest("countryId is required.");
@@ -316,12 +316,6 @@ public class LookupsController(ILookupRepository repo, IPermissionService permis
         }
 
         if (companyId <= 0) return BadRequest("companyId is required.");
-
-        if (!IsAdmin())
-        {
-            var allowed = await permissionService.GetAllowedCompanyIdsAsync(GetUserId());
-            if (!allowed.Contains(companyId)) return Forbid();
-        }
 
         return Ok(await repo.GetHrEmployeesByCompanyAsync(companyId));
     }
